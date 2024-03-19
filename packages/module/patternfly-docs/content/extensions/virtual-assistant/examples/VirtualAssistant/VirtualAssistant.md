@@ -20,8 +20,34 @@ The **virtual assistant** description
 
 ### Basic example
 
-Example description
+Blank basic example of virtual assistant
 
 ```js file="./VirtualAssistantExample.tsx"
+
+```
+
+### Setting a different title and placeholder for the input
+
+You can configure a different title and placeholder input value
+
+
+```js file="./VirtualAssistantCustomText.tsx"
+
+```
+
+### Listening to messages
+
+You can listen to messages using `onMessage`
+
+```js file="./VirtualAssistantMessages.tsx"
+
+```
+
+### Using custom actions
+
+You can add custom actions to your assistant
+
+
+```js file="./VirtualAssistantWithActions.tsx"
 
 ```
