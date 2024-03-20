@@ -15,6 +15,8 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 ---
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
+import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/cjs/VirtualAssistantAction';
+import { AngleDownIcon } from '@patternfly/react-icons';
 
 The **virtual assistant** description
 
@@ -37,9 +39,17 @@ You can configure a different title and placeholder input value
 
 ### Listening to messages
 
-You can listen to messages using `onMessage`
+You can listen to the send button using `onSendMessage`.
 
 ```js file="./VirtualAssistantMessages.tsx"
+
+```
+
+### Disabling send button
+
+Disabling the send button prevents from being pressed.
+
+```js file="./VirtualAssistantDisableOnEmptyText.tsx"
 
 ```
 

@@ -56,21 +56,32 @@ export interface VirtualAssistantProps {
   title?: string;
   /** Input's placeholder for this assistant */
   inputPlaceholder?: string;
-  /** Fire when clicking the Send (Plane) icon */
-  onMessage?: (message: string) => void;
+  /** Input's content */
+  message?: string;
   /** Header actions of the assistant */
   actions?: React.ReactNode;
+  /** Input's content change */
+  onChangeMessage?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  /** Fire when clicking the Send (Plane) icon */
+  onSendMessage?: (message: string) => void;
+  /** Disables the message's input */
+  isInputDisabled?: boolean;
+  /** Disables the send button */
+  isSendButtonDisabled?: boolean;
 }
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
   children,
   title = 'Virtual Assistant',
   inputPlaceholder = 'Type a message...',
+  message = '',
   actions,
-  onMessage
+  onChangeMessage,
+  onSendMessage,
+  isInputDisabled = false,
+  isSendButtonDisabled = false,
 }: VirtualAssistantProps) => {
   const classes = useStyles();
-  const inputTextAreaRef = React.createRef<HTMLTextAreaElement>();
 
   return (
     <Card className={classes.card}>
@@ -89,15 +100,15 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
           <TextArea
             className={classes.textArea}
             placeholder={inputPlaceholder}
+            value={message}
+            onChange={onChangeMessage}
             type="text"
             aria-label="Assistant input"
-            ref={inputTextAreaRef}
+            isDisabled={isInputDisabled}
           />
           <InputGroupText>
-            <Button variant="plain" className="pf-v5-u-px-sm" onClick={onMessage ? () => {
-              if (inputTextAreaRef.current) {
-                onMessage(inputTextAreaRef.current.value)
-              }
+            <Button isDisabled={isSendButtonDisabled} variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
+              onSendMessage(message);
             } : undefined}>
               <PaperPlaneIcon />
             </Button>

@@ -3,13 +3,16 @@ import VirtualAssistant from '@patternfly/virtual-assistant/dist/cjs/VirtualAssi
 
 export const VirtualAssistantMessages: React.FunctionComponent = () => {
 
+  const [ message, setMessage ] =  React.useState<string>();
   const [ lastMessage, setLastMessage ] = React.useState<string>();
 
   return (
     <>
       <p><b>Last received message: </b> {lastMessage}</p>
       <VirtualAssistant
-        onMessage={(message: string) => {
+        message={message}
+        onChangeMessage={(_event, value) => setMessage(value)}
+        onSendMessage={(message: string) => {
           setLastMessage(message);
         }}
       />
