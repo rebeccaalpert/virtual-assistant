@@ -107,7 +107,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
             isDisabled={isInputDisabled}
           />
           <InputGroupText>
-            <Button isDisabled={isSendButtonDisabled} variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
+            <Button isDisabled={isSendButtonDisabled} aria-label="Virtual assistant's message" variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
               onSendMessage(message);
             } : undefined}>
               <PaperPlaneIcon />

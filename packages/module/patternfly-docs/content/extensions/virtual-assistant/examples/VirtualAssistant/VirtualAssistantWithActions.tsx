@@ -5,7 +5,7 @@ import { AngleDownIcon } from '@patternfly/react-icons';
 
 export const VirtualAssistantWithActions: React.FunctionComponent = () => (
   <VirtualAssistant actions={<>
-    <VirtualAssistantAction>
+    <VirtualAssistantAction aria-label="Minimize virtual assistant">
       <AngleDownIcon/>
     </VirtualAssistantAction>
   </>} />
