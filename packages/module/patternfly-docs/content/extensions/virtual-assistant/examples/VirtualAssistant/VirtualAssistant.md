@@ -15,22 +15,22 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 ---
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
-import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/cjs/VirtualAssistantAction';
+import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
 import { AngleDownIcon } from '@patternfly/react-icons';
 
-The **virtual assistant** description
+The **virtual assistant** component renders body of the virtual assistant window.
 
 ### Basic example
 
-Blank basic example of virtual assistant
+A blank example of the virtual assistant body.
 
 ```js file="./VirtualAssistantExample.tsx"
 
 ```
 
-### Setting a different title and placeholder for the input
+### Customizing input title and placeholder
 
-You can configure a different title and placeholder input value
+You can configure a custom title and placeholder input value using `title` and `inputPlaceholder` props.
 
 
 ```js file="./VirtualAssistantCustomText.tsx"
@@ -39,7 +39,7 @@ You can configure a different title and placeholder input value
 
 ### Listening to messages
 
-You can listen to the send button using `onSendMessage`.
+The `onSendMessage` property can be used for listening to the send button click.
 
 ```js file="./VirtualAssistantMessages.tsx"
 
@@ -47,7 +47,7 @@ You can listen to the send button using `onSendMessage`.
 
 ### Disabling send button
 
-Disabling the send button prevents from being pressed.
+Disabling the send button using `isSendButtonDisabled` prevents it from being clicked.
 
 ```js file="./VirtualAssistantDisableOnEmptyText.tsx"
 
@@ -55,7 +55,7 @@ Disabling the send button prevents from being pressed.
 
 ### Using custom actions
 
-You can add custom actions to your assistant
+Custom actions can be added to the assistant body using the `actions` property.
 
 
 ```js file="./VirtualAssistantWithActions.tsx"

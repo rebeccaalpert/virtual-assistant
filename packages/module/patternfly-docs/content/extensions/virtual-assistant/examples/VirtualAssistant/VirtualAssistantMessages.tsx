@@ -1,5 +1,5 @@
 import React from 'react';
-import VirtualAssistant from '@patternfly/virtual-assistant/dist/cjs/VirtualAssistant';
+import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 
 export const VirtualAssistantMessages: React.FunctionComponent = () => {
 

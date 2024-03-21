@@ -1,9 +1,9 @@
 import React from 'react';
-import VirtualAssistant from '@patternfly/virtual-assistant/dist/cjs/VirtualAssistant';
+import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 
 export const VirtualAssistantCustomText: React.FunctionComponent = () => (
   <VirtualAssistant
-    title="Patternfly assistant"
-    inputPlaceholder="You can ask anything about patternfly in here."
+    title="PatternFly assistant"
+    inputPlaceholder="You can ask anything in here."
   />
 );
