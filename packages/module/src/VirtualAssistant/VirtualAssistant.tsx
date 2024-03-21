@@ -52,7 +52,7 @@ const useStyles = createUseStyles({
 export interface VirtualAssistantProps {
   /** Messages rendered within the assistant */
   children?: React.ReactNode;
-  /** Header title for this assistant */
+  /** Header title for the assistant */
   title?: string;
   /** Input's placeholder for the assistant */
   inputPlaceholder?: string;
