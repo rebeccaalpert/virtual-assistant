@@ -54,7 +54,7 @@ export interface VirtualAssistantProps {
   children?: React.ReactNode;
   /** Header title for this assistant */
   title?: string;
-  /** Input's placeholder for this assistant */
+  /** Input's placeholder for the assistant */
   inputPlaceholder?: string;
   /** Input's content */
   message?: string;
@@ -64,7 +64,7 @@ export interface VirtualAssistantProps {
   onChangeMessage?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   /** Fire when clicking the Send (Plane) icon */
   onSendMessage?: (message: string) => void;
-  /** Disables the message's input */
+  /** Disables the text input */
   isInputDisabled?: boolean;
   /** Disables the send button */
   isSendButtonDisabled?: boolean;
