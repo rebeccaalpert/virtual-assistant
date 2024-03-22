@@ -15,13 +15,49 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 ---
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
+import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
+import { AngleDownIcon } from '@patternfly/react-icons';
 
-The **virtual assistant** description
+The **virtual assistant** component renders body of the virtual assistant window.
 
 ### Basic example
 
-Example description
+A blank example of the virtual assistant body.
 
 ```js file="./VirtualAssistantExample.tsx"
+
+```
+
+### Customizing input title and placeholder
+
+You can configure a custom title and placeholder input value using `title` and `inputPlaceholder` props.
+
+
+```js file="./VirtualAssistantCustomText.tsx"
+
+```
+
+### Listening to messages
+
+The `onSendMessage` property can be used for listening to the send button click.
+
+```js file="./VirtualAssistantMessages.tsx"
+
+```
+
+### Disabling send button
+
+Disabling the send button using `isSendButtonDisabled` prevents it from being clicked.
+
+```js file="./VirtualAssistantDisableOnEmptyText.tsx"
+
+```
+
+### Using custom actions
+
+Custom actions can be added to the assistant body using the `actions` property.
+
+
+```js file="./VirtualAssistantWithActions.tsx"
 
 ```

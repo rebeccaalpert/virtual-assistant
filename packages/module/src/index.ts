@@ -2,3 +2,6 @@
 
 export { default as VirtualAssistant } from './VirtualAssistant';
 export * from './VirtualAssistant';
+
+export { default as VirtualAssistantAction } from './VirtualAssistantAction';
+export * from './VirtualAssistantAction';
