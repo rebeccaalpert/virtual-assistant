@@ -59,7 +59,7 @@ const useStyles = createUseStyles({
   }
 })
 
-export const LoadingMessageEntry = () => {
+export const LoadingMessage = () => {
   const classes = useStyles();
   return (
     <Split className={classes.chatbot}>
@@ -78,3 +78,5 @@ export const LoadingMessageEntry = () => {
     </Split>
   );
 };
+
+export default LoadingMessage;
