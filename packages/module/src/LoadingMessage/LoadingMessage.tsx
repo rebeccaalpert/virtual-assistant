@@ -59,13 +59,17 @@ const useStyles = createUseStyles({
   }
 })
 
-export const LoadingMessage = () => {
+export interface LoadingMessageProps {
+  icon?: React.ComponentClass;
+}
+
+export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => {
   const classes = useStyles();
   return (
     <Split className={classes.chatbot}>
       <SplitItem>
         <Icon size="lg" className="pf-v5-u-mr-sm pf-v5-u-pt-md">
-          <RobotIcon />
+          <IconComponent />
         </Icon>
       </SplitItem>
       <SplitItem className={classnames(classes.bubble," pf-u-background-color-200")} >
