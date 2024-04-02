@@ -61,3 +61,11 @@ Custom actions can be added to the assistant body using the `actions` property.
 ```js file="./VirtualAssistantWithActions.tsx"
 
 ```
+### System Message Entry
+
+The `SystemMessageEntry` component provides a simple system message with an option for text links.
+
+
+```js file="./VirtualAssistantSystemMessageEntry.tsx"
+
+```
