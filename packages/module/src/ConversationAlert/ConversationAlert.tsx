@@ -25,7 +25,7 @@ const useStyles = createUseStyles({
 
 export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> = ({
   variant= 'info',
-  title= ''
+  title
 }: ConversationAlertProps) => {
   const classes = useStyles();
   return (
