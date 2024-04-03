@@ -3,8 +3,7 @@ import { Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 
 export interface SystemMessageEntryProps {
-  text: string;
-  href: string;
+  children: React.ReactNode;
 }
 
 const useStyles = createUseStyles({
@@ -19,7 +18,7 @@ export const SystemMessageEntry: React.FunctionComponent<SystemMessageEntryProps
   return (
     <TextContent>
       <Text component={TextVariants.small} className={classes.systemMessageText}>
-        {props.text} {props.href}
+        {props.children}
       </Text>
     </TextContent>
   );

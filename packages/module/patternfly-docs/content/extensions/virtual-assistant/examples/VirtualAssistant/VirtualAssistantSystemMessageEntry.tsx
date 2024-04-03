@@ -4,6 +4,6 @@ import SystemMessageEntry from '@patternfly/virtual-assistant/dist/esm/SystemMes
 
 export const BasicExample: React.FunctionComponent = () => (
   <VirtualAssistant >
-    <SystemMessageEntry />
+    <SystemMessageEntry>End of conversation.</SystemMessageEntry>
   </VirtualAssistant>
 );
