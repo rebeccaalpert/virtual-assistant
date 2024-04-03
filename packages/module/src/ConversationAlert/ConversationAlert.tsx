@@ -3,6 +3,11 @@ import { Alert, TextContent } from '@patternfly/react-core';
 
 import { createUseStyles } from 'react-jss';
 
+export interface ConversationAlertProps {
+  title: string;
+  variant?: 'success' | 'danger' | 'warning' | 'info' | 'custom';
+}
+
 const useStyles = createUseStyles({
   banner: {
     paddingTop: "0",
@@ -16,11 +21,13 @@ const useStyles = createUseStyles({
   }
 })
 
-export const ConversationEndBanner = () => {
+export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> = (props) => {
   const classes = useStyles();
   return (
     <TextContent className={classes.banner}>
-      <Alert className={classes.bannerAlert} variant="info" isInline title="You can start a new conversation at anytime by typing below." component="h6" />
+      <Alert className={classes.bannerAlert} variant={props.variant} isInline title={props.title} component="h6" />
     </TextContent>
   );
 };
+
+export default ConversationAlert;

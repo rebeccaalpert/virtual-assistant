@@ -61,3 +61,11 @@ Custom actions can be added to the assistant body using the `actions` property.
 ```js file="./VirtualAssistantWithActions.tsx"
 
 ```
+
+### Conversation Alert
+
+You can configure a custom title and variant input value using `title` and `variant` props.
+
+```js file="./VirtualAssistantConversationAlert.tsx"
+
+```
