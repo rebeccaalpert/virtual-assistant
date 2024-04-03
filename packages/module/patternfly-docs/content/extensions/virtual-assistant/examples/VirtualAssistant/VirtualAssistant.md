@@ -16,6 +16,7 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
+import SystemMessageEntry from '@patternfly/virtual-assistant/dist/esm/SystemMessageEntry'
 import { AngleDownIcon } from '@patternfly/react-icons';
 
 The **virtual assistant** component renders body of the virtual assistant window.
