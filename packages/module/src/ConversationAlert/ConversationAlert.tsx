@@ -4,7 +4,9 @@ import { Alert, TextContent } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 
 export interface ConversationAlertProps {
+    /** Text for conversation alert */
   title: string;
+  /** Variant type for conversation alert */
   variant?: 'success' | 'danger' | 'warning' | 'info' | 'custom';
 }
 
@@ -21,11 +23,14 @@ const useStyles = createUseStyles({
   }
 })
 
-export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> = (props) => {
+export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> = ({
+  variant= 'info',
+  title= ''
+}: ConversationAlertProps) => {
   const classes = useStyles();
   return (
     <TextContent className={classes.banner}>
-      <Alert className={classes.bannerAlert} variant={props.variant} isInline title={props.title} component="h6" />
+      <Alert className={classes.bannerAlert} variant={variant} isInline title={title} component="h6" />
     </TextContent>
   );
 };

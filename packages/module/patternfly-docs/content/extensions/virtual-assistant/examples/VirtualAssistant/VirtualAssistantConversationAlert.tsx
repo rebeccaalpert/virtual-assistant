@@ -4,6 +4,6 @@ import ConversationAlert from '@patternfly/virtual-assistant/dist/esm/Conversati
 
 export const BasicExample: React.FunctionComponent = () => (
   <VirtualAssistant >
-    <ConversationAlert />
+    <ConversationAlert>You can start a new conversation at any time by typing below.</ConversationAlert>
   </VirtualAssistant>
 );
