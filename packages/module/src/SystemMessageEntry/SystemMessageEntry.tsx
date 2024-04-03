@@ -3,6 +3,7 @@ import { Text, TextContent, TextVariants } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 
 export interface SystemMessageEntryProps {
+    /** Message rendered within the system message entry */
   children: React.ReactNode;
 }
 
