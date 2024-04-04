@@ -16,6 +16,7 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 
 import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
 import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistantAction';
+import SystemMessageEntry from '@patternfly/virtual-assistant/dist/esm/SystemMessageEntry'
 import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
 import { GrinIcon } from '@patternfly/react-icons';
 import { AngleDownIcon } from '@patternfly/react-icons';
@@ -66,11 +67,22 @@ Custom actions can be added to the assistant body using the `actions` property.
 ```
 
 
+
 ### Conversation Alert
 
 You can configure a custom title and variant input value using `title` and `variant` props.
 
 ```js file="./VirtualAssistantConversationAlert.tsx"
+
+```
+
+### System Message Entry
+
+The `SystemMessageEntry` component provides a simple system message with an option for text links.
+
+
+```js file="./VirtualAssistantSystemMessageEntry.tsx"
+
 ```
 
 ### Loading Messages
@@ -81,3 +93,4 @@ The `LoadingMessage` component shows a typing indicator for messages still being
 ```js file="./VirtualAssistantLoadingMessage.tsx"
 
 ```
+
