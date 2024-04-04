@@ -20,6 +20,7 @@ import SystemMessageEntry from '@patternfly/virtual-assistant/dist/esm/SystemMes
 import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
 import { GrinIcon } from '@patternfly/react-icons';
 import { AngleDownIcon } from '@patternfly/react-icons';
+import ConversationAlert from '@patternfly/virtual-assistant/dist/esm/ConversationAlert'
 
 The **virtual assistant** component renders body of the virtual assistant window.
 
@@ -62,6 +63,16 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 
 ```js file="./VirtualAssistantWithActions.tsx"
+
+```
+
+
+
+### Conversation Alert
+
+You can configure a custom title and variant input value using `title` and `variant` props.
+
+```js file="./VirtualAssistantConversationAlert.tsx"
 
 ```
 
