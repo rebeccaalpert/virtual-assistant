@@ -88,7 +88,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
       <CardHeader className={classes.cardHeader} actions={actions ? {
         actions
       } : undefined}>
-        <CardTitle className={classnames(classes.cardTitle,"pf-v5-u-font-size-xl")}>
+        <CardTitle className={classnames(classes.cardTitle,"pf-v5-u-font-size-xl")} data-test-id="assistant-title">
           {title}
         </CardTitle>
       </CardHeader>
@@ -105,9 +105,10 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
             type="text"
             aria-label="Assistant input"
             isDisabled={isInputDisabled}
+            data-test-id="assistant-text-input"
           />
           <InputGroupText>
-            <Button isDisabled={isSendButtonDisabled} aria-label="Virtual assistant's message" variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
+            <Button isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" className="pf-v5-u-px-sm" onClick={onSendMessage ? () => {
               onSendMessage(message);
             } : undefined}>
               <PaperPlaneIcon />

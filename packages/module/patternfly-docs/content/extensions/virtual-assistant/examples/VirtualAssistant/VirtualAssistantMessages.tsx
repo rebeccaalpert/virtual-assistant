@@ -8,7 +8,7 @@ export const VirtualAssistantMessages: React.FunctionComponent = () => {
 
   return (
     <>
-      <p><b>Last received message: </b> {lastMessage}</p>
+      <p data-test-id="assistant-example-message"><b>Last received message: </b> {lastMessage}</p>
       <VirtualAssistant
         message={message}
         onChangeMessage={(_event, value) => setMessage(value)}

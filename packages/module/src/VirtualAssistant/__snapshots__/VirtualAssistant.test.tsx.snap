@@ -20,6 +20,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
         >
           <div
             class="pf-v5-c-card__title-text cardTitle-0-2-3 pf-v5-u-font-size-xl"
+            data-test-id="assistant-title"
           >
             Virtual Assistant
           </div>
@@ -41,6 +42,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
           <textarea
             aria-invalid="false"
             aria-label="Assistant input"
+            data-test-id="assistant-text-input"
             placeholder="Type a message..."
             type="text"
           />
@@ -58,6 +60,7 @@ exports[`VirtualAssistant should render assistant 1`] = `
               data-ouia-component-id="OUIA-Generated-Button-plain-1"
               data-ouia-component-type="PF5/Button"
               data-ouia-safe="true"
+              data-test-id="assistant-send-button"
               type="button"
             >
               <svg

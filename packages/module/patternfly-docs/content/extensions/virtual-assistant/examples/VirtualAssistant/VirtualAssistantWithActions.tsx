@@ -5,7 +5,8 @@ import { AngleDownIcon } from '@patternfly/react-icons';
 
 export const VirtualAssistantWithActions: React.FunctionComponent = () => (
   <VirtualAssistant actions={<>
-    <VirtualAssistantAction aria-label="Minimize virtual assistant">
+    {/* eslint-disable-next-line no-console */}
+    <VirtualAssistantAction aria-label="Minimize virtual assistant" onClick={() => console.log('Minimize button clicked')}>
       <AngleDownIcon/>
     </VirtualAssistantAction>
   </>} />
