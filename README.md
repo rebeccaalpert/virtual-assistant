@@ -3,7 +3,7 @@
 This repo contains React Virtual assistant implementation. 
 
 ---
-## Contribution guide
+## Contribution guide  
 
 ### To add a new assistant sub-component:
 1. create a folder in `src/` matching its name (for example `src/MyComponent`)
