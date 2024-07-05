@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { KeyboardEventHandler } from 'react';
 import {
   Button,
   Card,
@@ -83,6 +83,18 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
 }: VirtualAssistantProps) => {
   const classes = useStyles();
 
+  const handleKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
+    if (event.key === 'Enter' || event.keyCode === 13) {
+      if (!event.shiftKey) {
+        if (message.trim() === '' || isSendButtonDisabled) {
+          event.preventDefault();
+        } else {
+          onSendMessage && onSendMessage(message);
+        }
+      }
+    }
+  };
+
   return (
     <Card className={classes.card}>
       <CardHeader className={classes.cardHeader} actions={actions ? {
@@ -102,6 +114,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
             placeholder={inputPlaceholder}
             value={message}
             onChange={onChangeMessage}
+            onKeyPress={handleKeyPress}
             type="text"
             aria-label="Assistant input"
             isDisabled={isInputDisabled}
