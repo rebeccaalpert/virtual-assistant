@@ -53,7 +53,7 @@ export interface VirtualAssistantProps {
   /** Messages rendered within the assistant */
   children?: React.ReactNode;
   /** Header title for the assistant */
-  title?: string;
+  title?: React.ReactNode;
   /** Input's placeholder for the assistant */
   inputPlaceholder?: string;
   /** Input's content */
