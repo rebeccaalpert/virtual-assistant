@@ -60,7 +60,7 @@ const useStyles = createUseStyles({
 })
 
 export interface LoadingMessageProps {
-  icon?: React.ComponentClass;
+  icon?: React.ComponentType;
 }
 
 export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => {

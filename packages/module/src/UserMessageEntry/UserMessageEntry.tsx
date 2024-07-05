@@ -18,7 +18,7 @@ const useStyles = createUseStyles({
 })
 
 interface UserMessageEntryProps {
-  icon?: React.ComponentClass;
+  icon?: React.ComponentType;
 }
 
 const UserMessageEntry = ({ children, icon: IconComponent = OutlinedUserIcon }: PropsWithChildren<UserMessageEntryProps>) => {

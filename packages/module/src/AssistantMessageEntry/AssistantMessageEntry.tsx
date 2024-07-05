@@ -23,7 +23,7 @@ interface AssistantMessageEntryProps {
     title: string;
     props?: LabelProps
   }[],
-  icon?: React.ComponentClass;
+  icon?: React.ComponentType;
 }
 
 export const AssistantMessageEntry = ({ children, options, icon: IconComponent = RobotIcon }: PropsWithChildren<AssistantMessageEntryProps>) => {
