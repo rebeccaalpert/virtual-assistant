@@ -1,5 +1,6 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom'
 import VirtualAssistant from './VirtualAssistant';
 
@@ -77,6 +78,70 @@ describe('VirtualAssistant', () => {
       isSendButtonDisabled={true}
     />);
     expect(screen.getByRole("button")).not.toBeEnabled();
+  });
+
+  it('should trigger onSendMessage when pressing enter if there is a message', async () => {
+    const user = userEvent.setup();
+    const listener = jest.fn();
+    render(<VirtualAssistant
+      onSendMessage={listener}
+      message="hello world"
+    />);
+
+    await user.type(screen.getByRole("textbox"), "[Enter]");
+
+    expect(listener).toHaveBeenCalledTimes(1);
+    expect(listener.mock.lastCall[0]).toBe('hello world');
+  });
+
+  it('should not trigger onSendMessage when pressing shift+enter if there is a message', async () => {
+    const user = userEvent.setup();
+    const listener = jest.fn();
+    render(<VirtualAssistant
+      onSendMessage={listener}
+      message="hello world"
+    />);
+
+    await user.type(screen.getByRole("textbox"), "{Shift>}[Enter]{/Shift}");
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('should not trigger onSendMessage when pressing enter if there is no text', async () => {
+    const user = userEvent.setup();
+    const listener = jest.fn();
+    render(<VirtualAssistant
+      onSendMessage={listener}
+      message=""
+    />);
+
+    await user.type(screen.getByRole("textbox"), "[Enter]");
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('should not trigger onSendMessage when pressing enter if there is only spaces / new lines and other empty content', async () => {
+    const user = userEvent.setup();
+    const message = "  \n\n\n  \t\t   \n\n\t\t  ";
+    const listener = jest.fn();
+    render(<VirtualAssistant
+      onSendMessage={listener}
+      message={message}
+    />);
+
+    await user.type(screen.getByRole("textbox"), "[Enter]");
+    expect(listener).not.toHaveBeenCalled();
+  });
+
+  it('should not trigger onSendMessage when pressing enter if the send button is disabled', async () => {
+    const user = userEvent.setup();
+    const listener = jest.fn();
+    render(<VirtualAssistant
+      onSendMessage={listener}
+      isSendButtonDisabled
+      message="hello world"
+    />);
+
+    await user.type(screen.getByRole("textbox"), "[Enter]");
+    expect(listener).not.toHaveBeenCalled();
   });
 
 });
