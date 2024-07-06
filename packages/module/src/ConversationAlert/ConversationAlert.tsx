@@ -8,6 +8,7 @@ export interface ConversationAlertProps {
   title: string;
   /** Variant type for conversation alert */
   variant?: 'success' | 'danger' | 'warning' | 'info' | 'custom';
+  children?: React.ReactNode;
 }
 
 const useStyles = createUseStyles({
@@ -25,12 +26,15 @@ const useStyles = createUseStyles({
 
 export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> = ({
   variant= 'info',
-  title
+  title,
+  children = ''
 }: ConversationAlertProps) => {
   const classes = useStyles();
   return (
     <TextContent className={classes.banner}>
-      <Alert className={classes.bannerAlert} variant={variant} isInline title={title} component="h6" />
+      <Alert className={classes.bannerAlert} variant={variant} isInline title={title} component="h6">
+        {children}
+      </Alert>
     </TextContent>
   );
 };
