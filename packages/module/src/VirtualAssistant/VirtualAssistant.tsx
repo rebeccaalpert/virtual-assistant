@@ -26,6 +26,11 @@ const useStyles = createUseStyles({
   },
   cardHeader: {
     background: "var(--pf-v5-global--BackgroundColor--dark-400)",
+    "& .pf-v5-c-button.pf-m-plain": {
+      color: "var(--pf-v5-global--Color--light-100)",
+      paddingLeft: "0",
+      paddingRight: "0",
+    }
   },
   cardTitle: {
     color: "var(--pf-v5-global--Color--light-100)",
