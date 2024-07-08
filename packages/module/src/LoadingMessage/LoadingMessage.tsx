@@ -11,7 +11,6 @@ const useStyles = createUseStyles({
     marginRight: "40px",
   },
   bubble: {
-    border: "1px solid var(--pf-v5-global--BackgroundColor--dark-400)",
     borderRadius: "14px",
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
