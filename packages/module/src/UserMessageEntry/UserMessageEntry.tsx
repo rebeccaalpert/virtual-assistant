@@ -8,14 +8,14 @@ interface UserMessageEntryProps {
 
 const UserMessageEntry = ({ children, icon: IconComponent = OutlinedUserIcon }: PropsWithChildren<UserMessageEntryProps>) => (
   <>
-    <Split className="pf-v5-u-mb-md pf-v5-u-align-items-flex-start pf-v5-u-justify-content-flex-end">
+    <Split className="pf-v6-u-mb-md pf-v6-u-align-items-flex-start pf-v6-u-justify-content-flex-end">
       <SplitItem>
-        <TextContent className="pf-v5-u-color-300 pf-v5-u-font-size-sm">
+        <TextContent className="pf-v6-u-color-300 pf-v6-u-font-size-sm">
           {children}
         </TextContent>
       </SplitItem>
       <SplitItem>
-        <Icon size="lg" className="pf-v5-u-ml-sm pf-v5-u-pt-xs">
+        <Icon size="lg" className="pf-v6-u-ml-sm pf-v6-u-pt-xs">
           <IconComponent />
         </Icon>
       </SplitItem>

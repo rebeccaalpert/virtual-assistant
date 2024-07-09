@@ -12,24 +12,24 @@ interface AssistantMessageEntryProps {
 }
 
 export const AssistantMessageEntry = ({ children, options, icon: IconComponent = RobotIcon }: PropsWithChildren<AssistantMessageEntryProps>) => (
-  <div className="pf-v5-u-mb-md">
+  <div className="pf-v6-u-mb-md">
     <Split>
       <SplitItem>
-        <Icon size="lg" className="pf-v5-u-mr-sm pf-v5-u-pt-md">
+        <Icon size="lg" className="pf-v6-u-mr-sm pf-v6-u-pt-md">
           <IconComponent />
         </Icon>
       </SplitItem>
-      <SplitItem className="pf-v5-u-background-color-200">
-        <TextContent className="pf-v5-u-font-size-sm">
+      <SplitItem className="pf-v6-u-background-color-200">
+        <TextContent className="pf-v6-u-font-size-sm">
           {children}
         </TextContent>
       </SplitItem>
     </Split>
     {options ? (
       <Split>
-        <SplitItem className="pf-v5-u-ml-xl pf-v5-u-mt-md">
+        <SplitItem className="pf-v6-u-ml-xl pf-v6-u-mt-md">
           {options.map((option, index) => (
-            <Label key={index} className="pf-v5-u-m-xs" {...option.props}>
+            <Label key={index} className="pf-v6-u-m-xs" {...option.props}>
               {option.title}
             </Label>
           ))}
