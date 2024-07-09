@@ -1,6 +1,6 @@
 ---
 section: extensions
-subsection: Virtual assistant
+subsection: Chat bots / AI
 id: About virtual assistant
 sortValue: 1
 --- 
@@ -12,3 +12,5 @@ Virtual assistant lives in its own package [`@patternfly/virtual-assistant`](htt
 The virtual assistant extension contains implementation of the react virtual assistant.
 
 If you notice a bug or have a suggestion for the virtual assistant, feel free to file an issue in our [GitHub repository](https://github.com/patternfly/virtual-assistant/issues)! Please make sure to check if there is already a pre-existing issue before creating a new issue. 
+
+To view a working demo of the virtual assistant, view them under the react-demos tab of [Virtual assistant docs](/extensions/chat-bots--ai/virtual-assistant/react-demos).

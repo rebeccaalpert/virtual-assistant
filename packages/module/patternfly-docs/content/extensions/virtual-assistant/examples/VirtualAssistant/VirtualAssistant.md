@@ -2,7 +2,7 @@
 # Sidenav top-level section
 # should be the same for all markdown files
 section: extensions
-subsection: Virtual assistant
+subsection: Chat bots / AI
 # Sidenav secondary level section
 # should be the same for all markdown files
 id: Virtual assistant
@@ -10,7 +10,7 @@ id: Virtual assistant
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['VirtualAssistant']
+propComponents: ['VirtualAssistant', 'VirtualAssistantAction']
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/VirtualAssistant/VirtualAssistant.md
 ---
 
@@ -65,55 +65,5 @@ Custom actions can be added to the assistant body using the `actions` property.
 
 
 ```js file="./VirtualAssistantWithActions.tsx"
-
-```
-
-### Conversation Alert
-
-You can configure a custom title and variant input value using `title` and `variant` props.
-
-```js file="./VirtualAssistantConversationAlert.tsx"
-
-```
-
-### System Message Entry
-
-The `SystemMessageEntry` component provides a simple system message with an option for text links.
-
-
-```js file="./VirtualAssistantSystemMessageEntry.tsx"
-
-```
-
-### Loading Messages
-
-The `LoadingMessage` component shows a typing indicator for messages still being processed, introducing an intentional delay to simulate a smoother flow of conversation. Additionally, it allows for the use of a custom icon through the `icon` property.
-
-
-```js file="./VirtualAssistantLoadingMessage.tsx"
-
-```
-
-### Assistant Message
-
-This is an example of a message sent by assistant. Additionally, it allows for the use of a custom icon through the `icon` property.
-
-```js file="./AssistantMessage.tsx"
-
-```
-
-### Assistant Message with follow-up options
-
-This is an example of a message sent by assistant with follow-up options. Follow-up options are defined within `options` property.
-
-```js file="./AssistantMessageWithFollowup.tsx"
-
-```
-
-### User Message
-
-This is an example of a message sent by user. Additionally, it allows for the use of a custom icon through the `icon` property.
-
-```js file="./UserMessage.tsx"
 
 ```
