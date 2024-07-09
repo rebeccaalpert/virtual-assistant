@@ -4,8 +4,8 @@ import { Alert, TextContent } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 
 export interface ConversationAlertProps {
-    /** Text for conversation alert */
-  title: string;
+    /** Content for conversation alert */
+  title: React.ReactNode;
   /** Variant type for conversation alert */
   variant?: 'success' | 'danger' | 'warning' | 'info' | 'custom';
   children?: React.ReactNode;

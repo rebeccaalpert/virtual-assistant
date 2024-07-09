@@ -19,7 +19,7 @@ const useStyles = createUseStyles({
 
 interface AssistantMessageEntryProps {
   options?: {
-    title: string;
+    title: React.ReactNode;
     props?: LabelProps
   }[],
   icon?: React.ComponentType;
