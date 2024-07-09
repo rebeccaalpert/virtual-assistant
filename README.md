@@ -15,27 +15,18 @@ This repo contains React Virtual assistant implementation.
 ```
 import * as React from 'react';
 import { Text } from '@patternfly/react-core';
-import { createUseStyles } from 'react-jss';
 
 // do not forget to export your component's interface
 // always place the component's interface above the component itself in the code
 export interface MyComponentProps {
   text: String;
-}
 
-const useStyles = createUseStyles({
-  myText: {
-    fontFamily: 'monospace',
-    fontSize: 'var(--pf-v5-global--icon--FontSize--md)',
-  },
-})
 
 // do not use the named export of your component, just a default one
 const MyComponent: React.FunctionComponent<MyComponentProps> = () => {
-  const classes = useStyles();
 
   return (
-    <Text className={classes.myText}>
+    <Text>
       This is my new component
     </Text>
   );
