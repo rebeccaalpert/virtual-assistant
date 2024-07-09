@@ -9,6 +9,6 @@ describe('VirtualAssistantAction', () => {
     </VirtualAssistantAction>);
     cy.get('[aria-label="Minimize virtual assistant"]').click();
     cy.get('@action').should('have.been.called');
-    cy.get('.pf-v5-svg').should('exist');
+    cy.get('.pf-v6-svg').should('exist');
   })
 })
