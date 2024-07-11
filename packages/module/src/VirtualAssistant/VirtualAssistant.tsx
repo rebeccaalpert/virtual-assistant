@@ -6,34 +6,70 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
+  Icon,
   InputGroup,
   InputGroupText,
+  Flex,
   TextArea
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
 import { PaperPlaneIcon } from '@patternfly/react-icons';
+import ChatbotIcon from './icon-chatbot';
 
 const useStyles = createUseStyles({
   card: {
     width: "350px",
     height: "550px",
     overflow: "hidden",
+    borderRadius: "20px 20px 0 0",
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
     },
   },
   cardHeader: {
-    background: "var(--pf-v5-global--BackgroundColor--dark-400)",
+    background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
+    boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
+    height: "74px",
+    marginBottom: "6px",
+    "&:first-child": {
+      paddingBlockStart: "10px",
+      paddingInlineEnd: "10px",
+    },
     "& .pf-v5-c-button.pf-m-plain": {
       color: "var(--pf-v5-global--Color--light-100)",
       paddingLeft: "0",
       paddingRight: "0",
+      "& .pf-v5-svg": {
+        width: ".8em",
+        height: ".8em",
+        verticalAlign: "1em",
+      }
     }
   },
   cardTitle: {
+    alignSelf: "center",
     color: "var(--pf-v5-global--Color--light-100)",
+    fontSize: "18px",
+    fontWeight: "400",
+    lineHeight: "27px",
+    paddingLeft: "var(--pf-v5-global--spacer--sm)",
+  },
+  titleIcon: {
+    marginLeft: "8px",
+    marginTop: "10px",
+    fontSize: "28px",
+    color: "#C9190B",
+  },
+  titleIconWrapper: {
+    display: "block",
+    float: "left",
+    width: "38px",
+    height: "38px",
+    background: "#fff",
+    borderRadius: "20px",
+    marginRight: "7px", /*space between*/
   },
   cardBody: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
@@ -105,9 +141,16 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
       <CardHeader className={classes.cardHeader} actions={actions ? {
         actions
       } : undefined}>
-        <CardTitle className={classnames(classes.cardTitle,"pf-v5-u-font-size-xl")} data-test-id="assistant-title">
-          {title}
-        </CardTitle>
+        <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
+          <div className={classes.titleIconWrapper} >
+            <Icon className={classes.titleIcon}>
+              <ChatbotIcon />
+            </Icon>
+          </div>
+          <div className={classes.cardTitle} data-test-id="assistant-title">
+            {title}
+          </div>
+        </Flex>
       </CardHeader>
       <CardBody className={classes.cardBody}>
         {children}
