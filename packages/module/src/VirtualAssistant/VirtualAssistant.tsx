@@ -5,7 +5,6 @@ import {
   CardBody,
   CardFooter,
   CardHeader,
-  CardTitle,
   Icon,
   InputGroup,
   InputGroupText,
@@ -13,7 +12,6 @@ import {
   TextArea
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
-import classnames from "clsx";
 import { PaperPlaneIcon } from '@patternfly/react-icons';
 import ChatbotIcon from './icon-chatbot';
 
