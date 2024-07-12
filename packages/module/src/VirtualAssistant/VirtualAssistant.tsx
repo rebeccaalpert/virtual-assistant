@@ -67,7 +67,7 @@ const useStyles = createUseStyles({
     height: "38px",
     background: "#fff",
     borderRadius: "20px",
-    marginRight: "7px", /*space between*/
+    marginRight: "7px",
   },
   cardBody: {
     backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
