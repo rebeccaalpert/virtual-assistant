@@ -16,8 +16,8 @@ import { PaperPlaneIcon } from '@patternfly/react-icons';
 
 const useStyles = createUseStyles({
   card: {
-    width: "350px",
-    height: "550px",
+    width: "400px",
+    height: "600px",
     overflow: "hidden",
     "@media screen and (max-width: 768px)": {
       height: "420px",
