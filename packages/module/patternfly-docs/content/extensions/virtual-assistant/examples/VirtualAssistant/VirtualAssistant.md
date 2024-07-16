@@ -112,7 +112,7 @@ This is an example of a message sent by assistant with follow-up options. Follow
 
 ### User Message
 
-This is an example of a message sent by user. Additionally, it allows for the use of a custom icon through the `icon` property.
+This is an example of a message sent by user. 
 
 ```js file="./UserMessage.tsx"
 
