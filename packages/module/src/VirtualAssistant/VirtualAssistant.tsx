@@ -55,8 +55,8 @@ const useStyles = createUseStyles({
     paddingLeft: "var(--pf-v5-global--spacer--sm)",
   },
   titleIcon: {
-    marginLeft: "8px",
-    marginTop: "10px",
+    marginLeft: "5px",
+    marginTop: "4px",
     fontSize: "28px",
     color: "#C9190B",
   },
