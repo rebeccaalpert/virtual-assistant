@@ -13,7 +13,7 @@ import {
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import { PaperPlaneIcon } from '@patternfly/react-icons';
-import ChatbotIcon from './icon-chatbot';
+import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
 
 const useStyles = createUseStyles({
   card: {
@@ -145,7 +145,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
         <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
           <div className={classes.titleIconWrapper} >
             <Icon className={classes.titleIcon}>
-              {VAIcon ? <VAIcon /> : <ChatbotIcon />}
+              {VAIcon ? <VAIcon /> : <RobotIcon />}
             </Icon>
           </div>
           <div className={classes.cardTitle} data-test-id="assistant-title">
