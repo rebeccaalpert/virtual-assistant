@@ -37,6 +37,14 @@ describe('VirtualAssistant', () => {
     expect(screen.getByText('I am the message')).toBeTruthy();
   });
 
+  it('should use custom icon', () => {
+    const MyIcon: React.FunctionComponent = () => <span>FakeIcon</span>;
+    render(<VirtualAssistant
+      icon={MyIcon}
+    />);
+    expect(screen.getByText('FakeIcon')).toBeTruthy();
+  });
+
   it('should listen to message changes', async () => {
     const listener = jest.fn();
     render(<VirtualAssistant

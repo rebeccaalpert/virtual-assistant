@@ -107,6 +107,8 @@ export interface VirtualAssistantProps {
   isInputDisabled?: boolean;
   /** Disables the send button */
   isSendButtonDisabled?: boolean;
+  /** Virtual assistant icon */
+  icon?: React.ComponentType;
 }
 
 export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = ({
@@ -119,6 +121,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   onSendMessage,
   isInputDisabled = false,
   isSendButtonDisabled = false,
+  icon: VAIcon = undefined,
 }: VirtualAssistantProps) => {
   const classes = useStyles();
 
@@ -142,7 +145,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
         <Flex className="pf-v5-u-flex-direction-row pf-v5-u-justify-content-center">
           <div className={classes.titleIconWrapper} >
             <Icon className={classes.titleIcon}>
-              <ChatbotIcon />
+              {VAIcon ? <VAIcon /> : <ChatbotIcon />}
             </Icon>
           </div>
           <div className={classes.cardTitle} data-test-id="assistant-title">
