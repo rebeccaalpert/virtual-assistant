@@ -20,7 +20,8 @@ const useStyles = createUseStyles({
     width: "400px",
     height: "600px",
     overflow: "hidden",
-    borderRadius: "20px 20px 0 0",
+    borderRadius: "20px 20px 20px 20px",
+    boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
@@ -28,7 +29,6 @@ const useStyles = createUseStyles({
   },
   cardHeader: {
     background: "linear-gradient(180deg, #C9190B 0%, #A30000 100%, #3D0000 100.01%)",
-    boxShadow: "0px 3px 5px 0px rgba(0,0,0,0.40) !important",
     height: "74px",
     marginBottom: "6px",
     "&:first-child": {
