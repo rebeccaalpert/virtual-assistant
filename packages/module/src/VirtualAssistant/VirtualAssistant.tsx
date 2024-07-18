@@ -12,6 +12,7 @@ import {
   TextArea
 } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
+import classnames from "clsx";
 import { PaperPlaneIcon } from '@patternfly/react-icons';
 import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
 
@@ -20,7 +21,7 @@ const useStyles = createUseStyles({
     width: "400px",
     height: "600px",
     overflow: "hidden",
-    borderRadius: "20px 20px 0 0",
+    borderRadius: "20px 20px 20px 20px",
     "@media screen and (max-width: 768px)": {
       height: "420px",
       width: "100%",
@@ -138,7 +139,7 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   };
 
   return (
-    <Card className={classes.card}>
+    <Card className={classnames(classes.card,"pf-v5-u-box-shadow-lg")}>
       <CardHeader className={classes.cardHeader} actions={actions ? {
         actions
       } : undefined}>
