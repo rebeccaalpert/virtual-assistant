@@ -14,19 +14,59 @@ const useStyles = createUseStyles({
     padding: "var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md) var(--pf-v5-global--spacer--sm) var(--pf-v5-global--spacer--md)",
     maxWidth: "100%",
     wordWrap: "break-word",
+  },
+  label: {
+    backgroundColor: "var(--pf-v5-global--BackgroundColor--100)",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label--PaddingBottom": ".3rem",
+    "--pf-v5-c-label--PaddingRight": "1rem",
+    "--pf-v5-c-label--PaddingLeft": "1rem",
+    "--pf-v5-c-label--PaddingTop": ".3rem",
+  },
+  activeOption: {
+    background: "var(--pf-v5-global--danger-color--100)",
+    pointerEvents: "none",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label--m-outline__content--link--hover--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "--pf-v5-c-label__content--link--focus--before--BorderColor": "var(--pf-v5-global--danger-color--100)",
+    "& .pf-v5-c-label__content": {
+      color: "var(--pf-v5-global--BackgroundColor--100)",
+    },
+  },
+  inactiveOption: {
+    background: "var(--pf-v5-c-label--m-red--BackgroundColor)",
+    opacity: "0.6",
+    pointerEvents: "none",
+    "--pf-v5-c-label__content--before--BorderColor": "var(--pf-v5-c-label--m-red--BackgroundColor) !important",
+    "& .pf-v5-c-label__content": {
+      color: "var(--pf-v5-c-label--m-red__content--Color)",
+    },
   }
 })
 
 interface AssistantMessageEntryProps {
   options?: {
     title: React.ReactNode;
-    props?: LabelProps
-  }[],
+    props?: LabelProps;
+  }[];
   icon?: React.ComponentType;
 }
 
-export const AssistantMessageEntry = ({ children, options, icon: IconComponent = RobotIcon }: PropsWithChildren<AssistantMessageEntryProps>) => {
+export const AssistantMessageEntry = ({
+  children,
+  options,
+  icon: IconComponent = RobotIcon
+}: PropsWithChildren<AssistantMessageEntryProps>) => {
+  const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
   const classes = useStyles();
+
+  const handleOptionClick = (event: React.MouseEvent, index: number, customOnClick?: (event: React.MouseEvent) => void) => {
+    setSelectedOptionIndex(index);
+    if (customOnClick) {
+      customOnClick(event);
+    }
+  };
+
   return (
     <div className="pf-v5-u-mb-md">
       <Split className={classes.chatbot}>
@@ -41,18 +81,28 @@ export const AssistantMessageEntry = ({ children, options, icon: IconComponent =
           </TextContent>
         </SplitItem>
       </Split>
-      {options ? ( 
+      {options ? (
         <Split>
-          <SplitItem className={classnames(classes.chatbot,"pf-v5-u-ml-xl pf-v5-u-mt-md")}>
-            {options.map((option, index) => (
-              <Label key={index} className="pf-v5-u-m-xs" {...option.props}>
-                {option.title}
-              </Label>
-            ))}
+          <SplitItem className={classnames(classes.chatbot, "pf-v5-u-ml-xl pf-v5-u-mt-md")}>
+            {options.map((option, index) => {
+              const { onClick: customOnClick, ...restProps } = option.props || {};
+              return (
+                <Label
+                  key={index}
+                  {...restProps}
+                  className={classnames(classes.label, 'pf-v5-u-m-xs pf-m-red', {
+                    [classes.activeOption]: selectedOptionIndex === index,
+                    [classes.inactiveOption]: selectedOptionIndex !== undefined && selectedOptionIndex !== index
+                  })}
+                  onClick={(event) => handleOptionClick(event, index, customOnClick)}
+                >
+                  {option.title}
+                </Label>
+              );
+            })}
           </SplitItem>
         </Split>
-      ) : null
-      }
+      ) : null}
     </div>
   );
 };
