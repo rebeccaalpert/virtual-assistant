@@ -45,6 +45,8 @@ const useStyles = createUseStyles({
 })
 
 interface AssistantMessageEntryProps {
+  /** message title for the assistant */
+  title?: React.ReactNode;
   options?: {
     title: React.ReactNode;
     props?: LabelProps;
@@ -55,6 +57,7 @@ interface AssistantMessageEntryProps {
 export const AssistantMessageEntry = ({
   children,
   options,
+  title = 'Virtual Assistant',
   icon: IconComponent = RobotIcon
 }: PropsWithChildren<AssistantMessageEntryProps>) => {
   const [ selectedOptionIndex, setSelectedOptionIndex ] = React.useState<number>();
@@ -75,10 +78,15 @@ export const AssistantMessageEntry = ({
             <IconComponent />
           </Icon>
         </SplitItem>
-        <SplitItem className={classnames(classes.bubble," pf-v5-u-background-color-200")}>
-          <TextContent className="pf-v5-u-font-size-sm">
-            {children}
+        <SplitItem>
+          <TextContent className="pf-v5-u-font-size-xs pf-v5-u-font-weight-bold pf-v5-u-py-xs" data-test-id="assistant-title">
+            {title}
           </TextContent>
+          <div className={classnames(classes.bubble," pf-v5-u-background-color-200")}>
+            <TextContent className="pf-v5-u-font-size-sm">
+              {children}
+            </TextContent>
+          </div>
         </SplitItem>
       </Split>
       {options ? (
