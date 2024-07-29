@@ -41,9 +41,6 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
   // Configure icon
   const icon = isChatbotVisible ? <AngleDownIcon /> : <Icon />;
 
-  // Configure tooltips
-  // const tooltipRef = React.useRef()
-
   return (
     <Tooltip
       content={toolTipLabel}
@@ -53,7 +50,6 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         className={`pf-chatbot__button pf-chatbot__button--toggle-chatbot ${isChatbotVisible ? 'pf-chatbot__button--active' : ''}`}
         variant="plain"
         aria-describedby="pf-chatbot__tooltip--toggle-chatbot"
-        //ref={tooltipRef}
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
         {...props}
@@ -61,12 +57,6 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         {icon}
         {/* Notification dot placeholder */}
       </Button>
-      {/*<Tooltip
-        id="pf-chatbot__tooltip--toggle-chatbot"
-        className="pf-chatbot__tooltip"
-        content={label}
-        position="top-end"
-        triggerRef={tooltipRef} />*/}
     </Tooltip>
   )
 }
