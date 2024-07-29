@@ -5,14 +5,16 @@
 import React from 'react'
 
 // Import PatternFly components
-import { Button, Tooltip } from '@patternfly/react-core'
+import { Button, Tooltip, TooltipProps } from '@patternfly/react-core'
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
 // Import Chatbot components
 
-export interface ChatbotToggleProps {
+export interface ChatbotToggleProps extends React.HTMLProps<HTMLButtonElement> {
   /** Contents of the tooltip applied to the toggle button */
-  toolTipLabel?: string;
+  toolTipLabel?: React.ReactNode;
+  /** Props spread to the PF Tooltip component */
+  tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Flag indicating visibility of the chatbot appended to the toggle */
   isChatbotVisible?: boolean;
   /** Callback fired when toggle button is clicked */
@@ -31,7 +33,9 @@ const Icon = () => {
 export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
  toolTipLabel,
  isChatbotVisible,
- onToggleChatbot
+ onToggleChatbot,
+ tooltipProps,
+ ...props
 }: ChatbotToggleProps) => {
 
   // Configure icon
@@ -42,7 +46,8 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
 
   return (
     <Tooltip
-      content={<div>{toolTipLabel}</div>}
+      content={toolTipLabel}
+      {...toolTipProps}
     >
       <Button
         className={`pf-chatbot__button pf-chatbot__button--toggle-chatbot ${isChatbotVisible ? 'pf-chatbot__button--active' : ''}`}
@@ -51,6 +56,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         //ref={tooltipRef}
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
+        {...props}
       >
         {icon}
         {/* Notification dot placeholder */}
