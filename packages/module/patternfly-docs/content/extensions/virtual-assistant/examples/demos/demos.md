@@ -11,7 +11,7 @@ source: react-demos
 sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
 ---
 
-import VirtualAssistant from '@patternfly/virtual-assistant/dist/dynamic/VirtualAssistant';
+import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 
 # Demos
 
