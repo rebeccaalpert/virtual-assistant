@@ -50,6 +50,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         aria-describedby="pf-chatbot__tooltip--toggle-chatbot"
         //ref={tooltipRef}
         onClick={onToggleChatbot}
+        aria-expanded={isChatbotVisible}
       >
         {icon}
         {/* Notification dot placeholder */}
