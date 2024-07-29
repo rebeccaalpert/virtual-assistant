@@ -5,18 +5,18 @@
 import React from 'react'
 
 // Import PatternFly components
-import { Button } from '@patternfly/react-core'
+import { Button, Tooltip } from '@patternfly/react-core'
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
 // Import Chatbot components
 
 export interface ChatbotToggleProps {
-  /** TODO: description needed */
-  label?: string;
-  /** TODO: description needed */
-  chatbotVisible?: boolean;
-  /** TODO: description needed */
-  toggleChatbot?: () => void;
+  /** Contents of the tooltip applied to the toggle button */
+  toolTipLabel?: string;
+  /** Flag indicating visibility of the chatbot appended to the toggle */
+  isChatbotVisible?: boolean;
+  /** Callback fired when toggle button is clicked */
+  onToggleChatbot?: () => void;
 }
 
 const Icon = () => {
@@ -29,25 +29,27 @@ const Icon = () => {
 }
 
 export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
- label,
- chatbotVisible,
- toggleChatbot
+ toolTipLabel,
+ isChatbotVisible,
+ onToggleChatbot
 }: ChatbotToggleProps) => {
 
   // Configure icon
-  const icon = chatbotVisible ? <AngleDownIcon /> : <Icon />;
+  const icon = isChatbotVisible ? <AngleDownIcon /> : <Icon />;
 
   // Configure tooltips
   // const tooltipRef = React.useRef()
 
   return (
-    <>
+    <Tooltip
+      content={<div>{toolTipLabel}</div>}
+    >
       <Button
-        className={`pf-chatbot__button pf-chatbot__button--toggle-chatbot ${chatbotVisible ? 'pf-chatbot__button--active' : ''}`}
+        className={`pf-chatbot__button pf-chatbot__button--toggle-chatbot ${isChatbotVisible ? 'pf-chatbot__button--active' : ''}`}
         variant="plain"
         aria-describedby="pf-chatbot__tooltip--toggle-chatbot"
         //ref={tooltipRef}
-        onClick={toggleChatbot}
+        onClick={onToggleChatbot}
       >
         {icon}
         {/* Notification dot placeholder */}
@@ -58,7 +60,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
         content={label}
         position="top-end"
         triggerRef={tooltipRef} />*/}
-    </>
+    </Tooltip>
   )
 }
 
