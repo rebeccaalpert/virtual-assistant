@@ -5,12 +5,12 @@
 import React from 'react'
 
 // Import PatternFly components
-import { Button, Tooltip, TooltipProps } from '@patternfly/react-core'
+import { Button, ButtonProps, Tooltip, TooltipProps } from '@patternfly/react-core'
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
 // Import Chatbot components
 
-export interface ChatbotToggleProps extends React.HTMLProps<HTMLButtonElement> {
+export interface ChatbotToggleProps extends ButtonProps {
   /** Contents of the tooltip applied to the toggle button */
   toolTipLabel?: React.ReactNode;
   /** Props spread to the PF Tooltip component */
@@ -44,7 +44,7 @@ export const ChatbotToggle: React.FunctionComponent<ChatbotToggleProps> = ({
   return (
     <Tooltip
       content={toolTipLabel}
-      {...toolTipProps}
+      {...tooltipProps}
     >
       <Button
         className={`pf-chatbot__button pf-chatbot__button--toggle-chatbot ${isChatbotVisible ? 'pf-chatbot__button--active' : ''}`}
