@@ -5,7 +5,7 @@
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
-    "build": "npm run build:index && npm run build:js && npm run build:esm && npm run build:fed:packages",
+    "build": "sass src/main.scss dist/css/main.css && npm run build:index && npm run build:js && npm run build:esm && npm run build:fed:packages",
     "build:watch": "npm run build:js && npm run build:esm -- --watch && npm run build:fed:packages -- --watch",
     "build:esm": "tsc --build --verbose ./tsconfig.json",
     "build:fed:packages": "node generate-fed-package-json.js",

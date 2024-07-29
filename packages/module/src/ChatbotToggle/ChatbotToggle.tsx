@@ -10,9 +10,6 @@ import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-ico
 
 // Import Chatbot components
 
-// Import styles
-import './ChatbotToggle.scss'
-
 export interface ChatbotToggleProps {
   /** TODO: description needed */
   label?: string;
