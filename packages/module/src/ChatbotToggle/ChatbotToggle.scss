@@ -1,0 +1,53 @@
+// ============================================================================
+// Toggle Chatbot
+// ============================================================================
+.pf-v6-c-button.pf-chatbot__button--toggle-chatbot {
+  --pf-v6-c-button--AlignItems: center;
+  --pf-t--chatbot-toggle--background: var(--pf-t--color--black);
+  --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
+  --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
+  --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
+  --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
+
+  position: fixed;
+  bottom: 24px; //all pixel values will need to updated to token values
+  right: 24px;
+  width: 48px;
+  height: 48px;
+  background-color: var(--pf-t--chatbot-toggle--background);
+  border: 0;
+  border-radius: var(--pf-t--global--border--radius--pill);
+  color: var(--pf-t--chatbot-toggle--color);
+
+  &:hover, &:focus {
+    background-color: var(--pf-t--chatbot-toggle--background--hover);
+  }
+
+  .pf-v6-c-button__text {
+    display: flex; // we have PF layout components to avoid needing to write layout overrides
+    align-items: center;
+    justify-content: center;
+  }
+
+  // Icon
+  svg { width: 24px; height: 24px; }
+  svg path:first-child { fill: var(--pf-t--chatbot-toggle--icon--fill); stroke: var(--pf-t--chatbot-toggle--icon--stroke); }
+
+  // Active state
+  &.pf-chatbot__button--active svg { width: 20px; height: 20px; }
+}
+
+
+// Chatbot Dark Theme
+// ----------------------------------------------------------------------------
+.pf-v6-theme-dark {
+
+  .pf-v6-c-button.pf-chatbot__button--toggle-chatbot {
+    --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
+    --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
+    --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
+    --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--black);
+    --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--black);
+  }
+
+}

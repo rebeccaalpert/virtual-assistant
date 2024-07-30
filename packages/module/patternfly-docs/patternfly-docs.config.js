@@ -2,5 +2,7 @@
 module.exports = {
   sideNavItems: [ { section: 'extensions' } ],
   topNavItems: [],
+  hasDarkThemeSwitcher: true,
+  hasRTLSwitcher: true,
   port: 8006
 };

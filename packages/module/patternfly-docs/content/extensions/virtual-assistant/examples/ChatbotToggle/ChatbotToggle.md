@@ -5,21 +5,18 @@ section: extensions
 subsection: Chat bots / AI
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Virtual assistant
+id: Chatbot toggle
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
-source: react-demos
-sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
+source: react
+# If you use typescript, the name of the interface to display props for
+# These are found through the sourceProps function provided in patternfly-docs.source.js
+propComponents: ['ChatbotToggle']
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 
-# Demos
-
 ### Basic example
 
-A blank example of the virtual assistant body.
-
-```js file="./VirtualAssistantDemo.tsx" isFullscreen
+```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
 ```
-
