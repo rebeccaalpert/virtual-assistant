@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, TextContent, TextVariants } from '@patternfly/react-core';
+import { Content, ContentVariants } from '@patternfly/react-core';
 
 export interface SystemMessageEntryProps {
   /** Message rendered within the system message entry */
@@ -7,11 +7,11 @@ export interface SystemMessageEntryProps {
 }
 
 export const SystemMessageEntry: React.FunctionComponent<SystemMessageEntryProps> = (props) => (
-  <TextContent>
-    <Text data-test-id="assistant-system-message-entry" component={TextVariants.small}>
+  <>
+    <Content data-test-id="assistant-system-message-entry" component={ContentVariants.small}>
       {props.children}
-    </Text>
-  </TextContent>
+    </Content>
+  </>
 );
 
 export default SystemMessageEntry;
