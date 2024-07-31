@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Icon, Split, SplitItem, TextContent } from '@patternfly/react-core';
+import { Icon, Split, SplitItem, Content } from '@patternfly/react-core';
 import OutlinedUserIcon from '@patternfly/react-icons/dist/js/icons/outlined-user-icon';
 
 interface UserMessageEntryProps {
@@ -10,9 +10,9 @@ const UserMessageEntry = ({ children, icon: IconComponent = OutlinedUserIcon }: 
   <>
     <Split className="pf-v6-u-mb-md pf-v6-u-align-items-flex-start pf-v6-u-justify-content-flex-end">
       <SplitItem>
-        <TextContent className="pf-v6-u-color-300 pf-v6-u-font-size-sm">
+        <Content className="pf-v6-u-color-300 pf-v6-u-font-size-sm">
           {children}
-        </TextContent>
+        </Content>
       </SplitItem>
       <SplitItem>
         <Icon size="lg" className="pf-v6-u-ml-sm pf-v6-u-pt-xs">

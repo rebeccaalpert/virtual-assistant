@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Icon, Label, Split, SplitItem, TextContent, LabelProps } from '@patternfly/react-core';
+import { Icon, Label, Split, SplitItem, Content, LabelProps } from '@patternfly/react-core';
 
 import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
 
@@ -20,9 +20,9 @@ export const AssistantMessageEntry = ({ children, options, icon: IconComponent =
         </Icon>
       </SplitItem>
       <SplitItem className="pf-v6-u-background-color-200">
-        <TextContent className="pf-v6-u-font-size-sm">
+        <Content className="pf-v6-u-font-size-sm">
           {children}
-        </TextContent>
+        </Content>
       </SplitItem>
     </Split>
     {options ? (

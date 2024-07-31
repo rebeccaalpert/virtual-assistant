@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert, TextContent } from '@patternfly/react-core';
+import { Alert, Content } from '@patternfly/react-core';
 
 
 export interface ConversationAlertProps {
@@ -15,11 +15,11 @@ export const ConversationAlert:React.FunctionComponent<ConversationAlertProps> =
   title,
   children = ''
 }: ConversationAlertProps) => (
-  <TextContent>
+  <Content>
     <Alert variant={variant} isInline title={title} component="h6">
       {children}
     </Alert>
-  </TextContent>
+  </Content>
 );
 
 export default ConversationAlert;
