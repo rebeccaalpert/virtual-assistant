@@ -1,40 +1,32 @@
 // ============================================================================
 // Toggle Chatbot
 // ============================================================================
-.pf-v6-c-button.pf-chatbot__button--toggle-chatbot {
-  --pf-v6-c-button--AlignItems: center;
-  --pf-t--chatbot-toggle--background: var(--pf-t--color--black);
+.pf-v6-c-button.pf-chatbot__button {
+  --pf-t--chatbot-toggle--background: var(--pf-t--color--black); // ideally, we'd be using semantic tokens for colors here
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
   --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
   --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
   --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--white);
 
   position: fixed;
-  bottom: 24px; //all pixel values will need to updated to token values
-  right: 24px;
-  width: 48px;
-  height: 48px;
+  bottom: var(--pf-t--global--spacer--md);
+  right: var(--pf-t--global--spacer--md); // should this be on the left in a right-to-left language?
   background-color: var(--pf-t--chatbot-toggle--background);
-  border: 0;
   border-radius: var(--pf-t--global--border--radius--pill);
   color: var(--pf-t--chatbot-toggle--color);
+  padding: 0.75rem; // we don't have a token that seems to be the right size for this at this point...
 
   &:hover, &:focus {
     background-color: var(--pf-t--chatbot-toggle--background--hover);
   }
 
-  .pf-v6-c-button__text {
-    display: flex; // we have PF layout components to avoid needing to write layout overrides
-    align-items: center;
-    justify-content: center;
+  .pf-v6-c-button__icon {
+    display: contents;
   }
 
   // Icon
-  svg { width: 24px; height: 24px; }
+  svg { width: var(--pf-t--global--spacer--lg); height: var(--pf-t--global--spacer--lg); }
   svg path:first-child { fill: var(--pf-t--chatbot-toggle--icon--fill); stroke: var(--pf-t--chatbot-toggle--icon--stroke); }
-
-  // Active state
-  &.pf-chatbot__button--active svg { width: 20px; height: 20px; }
 }
 
 
@@ -42,7 +34,7 @@
 // ----------------------------------------------------------------------------
 .pf-v6-theme-dark {
 
-  .pf-v6-c-button.pf-chatbot__button--toggle-chatbot {
+  .pf-v6-c-button.pf-chatbot__button{
     --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
     --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
     --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
