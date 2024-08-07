@@ -5,7 +5,7 @@
 import React from 'react';
 
 // Import Patternfly components
-import { Button, Content, ContentVariants } from '@patternfly/react-core';
+import { Button, Content, ContentVariants, PopoverProps } from '@patternfly/react-core';
 
 // Import Patternfly icons
 import { InfoCircleIcon } from '@patternfly/react-icons/dist/esm/icons/info-circle-icon';
@@ -28,12 +28,16 @@ export interface FootnotePopover {
   title: string;
   /** Description for the Footnote popover */
   description: string;
+  /** Aria Label for the Popover */
+  ariaLabel?: string;
   /** Optional Banner Image that can be shown in the Footnote Popover */
   bannerImage?: FootnotePopoverBannerImage;
   /** Optional CTA button that can be used to trigger an action and close the popover */
   cta?: FootnotePopoverCTA;
   /** Optional link that can be used to show and external link like **Learn More** */
   link?: FootnotePopoverLink;
+  /** Props for PF Popover */
+  popoverProps?: PopoverProps;
 }
 
 export interface FootnotePopoverCTA {
@@ -108,15 +112,16 @@ export const Footnote: React.FunctionComponent<FootnoteProps> = ({
       {popover && (
         <Popover
           className="pf-chatbot__popover--footnote"
-          aria-label="More information"
+          aria-label={popover.ariaLabel || 'More information'}
           isVisible={isVisible}
           shouldOpen={(_event, _fn) => setIsVisible(true)}
           shouldClose={(_event, _fn) => setIsVisible(false)}
           bodyContent={popoverBodyContent}
           footerContent={popoverFooterContent}
-          minWidth="432"
-          maxWidth="432"
-          distance={16}
+          minWidth={popover.popoverProps?.minWidth || '432'}
+          maxWidth={popover.popoverProps?.maxWidth || '432'}
+          distance={popover.popoverProps?.distance || 16}
+          {...popover.popoverProps}
         >
           <Button variant="plain">
             {label} <InfoCircleIcon />

@@ -6,12 +6,16 @@ import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
 interface AssistantMessageEntryProps {
   options?: {
     title: React.ReactNode;
-    props?: LabelProps
-  }[],
+    props?: LabelProps;
+  }[];
   icon?: React.ComponentType;
 }
 
-export const AssistantMessageEntry = ({ children, options, icon: IconComponent = RobotIcon }: PropsWithChildren<AssistantMessageEntryProps>) => (
+export const AssistantMessageEntry = ({
+  children,
+  options,
+  icon: IconComponent = RobotIcon
+}: PropsWithChildren<AssistantMessageEntryProps>) => (
   <div className="pf-v6-u-mb-md">
     <Split>
       <SplitItem>
@@ -20,9 +24,7 @@ export const AssistantMessageEntry = ({ children, options, icon: IconComponent =
         </Icon>
       </SplitItem>
       <SplitItem className="pf-v6-u-background-color-200">
-        <Content className="pf-v6-u-font-size-sm">
-          {children}
-        </Content>
+        <Content className="pf-v6-u-font-size-sm">{children}</Content>
       </SplitItem>
     </Split>
     {options ? (
@@ -35,8 +37,7 @@ export const AssistantMessageEntry = ({ children, options, icon: IconComponent =
           ))}
         </SplitItem>
       </Split>
-    ) : null
-    }
+    ) : null}
   </div>
 );
 

@@ -14,7 +14,7 @@ export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ i
         <IconComponent />
       </Icon>
     </SplitItem>
-    <SplitItem className="pf-u-background-color-200" >
+    <SplitItem className="pf-u-background-color-200">
       <div className="pf-v6-u-display-flex pf-u-align-items-center" data-test-id="assistant-loading-dots">
         <div>.</div>
         <div>.</div>
