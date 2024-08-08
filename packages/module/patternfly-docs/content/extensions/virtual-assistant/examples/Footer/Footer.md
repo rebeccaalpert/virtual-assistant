@@ -11,10 +11,19 @@ source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents:
-  ['Footer', 'Footnote', 'FootnotePopover', 'FootnotePopoverCTA', 'FootnotePopoverBannerImage', 'FootnotePopoverLink']
+  [
+    'Footer',
+    'MessageBar',
+    'Footnote',
+    'FootnotePopover',
+    'FootnotePopoverCTA',
+    'FootnotePopoverBannerImage',
+    'FootnotePopoverLink'
+  ]
 ---
 
 import { Footer, Footnote } from '@patternfly/virtual-assistant/dist/dynamic/Footer';
+import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 
 ### Basic example
 

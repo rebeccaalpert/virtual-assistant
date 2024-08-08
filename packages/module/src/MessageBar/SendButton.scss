@@ -1,0 +1,40 @@
+// ============================================================================
+// Chatbot Footer - Message Bar - Send
+// ============================================================================
+.pf-v6-c-button.pf-chatbot__button--send {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--pf-t--global--border--radius--pill);
+  animation: motionSendButton var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--200) forwards;
+
+  .pf-v6-c-button__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pf-t--chatbot--message-bar--send-icon--fill);
+  }
+
+  svg {
+    height: 20px;
+  }
+
+  &:hover,
+  &:focus {
+    background-color: var(--pf-t--chatbot--message-bar--send-icon--background--color--hover);
+
+    .pf-v6-c-button__text {
+      color: var(--pf-t--chatbot--message-bar--send-icon--fill--hover);
+    }
+  }
+}
+
+@keyframes motionSendButton {
+  0% {
+    opacity: 0;
+    transform: translate3d(-8px, 0, 0);
+  }
+  100% {
+    opacity: 1;
+    transform: translate3d(0, 0, 0);
+  }
+}

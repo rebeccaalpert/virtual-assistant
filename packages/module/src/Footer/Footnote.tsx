@@ -28,8 +28,6 @@ export interface FootnotePopover {
   title: string;
   /** Description for the Footnote popover */
   description: string;
-  /** Aria Label for the Popover */
-  ariaLabel?: string;
   /** Optional Banner Image that can be shown in the Footnote Popover */
   bannerImage?: FootnotePopoverBannerImage;
   /** Optional CTA button that can be used to trigger an action and close the popover */
@@ -112,7 +110,7 @@ export const Footnote: React.FunctionComponent<FootnoteProps> = ({
       {popover && (
         <Popover
           className="pf-chatbot__popover--footnote"
-          aria-label={popover.ariaLabel || 'More information'}
+          aria-label={popover.popoverProps?.['aria-label'] || 'More information'}
           isVisible={isVisible}
           shouldOpen={(_event, _fn) => setIsVisible(true)}
           shouldClose={(_event, _fn) => setIsVisible(false)}

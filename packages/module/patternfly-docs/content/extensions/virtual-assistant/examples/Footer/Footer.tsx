@@ -1,5 +1,6 @@
 import React from 'react';
 import { Footer, Footnote } from '@patternfly/virtual-assistant/dist/dynamic/Footer';
+import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -23,8 +24,13 @@ const footnoteProps = {
   }
 };
 
-export const BasicDemo: React.FunctionComponent = () => (
-  <Footer>
-    <Footnote {...footnoteProps} />
-  </Footer>
-);
+export const BasicDemo: React.FunctionComponent = () => {
+  const handleSend = (message) => alert(message);
+
+  return (
+    <Footer>
+      <MessageBar onSendMessage={handleSend} hasMicrophoneButton />
+      <Footnote {...footnoteProps} />
+    </Footer>
+  );
+};

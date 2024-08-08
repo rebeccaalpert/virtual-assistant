@@ -15,6 +15,9 @@ export * from './Footer';
 export { default as LoadingMessage } from './LoadingMessage';
 export * from './LoadingMessage';
 
+export { default as MessageBar } from './MessageBar';
+export * from './MessageBar';
+
 export { default as Popover } from './Popover';
 export * from './Popover';
 
