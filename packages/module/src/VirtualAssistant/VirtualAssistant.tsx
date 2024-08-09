@@ -42,9 +42,8 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
   onChangeMessage,
   onSendMessage,
   isInputDisabled = false,
-  isSendButtonDisabled = false,
+  isSendButtonDisabled = false
 }: VirtualAssistantProps) => {
-
   const handleKeyPress: KeyboardEventHandler<HTMLTextAreaElement> = (event) => {
     if (event.key === 'Enter' || event.keyCode === 13) {
       if (!event.shiftKey) {
@@ -59,16 +58,12 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
 
   return (
     <Card>
-      <CardHeader actions={actions ? {
-        actions
-      } : undefined}>
+      <CardHeader actions={actions ? { actions } : undefined}>
         <CardTitle className="pf-v6-u-font-size-xl" data-test-id="assistant-title">
           {title}
         </CardTitle>
       </CardHeader>
-      <CardBody >
-        {children}
-      </CardBody>
+      <CardBody>{children}</CardBody>
       <CardFooter>
         <InputGroup>
           <TextArea
@@ -82,9 +77,14 @@ export const VirtualAssistant: React.FunctionComponent<VirtualAssistantProps> = 
             data-test-id="assistant-text-input"
           />
           <InputGroupText>
-            <Button isDisabled={isSendButtonDisabled} data-test-id="assistant-send-button" aria-label="Virtual assistant's message" variant="plain" className="pf-v6-u-px-sm" onClick={onSendMessage ? () => {
-              onSendMessage(message);
-            } : undefined}>
+            <Button
+              isDisabled={isSendButtonDisabled}
+              data-test-id="assistant-send-button"
+              aria-label="Virtual assistant's message"
+              variant="plain"
+              className="pf-v6-u-px-sm"
+              onClick={onSendMessage ? () => onSendMessage(message) : undefined}
+            >
               <PaperPlaneIcon />
             </Button>
           </InputGroupText>

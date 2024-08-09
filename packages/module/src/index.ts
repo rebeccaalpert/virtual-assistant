@@ -9,8 +9,17 @@ export * from './ChatbotToggle';
 export { default as ConversationAlert } from './ConversationAlert';
 export * from './ConversationAlert';
 
+export { default as Footer } from './Footer';
+export * from './Footer';
+
 export { default as LoadingMessage } from './LoadingMessage';
 export * from './LoadingMessage';
+
+export { default as MessageBar } from './MessageBar';
+export * from './MessageBar';
+
+export { default as Popover } from './Popover';
+export * from './Popover';
 
 export { default as SystemMessageEntry } from './SystemMessageEntry';
 export * from './SystemMessageEntry';

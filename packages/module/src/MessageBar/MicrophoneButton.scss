@@ -1,0 +1,54 @@
+// ============================================================================
+// Chatbot Footer - Message Bar - Microphone
+// ============================================================================
+.pf-v6-c-button.pf-chatbot__button--microphone {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--pf-t--global--border--radius--pill);
+
+  .pf-v6-c-button__text {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--pf-t--chatbot--message-bar--icon--fill);
+  }
+
+  svg {
+    height: 20px;
+  }
+
+  // Interactive states
+  &:hover,
+  &:focus {
+    .pf-v6-c-button__text {
+      color: var(--pf-t--chatbot--message-bar--icon--fill--hover);
+    }
+  }
+
+  // Active state
+  &--active {
+    background-color: var(--pf-t--color--blue--50);
+    animation: motionMicButton var(--pf-t--chatbot--timing-function) calc(var(--pf-t--global--duration--200) * 8)
+      infinite;
+
+    .pf-v6-c-button__text {
+      color: var(--pf-t--color--white);
+    }
+
+    &:hover,
+    &:focus {
+      .pf-v6-c-button__text {
+        color: var(--pf-t--color--white);
+      }
+    }
+  }
+}
+
+@keyframes motionMicButton {
+  0% {
+    box-shadow: 0 0 0 0 rgba(0, 102, 204, 1);
+  }
+  100% {
+    box-shadow: 0 0 0 16px rgba(0, 102, 204, 0);
+  }
+}

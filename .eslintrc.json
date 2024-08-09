@@ -9,7 +9,7 @@
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:@typescript-eslint/recommended",
-    "prettier"
+    "plugin:prettier/recommended"
   ],
   "overrides": [
     {
@@ -51,7 +51,6 @@
     "@typescript-eslint/unified-signatures": "error",
     "@typescript-eslint/no-var-requires": "off",
     "arrow-body-style": "error",
-    "array-bracket-spacing": ["error", "always"],
     "camelcase": [
       "error",
       {

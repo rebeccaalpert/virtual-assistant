@@ -4,10 +4,18 @@ import VirtualAssistantAction from '@patternfly/virtual-assistant/dist/dynamic/V
 import { AngleDownIcon } from '@patternfly/react-icons';
 
 export const VirtualAssistantWithActions: React.FunctionComponent = () => (
-  <VirtualAssistant actions={<>
-    {/* eslint-disable-next-line no-console */}
-    <VirtualAssistantAction aria-label="Minimize virtual assistant" onClick={() => console.log('Minimize button clicked')}>
-      <AngleDownIcon/>
-    </VirtualAssistantAction>
-  </>} />
+  <VirtualAssistant
+    actions={
+      <>
+        {/* eslint-disable-next-line no-console */}
+        <VirtualAssistantAction
+          aria-label="Minimize virtual assistant"
+          // eslint-disable-next-line no-console
+          onClick={() => console.log('Minimize button clicked')}
+        >
+          <AngleDownIcon />
+        </VirtualAssistantAction>
+      </>
+    }
+  />
 );
