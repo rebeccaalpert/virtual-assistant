@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import React from 'react'
+import React from 'react';
 
 // Import PatternFly components
 import {
@@ -17,9 +17,8 @@ import {
   Nav,
   NavItem,
   NavGroup,
-  NavProps,
   Truncate
-} from '@patternfly/react-core'
+} from '@patternfly/react-core';
 
 import ChatIcon from '@patternfly/react-icons/dist/esm/icons/chat-icon';
 
@@ -30,14 +29,14 @@ export interface NavItemObject {
 }
 
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
-  onDrawerToggle: (event: KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void,
-  isDrawerOpen: boolean,
-  activeItemId: string | number,
+  onDrawerToggle: (event: KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void;
+  isDrawerOpen: boolean;
+  activeItemId: string | number;
   onSelectActiveItem: (
     event: React.FormEvent<HTMLInputElement>,
-    selectedItem: { groupId: string | number; itemId: string | number; to: string; }
-  ) => void,
-  navAriaLabel: string,
+    selectedItem: { groupId: string | number; itemId: string | number; to: string }
+  ) => void;
+  navAriaLabel: string;
   navItems: NavItemObject[] | { [key: string]: NavItemObject[] };
   newChatButtonText?: string;
 }
@@ -51,8 +50,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   navItems,
   newChatButtonText = 'New chat',
   ...props
-}:ChatbotConversationHistoryNavProps) => {
-
+}: ChatbotConversationHistoryNavProps) => {
   const getNavItem = (conversation: NavItemObject) => (
     <NavItem
       preventDefault
@@ -71,9 +69,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       return (
         <>
           {navItems.map((conversation) => (
-            <React.Fragment key={conversation.id}>
-              {getNavItem(conversation)}
-            </React.Fragment>
+            <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
           ))}
         </>
       );
@@ -84,9 +80,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
           {Object.keys(navItems).map((navGroup) => (
             <NavGroup title={navGroup} key={navGroup}>
               {navItems[navGroup].map((conversation) => (
-                <React.Fragment key={conversation.id}>
-                  {getNavItem(conversation)}
-                </React.Fragment>
+                <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
               ))}
             </NavGroup>
           ))}
@@ -98,38 +92,40 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   // Menu Content
   // - Consumers should pass an array to <Chatbot> of the list of conversations
   // - Groups could be optional, but items need to be ordered by date
-  const menuContent = <>
-    <Nav onSelect={onSelectActiveItem} aria-label={navAriaLabel} >
-      {buildNav()}
-    </Nav>
-  </>
+  const menuContent = (
+    <>
+      <Nav onSelect={onSelectActiveItem} aria-label={navAriaLabel}>
+        {buildNav()}
+      </Nav>
+    </>
+  );
 
-  const panelContent = <>
-    <DrawerPanelContent>
-      <DrawerHead>
-        <DrawerActions>
-          <DrawerCloseButton onClick={onDrawerToggle} />
-          <Button>{newChatButtonText}</Button>
-        </DrawerActions>
-      </DrawerHead>
-      <DrawerPanelBody>
-        {menuContent}
-      </DrawerPanelBody>
-    </DrawerPanelContent>
-  </>
+  const panelContent = (
+    <>
+      <DrawerPanelContent>
+        <DrawerHead>
+          <DrawerActions>
+            <DrawerCloseButton onClick={onDrawerToggle} />
+            <Button>{newChatButtonText}</Button>
+          </DrawerActions>
+        </DrawerHead>
+        <DrawerPanelBody>{menuContent}</DrawerPanelBody>
+      </DrawerPanelContent>
+    </>
+  );
 
   return (
     <Drawer
       className="pf-chatbot__menu"
       isExpanded={isDrawerOpen}
       onExpand={onDrawerToggle}
-      //isInline={displayMode === 'pf-chatbot--fullscreen' || displayMode === 'pf-chatbot--embedded'}
+      // isInline={displayMode === 'pf-chatbot--fullscreen' || displayMode === 'pf-chatbot--embedded'}
       position="start"
       {...props}
     >
       <DrawerContent panelContent={panelContent} />
     </Drawer>
-  )
-}
+  );
+};
 
 export default ChatbotConversationHistoryNav;
