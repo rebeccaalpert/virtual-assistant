@@ -6,8 +6,6 @@ import {
   Tooltip,
   TooltipProps,
   Icon,
-  Brand,
-  BrandProps,
   Dropdown,
   DropdownGroup,
   DropdownList,
@@ -54,16 +52,13 @@ export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
       <Split>
         {onMenuToggle !== undefined && (
           <SplitItem>
-            <Tooltip
-              content="Menu"
-              position="bottom"
-              {...tooltipProps}
-            >
+            <Tooltip content="Menu" position="bottom" {...tooltipProps}>
               <Button
                 className="pf-chatbot__button--toggle-menu"
                 variant="plain"
                 aria-describedby="pf-chatbot__tooltip--toggle-menu"
                 onClick={onMenuToggle}
+                aria-label="Toggle menu"
               >
                 <Icon size="lg">
                   <BarsIcon />
@@ -72,7 +67,9 @@ export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
             </Tooltip>
           </SplitItem>
         )}
-        <SplitItem isFilled><Bullseye>{children}</Bullseye></SplitItem>
+        <SplitItem isFilled>
+          <Bullseye>{children}</Bullseye>
+        </SplitItem>
         <SplitItem>
           <Dropdown
             className="pf-chatbot__options"
@@ -90,7 +87,7 @@ export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
                 <Button
                   className="pf-chatbot__button--toggle-options"
                   variant="plain"
-                  aria-describedby="pf-chatbot__tooltip--toggle-options"
+                  aria-label="Toggle display mode options"
                   ref={buttonToggleOptionsRef}
                   onClick={() => setIsDisplayOptionsMenuOpen(!isDisplayOptionsMenuOpen)}
                 >

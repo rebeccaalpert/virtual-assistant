@@ -1,27 +1,19 @@
 import React from 'react';
-import { ChatbotHeader, NavItemObject } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import { ChatbotHeader } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
 
 export const BasicDemo: React.FunctionComponent = () => (
   <ChatbotHeader
-    onMenuToggle={() => console.log("Open menu")}
-    onDisplayModeSelect={() => console.log("change display mode")}
+    // eslint-disable-next-line no-console
+    onMenuToggle={() => console.log('Open menu')}
+    // eslint-disable-next-line no-console
+    onDisplayModeSelect={() => console.log('change display mode')}
   >
     <svg height="40px" viewBox="0 0 679 158">
       <title>PF-HorizontalLogo-Color</title>
       <defs>
-        <linearGradient
-          x1="68%"
-          y1="2.25860997e-13%"
-          x2="32%"
-          y2="100%"
-          id="theme-sensitive-svg"
-        >
+        <linearGradient x1="68%" y1="2.25860997e-13%" x2="32%" y2="100%" id="theme-sensitive-svg">
           <stop stopColor="#2B9AF3" offset="0%"></stop>
-          <stop
-            stopColor="#73BCF7"
-            stopOpacity="0.502212631"
-            offset="100%"
-          ></stop>
+          <stop stopColor="#73BCF7" stopOpacity="0.502212631" offset="100%"></stop>
         </linearGradient>
       </defs>
       <g stroke="none" strokeWidth="1" fill="none" fillRule="evenodd">
