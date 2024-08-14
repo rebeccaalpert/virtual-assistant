@@ -3,6 +3,9 @@
 export { default as AssistantMessageEntry } from './AssistantMessageEntry';
 export * from './AssistantMessageEntry';
 
+export { default as ChatbotHeader } from './ChatbotHeader';
+export * from './ChatbotHeader';
+
 export { default as ChatbotToggle } from './ChatbotToggle';
 export * from './ChatbotToggle';
 
