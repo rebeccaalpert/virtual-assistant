@@ -1,5 +1,5 @@
 import React, { PropsWithChildren } from 'react';
-import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps } from '@patternfly/react-core';
+import { Dropdown, DropdownItem, DropdownList, Icon, Label, MenuToggle, MenuToggleElement, Split, SplitItem, TextContent, LabelProps, DropdownItemProps, DropdownProps } from '@patternfly/react-core';
 import { createUseStyles } from 'react-jss';
 import classnames from "clsx";
 
@@ -56,9 +56,9 @@ interface AssistantMessageEntryProps {
   }[];
   icon?: React.ComponentType;
   dropdown?: {
-    label: string;
-    props?: DropdownItemProps;
-  }[];
+    items: { label: React.ReactNode; props?: DropdownItemProps; }[];
+    dropdownProps?: DropdownProps;
+  };
 }
 
 export const AssistantMessageEntry = ({
@@ -118,13 +118,14 @@ export const AssistantMessageEntry = ({
                   isOpen={isOpen}
                   onSelect={onSelect}
                   onOpenChange={setIsOpen}
+                  {...dropdown.dropdownProps}
                   toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
                     <MenuToggle ref={toggleRef} onClick={onToggleClick} isExpanded={isOpen}>
                       {selected ? selected : "A few things I can help you with" }
                     </MenuToggle>
                   )}>
                   <DropdownList>
-                    {dropdown.map((option, key) => {
+                    {dropdown.items.map((option, key) => {
                       const { onClick: customOnClick, ...dropdownProps } = option.props || {};
                       return (
                         <DropdownItem
@@ -138,7 +139,6 @@ export const AssistantMessageEntry = ({
                   </DropdownList>
                 </Dropdown>
               </div>
-             
             ) : null}
           </div>
         </SplitItem>
