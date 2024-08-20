@@ -3,6 +3,9 @@
 export { default as AssistantMessageEntry } from './AssistantMessageEntry';
 export * from './AssistantMessageEntry';
 
+export { default as AttachmentEdit } from './AttachmentEdit';
+export * from './AttachmentEdit';
+
 export { default as ChatbotHeader } from './ChatbotHeader';
 export * from './ChatbotHeader';
 
