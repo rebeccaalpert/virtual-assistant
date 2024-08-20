@@ -6,7 +6,17 @@ import path from 'path';
 
 // Import PatternFly components
 import { CodeEditor, Language } from '@patternfly/react-code-editor';
-import { Button, Flex, FlexItem, Icon, Modal, ModalBody, ModalFooter, ModalHeader } from '@patternfly/react-core';
+import {
+  Button,
+  Flex,
+  Icon,
+  Modal,
+  ModalBody,
+  ModalFooter,
+  ModalHeader,
+  Stack,
+  StackItem
+} from '@patternfly/react-core';
 import { CodeIcon } from '@patternfly/react-icons';
 
 export interface AttachmentEditProps {
@@ -14,9 +24,13 @@ export interface AttachmentEditProps {
   code: string;
   /** Filename, including extension, of file shown in editor */
   fileName: string;
+  /** Function that runs when cancel button is clicked  */
   onCancel: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  /** Function that runs when save button is clicked  */
   onSave: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  /** Function that opens and closes modal */
   handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
   title?: string;
@@ -59,25 +73,28 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
     >
       <ModalHeader title={title} labelId="edit-attachment-title" />
       <ModalBody id="edit-attachment-body">
-        <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsMd' }}>
-          <FlexItem>
-            <Flex spaceItems={{ default: 'spaceItemsMd' }}>
-              <Flex alignSelf={{ default: 'alignSelfCenter' }}>
-                <FlexItem className="pf-chatbot__attachment-icon">
-                  <Icon>
-                    <CodeIcon color="white" />
-                  </Icon>
-                </FlexItem>
+        <Stack hasGutter>
+          <StackItem>
+            <Flex>
+              <Flex
+                className="pf-chatbot__attachment-icon"
+                justifyContent={{ default: 'justifyContentCenter' }}
+                alignItems={{ default: 'alignItemsCenter' }}
+                alignSelf={{ default: 'alignSelfCenter' }}
+              >
+                <Icon>
+                  <CodeIcon color="white" />
+                </Icon>
               </Flex>
-              <Flex direction={{ default: 'column' }} spaceItems={{ default: 'spaceItemsNone' }}>
-                <FlexItem>{path.parse(fileName).name}</FlexItem>
-                <FlexItem className="pf-chatbot__attachment-language">
+              <Stack>
+                <StackItem>{path.parse(fileName).name}</StackItem>
+                <StackItem className="pf-chatbot__attachment-language">
                   {Language[path.extname(fileName).slice(1)].toUpperCase()}
-                </FlexItem>
-              </Flex>
+                </StackItem>
+              </Stack>
             </Flex>
-          </FlexItem>
-          <FlexItem>
+          </StackItem>
+          <StackItem>
             <CodeEditor
               isDarkTheme
               isLineNumbersVisible
@@ -88,8 +105,8 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
               height="400px"
               {...props}
             />
-          </FlexItem>
-        </Flex>
+          </StackItem>
+        </Stack>
       </ModalBody>
       <ModalFooter>
         <Button isBlock key="confirm" variant="primary" onClick={handleSave}>
