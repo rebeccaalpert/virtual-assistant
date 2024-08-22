@@ -12,6 +12,9 @@ export * from './ChatbotHeader';
 export { default as ChatbotToggle } from './ChatbotToggle';
 export * from './ChatbotToggle';
 
+export { default as CodeModal } from './CodeModal';
+export * from './CodeModal';
+
 export { default as ConversationAlert } from './ConversationAlert';
 export * from './ConversationAlert';
 
@@ -26,6 +29,9 @@ export * from './MessageBar';
 
 export { default as Popover } from './Popover';
 export * from './Popover';
+
+export { default as PreviewAttachment } from './PreviewAttachment';
+export * from './PreviewAttachment';
 
 export { default as SystemMessageEntry } from './SystemMessageEntry';
 export * from './SystemMessageEntry';
