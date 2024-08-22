@@ -1,5 +1,14 @@
+@import './AttachmentEdit/AttachmentEdit';
+@import './ChatbotConversationHistoryNav/ChatbotConversationHistoryNav';
+@import './ChatbotHeader/ChatbotHeader.scss';
 @import './ChatbotToggle/ChatbotToggle';
-
+@import './Footer/Footer';
+@import './Footer/Footnote';
+@import './MessageBar/AttachButton';
+@import './MessageBar/MessageBar';
+@import './MessageBar/MicrophoneButton';
+@import './MessageBar/SendButton';
+@import './Popover/Popover';
 
 .ws-full-page-utils {
   bottom: auto !important;

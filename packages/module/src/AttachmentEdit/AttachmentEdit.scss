@@ -1,0 +1,11 @@
+.pf-chatbot__attachment-language {
+  color: var(--pf-t--global--text--color--subtle);
+  font-size: var(--pf-t--global--icon--size--font--xs);
+}
+
+.pf-chatbot__attachment-icon {
+  background-color: var(--pf-t--global--icon--color--status--custom--default);
+  border-radius: var(--pf-t--global--border--radius--tiny);
+  width: 24px;
+  height: 24px;
+}
