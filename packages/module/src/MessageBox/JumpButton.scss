@@ -1,0 +1,49 @@
+// ============================================================================
+// Chatbot Jump Button
+// ============================================================================
+.pf-chatbot__jump {
+  position: absolute;
+  left: 50%;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  background-color: var(--pf-t--chatbot--jump--background);
+  border: 1px solid var(--pf-t--chatbot--border);
+  box-shadow: var(--pf-t--global--box-shadow--sm);
+  color: var(--pf-t--chatbot--icon--fill);
+  font-size: var(--pf-t--global--font--size--300);
+  transform: translate3d(-50%, 0, 0);
+  transition:
+    background-color var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--100),
+    box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--100),
+    transform var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--200),
+    opacity var(--pf-t--chatbot--timing-function) var(--pf-t--global--duration--200);
+  z-index: var(--pf-t--global--z-index--2xl);
+
+  &:hover,
+  &:focus {
+    background-color: var(--pf-t--chatbot--jump--background--hover);
+    box-shadow: var(--pf-t--global--box-shadow--md);
+    color: var(--pf-t--chatbot--icon--fill--hover);
+  }
+
+  &--top {
+    top: var(--pf-t--global--spacer--300);
+
+    &--hidden {
+      transform: translate3d(-50%, -8px, 0);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+
+  &--bottom {
+    bottom: var(--pf-t--global--spacer--300);
+
+    &--hidden {
+      transform: translate3d(-50%, 8px, 0);
+      opacity: 0;
+      pointer-events: none;
+    }
+  }
+}

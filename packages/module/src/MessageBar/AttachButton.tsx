@@ -34,7 +34,7 @@ export const AttachButton: React.FunctionComponent<AttachButtonProps> = ({
       <Button
         ref={tooltipAttachRef}
         variant="plain"
-        className={`pf-chatbot__button--attach ${className}`}
+        className={`pf-chatbot__button--attach ${className ?? ''}`}
         aria-describedby="pf-chatbot__tooltip--attach"
         aria-label={props['aria-label'] || 'Attach Button'}
         isDisabled={isDisabled}

@@ -14,56 +14,56 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons/dist/esm/icons/exte
 // Import Chatbot components
 import Popover from '../Popover/Popover';
 
-export interface FootnoteProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotFootnoteProps extends React.HTMLProps<HTMLDivElement> {
   /** Label to show for the footnote */
   label: string;
   /** Config for the popover which opens up when footnote is clicked */
-  popover?: FootnotePopover;
+  popover?: ChatbotFootnotePopover;
   /** Custom classname for the Footnote component */
   className?: string;
 }
 
-export interface FootnotePopover {
+export interface ChatbotFootnotePopover {
   /** Title for the Footnote popover */
   title: string;
   /** Description for the Footnote popover */
   description: string;
   /** Optional Banner Image that can be shown in the Footnote Popover */
-  bannerImage?: FootnotePopoverBannerImage;
+  bannerImage?: ChatbotFootnotePopoverBannerImage;
   /** Optional CTA button that can be used to trigger an action and close the popover */
-  cta?: FootnotePopoverCTA;
+  cta?: ChatbotFootnotePopoverCTA;
   /** Optional link that can be used to show and external link like **Learn More** */
-  link?: FootnotePopoverLink;
+  link?: ChatbotFootnotePopoverLink;
   /** Props for PF Popover */
   popoverProps?: PopoverProps;
 }
 
-export interface FootnotePopoverCTA {
+export interface ChatbotFootnotePopoverCTA {
   /** Label for the CTA */
   label: string;
   /** Callback for the CTA */
   onClick: () => void;
 }
 
-export interface FootnotePopoverBannerImage {
+export interface ChatbotFootnotePopoverBannerImage {
   /** Source for the banner image */
   src: string;
   /** Alternate text for the banner image */
   alt: string;
 }
-export interface FootnotePopoverLink {
+export interface ChatbotFootnotePopoverLink {
   /** Label for the Link */
   label: string;
   /** URL for the Link */
   url: string;
 }
 
-export const Footnote: React.FunctionComponent<FootnoteProps> = ({
+export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
   label,
   popover,
   className,
   ...props
-}: FootnoteProps) => {
+}: ChatbotFootnoteProps) => {
   // Popover visibility state
   const [isVisible, setIsVisible] = React.useState<boolean>(false);
 
@@ -106,7 +106,7 @@ export const Footnote: React.FunctionComponent<FootnoteProps> = ({
   );
 
   return (
-    <div className={`pf-chatbot__footnote ${className}`} {...props}>
+    <div className={`pf-chatbot__footnote ${className ?? ''}`} {...props}>
       {popover && (
         <Popover
           className="pf-chatbot__popover--footnote"
@@ -119,6 +119,7 @@ export const Footnote: React.FunctionComponent<FootnoteProps> = ({
           minWidth={popover.popoverProps?.minWidth || '432'}
           maxWidth={popover.popoverProps?.maxWidth || '432'}
           distance={popover.popoverProps?.distance || 16}
+          showClose={false}
           {...popover.popoverProps}
         >
           <Button variant="plain">
@@ -131,4 +132,4 @@ export const Footnote: React.FunctionComponent<FootnoteProps> = ({
   );
 };
 
-export default Footnote;
+export default ChatbotFootnote;

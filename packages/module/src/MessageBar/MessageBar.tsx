@@ -2,7 +2,8 @@
 // Chatbot Footer - Message Bar
 // ============================================================================
 import React from 'react';
-import { TextArea, TextAreaProps } from '@patternfly/react-core';
+import { TextAreaProps } from '@patternfly/react-core';
+import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
 import AttachButton from './AttachButton';
@@ -67,17 +68,16 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   );
 
   return (
-    <div className={`pf-chatbot__message-bar ${className}`}>
+    <div className={`pf-chatbot__message-bar ${className ?? ''}`}>
       <div className="pf-chatbot__message-bar-input">
-        <TextArea
+        <AutoTextArea
           ref={textareaRef}
           className="pf-chatbot__message-textarea"
-          value={message}
-          onChange={handleChange}
+          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
           onKeyDown={handleKeyDown}
           placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
           aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
-          autoResize
           {...props}
         />
       </div>

@@ -1,0 +1,103 @@
+// ============================================================================
+// Chatbot
+// ============================================================================
+.pf-chatbot {
+  --pf-t--chatbot--heading--font-family: var(
+    --pf-v6-c-content--heading--FontFamily,
+    redhatdisplayvf,
+    redhatdisplay,
+    helvetica,
+    arial,
+    sans-serif
+  );
+  --pf-t--chatbot--font-size: var(--pf-t--global--font--size--md);
+  --pf-t--chatbot--background: var(--pf-t--color--gray--10);
+  --pf-t--chatbot--border: var(--pf-t--color--gray--30);
+  --pf-t--chatbot--illustration--fill: var(--pf-t--color--red--50);
+  --pf-t--chatbot--code--background: var(--pf-t--color--gray--20);
+  --pf-t--chatbot--icon--fill: var(--pf-t--color--gray--50);
+  --pf-t--chatbot--icon--fill--hover: var(--pf-t--color--gray--70);
+  --pf-t--chatbot--timing-function: cubic-bezier(0.77, 0, 0.175, 1);
+  --pf-t--chatbot--jump--background: var(--pf-t--chatbot--background);
+  --pf-t--chatbot--jump--background--hover: var(--pf-t--color--white);
+
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  width: 480px;
+  height: 70vh;
+  background-color: var(--pf-t--chatbot--background);
+  border-radius: var(--pf-t--global--border--radius--medium);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+  font-size: var(--pf-t--chatbot--font-size);
+  overflow: hidden;
+  z-index: var(--pf-t--global--z-index--2xl);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  // Hide chatbot
+  &--hidden {
+    pointer-events: none;
+  }
+
+  // Nested chatbot buttons
+  .pf-v6-c-button {
+    --pf-v6-c-button--AlignItems: center;
+  }
+}
+
+// ============================================================================
+// Chatbot Display Mode - Docked
+// ============================================================================
+.pf-chatbot--docked {
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+  overflow: inherit;
+}
+
+html.pf-chatbot-allow--docked {
+  padding-right: 480px;
+}
+
+// ============================================================================
+// Chatbot Display Mode - Fullscreen
+// ============================================================================
+.pf-chatbot--fullscreen {
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// ============================================================================
+// Chatbot Display Mode - Embedded
+// ============================================================================
+.pf-chatbot--embedded {
+  position: static;
+  width: 100%;
+  min-height: 100%;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+// ============================================================================
+// Chatbot Dark Theme
+// ============================================================================
+.pf-v6-theme-dark {
+  .pf-chatbot {
+    --pf-t--chatbot--background: var(--pf-t--color--gray--95);
+    --pf-t--chatbot--border: var(--pf-t--color--gray--50);
+    --pf-t--chatbot--illustration--fill: var(--pf-t--color--white);
+    --pf-t--chatbot--code--background: var(--pf-t--color--gray--60);
+    --pf-t--chatbot--icon--fill: var(--pf-t--color--gray--30);
+    --pf-t--chatbot--icon--fill--hover: var(--pf-t--color--white);
+    --pf-t--chatbot--jump--background--hover: var(--pf-t--color--black);
+  }
+}

@@ -87,7 +87,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
       <Button
         ref={tooltipUseMicrophoneRef}
         variant="plain"
-        className={`pf-chatbot__button--microphone ${isListening ? 'pf-chatbot__button--microphone--active' : ''} ${className}`}
+        className={`pf-chatbot__button--microphone ${isListening ? 'pf-chatbot__button--microphone--active' : ''} ${className ?? ''}`}
         aria-describedby="pf-chatbot__tooltip--use-microphone"
         aria-label={props['aria-label'] || 'Microphone Button'}
         onClick={isListening ? stopListening : startListening}

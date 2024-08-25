@@ -12,21 +12,21 @@ source: react
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents:
   [
-    'Footer',
+    'ChatbotFooter',
     'MessageBar',
-    'Footnote',
-    'FootnotePopover',
-    'FootnotePopoverCTA',
-    'FootnotePopoverBannerImage',
-    'FootnotePopoverLink'
+    'ChatbotFootnote',
+    'ChatbotFootnotePopover',
+    'ChatbotFootnotePopoverCTA',
+    'ChatbotFootnotePopoverBannerImage',
+    'ChatbotFootnotePopoverLink'
   ]
 ---
 
-import { Footer, Footnote } from '@patternfly/virtual-assistant/dist/dynamic/Footer';
+import { ChatbotFooter, ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 
 ### Basic example
 
-```js file="./Footer.tsx" isFullscreen
+```js file="./ChatbotFooter.tsx"
 
 ```

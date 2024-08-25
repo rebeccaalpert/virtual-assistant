@@ -1,0 +1,71 @@
+// ============================================================================
+// Chatbot Main - Message - Loading
+// ============================================================================
+.pf-chatbot__message-loading {
+  --pf-t--chatbot-message--dots--background--color: var(--pf-t--color--black);
+  --pf-t--chatbot-message--dots--animation--speed: 500ms;
+
+  width: 36px;
+  padding: var(--pf-t--chatbot-message--type--padding);
+  background-color: var(--pf-t--chatbot-message--type--background--color--default);
+  border-radius: var(--pf-t--chatbot-message--type--border--radius);
+
+  &-dots {
+    position: relative;
+    display: flex;
+    width: 4px;
+    height: 4px;
+    margin-left: var(--pf-t--global--spacer--200);
+    background-color: var(--pf-t--chatbot-message--dots--background--color);
+    border-radius: var(--pf-t--global--border--radius--pill);
+    color: var(--pf-t--chatbot-message--dots--background--color);
+    animation: dot-flashing var(--pf-t--chatbot-message--dots--animation--speed) infinite linear alternate;
+    animation-delay: calc(var(--pf-t--chatbot-message--dots--animation--speed) * 0.33333333333);
+  }
+  &-dots::before,
+  &-dots::after {
+    content: '';
+    display: flex;
+    position: absolute;
+    top: 0;
+  }
+  &-dots::before {
+    left: calc(var(--pf-t--global--spacer--200) * -1);
+    width: 4px;
+    height: 4px;
+    border-radius: var(--pf-t--global--border--radius--pill);
+    background-color: var(--pf-t--chatbot-message--dots--background--color);
+    color: var(--pf-t--chatbot-message--dots--background--color);
+    animation: dot-flashing var(--pf-t--chatbot-message--dots--animation--speed) infinite alternate;
+    animation-delay: 0;
+  }
+  &-dots::after {
+    left: var(--pf-t--global--spacer--200);
+    width: 4px;
+    height: 4px;
+    border-radius: var(--pf-t--global--border--radius--pill);
+    background-color: var(--pf-t--chatbot-message--dots--background--color);
+    color: var(--pf-t--chatbot-message--dots--background--color);
+    animation: dot-flashing var(--pf-t--chatbot-message--dots--animation--speed) infinite alternate;
+    animation-delay: calc(var(--pf-t--chatbot-message--dots--animation--speed) * 0.66666666666);
+  }
+
+  @keyframes dot-flashing {
+    0% {
+      background-color: var(--pf-t--chatbot-message--dots--background--color);
+    }
+    50%,
+    100% {
+      background-color: var(--pf-t--chatbot-message--type--background--color--default);
+    }
+  }
+}
+
+// ============================================================================
+// Chatbot Dark Theme
+// ============================================================================
+.pf-v6-theme-dark {
+  .pf-chatbot__message-loading {
+    --pf-t--chatbot-message--dots--background--color: var(--pf-t--color--white);
+  }
+}

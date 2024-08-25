@@ -1,0 +1,81 @@
+// ============================================================================
+// Chatbot Main - Message - Content - Code Block
+// ============================================================================
+.pf-chatbot__message-code-block {
+  width: 100%;
+  background-color: rgb(40, 43, 46); // match syntax highlighting
+  border-radius: 6px;
+  color: var(--pf-t--color--white);
+
+  // Code block
+  .pf-v6-c-code-block {
+    --pf-t--global--border--color--default: rgba(255, 255, 255, 0.2);
+    background-color: inherit;
+  }
+
+  // Code block header
+  .pf-v6-c-code-block__header {
+    --pf-v6-c-code-block__header--PaddingBlockStart: var(--pf-t--global--spacer--200);
+    --pf-v6-c-code-block__header--PaddingBlockEnd: var(--pf-t--global--spacer--200);
+    --pf-v6-c-code-block__header--PaddingInlineStart: var(--pf-t--global--spacer--300);
+    --pf-v6-c-code-block__header--PaddingInlineEnd: var(--pf-t--global--spacer--300);
+    color: var(--pf-t--color--white);
+
+    .pf-v6-c-code-block__actions {
+      width: 100%;
+    }
+
+    .pf-chatbot__message-code-block-language {
+      text-transform: uppercase;
+    }
+
+    .pf-v6-c-code-block__actions-item {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      font-size: var(--pf-t--global--font--size--sm);
+      font-weight: 500;
+    }
+
+    .pf-chatbot__button--copy.pf-v6-c-button {
+      color: var(--pf-t--color--gray--30);
+
+      &:hover,
+      &:focus {
+        color: var(--pf-t--color--white);
+      }
+    }
+  }
+
+  // Code block content
+  .pf-v6-c-code-block__content {
+    --pf-v6-c-code-block__content--PaddingBlockStart: var(--pf-t--global--spacer--300);
+    --pf-v6-c-code-block__content--PaddingBlockEnd: var(--pf-t--global--spacer--300);
+    --pf-v6-c-code-block__content--PaddingInlineStart: var(--pf-t--global--spacer--300);
+    --pf-v6-c-code-block__content--PaddingInlineEnd: var(--pf-t--global--spacer--300);
+    font-size: var(--pf-t--global--font--size--sm);
+
+    pre,
+    pre:hover {
+      overflow: hidden;
+      white-space: pre-wrap;
+      word-break: break-all;
+    }
+    pre code {
+      display: block;
+      overflow: hidden;
+      font-size: var(--pf-t--global--font--size--sm);
+    }
+
+    .pf-v6-c-code-block__code > div {
+      padding: 0 !important;
+      overflow: hidden !important;
+    }
+  }
+}
+
+.pf-chatbot__message-inline-code {
+  background-color: var(--pf-t--chatbot--code--background);
+  font-size: var(--pf-t--global--font--size--body--default);
+}
