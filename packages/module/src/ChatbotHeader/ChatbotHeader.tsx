@@ -48,7 +48,7 @@ export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
   const [isDisplayOptionsMenuOpen, setIsDisplayOptionsMenuOpen] = React.useState(false);
 
   return (
-    <div className={`pf-chatbot__header ${className}`} {...props}>
+    <div className={`pf-chatbot__header ${className ?? ''}`} {...props}>
       <Split>
         {onMenuToggle !== undefined && (
           <SplitItem>

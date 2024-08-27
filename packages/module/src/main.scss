@@ -1,13 +1,14 @@
 @import './ChatbotConversationHistoryNav/ChatbotConversationHistoryNav';
-@import './ChatbotHeader/ChatbotHeader.scss';
+@import './Chatbot/Chatbot';
 @import './ChatbotToggle/ChatbotToggle';
-@import './CodeModal/CodeModal';
-@import './Footer/Footer';
-@import './Footer/Footnote';
-@import './MessageBar/AttachButton';
+@import './ChatbotContent/ChatbotContent';
+@import './ChatbotHeader/ChatbotHeader';
+@import './ChatbotFooter/ChatbotFooter';
+@import './ChatbotWelcomePrompt/ChatbotWelcomePrompt';
 @import './MessageBar/MessageBar';
-@import './MessageBar/MicrophoneButton';
-@import './MessageBar/SendButton';
+@import './MessageBox/MessageBox';
+@import './Message/Message';
+@import './CodeModal/CodeModal';
 @import './Popover/Popover';
 
 .ws-full-page-utils {

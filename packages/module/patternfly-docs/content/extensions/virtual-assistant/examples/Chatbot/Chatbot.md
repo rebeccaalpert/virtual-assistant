@@ -5,10 +5,23 @@ section: extensions
 subsection: Chat bots / AI
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Virtual assistant
+id: Chatbot
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
-source: react-demos
-sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
+source: react
+# If you use typescript, the name of the interface to display props for
+# These are found through the sourceProps function provided in patternfly-docs.source.js
+propComponents:
+  [
+    'Chatbot',
+    'ChatbotToggle',
+    'ChatbotContent',
+    'ChatbotWelcomePrompt',
+    'ChatbotFooter',
+    'MessageBar',
+    'ChatbotFootnote',
+    'MessageBox',
+    'Message'
+  ]
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
@@ -20,18 +33,8 @@ import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 
-# Demos
-
 ### Basic example
 
-A blank example of the virtual assistant body.
-
-```js file="./VirtualAssistantDemo.tsx" isFullscreen
-
-```
-
-### Theme sensitive SVG demo
-
-```js file="./IncludingAThemeSensitiveSVG.tsx"
+```js file="./Chatbot.tsx" isFullscreen
 
 ```

@@ -29,7 +29,7 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   return (
     <>
       <Button
-        className={`pf-chatbot__button--send ${className}`}
+        className={`pf-chatbot__button--send ${className ?? ''}`}
         variant="plain"
         aria-describedby="pf-chatbot__tooltip--send"
         aria-label={props['aria-label'] || 'Send Button'}

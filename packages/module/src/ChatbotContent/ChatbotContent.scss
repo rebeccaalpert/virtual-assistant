@@ -1,0 +1,10 @@
+// ============================================================================
+// Chatbot Content
+// ============================================================================
+.pf-chatbot__content {
+  position: relative;
+  grid-area: 2 / 1 / 3 / 2;
+  padding: var(--pf-t--global--spacer--400);
+  background-color: var(--pf-t--chatbot--background);
+  overflow-y: auto;
+}

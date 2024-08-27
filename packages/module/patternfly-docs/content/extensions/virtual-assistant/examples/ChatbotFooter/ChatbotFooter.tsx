@@ -1,5 +1,5 @@
 import React from 'react';
-import { Footer, Footnote } from '@patternfly/virtual-assistant/dist/dynamic/Footer';
+import { ChatbotFooter, ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import { MessageBar } from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 
 const footnoteProps = {
@@ -28,9 +28,9 @@ export const BasicDemo: React.FunctionComponent = () => {
   const handleSend = (message) => alert(message);
 
   return (
-    <Footer>
+    <ChatbotFooter>
       <MessageBar onSendMessage={handleSend} hasMicrophoneButton />
-      <Footnote {...footnoteProps} />
-    </Footer>
+      <ChatbotFootnote {...footnoteProps} />
+    </ChatbotFooter>
   );
 };

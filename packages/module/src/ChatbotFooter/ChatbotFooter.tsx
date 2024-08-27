@@ -10,17 +10,21 @@
 
 import React from 'react';
 
-export interface FooterProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotFooterProps extends React.HTMLProps<HTMLDivElement> {
   /** Children for the Footer that supports MessageBar and FootNote components*/
   children?: React.ReactNode;
   /** Custom classname for the Footer component */
   className?: string;
 }
 
-export const Footer: React.FunctionComponent<FooterProps> = ({ children, className, ...props }: FooterProps) => (
-  <div className={`pf-chatbot__footer ${className}`} {...props}>
+export const ChatbotFooter: React.FunctionComponent<ChatbotFooterProps> = ({
+  children,
+  className,
+  ...props
+}: ChatbotFooterProps) => (
+  <div className={`pf-chatbot__footer ${className ?? ''}`} {...props}>
     {children}
   </div>
 );
 
-export default Footer;
+export default ChatbotFooter;
