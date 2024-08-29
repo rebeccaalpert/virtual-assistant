@@ -16,6 +16,7 @@ propComponents: ['AttachMenu']
 import AttachMenu from '@patternfly/virtual-assistant/dist/dynamic/AttachMenu';
 import { BellIcon, UploadIcon, CodeIcon, ClipboardIcon, CalendarAltIcon } from '@patternfly/react-icons';
 import PaperclipIcon from './PaperclipIcon.svg';
+import AttachmentIcon from './AttachmentIcon.svg';
 
 ### Basic example
 

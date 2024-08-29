@@ -4,18 +4,8 @@
 import React from 'react';
 
 // Import PatternFly components
-import {
-  MenuSearch,
-  MenuSearchInput,
-  SearchInput,
-  MenuPopperProps,
-  DropdownProps,
-  Divider,
-  DropdownList,
-  DropdownItem
-} from '@patternfly/react-core';
+import { MenuSearch, MenuSearchInput, SearchInput, MenuPopperProps, DropdownProps } from '@patternfly/react-core';
 import { Dropdown, DropdownToggleProps } from './Dropdown';
-import { UploadIcon } from '@patternfly/react-icons';
 
 export interface AttachMenuProps extends DropdownProps {
   /** Items in menu */
@@ -41,6 +31,7 @@ export interface AttachMenuProps extends DropdownProps {
 }
 
 export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
+  className,
   filteredItems,
   handleTextInputChange,
   isOpen,
@@ -54,6 +45,7 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
   ...props
 }: AttachMenuProps) => (
   <Dropdown
+    className={`pf-chatbot__menu ${className ?? ''}`}
     distance={8}
     isOpen={isOpen}
     onOpenChange={(isOpen) => onOpenChange(isOpen)}
@@ -74,12 +66,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
       </MenuSearchInput>
     </MenuSearch>
     {filteredItems}
-    <Divider />
-    <DropdownList>
-      <DropdownItem key="upload" value="upload" itemId="upload" icon={<UploadIcon />}>
-        Upload from computer
-      </DropdownItem>
-    </DropdownList>
   </Dropdown>
 );
 

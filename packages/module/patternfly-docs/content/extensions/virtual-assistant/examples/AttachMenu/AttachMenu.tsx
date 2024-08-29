@@ -1,8 +1,9 @@
 import React from 'react';
 import AttachMenu from '@patternfly/virtual-assistant/dist/dynamic/AttachMenu';
 import { Button, Divider, DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
-import { BellIcon, CodeIcon, ClipboardIcon, CalendarAltIcon } from '@patternfly/react-icons';
+import { BellIcon, CodeIcon, ClipboardIcon, CalendarAltIcon, UploadIcon } from '@patternfly/react-icons';
 import PaperclipIcon from './PaperclipIcon';
+import AttachmentIcon from './AttachmentIcon';
 
 export const BasicDemo: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -26,28 +27,8 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   const menuItems = [
     <DropdownList key="group-1">
-      <DropdownItem
-        value="0"
-        id="0"
-        icon={
-          <div
-            style={{
-              alignItems: 'center',
-              color: 'white',
-              background: '#37A3A3',
-              borderRadius: '50%',
-              display: 'flex',
-              fontSize: '8px',
-              height: '14px',
-              justifyContent: 'center',
-              width: '14px'
-            }}
-          >
-            P
-          </div>
-        }
-      >
-        <div>
+      <DropdownItem value="0" id="0" icon={<img src={AttachmentIcon} alt="Pod icon" />}>
+        <div className="pf-chatbot__menu-operator">
           auth-operator
           <div className="pf-v6-c-menu__item-description">Pod</div>
         </div>
@@ -156,36 +137,50 @@ export const BasicDemo: React.FunctionComponent = () => {
   if (filteredItems.length === 0) {
     filteredItems.push(<DropdownItem key="no-items">No results found</DropdownItem>);
   }
+  filteredItems.push(<Divider />);
+  filteredItems.push(
+    <DropdownList>
+      <DropdownItem key="upload" value="upload" id="upload" icon={<UploadIcon />}>
+        Upload from computer
+      </DropdownItem>
+    </DropdownList>
+  );
 
   return (
-    <AttachMenu
-      filteredItems={filteredItems}
-      isOpen={isOpen}
-      onOpenChange={(isOpen) => setIsOpen(isOpen)}
-      onOpenChangeKeys={['Escape']}
-      menuRef={menuRef}
-      // eslint-disable-next-line no-console
-      onSelect={(_ev, value) => console.log('selected', value)}
-      handleTextInputChange={onTextChange}
-      popperProps={{ position: 'center', enableFlip: true, direction: 'up' }}
-      searchInputPlaceholder="Search cluster resources..."
-      toggle={(toggleRef) => (
-        <Button
-          style={{
-            alignItems: 'center',
-            borderRadius: '50%',
-            display: 'flex',
-            height: '48px',
-            justifyContent: 'center',
-            padding: '0',
-            width: '48px',
-            lineHeight: '1rem'
-          }}
-          ref={toggleRef}
-          onClick={onToggleClick}
-          icon={<img src={PaperclipIcon} alt="Add an attachment" />}
-        />
-      )}
-    />
+    <div>
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
+      magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+      consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+      Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+      <AttachMenu
+        filteredItems={filteredItems}
+        isOpen={isOpen}
+        onOpenChange={(isOpen) => setIsOpen(isOpen)}
+        onOpenChangeKeys={['Escape']}
+        menuRef={menuRef}
+        // eslint-disable-next-line no-console
+        onSelect={(_ev, value) => console.log('selected', value)}
+        handleTextInputChange={onTextChange}
+        popperProps={{ direction: 'up' }}
+        searchInputPlaceholder="Search cluster resources..."
+        toggle={(toggleRef) => (
+          <Button
+            style={{
+              alignItems: 'center',
+              borderRadius: '50%',
+              display: 'flex',
+              height: '48px',
+              justifyContent: 'center',
+              padding: '0',
+              width: '48px',
+              lineHeight: '1rem'
+            }}
+            ref={toggleRef}
+            onClick={onToggleClick}
+            icon={<img src={PaperclipIcon} alt="Add an attachment" />}
+          />
+        )}
+      />
+    </div>
   );
 };
