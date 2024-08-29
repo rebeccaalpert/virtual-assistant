@@ -30,6 +30,9 @@ export * from './CodeModal';
 export { default as ConversationAlert } from './ConversationAlert';
 export * from './ConversationAlert';
 
+export { default as FileDropZone } from './FileDropZone';
+export * from './FileDropZone';
+
 export { default as LoadingMessage } from './LoadingMessage';
 export * from './LoadingMessage';
 
