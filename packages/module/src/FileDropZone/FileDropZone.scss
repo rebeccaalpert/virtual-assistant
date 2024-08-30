@@ -48,3 +48,11 @@
     }
   }
 }
+
+/** Used in example only */
+.pf-chatbot__file-drop-zone-example {
+  border: var(--pf-t--global--border--width--divider--default) solid var(--pf-t--global--border--color--default);
+  height: 100vh;
+  width: 100%;
+  padding: var(--pf-t--global--spacer--md);
+}
