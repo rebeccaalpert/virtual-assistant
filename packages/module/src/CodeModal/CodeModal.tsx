@@ -18,6 +18,7 @@ import {
   StackItem
 } from '@patternfly/react-core';
 import { CodeIcon } from '@patternfly/react-icons';
+import FileDetails from '../FileDetails';
 
 export interface CodeModalProps {
   /** Class applied to code editor */
@@ -106,24 +107,10 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
       <ModalBody id="code-modal-body">
         <Stack hasGutter>
           <StackItem>
-            <Flex>
-              <Flex
-                className="pf-chatbot__code-icon"
-                justifyContent={{ default: 'justifyContentCenter' }}
-                alignItems={{ default: 'alignItemsCenter' }}
-                alignSelf={{ default: 'alignSelfCenter' }}
-              >
-                <Icon>
-                  <CodeIcon color="white" />
-                </Icon>
-              </Flex>
-              <Stack>
-                <StackItem>{path.parse(fileName).name}</StackItem>
-                <StackItem className="pf-chatbot__code-language">
-                  {Language[path.extname(fileName).slice(1)].toUpperCase()}
-                </StackItem>
-              </Stack>
-            </Flex>
+            <FileDetails
+              fileName={path.parse(fileName).name}
+              language={Language[path.extname(fileName).slice(1)].toUpperCase()}
+            />
           </StackItem>
           <StackItem>
             <CodeEditor
