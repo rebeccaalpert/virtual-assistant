@@ -42,10 +42,12 @@ export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> 
 
   return (
     <CodeModal
+      codeEditorControlClassName="pf-chatbot__code-modal--controls"
       code={code}
       fileName={fileName}
       handleModalToggle={handleModalToggle}
       isCopyEnabled
+      isLineNumbersVisible={false}
       isModalOpen={isModalOpen}
       onPrimaryAction={handleEdit}
       onSecondaryAction={handleDismiss}

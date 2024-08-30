@@ -20,12 +20,16 @@ import {
 import { CodeIcon } from '@patternfly/react-icons';
 
 export interface CodeModalProps {
+  /** Class applied to code editor */
+  codeEditorControlClassName?: string;
   /** Text shown in code editor */
   code: string;
   /** Filename, including extension, of file shown in editor */
   fileName: string;
   /** Whether copying code is allowed */
   isCopyEnabled?: boolean;
+  /** Whether line numbers show in the code editor */
+  isLineNumbersVisible?: boolean;
   /** Whether code is read-only */
   isReadOnly?: boolean;
   /** Action assigned to primary modal button */
@@ -47,8 +51,10 @@ export interface CodeModalProps {
 export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
   fileName,
   code,
+  codeEditorControlClassName: codeEditorClassName,
   handleModalToggle,
   isCopyEnabled,
+  isLineNumbersVisible,
   isModalOpen,
   isReadOnly,
   onPrimaryAction,
@@ -94,6 +100,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
       aria-labelledby="code-modal-title"
       aria-describedby="code-modal"
       width="25%"
+      className="pf-chatbot__code-modal"
     >
       <ModalHeader title={title} labelId="code-modal-title" />
       <ModalBody id="code-modal-body">
@@ -121,7 +128,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
           <StackItem>
             <CodeEditor
               isDarkTheme
-              isLineNumbersVisible
+              isLineNumbersVisible={isLineNumbersVisible}
               isLanguageLabelVisible
               isCopyEnabled={isCopyEnabled}
               isReadOnly={isReadOnly}
@@ -130,6 +137,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               onEditorDidMount={onEditorDidMount}
               height="400px"
               onCodeChange={onCodeChange}
+              className={codeEditorClassName}
               {...props}
             />
           </StackItem>
