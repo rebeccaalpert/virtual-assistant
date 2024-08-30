@@ -33,6 +33,9 @@ export * from './ConversationAlert';
 export { default as FileDetails } from './FileDetails';
 export * from './FileDetails';
 
+export { default as FileDetailsLabel } from './FileDetailsLabel';
+export * from './FileDetailsLabel';
+
 export { default as FileDropZone } from './FileDropZone';
 export * from './FileDropZone';
 
