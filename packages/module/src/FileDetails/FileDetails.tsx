@@ -3,7 +3,9 @@ import { Icon, Flex, Stack, StackItem } from '@patternfly/react-core';
 import { CodeIcon } from '@patternfly/react-icons';
 
 interface FileDetailsProps {
+  /** Name of file, without extension */
   fileName: string;
+  /** Programming language or format file is in */
   language: string;
 }
 
@@ -20,7 +22,9 @@ export const FileDetails = ({ fileName, language }: PropsWithChildren<FileDetail
       </Icon>
     </Flex>
     <Stack>
-      <StackItem>{fileName}</StackItem>
+      <StackItem>
+        <span className="pf-chatbot__code-fileName">{fileName}</span>
+      </StackItem>
       <StackItem className="pf-chatbot__code-language">{language}</StackItem>
     </Stack>
   </Flex>

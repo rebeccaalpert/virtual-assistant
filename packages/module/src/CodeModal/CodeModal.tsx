@@ -6,18 +6,7 @@ import path from 'path';
 
 // Import PatternFly components
 import { CodeEditor, Language } from '@patternfly/react-code-editor';
-import {
-  Button,
-  Flex,
-  Icon,
-  Modal,
-  ModalBody,
-  ModalFooter,
-  ModalHeader,
-  Stack,
-  StackItem
-} from '@patternfly/react-core';
-import { CodeIcon } from '@patternfly/react-icons';
+import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Stack, StackItem } from '@patternfly/react-core';
 import FileDetails from '../FileDetails';
 
 export interface CodeModalProps {
