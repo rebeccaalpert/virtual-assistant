@@ -4,7 +4,7 @@
 .pf-chatbot__header {
   grid-area: 1 / 1 / 2 / 2;
   position: relative;
-  display: grid;
+  // display: grid;
   grid-template-columns: 48px 1fr 48px;
   align-items: center;
   justify-content: center;
@@ -37,14 +37,13 @@
     height: 100%;
     margin: 0;
 
-    h1 {
-      font-weight: 600;
-      font-size: var(--pf-t--global--font--size--400);
-    }
-
     img {
       max-height: 40px;
     }
+  }
+
+  .pf-chatbot__actions {
+    display: flex;
   }
 
   // Toggle Menu
@@ -60,7 +59,6 @@
   }
 }
 
-
 // ============================================================================
 // Chatbot Display Mode - Fullscreen
 // ============================================================================
@@ -70,10 +68,11 @@
     padding-bottom: 0;
     background-color: var(--pf-t--color--white);
 
-    &::after { display: none; }
+    &::after {
+      display: none;
+    }
   }
 }
-
 
 // ============================================================================
 // Chatbot Display Mode - Embedded
@@ -85,17 +84,17 @@
       padding-bottom: 0;
       background-color: var(--pf-t--color--white);
 
-      &::after { display: none; }
+      &::after {
+        display: none;
+      }
     }
   }
 }
-
 
 // ============================================================================
 // Chatbot Dark Theme
 // ============================================================================
 .pf-v6-theme-dark {
-
   .pf-chatbot--fullscreen {
     .pf-chatbot__header {
       background-color: var(--pf-t--color--gray--90);
@@ -109,14 +108,15 @@
       }
     }
   }
-
 }
 
 // ============================================================================
 // Toggle Chatbot
 // ============================================================================
 .pf-v6-c-button.pf-chatbot__button {
-  --pf-t--chatbot-toggle--background: var(--pf-t--color--black); // ideally, we'd be using semantic tokens for colors here
+  --pf-t--chatbot-toggle--background: var(
+    --pf-t--color--black
+  ); // ideally, we'd be using semantic tokens for colors here
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--90);
   --pf-t--chatbot-toggle--color: var(--pf-t--color--white);
   --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--white);
@@ -130,7 +130,8 @@
   color: var(--pf-t--chatbot-toggle--color);
   padding: 0.75rem; // we don't have a token that seems to be the right size for this at this point...
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     background-color: var(--pf-t--chatbot-toggle--background--hover);
   }
 
@@ -139,23 +140,26 @@
   }
 
   // Icon
-  svg { width: var(--pf-t--global--spacer--lg); height: var(--pf-t--global--spacer--lg); }
-  svg path:first-child { fill: var(--pf-t--chatbot-toggle--icon--fill); stroke: var(--pf-t--chatbot-toggle--icon--stroke); }
+  svg {
+    width: var(--pf-t--global--spacer--lg);
+    height: var(--pf-t--global--spacer--lg);
+  }
+  svg path:first-child {
+    fill: var(--pf-t--chatbot-toggle--icon--fill);
+    stroke: var(--pf-t--chatbot-toggle--icon--stroke);
+  }
 }
-
 
 // Chatbot Dark Theme
 // ----------------------------------------------------------------------------
 .pf-v6-theme-dark {
-
-  .pf-v6-c-button.pf-chatbot__button{
+  .pf-v6-c-button.pf-chatbot__button {
     --pf-t--chatbot-toggle--background: var(--pf-t--color--white);
     --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--10);
     --pf-t--chatbot-toggle--color: var(--pf-t--color--black);
     --pf-t--chatbot-toggle--icon--fill: var(--pf-t--color--black);
     --pf-t--chatbot-toggle--icon--stroke: var(--pf-t--color--black);
   }
-
 }
 
 // ============================================================================
@@ -196,23 +200,23 @@
     }
   }
 
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .pf-v6-c-icon__content {
-      svg { fill: var(--pf-t--chatbot--icon--fill--hover); }
+      svg {
+        fill: var(--pf-t--chatbot--icon--fill--hover);
+      }
     }
   }
 }
-
 
 // ============================================================================
 // Options Dropdown
 // ============================================================================
 .pf-chatbot__options.pf-v6-c-menu {
-
   .pf-v6-c-menu__item-text {
     display: flex;
     align-items: center;
     gap: var(--pf-t--global--spacer--200);
   }
-
 }
