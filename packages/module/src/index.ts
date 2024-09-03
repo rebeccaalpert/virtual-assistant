@@ -42,6 +42,9 @@ export * from './Message';
 export { default as MessageBar } from './MessageBar';
 export * from './MessageBar';
 
+export { default as MessageBox } from './MessageBox';
+export * from './MessageBox';
+
 export { default as Popover } from './Popover';
 export * from './Popover';
 
