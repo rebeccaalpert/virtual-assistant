@@ -43,7 +43,7 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   return (
     <FileDropZone onFileDrop={handleFileDrop}>
-      <div style={{ border: '1px solid black', width: '100%', padding: '1rem' }}>
+      <div className="pf-chatbot__file-drop-zone-example">
         Content that shows when no dragging is happening (drag an item here to see the drop zone)
       </div>
     </FileDropZone>

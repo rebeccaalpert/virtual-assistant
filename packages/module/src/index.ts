@@ -6,6 +6,9 @@ export * from './AssistantMessageEntry';
 export { default as AttachmentEdit } from './AttachmentEdit';
 export * from './AttachmentEdit';
 
+export { default as AttachMenu } from './AttachMenu';
+export * from './AttachMenu';
+
 export { default as Chatbot } from './Chatbot';
 export * from './Chatbot';
 
@@ -47,6 +50,9 @@ export * from './Message';
 
 export { default as MessageBar } from './MessageBar';
 export * from './MessageBar';
+
+export { default as MessageBox } from './MessageBox';
+export * from './MessageBox';
 
 export { default as Popover } from './Popover';
 export * from './Popover';
