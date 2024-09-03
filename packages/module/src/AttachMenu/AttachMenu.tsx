@@ -4,8 +4,15 @@
 import React from 'react';
 
 // Import PatternFly components
-import { MenuSearch, MenuSearchInput, SearchInput, MenuPopperProps, DropdownProps } from '@patternfly/react-core';
-import { Dropdown, DropdownToggleProps } from './Dropdown';
+import {
+  MenuSearch,
+  MenuSearchInput,
+  SearchInput,
+  MenuPopperProps,
+  DropdownProps,
+  Dropdown,
+  DropdownToggleProps
+} from '@patternfly/react-core';
 
 export interface AttachMenuProps extends DropdownProps {
   /** Items in menu */
@@ -46,7 +53,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
 }: AttachMenuProps) => (
   <Dropdown
     className={`pf-chatbot__menu ${className ?? ''}`}
-    distance={8}
     isOpen={isOpen}
     onOpenChange={(isOpen) => onOpenChange(isOpen)}
     onOpenChangeKeys={onOpenChangeKeys}
