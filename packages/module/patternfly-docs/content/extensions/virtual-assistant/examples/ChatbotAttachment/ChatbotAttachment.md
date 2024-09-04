@@ -35,6 +35,7 @@ import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 
 ### Basic example
 

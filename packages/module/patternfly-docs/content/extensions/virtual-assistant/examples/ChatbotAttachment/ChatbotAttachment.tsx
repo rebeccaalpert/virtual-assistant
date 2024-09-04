@@ -11,6 +11,7 @@ import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZon
 import { DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -73,7 +74,8 @@ export const BasicDemo: React.FunctionComponent = () => {
       onAttachmentClose,
       onAttachmentClick: () => {
         setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
-        setIsPreviewModalOpen(!isPreviewModalOpen);
+        setIsEditModalOpen(false);
+        setIsPreviewModalOpen(true);
       }
     },
     {
@@ -88,6 +90,7 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
   const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
   const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
   const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
   const handleSend = (message) => alert(message);
 
@@ -151,9 +154,22 @@ export const BasicDemo: React.FunctionComponent = () => {
           isModalOpen={isPreviewModalOpen}
           onEdit={() => {
             setIsPreviewModalOpen(false);
+            setIsEditModalOpen(true);
           }}
           onDismiss={() => setCurrentModalData(undefined)}
           handleModalToggle={() => setIsPreviewModalOpen(false)}
+        />
+      )}
+      {currentModalData && (
+        <AttachmentEdit
+          code={currentModalData?.code}
+          fileName={currentModalData?.fileName}
+          isModalOpen={isEditModalOpen}
+          onSave={() => {
+            setIsEditModalOpen(false);
+          }}
+          onCancel={() => setCurrentModalData(undefined)}
+          handleModalToggle={() => setIsEditModalOpen(false)}
         />
       )}
     </>
