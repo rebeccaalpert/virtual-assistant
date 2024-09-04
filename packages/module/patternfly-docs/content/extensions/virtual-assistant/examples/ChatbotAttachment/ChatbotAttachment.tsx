@@ -33,55 +33,6 @@ const footnoteProps = {
   }
 };
 
-const markdown = `A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-Here is an inline code - \`() => void\`
-
-Here is some YAML code:
-
-~~~yaml
-apiVersion: helm.openshift.io/v1beta1/
-kind: HelmChartRepository
-metadata:
-  name: azure-sample-repo0oooo00ooo
-spec:
-  connectionConfig:
-  url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
-~~~
-
-Here is some JavaScript code:
-
-~~~js
-import React from 'react';
-
-const MessageLoading = () => (
-  <div className="pf-chatbot__message-loading">
-    <span className="pf-chatbot__message-loading-dots">
-      <span className="pf-v6-screen-reader">Loading message</span>
-    </span>
-  </div>
-);
-
-export default MessageLoading;
-
-~~~
-`;
-
-const messages: MessageProps[] = [
-  {
-    role: 'user',
-    content: 'Hello, can you give me an example of what you can do?',
-    name: 'User'
-  },
-  {
-    role: 'bot',
-    content: markdown,
-    name: 'Bot'
-  }
-];
-
 const welcomePrompts = [
   {
     title: 'Topic 1',
@@ -94,9 +45,38 @@ const welcomePrompts = [
 ];
 
 export const BasicDemo: React.FunctionComponent = () => {
+  const onAttachmentClose = (attachmentId: string) => {
+    const index = messages.findIndex((message) => message.attachmentId === attachmentId);
+    const updatedMessages: MessageProps[] = [];
+    if (index >= 0) {
+      messages.forEach((message) => updatedMessages.push(message));
+      delete updatedMessages[index].attachmentName;
+      delete updatedMessages[index].attachmentId;
+      delete updatedMessages[index].onAttachmentClick;
+      delete updatedMessages[index].onAttachmentClose;
+      setMessages(updatedMessages);
+    }
+  };
+  const initialMessages: MessageProps[] = [
+    {
+      role: 'user',
+      content: "I'm referring to this attachment for added context in our conversation.",
+      name: 'User',
+      attachmentName: 'auth-operator.yml',
+      attachmentId: '1',
+      onAttachmentClose
+    },
+    {
+      role: 'bot',
+      content: 'Great, I can reference this attachment throughout our conversation.',
+      name: 'Bot'
+    }
+  ];
+
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>();
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
+  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
 
   const handleSend = (message) => alert(message);
 

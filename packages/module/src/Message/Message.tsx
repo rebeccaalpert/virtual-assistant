@@ -10,6 +10,7 @@ import { Avatar, Label, Timestamp } from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
+import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 
 export interface MessageProps {
   /** Role of the user sending the message */
@@ -24,6 +25,14 @@ export interface MessageProps {
   timestamp?: string;
   /** Set this to true if message is being loaded */
   isLoading?: boolean;
+  /** Unique identifier of file attached to the message */
+  attachmentId?: string;
+  /** Name of file attached to the message */
+  attachmentName?: string;
+  /** Callback for when attachment label is clicked */
+  onAttachmentClick?: () => void;
+  /** Callback for when attachment label is closed */
+  onAttachmentClose?: (attachmentId: string) => void;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -32,7 +41,11 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   name,
   avatar,
   timestamp,
-  isLoading
+  isLoading,
+  attachmentId,
+  attachmentName,
+  onAttachmentClick,
+  onAttachmentClose
 }: MessageProps) => {
   // Configure default values
 
@@ -46,6 +59,10 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       avatar:
         'https://yt3.googleusercontent.com/ej8uvIe1AIFiJQXBwY9cfJmt0kO1cAeWxpBqG_cJndGHx95mFq1F8WakSoXIjtcprTbMQJoqH5M=s900-c-k-c0x00ffffff-no-rj'
     }
+  };
+
+  const onClose = () => {
+    onAttachmentClose && attachmentId && onAttachmentClose(attachmentId);
   };
 
   return (
@@ -68,6 +85,11 @@ export const Message: React.FunctionComponent<MessageProps> = ({
             <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
               {content}
             </Markdown>
+          )}
+          {attachmentName && (
+            <div className="pf-chatbot__message-attachment">
+              <FileDetailsLabel fileName={attachmentName} onClick={onAttachmentClick} onClose={onClose} />
+            </div>
           )}
         </div>
       </div>
