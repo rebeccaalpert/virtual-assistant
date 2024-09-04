@@ -1,12 +1,28 @@
 import React from 'react';
+
+import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup } from '@patternfly/react-core';
+
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
-import Chatbot from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import ChatbotHeader, {
+  ChatbotHeaderMenu,
+  ChatbotHeaderTitle,
+  ChatbotHeaderActions,
+  ChatbotHeaderSelectorDropdown,
+  ChatbotHeaderOptionsDropdown
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+
+import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
+import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
+import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
+
+import logo from '../ChatbotHeader/logo.svg';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -93,6 +109,24 @@ const welcomePrompts = [
 export const BasicDemo: React.FunctionComponent = () => {
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
 
+  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
+
+  const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
+
+  const onSelectModel = (
+    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    value: string | number | undefined
+  ) => {
+    setSelectedModel(value as string);
+  };
+
+  const onSelectDisplayMode = (
+    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    value: string | number | undefined
+  ) => {
+    setDisplayMode(value as ChatbotDisplayMode);
+  };
+
   const handleSend = (message) => alert(message);
 
   return (
@@ -102,7 +136,48 @@ export const BasicDemo: React.FunctionComponent = () => {
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
       />
-      <Chatbot isVisible={chatbotVisible}>
+      <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
+        <ChatbotHeader>
+          <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
+          <ChatbotHeaderTitle>
+            <Bullseye>
+              <Brand src={logo} alt="Branding for chatbot" />
+            </Bullseye>
+          </ChatbotHeaderTitle>
+          <ChatbotHeaderActions>
+            <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+              <DropdownList>
+                <DropdownItem value="Granite 7B" key="granite">
+                  Granite 7B
+                </DropdownItem>
+                <DropdownItem value="Llama 3.0" key="llama">
+                  Llama 3.0
+                </DropdownItem>
+                <DropdownItem value="Mistral 3B" key="mistral">
+                  Mistral 3B
+                </DropdownItem>
+              </DropdownList>
+            </ChatbotHeaderSelectorDropdown>
+            <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
+              <DropdownGroup label="Display mode">
+                <DropdownList>
+                  <DropdownItem value={ChatbotDisplayMode.default} key="switchDisplayOverlay">
+                    <OutlinedWindowRestoreIcon />
+                    <span>Overlay</span>
+                  </DropdownItem>
+                  <DropdownItem value={ChatbotDisplayMode.docked} key="switchDisplayDock">
+                    <OpenDrawerRightIcon />
+                    <span>Dock to window</span>
+                  </DropdownItem>
+                  <DropdownItem value={ChatbotDisplayMode.fullscreen} key="switchDisplayFullscreen">
+                    <ExpandIcon />
+                    <span>Fullscreen</span>
+                  </DropdownItem>
+                </DropdownList>
+              </DropdownGroup>
+            </ChatbotHeaderOptionsDropdown>
+          </ChatbotHeaderActions>
+        </ChatbotHeader>
         <ChatbotContent>
           <MessageBox>
             <ChatbotWelcomePrompt

@@ -25,13 +25,26 @@ propComponents:
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
-import Chatbot from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+
+import ChatbotHeader, {
+ChatbotHeaderMenu,
+ChatbotHeaderTitle,
+ChatbotHeaderActions,
+ChatbotHeaderSelectorDropdown,
+ChatbotHeaderOptionsDropdown
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+
+import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
+import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
+import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
+import logo from '../ChatbotHeader/logo.svg';
 
 ### Basic example
 
