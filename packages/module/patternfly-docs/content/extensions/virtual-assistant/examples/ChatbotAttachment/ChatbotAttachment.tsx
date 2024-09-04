@@ -10,6 +10,7 @@ import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynami
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import { DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
+import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -44,6 +45,11 @@ const welcomePrompts = [
   }
 ];
 
+interface ModalData {
+  code: string;
+  fileName: string;
+}
+
 export const BasicDemo: React.FunctionComponent = () => {
   const onAttachmentClose = (attachmentId: string) => {
     const index = messages.findIndex((message) => message.attachmentId === attachmentId);
@@ -64,7 +70,11 @@ export const BasicDemo: React.FunctionComponent = () => {
       name: 'User',
       attachmentName: 'auth-operator.yml',
       attachmentId: '1',
-      onAttachmentClose
+      onAttachmentClose,
+      onAttachmentClick: () => {
+        setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
+        setIsPreviewModalOpen(!isPreviewModalOpen);
+      }
     },
     {
       role: 'bot',
@@ -77,7 +87,8 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [file, setFile] = React.useState<File>();
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
   const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
-
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
+  const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
   const handleSend = (message) => alert(message);
 
   const handleFileDrop = (event: DropEvent, data: File[]) => {
@@ -133,6 +144,18 @@ export const BasicDemo: React.FunctionComponent = () => {
           </>
         </FileDropZone>
       </Chatbot>
+      {currentModalData && (
+        <PreviewAttachment
+          code={currentModalData?.code}
+          fileName={currentModalData?.fileName}
+          isModalOpen={isPreviewModalOpen}
+          onEdit={() => {
+            setIsPreviewModalOpen(false);
+          }}
+          onDismiss={() => setCurrentModalData(undefined)}
+          handleModalToggle={() => setIsPreviewModalOpen(false)}
+        />
+      )}
     </>
   );
 };
