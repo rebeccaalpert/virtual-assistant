@@ -107,6 +107,13 @@ export const BasicDemo: React.FunctionComponent = () => {
     }, 1000);
   };
 
+  // Attachments
+  // --------------------------------------------------------------------------
+  const handleAttach = () => {
+    // eslint-disable-next-line no-console
+    console.log('Attach button clicked');
+  };
+
   return (
     <>
       <ChatbotToggle
@@ -131,7 +138,7 @@ export const BasicDemo: React.FunctionComponent = () => {
             </ChatbotContent>
             <ChatbotFooter>
               {file && <div>{`${file.name} status: ${Boolean(isLoadingFile)}`}</div>}
-              <MessageBar onSendMessage={handleSend} hasMicrophoneButton />
+              <MessageBar onSendMessage={handleSend} hasMicrophoneButton hasAttachButton handleAttach={handleAttach} />
               <ChatbotFootnote {...footnoteProps} />
             </ChatbotFooter>
           </>
