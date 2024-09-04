@@ -118,7 +118,11 @@ export const BasicDemo: React.FunctionComponent = () => {
       <ChatbotToggle
         toolTipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
-        onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
+        onToggleChatbot={() => {
+          setChatbotVisible(!chatbotVisible);
+          setIsEditModalOpen(false);
+          setIsPreviewModalOpen(false);
+        }}
       />
       <Chatbot isVisible={chatbotVisible}>
         <FileDropZone onFileDrop={handleFileDrop}>
