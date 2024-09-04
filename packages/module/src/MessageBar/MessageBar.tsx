@@ -1,9 +1,11 @@
 import React from 'react';
-import { Flex, FlexItem, TextAreaProps } from '@patternfly/react-core';
+import { DropEvent, Flex, FlexItem, TextAreaProps } from '@patternfly/react-core';
+import { AutoTextArea } from 'react-textarea-auto-witdth-height';
+
+// Import Chatbot components
 import SendButton from './SendButton';
 import MicrophoneButton from './MicrophoneButton';
 import { AttachButton } from './AttachButton';
-import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 import AttachMenu from '../AttachMenu';
 
 export interface MessageBarWithAttachMenuProps {
@@ -38,8 +40,8 @@ export interface MessageBarProps extends TextAreaProps {
   hasAttachButton?: boolean;
   /** Flag to enable the Microphone button  */
   hasMicrophoneButton?: boolean;
-  /** Callback function for when attach button is clicked */
-  handleAttach?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  /** Callback function for when attach button is used to upload a file */
+  handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
   attachMenuProps?: MessageBarWithAttachMenuProps;
 }
@@ -157,7 +159,9 @@ export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProp
       </FlexItem>
 
       <FlexItem className="pf-chatbot__message-bar-actions">
-        {hasAttachButton && <AttachButton onClick={handleAttach} isDisabled={isListeningMessage} />}
+        {hasAttachButton && handleAttach && (
+          <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />
+        )}
         {hasMicrophoneButton && (
           <MicrophoneButton
             isListening={isListeningMessage}

@@ -96,16 +96,20 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const handleSend = (message) => alert(message);
 
-  const handleFileDrop = (event: DropEvent, data: File[]) => {
+  // Attachments
+  // --------------------------------------------------------------------------
+  const handleFile = (data: File[]) => {
     // any custom validation you may want
     if (data.length > 1) {
       setShowAlert(true);
+      setFile(undefined);
       setError('Uploaded more than one file.');
       return;
     }
     // this is 25MB in bytes; size is in bytes
     if (data[0].size > 25000000) {
       setShowAlert(true);
+      setFile(undefined);
       setError('File is larger than 25MB.');
       return;
     }
@@ -119,11 +123,12 @@ export const BasicDemo: React.FunctionComponent = () => {
     }, 1000);
   };
 
-  // Attachments
-  // --------------------------------------------------------------------------
-  const handleAttach = () => {
-    // eslint-disable-next-line no-console
-    console.log('Attach button clicked');
+  const handleFileDrop = (event: DropEvent, data: File[]) => {
+    handleFile(data);
+  };
+
+  const handleAttach = (data: File[]) => {
+    handleFile(data);
   };
 
   const onClose = () => {
