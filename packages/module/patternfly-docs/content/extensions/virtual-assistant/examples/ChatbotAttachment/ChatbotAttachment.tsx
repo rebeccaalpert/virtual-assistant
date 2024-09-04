@@ -8,7 +8,7 @@ import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
-import { DropEvent } from '@patternfly/react-core';
+import { Alert, AlertActionCloseButton, DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
@@ -85,6 +85,7 @@ export const BasicDemo: React.FunctionComponent = () => {
     }
   ];
 
+  const [error, setError] = React.useState<string>();
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>();
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
@@ -92,11 +93,27 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
   const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
   const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
+  const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const handleSend = (message) => alert(message);
 
   const handleFileDrop = (event: DropEvent, data: File[]) => {
+    // any custom validation you may want
+    if (data.length > 1) {
+      setShowAlert(true);
+      setError('Uploaded more than one file.');
+      return;
+    }
+    // this is 25MB in bytes; size is in bytes
+    if (data[0].size > 25000000) {
+      setShowAlert(true);
+      setError('File is larger than 25MB.');
+      return;
+    }
+
     setFile(data[0]);
     setIsLoadingFile(true);
+    setShowAlert(false);
+    setError(undefined);
     setTimeout(() => {
       setIsLoadingFile(false);
     }, 1000);
@@ -128,6 +145,22 @@ export const BasicDemo: React.FunctionComponent = () => {
         <FileDropZone onFileDrop={handleFileDrop}>
           <>
             <ChatbotContent>
+              {showAlert && (
+                <Alert
+                  variant="danger"
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => {
+                        setShowAlert(false);
+                        setError(undefined);
+                      }}
+                    />
+                  }
+                  title="File upload failed"
+                >
+                  {error}
+                </Alert>
+              )}
               <MessageBox>
                 <ChatbotWelcomePrompt
                   title="Hello, Chatbot User"
