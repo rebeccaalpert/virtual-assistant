@@ -8,7 +8,6 @@ import path from 'path';
 import { CodeEditor } from '@patternfly/react-code-editor';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Stack, StackItem } from '@patternfly/react-core';
 import FileDetails, { extensionToLanguage } from '../FileDetails';
-import { Language } from '@patternfly/react-code-editor';
 
 export interface CodeModalProps {
   /** Class applied to code editor */
@@ -107,7 +106,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               isCopyEnabled={isCopyEnabled}
               isReadOnly={isReadOnly}
               code={newCode}
-              language={Language[extensionToLanguage[path.extname(fileName).slice(1)]]}
+              language={extensionToLanguage[path.extname(fileName).slice(1)]}
               onEditorDidMount={onEditorDidMount}
               height="400px"
               onCodeChange={onCodeChange}
