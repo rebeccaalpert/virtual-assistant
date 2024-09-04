@@ -21,6 +21,8 @@ export interface MessageBarProps extends TextAreaProps {
   hasAttachButton?: boolean;
   /** Flag to enable the Microphone button  */
   hasMicrophoneButton?: boolean;
+  /** Callback function for when attach button is clicked */
+  handleAttach?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -29,6 +31,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   alwayShowSendButton,
   hasAttachButton,
   hasMicrophoneButton,
+  handleAttach,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -49,13 +52,6 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
       return '';
     });
   }, [onSendMessage]);
-
-  // Attachments
-  // --------------------------------------------------------------------------
-  const handleAttach = React.useCallback(() => {
-    // eslint-disable-next-line no-console
-    console.log('Attach button clicked');
-  }, []);
 
   const handleKeyDown = React.useCallback(
     (event) => {

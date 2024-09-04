@@ -11,7 +11,7 @@ export interface FileDropZoneProps {
   /** Maximum file size in bytes */
   maxSize?: number;
   /** When files are dropped or uploaded this callback will be called with all accepted files */
-  onFileDrop?: (event: DropEvent, data: File[]) => void;
+  onFileDrop: (event: DropEvent, data: File[]) => void;
 }
 
 const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({

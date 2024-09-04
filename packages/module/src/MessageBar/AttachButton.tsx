@@ -10,7 +10,7 @@ import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-
 
 export interface AttachButtonProps extends ButtonProps {
   /** OnClick Handler for the Attach Button */
-  onClick: () => void;
+  onClick: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class Name for the Attach button */
   className?: string;
   /** Props to control is the attach button should be disabled */
