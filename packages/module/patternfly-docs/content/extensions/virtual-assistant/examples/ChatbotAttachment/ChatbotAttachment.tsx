@@ -9,6 +9,7 @@ import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import { DropEvent } from '@patternfly/react-core';
+import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -114,6 +115,10 @@ export const BasicDemo: React.FunctionComponent = () => {
     console.log('Attach button clicked');
   };
 
+  const onClose = () => {
+    setFile(undefined);
+  };
+
   return (
     <>
       <ChatbotToggle
@@ -137,7 +142,11 @@ export const BasicDemo: React.FunctionComponent = () => {
               </MessageBox>
             </ChatbotContent>
             <ChatbotFooter>
-              {file && <div>{`${file.name} status: ${Boolean(isLoadingFile)}`}</div>}
+              {file && (
+                <div>
+                  <FileDetailsLabel fileName={file.name} isLoading={isLoadingFile} onClose={onClose} />
+                </div>
+              )}
               <MessageBar onSendMessage={handleSend} hasMicrophoneButton hasAttachButton handleAttach={handleAttach} />
               <ChatbotFootnote {...footnoteProps} />
             </ChatbotFooter>

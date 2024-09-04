@@ -3,6 +3,6 @@ import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDet
 
 export const BasicDemo: React.FunctionComponent = () => (
   <div className="pf-chatbot__file-details-example">
-    <FileDetailsLabel fileName="auth-operator" language="YAML" isLoading />
+    <FileDetailsLabel fileName="auth-operator.yml" isLoading />
   </div>
 );

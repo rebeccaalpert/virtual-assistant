@@ -4,12 +4,10 @@ import FileDetails from '../FileDetails';
 import { Spinner } from '@patternfly/react-core';
 
 interface FileDetailsLabelProps {
-  /** Name of file, without extension */
+  /** Name of file, including extension */
   fileName: string;
   /** Whether to display loading icon */
   isLoading?: boolean;
-  /** Programming language or format file is in */
-  language: string;
   /** Callback function for when label is clicked */
   onClick?: (event: React.MouseEvent) => void;
   /** Callback function for when close button is clicked */
@@ -19,7 +17,6 @@ interface FileDetailsLabelProps {
 export const FileDetailsLabel = ({
   fileName,
   isLoading,
-  language,
   onClick = undefined,
   onClose = undefined
 }: PropsWithChildren<FileDetailsLabelProps>) => (
@@ -30,7 +27,7 @@ export const FileDetailsLabel = ({
       gap={{ default: 'gapLg' }}
     >
       <FlexItem>
-        <FileDetails fileName={fileName} language={language} />
+        <FileDetails fileName={fileName} />
       </FlexItem>
       {isLoading && (
         <FlexItem>
