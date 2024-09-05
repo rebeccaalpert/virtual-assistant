@@ -9,3 +9,17 @@
   --pf-t--global--color--nonstatus--gray--default: rgba(255, 255, 255, 1);
   --pf-v6-c-label--BorderRadius: var(--pf-t--global--border--radius--small);
 }
+
+.pf-v6-theme-dark {
+  .pf-v6-c-label.pf-chatbot__file-label {
+    --pf-v6-c-label--BackgroundColor: rgba(41, 41, 41, 1);
+    --pf-t--global--color--nonstatus--gray--default: rgba(112, 112, 112, 1);
+  }
+  .pf-chatbot__file-label > .pf-v6-c-label__content {
+    --pf-v6-c-label--Color: rgba(255, 255, 255, 1);
+  }
+
+  .pf-chatbot__file-label > .pf-v6-c-label__actions > .pf-v6-c-button.pf-m-plain > .pf-v6-c-button__icon {
+    --pf-v6-c-button__icon--Color: rgba(199, 199, 199, 1);
+  }
+}

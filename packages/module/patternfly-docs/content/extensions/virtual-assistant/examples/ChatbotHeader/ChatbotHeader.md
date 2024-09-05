@@ -10,10 +10,29 @@ id: Chatbot header
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['ChatbotHeader']
+propComponents:
+  [
+    'ChatbotHeader',
+    'ChatbotHeaderMenu',
+    'ChatbotHeaderActions',
+    'ChatbotHeaderTitle',
+    'ChatbotHeaderOptionsDropdown',
+    'ChatbotHeaderSelectorDropdown'
+  ]
 ---
 
-import ChatbotHeader from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import {
+ChatbotHeader,
+ChatbotHeaderMenu,
+ChatbotHeaderActions,
+ChatbotHeaderTitle,
+ChatbotHeaderOptionsDropdown,
+ChatbotHeaderSelectorDropdown
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
+import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
+import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
+import logo from './logo.svg';
 
 ### Basic example
 

@@ -4,6 +4,6 @@ import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDet
 export const BasicDemo: React.FunctionComponent = () => (
   <div className="pf-chatbot__file-details-example">
     {/* eslint-disable-next-line no-console */}
-    <FileDetailsLabel fileName="auth-operator" language="YAML" onClose={() => console.log('clicked close button!')} />
+    <FileDetailsLabel fileName="auth-operator.yml" onClose={() => console.log('clicked close button!')} />
   </div>
 );
