@@ -10,20 +10,23 @@ import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-
 
 export interface AttachButtonProps extends ButtonProps {
   /** OnClick Handler for the Attach Button */
-  onClick: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
+  onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class Name for the Attach button */
   className?: string;
   /** Props to control is the attach button should be disabled */
   isDisabled?: boolean;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
+  /** Ref applied to AttachButton and used in tooltip */
+  innerRef?: any; //fixme
 }
 
-export const AttachButton: React.FunctionComponent<AttachButtonProps> = ({
+const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   onClick,
   isDisabled,
   className,
   tooltipProps,
+  innerRef,
   ...props
 }: AttachButtonProps) => (
   <Tooltip
@@ -38,6 +41,7 @@ export const AttachButton: React.FunctionComponent<AttachButtonProps> = ({
   >
     <Button
       variant="plain"
+      ref={innerRef}
       className={`pf-chatbot__button--attach ${className ?? ''}`}
       aria-describedby="pf-chatbot__tooltip--attach"
       aria-label={props['aria-label'] || 'Attach Button'}
@@ -53,4 +57,6 @@ export const AttachButton: React.FunctionComponent<AttachButtonProps> = ({
   </Tooltip>
 );
 
-export default AttachButton;
+export const AttachButton = React.forwardRef((props: AttachButtonProps, ref: React.Ref<any>) => (
+  <AttachButtonBase innerRef={ref} {...props} />
+));
