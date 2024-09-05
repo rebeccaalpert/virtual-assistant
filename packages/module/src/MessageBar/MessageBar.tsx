@@ -159,9 +159,7 @@ export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProp
       </FlexItem>
 
       <FlexItem className="pf-chatbot__message-bar-actions">
-        {hasAttachButton && handleAttach && (
-          <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />
-        )}
+        {hasAttachButton && <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />}
         {hasMicrophoneButton && (
           <MicrophoneButton
             isListening={isListeningMessage}

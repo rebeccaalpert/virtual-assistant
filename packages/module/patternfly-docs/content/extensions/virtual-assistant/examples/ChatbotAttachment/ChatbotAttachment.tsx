@@ -98,29 +98,49 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   // Attachments
   // --------------------------------------------------------------------------
-  const handleFile = (data: File[]) => {
+  // example of how you can read a text file
+  const readFile = (file: File) =>
+    new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = () => reject(reader.error);
+      reader.readAsDataURL(file);
+      // you can use reader.readAsText(file) for human-readable file types;
+    });
+
+  // handle file drop/selection
+  const handleFile = (fileArr: File[]) => {
+    setIsLoadingFile(true);
     // any custom validation you may want
-    if (data.length > 1) {
+    if (fileArr.length > 1) {
       setShowAlert(true);
       setFile(undefined);
       setError('Uploaded more than one file.');
       return;
     }
     // this is 25MB in bytes; size is in bytes
-    if (data[0].size > 25000000) {
+    if (fileArr[0].size > 25000000) {
       setShowAlert(true);
       setFile(undefined);
       setError('File is larger than 25MB.');
       return;
     }
 
-    setFile(data[0]);
-    setIsLoadingFile(true);
-    setShowAlert(false);
-    setError(undefined);
-    setTimeout(() => {
-      setIsLoadingFile(false);
-    }, 1000);
+    readFile(fileArr[0])
+      .then((data) => {
+        // eslint-disable-next-line no-console
+        console.log(data);
+        setFile(fileArr[0]);
+        setShowAlert(false);
+        setError(undefined);
+        // this is just for demo purposes, to make the loading state really obvious
+        setTimeout(() => {
+          setIsLoadingFile(false);
+        }, 1000);
+      })
+      .catch((error: DOMException) => {
+        setError(`Failed to read file: ${error.message}`);
+      });
   };
 
   const handleFileDrop = (event: DropEvent, data: File[]) => {
