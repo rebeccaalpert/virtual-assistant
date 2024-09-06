@@ -18,7 +18,7 @@ export interface AttachButtonProps extends ButtonProps {
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** Ref applied to AttachButton and used in tooltip */
-  innerRef?: any; //fixme
+  innerRef?: React.Ref<any>;
 }
 
 const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({

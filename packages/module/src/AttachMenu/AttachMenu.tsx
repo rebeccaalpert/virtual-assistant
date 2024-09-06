@@ -25,8 +25,6 @@ export interface AttachMenuProps extends DropdownProps {
   handleTextInputChange: (value: string) => void;
   /** Flag to indicate if menu is opened. */
   isOpen: boolean;
-  /** Reference to the menu  */
-  menuRef: React.RefObject<any>;
   /** Additional properties to pass to the Popper */
   popperProps?: ExtendedDropdownPopperProps;
   /** Callback to change the open state of the menu. Triggered by clicking outside of the menu. */
@@ -46,7 +44,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
   filteredItems,
   handleTextInputChange,
   isOpen,
-  menuRef,
   popperProps = undefined,
   onOpenChange,
   onOpenChangeKeys,
@@ -62,7 +59,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
     onOpenChangeKeys={onOpenChangeKeys}
     toggle={toggle}
     popperProps={popperProps}
-    ref={menuRef}
     onSelect={onSelect}
     {...props}
   >

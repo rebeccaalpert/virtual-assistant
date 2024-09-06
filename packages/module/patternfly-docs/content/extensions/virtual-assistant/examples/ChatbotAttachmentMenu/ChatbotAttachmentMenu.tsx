@@ -22,6 +22,36 @@ import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '
 import AttachmentIcon from './AttachmentIcon.svg';
 import { useDropzone } from 'react-dropzone';
 
+const initialMenuItems = [
+  <DropdownList key="list-1">
+    <DropdownItem value="auth-operator Pod" id="0" icon={<img src={AttachmentIcon} alt="Pod icon" />}>
+      <div className="pf-chatbot__menu-operator">
+        auth-operator
+        <div className="pf-v6-c-menu__item-description">Pod</div>
+      </div>
+    </DropdownItem>
+  </DropdownList>,
+  <DropdownGroup key="group2">
+    <DropdownList>
+      <DropdownItem value="Alerts" id="1" icon={<BellIcon />}>
+        Alerts
+      </DropdownItem>
+      <DropdownItem value="Events" id="2" icon={<CalendarAltIcon />}>
+        Events
+      </DropdownItem>
+      <DropdownItem value="Logs" id="3" icon={<ClipboardIcon />}>
+        Logs
+      </DropdownItem>
+      <DropdownItem value="YAML - Status" id="4" icon={<CodeIcon />}>
+        YAML - Status
+      </DropdownItem>
+      <DropdownItem value="YAML - All contents" id="5" icon={<CodeIcon />}>
+        YAML - All contents
+      </DropdownItem>
+    </DropdownList>
+  </DropdownGroup>
+];
+
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
   popover: {
@@ -108,8 +138,7 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>();
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
-  const [refFullOptions, setRefFullOptions] = React.useState<Element[]>();
-  const [filteredIds, setFilteredIds] = React.useState<string[]>(['*']);
+  const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
   const [error, setError] = React.useState<string>();
   const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
@@ -161,134 +190,9 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   // Attachmenu menu
   // --------------------------------------------------------------------------
-  const onToggleClick = () => {
-    /* setTimeout(() => {
-      if (menuRef.current) {
-        const firstElement = menuRef.current.querySelector(
-          'li > button:not(:disabled), li > a:not(:disabled), input:not(:disabled)'
-        );
-        firstElement && (firstElement as HTMLElement).focus();
-        setRefFullOptions(Array.from(menuRef.current.querySelectorAll('li:not(li[role=separator])>*:first-child')));
-      }
-    }, 0);*/
-    setFilteredIds(['*']);
-  };
-
-  const attachMenuItems = [
-    <DropdownList key="group-1">
-      <DropdownItem value="0" id="0" icon={<img src={AttachmentIcon} alt="Pod icon" />}>
-        <div className="pf-chatbot__menu-operator">
-          auth-operator
-          <div className="pf-v6-c-menu__item-description">Pod</div>
-        </div>
-      </DropdownItem>
-    </DropdownList>,
-    <DropdownGroup key="group2">
-      <DropdownList>
-        <DropdownItem value="1" id="1" icon={<BellIcon />}>
-          Alerts
-        </DropdownItem>
-        <DropdownItem value="2" id="2" icon={<CalendarAltIcon />}>
-          Events
-        </DropdownItem>
-        <DropdownItem value="3" id="3" icon={<ClipboardIcon />}>
-          Logs
-        </DropdownItem>
-        <DropdownItem value="4" id="4" icon={<CodeIcon />}>
-          YAML - Status
-        </DropdownItem>
-        <DropdownItem value="5" id="5" icon={<CodeIcon />}>
-          YAML - All contents
-        </DropdownItem>
-      </DropdownList>
-    </DropdownGroup>
-  ];
-
-  const filterItems = (items: any[], filteredIds: string[]) => {
-    if (filteredIds.length === 1 && filteredIds[0] === '*') {
-      return items;
-    }
-    let keepDivider = false;
-    const filteredCopy = items
-      .map((group) => {
-        if (group.type === DropdownGroup) {
-          const filteredGroup = React.cloneElement(group, {
-            children: React.cloneElement(group.props.children, {
-              children: group.props.children.props.children.filter((child) => {
-                if (filteredIds.includes(child.props.value)) {
-                  return child;
-                }
-              })
-            })
-          });
-
-          const filteredList = filteredGroup.props.children;
-          if (filteredList.props.children.length > 0) {
-            keepDivider = true;
-            return filteredGroup;
-          } else {
-            keepDivider = false;
-          }
-        } else if (group.type === DropdownList) {
-          let filteredGroup;
-          if (Array.isArray(group.props.children)) {
-            filteredGroup = React.cloneElement(group, {
-              children: group.props.children.filter((child) => {
-                if (filteredIds.includes(child.props.value)) {
-                  return child;
-                }
-              })
-            });
-          } else {
-            filteredGroup = React.cloneElement(group, {
-              children: filteredIds.includes(group.props.children.props.value) ? [group.props.children] : []
-            });
-          }
-
-          if (filteredGroup.props.children.length > 0) {
-            keepDivider = true;
-            return filteredGroup;
-          } else {
-            keepDivider = false;
-          }
-        } else {
-          if ((keepDivider && group.type === Divider) || filteredIds.includes(group.props.value)) {
-            return group;
-          }
-        }
-      })
-      .filter((newGroup) => newGroup);
-
-    if (filteredCopy.length > 0) {
-      const lastGroup = filteredCopy.pop();
-      if (lastGroup.type !== Divider) {
-        filteredCopy.push(lastGroup);
-      }
-    }
-
-    return filteredCopy;
-  };
-
-  const onTextChange = (textValue: string) => {
-    if (textValue === '') {
-      setFilteredIds(['*']);
-      return;
-    }
-
-    const filteredIds =
-      refFullOptions
-        ?.filter((item) => (item as HTMLElement).innerText.toLowerCase().includes(textValue.toString().toLowerCase()))
-        .map((item) => item.id) || [];
-    setFilteredIds(filteredIds);
-  };
-
-  const filteredItems = filterItems(attachMenuItems, filteredIds);
-  if (filteredItems.length === 0) {
-    filteredItems.push(<DropdownItem key="no-items">No results found</DropdownItem>);
-  }
-  filteredItems.push(<Divider />);
-  filteredItems.push(
-    <DropdownList>
+  const uploadMenuItems = [
+    <Divider key="divider" />,
+    <DropdownList key="list-2">
       <DropdownItem
         onClick={() => {
           open();
@@ -302,7 +206,52 @@ export const BasicDemo: React.FunctionComponent = () => {
         Upload from computer
       </DropdownItem>
     </DropdownList>
-  );
+  ];
+
+  const onToggleClick = () => {
+    setUserFacingMenuItems(initialMenuItems.concat(uploadMenuItems));
+  };
+
+  const findMatchingElements = (elements: React.ReactNode[], targetValue: string) => {
+    let matchingElements = [] as React.ReactNode[];
+
+    elements.forEach((element) => {
+      if (React.isValidElement(element)) {
+        // Check if the element's value matches the targetValue
+        if (element.props.value && element.props.value.toLowerCase().includes(targetValue.toLowerCase())) {
+          matchingElements.push(element);
+        }
+
+        // Recursively check the element's children
+        const children = React.Children.toArray(element.props.children);
+        matchingElements = matchingElements.concat(findMatchingElements(children, targetValue));
+      }
+    });
+
+    return matchingElements;
+  };
+
+  const onTextChange = (textValue: string) => {
+    if (textValue === '') {
+      setUserFacingMenuItems(initialMenuItems.concat(uploadMenuItems));
+      return;
+    }
+
+    const newMenuItems = findMatchingElements(initialMenuItems, textValue);
+    // this is necessary because the React nodes we find traversing the recursive search
+    // aren't correctly wrapped in a DropdownList. This leads to problems with the
+    // auth-operator item where it winds up floating in a bad place in the DOM and never
+    // gets removed
+    setUserFacingMenuItems(
+      <>
+        <DropdownList>
+          {newMenuItems.map((item) => item)}
+          {newMenuItems.length === 0 && <DropdownItem key="no-items">No results found</DropdownItem>}
+        </DropdownList>
+        {uploadMenuItems.map((item) => item)}
+      </>
+    );
+  };
 
   // Main return statement
   // --------------------------------------------------------------------------
@@ -353,17 +302,18 @@ export const BasicDemo: React.FunctionComponent = () => {
               <MessageBar
                 onSendMessage={handleSend}
                 hasMicrophoneButton
-                hasAttachMenu
-                isAttachMenuOpen={isOpen}
-                setIsAttachMenuOpen={setIsOpen}
-                attachMenuItems={filteredItems}
-                onAttachMenuSelect={(_ev, value) => {
-                  // eslint-disable-next-line no-console
-                  console.log('selected', value);
+                attachMenuProps={{
+                  isAttachMenuOpen: isOpen,
+                  setIsAttachMenuOpen: setIsOpen,
+                  attachMenuItems: userFacingMenuItems,
+                  onAttachMenuSelect: (_ev, value) => {
+                    // eslint-disable-next-line no-console
+                    console.log('selected', value);
+                  },
+                  attachMenuInputPlaceholder: 'Search cluster resources...',
+                  onAttachMenuInputChange: onTextChange,
+                  onAttachMenuToggleClick: onToggleClick
                 }}
-                attachMenuInputPlaceholder="Search cluster resources..."
-                onAttachMenuInputChange={onTextChange}
-                onAttachMenuToggleClick={onToggleClick}
               />
               <ChatbotFootnote {...footnoteProps} />
             </ChatbotFooter>
