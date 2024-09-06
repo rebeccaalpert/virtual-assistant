@@ -353,7 +353,6 @@ export const BasicDemo: React.FunctionComponent = () => {
               <MessageBar
                 onSendMessage={handleSend}
                 hasMicrophoneButton
-                hasAttachButton={false}
                 hasAttachMenu
                 isAttachMenuOpen={isOpen}
                 setIsAttachMenuOpen={setIsOpen}
@@ -363,8 +362,8 @@ export const BasicDemo: React.FunctionComponent = () => {
                   console.log('selected', value);
                 }}
                 attachMenuInputPlaceholder="Search cluster resources..."
-                handleAttachMenuInputChange={onTextChange}
-                handleAttachMenuToggleClick={onToggleClick}
+                onAttachMenuInputChange={onTextChange}
+                onAttachMenuToggleClick={onToggleClick}
               />
               <ChatbotFootnote {...footnoteProps} />
             </ChatbotFooter>
