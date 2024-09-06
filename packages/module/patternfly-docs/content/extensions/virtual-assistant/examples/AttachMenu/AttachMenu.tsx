@@ -12,18 +12,19 @@ export const BasicDemo: React.FunctionComponent = () => {
   const menuRef = React.useRef<HTMLDivElement>(null);
 
   const onToggleClick = () => {
-    setTimeout(() => {
-      if (menuRef.current) {
-        const firstElement = menuRef.current.querySelector(
-          'li > button:not(:disabled), li > a:not(:disabled), input:not(:disabled)'
-        );
-        firstElement && (firstElement as HTMLElement).focus();
-        setRefFullOptions(Array.from(menuRef.current.querySelectorAll('li:not(li[role=separator])>*:first-child')));
-      }
-    }, 0);
-    setIsOpen(!isOpen);
+    setIsOpen((prevIsOpen) => !prevIsOpen);
     setFilteredIds(['*']);
   };
+
+  React.useEffect(() => {
+    if (isOpen && menuRef.current) {
+      const firstElement = menuRef.current.querySelector(
+        'li > button:not(:disabled), li > a:not(:disabled), input:not(:disabled)'
+      );
+      firstElement && (firstElement as HTMLElement).focus();
+      setRefFullOptions(Array.from(menuRef.current.querySelectorAll('li:not(li[role=separator])>*:first-child')));
+    }
+  }, [isOpen]);
 
   const menuItems = [
     <DropdownList key="group-1">
@@ -55,66 +56,51 @@ export const BasicDemo: React.FunctionComponent = () => {
     </DropdownGroup>
   ];
 
-  const filterItems = (items: any[], filteredIds: string[]) => {
+  const filterItems = (items: any[]) => {
     if (filteredIds.length === 1 && filteredIds[0] === '*') {
       return items;
     }
-    let keepDivider = false;
-    const filteredCopy = items
-      .map((group) => {
-        if (group.type === DropdownGroup) {
-          const filteredGroup = React.cloneElement(group, {
+
+    const filterChildren = (children: any) => {
+      if (!Array.isArray(children)) {
+        children = [children];
+      }
+      return children.filter((child) => filteredIds.includes(child.props.value));
+    };
+
+    const filterGroup = (group: any) => {
+      if (group.type === DropdownGroup) {
+        const filteredChildren = filterChildren(group.props.children.props.children);
+        if (filteredChildren.length > 0) {
+          return React.cloneElement(group, {
             children: React.cloneElement(group.props.children, {
-              children: group.props.children.props.children.filter((child) => {
-                if (filteredIds.includes(child.props.value)) {
-                  return child;
-                }
-              })
+              children: filteredChildren.length > 1 ? filteredChildren : filteredChildren[0]
             })
           });
-
-          const filteredList = filteredGroup.props.children;
-          if (filteredList.props.children.length > 0) {
-            keepDivider = true;
-            return filteredGroup;
-          } else {
-            keepDivider = false;
-          }
-        } else if (group.type === DropdownList) {
-          let filteredGroup;
-          if (Array.isArray(group.props.children)) {
-            filteredGroup = React.cloneElement(group, {
-              children: group.props.children.filter((child) => {
-                if (filteredIds.includes(child.props.value)) {
-                  return child;
-                }
-              })
-            });
-          } else {
-            filteredGroup = React.cloneElement(group, {
-              children: filteredIds.includes(group.props.children.props.value) ? [group.props.children] : []
-            });
-          }
-
-          if (filteredGroup.props.children.length > 0) {
-            keepDivider = true;
-            return filteredGroup;
-          } else {
-            keepDivider = false;
-          }
-        } else {
-          if ((keepDivider && group.type === Divider) || filteredIds.includes(group.props.value)) {
-            return group;
-          }
         }
-      })
-      .filter((newGroup) => newGroup);
-
-    if (filteredCopy.length > 0) {
-      const lastGroup = filteredCopy.pop();
-      if (lastGroup.type !== Divider) {
-        filteredCopy.push(lastGroup);
+      } else if (group.type === DropdownList) {
+        const filteredChildren = filterChildren(group.props.children);
+        if (filteredChildren.length > 0) {
+          return React.cloneElement(group, {
+            children: filteredChildren.length > 1 ? filteredChildren : filteredChildren[0]
+          });
+        }
+      } else if (filteredIds.includes(group.props.value) || group.type === Divider) {
+        return group;
       }
+    };
+
+    const filteredCopy = items.reduce((acc, group) => {
+      const filteredGroup = filterGroup(group);
+      if (filteredGroup) {
+        acc.push(filteredGroup);
+      }
+      return acc;
+    }, []);
+
+    // Remove the last divider if present
+    if (filteredCopy.length > 0 && filteredCopy[filteredCopy.length - 1].type === Divider) {
+      filteredCopy.pop();
     }
 
     return filteredCopy;
@@ -133,7 +119,7 @@ export const BasicDemo: React.FunctionComponent = () => {
     setFilteredIds(filteredIds);
   };
 
-  const filteredItems = filterItems(menuItems, filteredIds);
+  const filteredItems = filterItems(menuItems);
   if (filteredItems.length === 0) {
     filteredItems.push(<DropdownItem key="no-items">No results found</DropdownItem>);
   }
