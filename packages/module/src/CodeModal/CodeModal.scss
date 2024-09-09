@@ -1,5 +1,11 @@
 .pf-chatbot__code-modal {
   --pf-v6-c-modal-box--BorderRadius: var(--pf-t--global--border--radius--medium);
+  position: fixed;
+  bottom: 96px;
+  right: 24px;
+  width: 480px;
+  height: 70vh;
+  z-index: 900; // tokens only go up to 600, which is what chatbot uses
 
   .pf-v6-c-modal-box__title {
     --pf-v6-c-modal-box__title--FontSize: var(--pf-t--global--font--size--heading--h2);

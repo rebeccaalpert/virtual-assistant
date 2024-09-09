@@ -30,6 +30,15 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   // callback that will be called by the react dropzone with the newly dropped file objects
   const handleFileDrop = (_event: DropEvent, droppedFiles: File[]) => {
+    // any custom validation you'd like
+    if (droppedFiles.length > 1) {
+      alert('Error: Dropped too many files');
+      return;
+    }
+    if (droppedFiles[0].size > 25000000) {
+      alert('Error: File size too large');
+      return;
+    }
     // identify what, if any, files are re-uploads of already uploaded files
     const currentFileNames = currentFiles.map((file) => file.name);
     const reUploads = droppedFiles.filter((droppedFile) => currentFileNames.includes(droppedFile.name));

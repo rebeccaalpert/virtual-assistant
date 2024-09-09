@@ -8,8 +8,10 @@ import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
-import { DropEvent } from '@patternfly/react-core';
+import { Alert, AlertActionCloseButton, DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
+import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -33,55 +35,6 @@ const footnoteProps = {
   }
 };
 
-const markdown = `A paragraph with *emphasis* and **strong importance**.
-
-> A block quote with ~strikethrough~ and a URL: https://reactjs.org.
-
-Here is an inline code - \`() => void\`
-
-Here is some YAML code:
-
-~~~yaml
-apiVersion: helm.openshift.io/v1beta1/
-kind: HelmChartRepository
-metadata:
-  name: azure-sample-repo0oooo00ooo
-spec:
-  connectionConfig:
-  url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
-~~~
-
-Here is some JavaScript code:
-
-~~~js
-import React from 'react';
-
-const MessageLoading = () => (
-  <div className="pf-chatbot__message-loading">
-    <span className="pf-chatbot__message-loading-dots">
-      <span className="pf-v6-screen-reader">Loading message</span>
-    </span>
-  </div>
-);
-
-export default MessageLoading;
-
-~~~
-`;
-
-const messages: MessageProps[] = [
-  {
-    role: 'user',
-    content: 'Hello, can you give me an example of what you can do?',
-    name: 'User'
-  },
-  {
-    role: 'bot',
-    content: markdown,
-    name: 'Bot'
-  }
-];
-
 const welcomePrompts = [
   {
     title: 'Topic 1',
@@ -93,16 +46,74 @@ const welcomePrompts = [
   }
 ];
 
+interface ModalData {
+  code: string;
+  fileName: string;
+}
+
 export const BasicDemo: React.FunctionComponent = () => {
+  const onAttachmentClose = (attachmentId: string) => {
+    const index = messages.findIndex((message) => message.attachmentId === attachmentId);
+    const updatedMessages: MessageProps[] = [];
+    if (index >= 0) {
+      messages.forEach((message) => updatedMessages.push(message));
+      delete updatedMessages[index].attachmentName;
+      delete updatedMessages[index].attachmentId;
+      delete updatedMessages[index].onAttachmentClick;
+      delete updatedMessages[index].onAttachmentClose;
+      setMessages(updatedMessages);
+    }
+  };
+  const initialMessages: MessageProps[] = [
+    {
+      role: 'user',
+      content: "I'm referring to this attachment for added context in our conversation.",
+      name: 'User',
+      attachmentName: 'auth-operator.yml',
+      attachmentId: '1',
+      onAttachmentClose,
+      onAttachmentClick: () => {
+        setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
+        setIsEditModalOpen(false);
+        setIsPreviewModalOpen(true);
+      }
+    },
+    {
+      role: 'bot',
+      content: 'Great, I can reference this attachment throughout our conversation.',
+      name: 'Bot'
+    }
+  ];
+
+  const [error, setError] = React.useState<string>();
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
   const [file, setFile] = React.useState<File>();
   const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
-
+  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
+  const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
+  const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const handleSend = (message) => alert(message);
 
   const handleFileDrop = (event: DropEvent, data: File[]) => {
+    // any custom validation you may want
+    if (data.length > 1) {
+      setShowAlert(true);
+      setError('Uploaded more than one file.');
+      return;
+    }
+    // this is 25MB in bytes; size is in bytes
+    if (data[0].size > 25000000) {
+      setShowAlert(true);
+      setError('File is larger than 25MB.');
+      return;
+    }
+
     setFile(data[0]);
     setIsLoadingFile(true);
+    setShowAlert(false);
+    setError(undefined);
     setTimeout(() => {
       setIsLoadingFile(false);
     }, 1000);
@@ -124,12 +135,32 @@ export const BasicDemo: React.FunctionComponent = () => {
       <ChatbotToggle
         toolTipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
-        onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
+        onToggleChatbot={() => {
+          setChatbotVisible(!chatbotVisible);
+          setIsEditModalOpen(false);
+          setIsPreviewModalOpen(false);
+        }}
       />
       <Chatbot isVisible={chatbotVisible}>
         <FileDropZone onFileDrop={handleFileDrop}>
           <>
             <ChatbotContent>
+              {showAlert && (
+                <Alert
+                  variant="danger"
+                  actionClose={
+                    <AlertActionCloseButton
+                      onClose={() => {
+                        setShowAlert(false);
+                        setError(undefined);
+                      }}
+                    />
+                  }
+                  title="File upload failed"
+                >
+                  {error}
+                </Alert>
+              )}
               <MessageBox>
                 <ChatbotWelcomePrompt
                   title="Hello, Chatbot User"
@@ -153,6 +184,31 @@ export const BasicDemo: React.FunctionComponent = () => {
           </>
         </FileDropZone>
       </Chatbot>
+      {currentModalData && (
+        <PreviewAttachment
+          code={currentModalData?.code}
+          fileName={currentModalData?.fileName}
+          isModalOpen={isPreviewModalOpen}
+          onEdit={() => {
+            setIsPreviewModalOpen(false);
+            setIsEditModalOpen(true);
+          }}
+          onDismiss={() => setCurrentModalData(undefined)}
+          handleModalToggle={() => setIsPreviewModalOpen(false)}
+        />
+      )}
+      {currentModalData && (
+        <AttachmentEdit
+          code={currentModalData?.code}
+          fileName={currentModalData?.fileName}
+          isModalOpen={isEditModalOpen}
+          onSave={() => {
+            setIsEditModalOpen(false);
+          }}
+          onCancel={() => setCurrentModalData(undefined)}
+          handleModalToggle={() => setIsEditModalOpen(false)}
+        />
+      )}
     </>
   );
 };

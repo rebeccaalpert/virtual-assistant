@@ -8,8 +8,6 @@ export interface FileDropZoneProps {
   className?: string;
   /** Informational text that shows below the title in the drop zone */
   infoText?: string;
-  /** Maximum file size in bytes */
-  maxSize?: number;
   /** When files are dropped or uploaded this callback will be called with all accepted files */
   onFileDrop: (event: DropEvent, data: File[]) => void;
 }
@@ -18,8 +16,8 @@ const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
   children,
   className,
   infoText = 'Maximum file size is 25 MB',
-  maxSize = 25000000,
-  onFileDrop
+  onFileDrop,
+  ...props
 }: FileDropZoneProps) => {
   const [showDropZone, setShowDropZone] = React.useState(false);
 
@@ -48,10 +46,8 @@ const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
   return (
     <MultipleFileUpload
       dropzoneProps={{
-        maxSize,
-        maxFiles: 1,
-        multiple: false,
-        onDrop: () => setShowDropZone(false)
+        onDrop: () => setShowDropZone(false),
+        ...props
       }}
       onDragEnter={() => setShowDropZone(true)}
       onDragLeave={() => setShowDropZone(false)}
