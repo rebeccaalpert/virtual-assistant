@@ -26,3 +26,9 @@ import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDet
 ```js file="./FileDetailsLabelLoading.tsx"
 
 ```
+
+### Clickable example
+
+```js file="./FileDetailsLabelClickable.tsx"
+
+```
