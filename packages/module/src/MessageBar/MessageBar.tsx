@@ -2,7 +2,7 @@
 // Chatbot Footer - Message Bar
 // ============================================================================
 import React from 'react';
-import { TextAreaProps } from '@patternfly/react-core';
+import { TextAreaProps, Flex, FlexItem } from '@patternfly/react-core';
 import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
@@ -64,8 +64,13 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   );
 
   return (
-    <div className={`pf-chatbot__message-bar ${className ?? ''}`}>
-      <div className="pf-chatbot__message-bar-input">
+    <Flex
+      className={`pf-chatbot__message-bar ${className ?? ''}`}
+      alignItems={{ default: 'alignItemsCenter' }}
+      justifyContent={{ default: 'justifyContentFlexEnd' }}
+      flexWrap={{ default: 'wrap' }}
+    >
+      <FlexItem flex={{ default: 'flex_1' }} className="pf-chatbot__message-bar-input">
         <AutoTextArea
           ref={textareaRef}
           className="pf-chatbot__message-textarea"
@@ -76,9 +81,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
           {...props}
         />
-      </div>
+      </FlexItem>
 
-      <div className="pf-chatbot__message-bar-actions">
+      <FlexItem className="pf-chatbot__message-bar-actions">
         {hasAttachButton && <AttachButton onClick={handleAttach} isDisabled={isListeningMessage} />}
         {hasMicrophoneButton && (
           <MicrophoneButton
@@ -88,8 +93,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           />
         )}
         {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
-      </div>
-    </div>
+      </FlexItem>
+    </Flex>
   );
 };
 
