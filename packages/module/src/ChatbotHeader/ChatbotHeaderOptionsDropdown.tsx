@@ -44,7 +44,7 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
         setIsOptionsMenuOpen(false);
       }}
       onOpenChange={(isOpen) => setIsOptionsMenuOpen(isOpen)}
-      popperProps={{ position: 'right' }}
+      popperProps={{ position: 'right', preventOverflow: true }}
       shouldFocusToggleOnSelect
       shouldFocusFirstItemOnOpen={false}
       toggle={toggle}
