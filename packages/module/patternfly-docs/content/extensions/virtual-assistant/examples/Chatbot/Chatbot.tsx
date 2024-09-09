@@ -22,7 +22,8 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 
-import logo from '../ChatbotHeader/logo.svg';
+import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -141,7 +142,12 @@ export const BasicDemo: React.FunctionComponent = () => {
           <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
           <ChatbotHeaderTitle>
             <Bullseye>
-              <Brand src={logo} alt="Branding for chatbot" />
+              <div className="show-light">
+                <Brand src={PFHorizontalLogoColor} alt="PatternFly" />
+              </div>
+              <div className="show-dark">
+                <Brand src={PFHorizontalLogoReverse} alt="PatternFly" />
+              </div>
             </Bullseye>
           </ChatbotHeaderTitle>
           <ChatbotHeaderActions>

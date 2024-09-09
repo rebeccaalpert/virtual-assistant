@@ -13,7 +13,8 @@ import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/ou
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 
-import logo from './logo.svg';
+import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
 export const BasicDemo: React.FunctionComponent = () => {
   const [selectedModel, setSelectedModel] = React.useState('Granite Code 7B');
@@ -30,7 +31,12 @@ export const BasicDemo: React.FunctionComponent = () => {
       <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
       <ChatbotHeaderTitle>
         <Bullseye>
-          <Brand src={logo} alt="Branding for chatbot" style={{ marginRight: '10px' }} />
+          <div className="show-light">
+            <Brand src={PFHorizontalLogoColor} alt="PatternFly" style={{ marginRight: '10px' }} />
+          </div>
+          <div className="show-dark">
+            <Brand src={PFHorizontalLogoReverse} alt="PatternFly" style={{ marginRight: '10px' }} />
+          </div>
           <Title headingLevel="h1" size="2xl">
             Chatbot Extension
           </Title>

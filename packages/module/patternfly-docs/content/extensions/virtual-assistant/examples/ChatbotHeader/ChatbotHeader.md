@@ -35,7 +35,8 @@ ChatbotDisplayMode
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
-import logo from './logo.svg';
+import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
 ### Basic example
 

@@ -44,7 +44,8 @@
 // ============================================================================
 // Toggle Options
 // ============================================================================
-.pf-chatbot__button--toggle-options, .pf-chatbot__button--toggle-menu {
+.pf-chatbot__button--toggle-options,
+.pf-chatbot__button--toggle-menu {
   width: 3rem;
   height: 3rem;
   border-radius: var(--pf-t--global--border--radius--pill);
@@ -55,9 +56,26 @@
   }
 
   // Interactive states
-  &:hover, &:focus {
+  &:hover,
+  &:focus {
     .pf-v6-c-button__icon {
       color: var(--pf-t--chatbot--icon--fill--hover);
     }
   }
+}
+
+// ============================================================================
+// Examples
+// ============================================================================
+.show-dark,
+:where(.pf-v6-theme-dark) .show-light {
+  display: none;
+}
+
+:where(.pf-v6-theme-dark) .show-dark {
+  display: revert;
+}
+
+:where(.pf-v6-theme-dark) .show-dark .pf-m-picture {
+  display: inline-flex;
 }
