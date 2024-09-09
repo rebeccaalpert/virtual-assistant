@@ -1,5 +1,5 @@
 .pf-chatbot__dropzone {
-  height: 70vh;
+  height: calc(70vh - var(--pf-t--global--spacer--lg) * 2);
 
   .pf-v6-c-multiple-file-upload__main {
     background: rgba(224, 224, 224, 0.5);
