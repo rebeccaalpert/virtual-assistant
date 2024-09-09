@@ -57,6 +57,9 @@ export * from './MessageBar';
 export { default as MessageBox } from './MessageBox';
 export * from './MessageBox';
 
+export { default as Popover } from './Popover';
+export * from './Popover';
+
 export { default as PreviewAttachment } from './PreviewAttachment';
 export * from './PreviewAttachment';
 
