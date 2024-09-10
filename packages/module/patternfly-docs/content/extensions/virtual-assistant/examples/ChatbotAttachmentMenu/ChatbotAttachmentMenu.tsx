@@ -1,6 +1,6 @@
 import React from 'react';
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
-import Chatbot from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
@@ -11,6 +11,8 @@ import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZon
 import {
   Alert,
   AlertActionCloseButton,
+  Brand,
+  Bullseye,
   Divider,
   DropdownGroup,
   DropdownItem,
@@ -18,9 +20,27 @@ import {
   DropEvent
 } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
-import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
-import AttachmentIcon from './AttachmentIcon.svg';
+import {
+  BellIcon,
+  CalendarAltIcon,
+  ClipboardIcon,
+  CodeIcon,
+  ExpandIcon,
+  OpenDrawerRightIcon,
+  OutlinedWindowRestoreIcon,
+  UploadIcon
+} from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
+import ChatbotHeader, {
+  ChatbotHeaderMenu,
+  ChatbotHeaderTitle,
+  ChatbotHeaderActions,
+  ChatbotHeaderSelectorDropdown,
+  ChatbotHeaderOptionsDropdown
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import AttachmentIcon from './AttachmentIcon.svg';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
@@ -142,6 +162,8 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [error, setError] = React.useState<string>();
   const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
+  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
+  const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
 
   const { open } = useDropzone({
     onDropAccepted: (files: File[]) => {
@@ -171,8 +193,6 @@ export const BasicDemo: React.FunctionComponent = () => {
       }, 1000);
     }
   });
-
-  const handleSend = (message) => alert(message);
 
   // Attachments
   // --------------------------------------------------------------------------
@@ -253,6 +273,31 @@ export const BasicDemo: React.FunctionComponent = () => {
     );
   };
 
+  // Other functionality
+  // --------------------------------------------------------------------------
+  const onSelectModel = (
+    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    value: string | number | undefined
+  ) => {
+    setSelectedModel(value as string);
+  };
+
+  const onSelectDisplayMode = (
+    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    value: string | number | undefined
+  ) => {
+    setDisplayMode(value as ChatbotDisplayMode);
+  };
+
+  const handleSend = (message) => {
+    if (file) {
+      alert(`${message} with attachment ${file.name}`);
+    } else {
+      alert(message);
+    }
+    setFile(undefined);
+  };
+
   // Main return statement
   // --------------------------------------------------------------------------
   return (
@@ -262,9 +307,64 @@ export const BasicDemo: React.FunctionComponent = () => {
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
       />
-      <Chatbot isVisible={chatbotVisible}>
+      <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         <FileDropZone onFileDrop={handleFileDrop}>
           <>
+            <ChatbotHeader>
+              <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
+              <ChatbotHeaderTitle>
+                <Bullseye>
+                  <div className="show-light">
+                    <Brand src={PFHorizontalLogoColor} alt="PatternFly" />
+                  </div>
+                  <div className="show-dark">
+                    <Brand src={PFHorizontalLogoReverse} alt="PatternFly" />
+                  </div>
+                </Bullseye>
+              </ChatbotHeaderTitle>
+              <ChatbotHeaderActions>
+                <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+                  <DropdownList>
+                    <DropdownItem value="Granite 7B" key="granite">
+                      Granite 7B
+                    </DropdownItem>
+                    <DropdownItem value="Llama 3.0" key="llama">
+                      Llama 3.0
+                    </DropdownItem>
+                    <DropdownItem value="Mistral 3B" key="mistral">
+                      Mistral 3B
+                    </DropdownItem>
+                  </DropdownList>
+                </ChatbotHeaderSelectorDropdown>
+                <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
+                  <DropdownGroup label="Display mode">
+                    <DropdownList>
+                      <DropdownItem
+                        value={ChatbotDisplayMode.default}
+                        key="switchDisplayOverlay"
+                        icon={<OutlinedWindowRestoreIcon aria-hidden />}
+                      >
+                        <span>Overlay</span>
+                      </DropdownItem>
+                      <DropdownItem
+                        value={ChatbotDisplayMode.docked}
+                        key="switchDisplayDock"
+                        icon={<OpenDrawerRightIcon aria-hidden />}
+                      >
+                        <span>Dock to window</span>
+                      </DropdownItem>
+                      <DropdownItem
+                        value={ChatbotDisplayMode.fullscreen}
+                        key="switchDisplayFullscreen"
+                        icon={<ExpandIcon aria-hidden />}
+                      >
+                        <span>Fullscreen</span>
+                      </DropdownItem>
+                    </DropdownList>
+                  </DropdownGroup>
+                </ChatbotHeaderOptionsDropdown>
+              </ChatbotHeaderActions>
+            </ChatbotHeader>
             <ChatbotContent>
               {showAlert && (
                 <Alert
