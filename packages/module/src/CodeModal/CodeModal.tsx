@@ -108,9 +108,9 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               code={newCode}
               language={extensionToLanguage[path.extname(fileName).slice(1)]}
               onEditorDidMount={onEditorDidMount}
-              height="400px"
               onCodeChange={onCodeChange}
               className={codeEditorClassName}
+              height="45vh"
               {...props}
             />
           </StackItem>
