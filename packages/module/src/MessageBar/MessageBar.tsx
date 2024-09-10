@@ -46,7 +46,7 @@ export interface MessageBarProps extends TextAreaProps {
   attachMenuProps?: MessageBarWithAttachMenuProps;
 }
 
-export const MessageBar: React.FC<MessageBarProps> = ({
+export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   onSendMessage,
   className,
   alwayShowSendButton,
