@@ -20,7 +20,7 @@ export const FileDetailsLabel = ({
   onClick = undefined,
   onClose = undefined
 }: PropsWithChildren<FileDetailsLabelProps>) => (
-  <Label className="pf-chatbot__file-label" onClose={onClose} onClick={onClick}>
+  <Label className="pf-chatbot__file-label" onClose={onClose} onClick={onClick} textMaxWidth="370px">
     <Flex
       justifyContent={{ default: 'justifyContentCenter' }}
       alignItems={{ default: 'alignItemsCenter' }}

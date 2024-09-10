@@ -7,6 +7,11 @@
 // Chatbot Footer - Message Bar
 // ============================================================================
 .pf-chatbot__message-bar {
+  display: flex;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  align-items: flex-end;
+  justify-content: flex-end;
   min-height: 64px;
   background-color: var(--pf-t--global--background--color--primary--default);
   border-radius: calc(
@@ -16,7 +21,7 @@
   transition: box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm);
 
   &-input {
-    padding: var(--pf-t--global--spacer--sm) 0 var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--sm)
+    padding: var(--pf-t--global--spacer--sm) 0 var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--sm);
   }
 
   &:hover {

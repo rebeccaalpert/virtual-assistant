@@ -8,11 +8,15 @@ import {
   MenuSearch,
   MenuSearchInput,
   SearchInput,
-  MenuPopperProps,
   DropdownProps,
   Dropdown,
-  DropdownToggleProps
+  DropdownToggleProps,
+  DropdownPopperProps
 } from '@patternfly/react-core';
+
+export interface ExtendedDropdownPopperProps extends DropdownPopperProps {
+  distance: string;
+}
 
 export interface AttachMenuProps extends DropdownProps {
   /** Items in menu */
@@ -21,16 +25,14 @@ export interface AttachMenuProps extends DropdownProps {
   handleTextInputChange: (value: string) => void;
   /** Flag to indicate if menu is opened. */
   isOpen: boolean;
-  /** Reference to the menu  */
-  menuRef?: React.RefObject<any>;
   /** Additional properties to pass to the Popper */
-  popperProps?: MenuPopperProps;
+  popperProps?: ExtendedDropdownPopperProps;
   /** Callback to change the open state of the menu. Triggered by clicking outside of the menu. */
   onOpenChange: (isOpen: boolean) => void;
   /** Keys that trigger onOpenChange, defaults to tab and escape. It is highly recommended to include Escape in the array, while Tab may be omitted if the menu contains non-menu items that are focusable. */
-  onOpenChangeKeys: string[];
+  onOpenChangeKeys?: string[];
   /** Function callback called when user selects item. */
-  onSelect: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
   /** Toggle to be rendered */
@@ -42,7 +44,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
   filteredItems,
   handleTextInputChange,
   isOpen,
-  menuRef,
   popperProps = undefined,
   onOpenChange,
   onOpenChangeKeys,
@@ -58,7 +59,6 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
     onOpenChangeKeys={onOpenChangeKeys}
     toggle={toggle}
     popperProps={popperProps}
-    ref={menuRef}
     onSelect={onSelect}
     {...props}
   >
