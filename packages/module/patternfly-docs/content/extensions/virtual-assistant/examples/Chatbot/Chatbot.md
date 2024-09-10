@@ -5,7 +5,7 @@ section: extensions
 subsection: Chat bots / AI
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot
+id: Chatbot demo
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
 source: react
 # If you use typescript, the name of the interface to display props for
@@ -32,6 +32,10 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
+import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
+import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 
 import ChatbotHeader, {
 ChatbotHeaderMenu,

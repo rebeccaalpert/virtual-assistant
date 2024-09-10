@@ -50,7 +50,7 @@ export const MessageBar: React.FC<MessageBarProps & MessageBarWithAttachMenuProp
   onSendMessage,
   className,
   alwayShowSendButton,
-  hasAttachButton,
+  hasAttachButton = true,
   hasMicrophoneButton,
   handleAttach,
   attachMenuProps,
