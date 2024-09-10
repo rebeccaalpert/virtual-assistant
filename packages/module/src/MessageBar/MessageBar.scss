@@ -52,6 +52,16 @@
     line-height: 24px;
   }
 
+  .pf-chatbot__message-bar-input {
+    flex: 1 0 0;
+  }
+
+  .pf-chatbot__message-bar-actions {
+    align-items: center;
+    height: 100%;
+    display: flex;
+  }
+
   //.pf-chatbot__message-textarea {
   //  --pf-v6-c-form-control--Resize: none;
   //  --pf-v6-c-form-control--before--BorderStyle: none;
