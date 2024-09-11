@@ -1,5 +1,6 @@
 .pf-chatbot__menu.pf-v6-c-menu {
   --pf-v6-c-menu--BorderRadius: var(--pf-t--global--border--radius--large);
+  --pf-v6-c-menu__list-item--hover--BackgroundColor: var(--pf-t--global--background--color--secondary--default);
 }
 
 .pf-chatbot__menu {
@@ -18,7 +19,7 @@
     /* there is spacing between groups because of this normally, even if there's no title */
     .pf-v6-c-menu__group-title {
       height: 0;
-      --pf-v6-c-menu__group-title--PaddingBlockStart: 0;
+      --pf-v6-c-menu__group-title--PaddingBlockStart: var(--pf-t--global--spacer--sm);
       --pf-v6-c-menu__group-title--PaddingBlockEnd: 0;
       --pf-v6-c-menu__group-title--PaddingInlineStart: 0;
       --pf-v6-c-menu__group-title--PaddingInlineEnd: 0;
@@ -40,28 +41,27 @@
     overflow: hidden;
   }
 
+  .pf-v6-c-menu__item {
+    padding-inline-start: var(--pf-t--global--spacer--md);
+    padding-inline-end: var(--pf-t--global--spacer--md);
+  }
+
   .pf-v6-c-menu__item-icon {
-    --pf-v6-c-menu__item--icon--Color: #707070;
+    --pf-v6-c-menu__item--icon--Color: var(--pf-t--global--icon--color--subtle);
     display: flex;
     justify-content: center;
+    width: 21px;
+  }
+
+  .pf-chatbot__object > .pf-v6-c-menu__item-main > .pf-v6-c-menu__item-icon {
     width: 24px;
   }
 
   .pf-v6-c-menu__item-description {
     font-weight: 500;
   }
-}
 
-.pf-v6-theme-dark {
-  .pf-chatbot__menu.pf-v6-c-menu {
-    --pf-v6-c-menu--Color: #f2f2f2;
-    --pf-v6-c-menu--BackgroundColor: #383838;
-    --pf-v6-c-menu__list-item--hover--BackgroundColor: #1f1f1f;
-  }
-  .pf-v6-c-menu__item-icon {
-    --pf-v6-c-menu__item--icon--Color: #c7c7c7;
-  }
-  .pf-chatbot__menu-operator {
-    color: #fff;
+  .pf-v6-c-divider {
+    padding: 0 var(--pf-t--global--spacer--md) 0 var(--pf-t--global--spacer--md);
   }
 }

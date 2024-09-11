@@ -7,7 +7,12 @@ import AttachmentIcon from './AttachmentIcon';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
-    <DropdownItem value="auth-operator Pod" id="0" icon={<img src={AttachmentIcon} alt="Pod icon" />}>
+    <DropdownItem
+      value="auth-operator Pod"
+      className="pf-chatbot__object"
+      id="0"
+      icon={<img src={AttachmentIcon} alt="Pod icon" />}
+    >
       <div className="pf-chatbot__menu-operator">
         auth-operator
         <div className="pf-v6-c-menu__item-description">Pod</div>
@@ -60,7 +65,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
       if (React.isValidElement(element)) {
         // Check if the element's value matches the targetValue
         if (element.props.value && element.props.value.toLowerCase().includes(targetValue.toLowerCase())) {
-          matchingElements.push(element);
+          matchingElements.push(React.cloneElement(element, { key: element.props.value }));
         }
 
         // Recursively check the element's children
@@ -86,8 +91,11 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
     setUserFacingMenuItems(
       <>
         <DropdownList>
-          {newMenuItems.map((item) => item)}
-          {newMenuItems.length === 0 && <DropdownItem key="no-items">No results found</DropdownItem>}
+          {newMenuItems.length === 0 ? (
+            <DropdownItem key="no-items">No results found</DropdownItem>
+          ) : (
+            newMenuItems.map((item) => item)
+          )}
         </DropdownList>
         {uploadMenuItems.map((item) => item)}
       </>
