@@ -24,7 +24,7 @@ export const FileDetailsLabel = ({
     <Flex
       justifyContent={{ default: 'justifyContentCenter' }}
       alignItems={{ default: 'alignItemsCenter' }}
-      gap={{ default: 'gapLg' }}
+      gap={{ default: 'gapMd' }}
     >
       <FlexItem>
         <FileDetails fileName={fileName} />

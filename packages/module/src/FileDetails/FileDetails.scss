@@ -17,7 +17,7 @@
 
 // This is used in demos only
 .pf-chatbot__file-details-example {
-  background: gray;
+  background: var(--pf-t--global--background--color--secondary--default);
   height: 100px;
   display: flex;
   justify-content: center;

@@ -1,27 +1,39 @@
 .pf-chatbot__file-label {
   padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--md) var(--pf-t--global--spacer--sm)
     var(--pf-t--global--spacer--md);
-  gap: var(--pf-t--global--spacer--md);
+  gap: var(--pf-t--global--spacer--sm);
+  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+  border: var(--pf-t--global--border--width--strong) solid transparent;
 }
 
 .pf-v6-c-label.pf-chatbot__file-label {
-  --pf-v6-c-label--BackgroundColor: rgba(255, 255, 255, 1);
+  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--primary--default);
   --pf-v6-c-label--BorderRadius: var(--pf-t--global--border--radius--small);
+  --pf-v6-c-label--Color: var(--pf-t--global--text--color--regular);
 
   .pf-chatbot__file-label > .pf-v6-c-label__content {
-    --pf-v6-c-label--Color: rgba(255, 255, 255, 1);
+    --pf-v6-c-label--Color: var(--pf-t--global--background--color--primary--default);
   }
 }
 
 .pf-v6-theme-dark {
   .pf-v6-c-label.pf-chatbot__file-label {
-    --pf-v6-c-label--BackgroundColor: rgba(41, 41, 41, 1);
-    --pf-v6-c-label--m-clickable--hover--BackgroundColor: rgba(41, 41, 41, 1);
-    --pf-v6-c-label--Color: rgba(255, 255, 255, 1);
-    --pf-v6-c-label--m-clickable--hover--Color: rgba(255, 255, 255, 1);
+    --pf-v6-c-label--m-clickable--hover--Color: var(--pf-t--global--text--color--regular);
+    --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--secondary--hover);
   }
 
   .pf-chatbot__file-label > .pf-v6-c-label__actions > .pf-v6-c-button.pf-m-plain > .pf-v6-c-button__icon {
-    --pf-v6-c-button__icon--Color: rgba(199, 199, 199, 1);
+    --pf-v6-c-button__icon--Color: var(--pf-t--global--icon--color--regular);
+  }
+}
+
+.pf-chatbot__file-label.pf-m-clickable:hover,
+.pf-chatbot__file-label.pf-m-clickable:focus-within {
+  border: var(--pf-t--global--border--width--strong) solid var(--pf-t--global--border--color--on-secondary);
+  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+
+  .pf-chatbot__code-icon {
+    color: var(--pf-t--global--icon--color--status--custom--hover);
   }
 }
