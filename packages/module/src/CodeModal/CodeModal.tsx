@@ -8,6 +8,7 @@ import path from 'path';
 import { CodeEditor } from '@patternfly/react-code-editor';
 import { Button, Modal, ModalBody, ModalFooter, ModalHeader, Stack, StackItem } from '@patternfly/react-core';
 import FileDetails, { extensionToLanguage } from '../FileDetails';
+import { ChatbotDisplayMode } from '../Chatbot';
 
 export interface CodeModalProps {
   /** Class applied to code editor */
@@ -36,6 +37,8 @@ export interface CodeModalProps {
   isModalOpen: boolean;
   /** Title of modal */
   title: string;
+  /** Display mode for the Chatbot parent; this influences the styles applied */
+  displayMode?: ChatbotDisplayMode;
 }
 
 export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
@@ -52,6 +55,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
   primaryActionBtn,
   secondaryActionBtn,
   title,
+  displayMode = ChatbotDisplayMode.default,
   ...props
 }: CodeModalProps) => {
   const [newCode, setNewCode] = useState(code);
@@ -82,15 +86,25 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
     }
   };
 
-  return (
+  /* eslint-disable indent */
+  const getHeight = (displayMode: ChatbotDisplayMode) => {
+    switch (displayMode) {
+      case ChatbotDisplayMode.docked:
+        return '100vh';
+      default:
+        return '45vh';
+    }
+  };
+  /* eslint-enable indent */
+
+  const modal = (
     <Modal
       isOpen={isModalOpen}
       onClose={handleModalToggle}
       ouiaId="CodeModal"
       aria-labelledby="code-modal-title"
       aria-describedby="code-modal"
-      width="25%"
-      className="pf-chatbot__code-modal"
+      className={`pf-chatbot__code-modal pf-chatbot__code-modal--${displayMode}`}
     >
       <ModalHeader title={title} labelId="code-modal-title" />
       <ModalBody id="code-modal-body">
@@ -110,7 +124,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               onEditorDidMount={onEditorDidMount}
               onCodeChange={onCodeChange}
               className={codeEditorClassName}
-              height="45vh"
+              height={getHeight(displayMode)}
               {...props}
             />
           </StackItem>
@@ -126,6 +140,11 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
       </ModalFooter>
     </Modal>
   );
+
+  if (displayMode === ChatbotDisplayMode.fullscreen && isModalOpen) {
+    return <div className="pf-v6-c-backdrop pf-chatbot__backdrop">{modal}</div>;
+  }
+  return modal;
 };
 
 export default CodeModal;

@@ -3,6 +3,7 @@
 // ============================================================================
 import React from 'react';
 import CodeModal from '../CodeModal';
+import { ChatbotDisplayMode } from '../Chatbot';
 
 export interface PreviewAttachmentProps {
   /** Text shown in code editor */
@@ -19,6 +20,8 @@ export interface PreviewAttachmentProps {
   isModalOpen: boolean;
   /** Title of modal */
   title?: string;
+  /** Display mode for the Chatbot parent; this influences the styles applied */
+  displayMode?: ChatbotDisplayMode;
 }
 
 export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> = ({
@@ -28,7 +31,8 @@ export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> 
   isModalOpen,
   onDismiss = undefined,
   onEdit,
-  title = 'Preview attachment'
+  title = 'Preview attachment',
+  displayMode = ChatbotDisplayMode.default
 }: PreviewAttachmentProps) => {
   const handleEdit = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
@@ -55,6 +59,7 @@ export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> 
       secondaryActionBtn="Dismiss"
       title={title}
       isReadOnly
+      displayMode={displayMode}
     />
   );
 };

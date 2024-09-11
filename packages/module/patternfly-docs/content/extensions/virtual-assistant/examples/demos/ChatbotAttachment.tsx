@@ -313,6 +313,7 @@ export const BasicDemo: React.FunctionComponent = () => {
           }}
           onDismiss={() => setCurrentModalData(undefined)}
           handleModalToggle={() => setIsPreviewModalOpen(false)}
+          displayMode={displayMode}
         />
       )}
       {currentModalData && (
@@ -325,6 +326,7 @@ export const BasicDemo: React.FunctionComponent = () => {
           }}
           onCancel={() => setCurrentModalData(undefined)}
           handleModalToggle={() => setIsEditModalOpen(false)}
+          displayMode={displayMode}
         />
       )}
     </>

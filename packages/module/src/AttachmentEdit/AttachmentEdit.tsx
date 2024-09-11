@@ -3,6 +3,7 @@
 // ============================================================================
 import React from 'react';
 import CodeModal from '../CodeModal';
+import { ChatbotDisplayMode } from '../Chatbot';
 
 export interface AttachmentEditProps {
   /** Text shown in code editor */
@@ -19,6 +20,8 @@ export interface AttachmentEditProps {
   isModalOpen: boolean;
   /** Title of modal */
   title?: string;
+  /** Display mode for the Chatbot parent; this influences the styles applied */
+  displayMode?: ChatbotDisplayMode;
 }
 
 export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
@@ -28,7 +31,8 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
   isModalOpen,
   onCancel,
   onSave,
-  title = 'Edit attachment'
+  title = 'Edit attachment',
+  displayMode = ChatbotDisplayMode.default
 }: AttachmentEditProps) => {
   const handleSave = (_event: React.MouseEvent | MouseEvent | KeyboardEvent, code) => {
     handleModalToggle(_event);
@@ -51,6 +55,7 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
       primaryActionBtn="Save"
       secondaryActionBtn="Cancel"
       title={title}
+      displayMode={displayMode}
     />
   );
 };
