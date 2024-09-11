@@ -2,14 +2,28 @@
 // Chatbot Header
 // ============================================================================
 .pf-chatbot__header {
+  display: flex;
   position: relative;
   background-color: var(--pf-t--chatbot--background);
+  justify-content: space-between;
 
   // Title -or- Brand
   .pf-chatbot__title {
     img {
       max-height: 40px;
     }
+  }
+
+  .pf-chatbot__menu {
+    flex-shrink: 0;
+  }
+
+  .pf-chatbot__actions {
+    width: 218px;
+    flex-shrink: 0;
+    flex-grow: 0;
+    display: flex;
+    justify-content: flex-end;
   }
 }
 
