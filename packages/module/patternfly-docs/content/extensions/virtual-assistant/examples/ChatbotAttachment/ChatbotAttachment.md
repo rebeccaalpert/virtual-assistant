@@ -10,15 +10,7 @@ id: Chatbot attachment
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents:
-  [
-    'AttachMenu',
-    'AttachmentEdit',
-    'FileDetails',
-    'FileDetailsLabel',
-    'FileDropZone',
-    'PreviewAttachment'
-  ]
+propComponents: ['AttachMenu', 'AttachmentEdit', 'FileDetails', 'FileDetailsLabel', 'FileDropZone', 'PreviewAttachment']
 ---
 
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
@@ -30,7 +22,6 @@ import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/Pr
 
 import { BellIcon, UploadIcon, CodeIcon, ClipboardIcon, CalendarAltIcon } from '@patternfly/react-icons';
 import PaperclipIcon from './PaperclipIcon.svg';
-import AttachmentIcon from './AttachmentIcon.svg';
 
 ### Attach menu for appending to attach icon
 
@@ -52,7 +43,7 @@ import AttachmentIcon from './AttachmentIcon.svg';
 
 ### Details of file attached to chat conversation
 
-The file extension on the upladed file is reflected in the text below the file name.
+The file extension on the uploaded file is reflected in the text below the file name.
 
 ```js file="./FileDetails.tsx"
 
