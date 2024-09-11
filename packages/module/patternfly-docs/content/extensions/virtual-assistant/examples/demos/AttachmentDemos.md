@@ -12,7 +12,7 @@ sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/m
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
-import Chatbot from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
 import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
@@ -26,6 +26,18 @@ import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/Attachmen
 import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
+import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import ChatbotHeader, {
+ChatbotHeaderMenu,
+ChatbotHeaderTitle,
+ChatbotHeaderActions,
+ChatbotHeaderSelectorDropdown,
+ChatbotHeaderOptionsDropdown
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
+import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
+import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 
 # Demos
 

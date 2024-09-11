@@ -49,6 +49,11 @@
   }
 }
 
+.pf-chatbot__dropzone--fullscreen,
+.pf-chatbot__dropzone--docked {
+  height: 100vh;
+}
+
 /** Used in example only */
 .pf-chatbot__file-drop-zone-example {
   border: var(--pf-t--global--border--width--divider--default) solid var(--pf-t--global--border--color--default);
