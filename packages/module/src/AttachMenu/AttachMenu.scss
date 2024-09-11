@@ -47,14 +47,9 @@
   }
 
   .pf-v6-c-menu__item-icon {
-    --pf-v6-c-menu__item--icon--Color: var(--pf-t--global--icon--color--subtle);
     display: flex;
     justify-content: center;
     width: 21px;
-  }
-
-  .pf-chatbot__object > .pf-v6-c-menu__item-main > .pf-v6-c-menu__item-icon {
-    width: 24px;
   }
 
   .pf-v6-c-menu__item-description {
@@ -63,5 +58,11 @@
 
   .pf-v6-c-divider {
     padding: 0 var(--pf-t--global--spacer--md) 0 var(--pf-t--global--spacer--md);
+  }
+
+  // this is only used in demo code
+  .pf-chatbot__object > .pf-v6-c-menu__item-main > .pf-v6-c-menu__item-icon {
+    width: 24px;
+    color: var(--pf-t--global--icon--color--status--custom--default);
   }
 }

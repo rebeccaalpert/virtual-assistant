@@ -24,7 +24,6 @@ import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDet
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
-import AttachmentIcon from './AttachmentIcon.svg';
 import { useDropzone } from 'react-dropzone';
 
 # Demos
