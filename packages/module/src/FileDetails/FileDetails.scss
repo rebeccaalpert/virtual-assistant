@@ -6,8 +6,7 @@
 }
 
 .pf-chatbot__code-icon {
-  background-color: #37a3a3;
-  border-radius: var(--pf-t--global--border--radius--tiny);
+  color: var(--pf-t--global--icon--color--status--custom--default);
   width: 24px;
   height: 24px;
 }
@@ -16,6 +15,7 @@
   font-size: var(--pf-t--global--font--size--body--default);
 }
 
+// This is used in demos only
 .pf-chatbot__file-details-example {
   background: gray;
   height: 100px;
