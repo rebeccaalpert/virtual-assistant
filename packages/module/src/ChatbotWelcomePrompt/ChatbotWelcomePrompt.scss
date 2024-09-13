@@ -18,4 +18,20 @@
   .pf-chatbot__question {
     color: var(--pf-t--global--text--color--subtle);
   }
+
+  .pf-chatbot__prompt-suggestions > * {
+    flex: 1;
+  }
+}
+
+// ============================================================================
+// Chatbot Display Mode - Fullscreen
+// ============================================================================
+.pf-chatbot--fullscreen {
+  .pf-chatbot--layout--welcome {
+    .pf-chatbot__prompt-suggestions {
+      flex-direction: row;
+      align-items: baseline;
+    }
+  }
 }
