@@ -13,7 +13,7 @@
   }
 
   code {
-    background-color: var(--pf-t--chatbot--code--background);
+    background-color: initial; // this is a temporary fix while design works out what kind of tokens they want to use for the message bubbles; PF does not offer the variety of grays required
     font-size: var(--pf-t--global--font--size--body--default);
   }
 }
