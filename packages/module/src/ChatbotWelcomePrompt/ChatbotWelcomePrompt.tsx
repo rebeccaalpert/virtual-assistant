@@ -44,11 +44,7 @@ export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptP
       <span className="pf-chatbot__question">{description}</span>
     </Content>
 
-    <Flex
-      className="pf-chatbot__prompt-suggestions"
-      direction={{ default: 'row', lg: 'column' }}
-      gap={{ default: 'gapLg' }}
-    >
+    <Flex className="pf-chatbot__prompt-suggestions" direction={{ default: 'column' }} gap={{ default: 'gapLg' }}>
       {prompts?.map((prompt) => (
         <Card key={prompt.message} className="pf-chatbot__prompt-suggestion" isClickable>
           <CardHeader
