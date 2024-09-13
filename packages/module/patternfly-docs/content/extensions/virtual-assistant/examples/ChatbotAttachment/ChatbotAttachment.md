@@ -19,6 +19,7 @@ import FileDetails from '@patternfly/virtual-assistant/dist/dynamic/FileDetails'
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
 
 import { BellIcon, UploadIcon, CodeIcon, ClipboardIcon, CalendarAltIcon } from '@patternfly/react-icons';
 import PaperclipIcon from './PaperclipIcon.svg';
