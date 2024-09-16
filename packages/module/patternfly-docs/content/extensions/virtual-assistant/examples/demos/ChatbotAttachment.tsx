@@ -221,98 +221,105 @@ export const BasicDemo: React.FunctionComponent = () => {
         }}
       />
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
-        <FileDropZone onFileDrop={handleFileDrop} displayMode={displayMode}>
-          <>
-            <ChatbotHeader>
-              <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-              <ChatbotHeaderTitle>
-                {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
-              </ChatbotHeaderTitle>
-              <ChatbotHeaderActions>
-                <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+        <>
+          <ChatbotHeader>
+            <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
+            <ChatbotHeaderTitle>
+              {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
+            </ChatbotHeaderTitle>
+            <ChatbotHeaderActions>
+              <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+                <DropdownList>
+                  <DropdownItem value="Granite 7B" key="granite">
+                    Granite 7B
+                  </DropdownItem>
+                  <DropdownItem value="Llama 3.0" key="llama">
+                    Llama 3.0
+                  </DropdownItem>
+                  <DropdownItem value="Mistral 3B" key="mistral">
+                    Mistral 3B
+                  </DropdownItem>
+                </DropdownList>
+              </ChatbotHeaderSelectorDropdown>
+              <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
+                <DropdownGroup label="Display mode">
                   <DropdownList>
-                    <DropdownItem value="Granite 7B" key="granite">
-                      Granite 7B
+                    <DropdownItem
+                      value={ChatbotDisplayMode.default}
+                      key="switchDisplayOverlay"
+                      icon={<OutlinedWindowRestoreIcon aria-hidden />}
+                      isSelected={displayMode === ChatbotDisplayMode.default}
+                    >
+                      <span>Overlay</span>
                     </DropdownItem>
-                    <DropdownItem value="Llama 3.0" key="llama">
-                      Llama 3.0
+                    <DropdownItem
+                      value={ChatbotDisplayMode.docked}
+                      key="switchDisplayDock"
+                      icon={<OpenDrawerRightIcon aria-hidden />}
+                      isSelected={displayMode === ChatbotDisplayMode.docked}
+                    >
+                      <span>Dock to window</span>
                     </DropdownItem>
-                    <DropdownItem value="Mistral 3B" key="mistral">
-                      Mistral 3B
+                    <DropdownItem
+                      value={ChatbotDisplayMode.fullscreen}
+                      key="switchDisplayFullscreen"
+                      icon={<ExpandIcon aria-hidden />}
+                      isSelected={displayMode === ChatbotDisplayMode.fullscreen}
+                    >
+                      <span>Fullscreen</span>
                     </DropdownItem>
                   </DropdownList>
-                </ChatbotHeaderSelectorDropdown>
-                <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
-                  <DropdownGroup label="Display mode">
-                    <DropdownList>
-                      <DropdownItem
-                        value={ChatbotDisplayMode.default}
-                        key="switchDisplayOverlay"
-                        icon={<OutlinedWindowRestoreIcon aria-hidden />}
-                        isSelected={displayMode === ChatbotDisplayMode.default}
-                      >
-                        <span>Overlay</span>
-                      </DropdownItem>
-                      <DropdownItem
-                        value={ChatbotDisplayMode.docked}
-                        key="switchDisplayDock"
-                        icon={<OpenDrawerRightIcon aria-hidden />}
-                        isSelected={displayMode === ChatbotDisplayMode.docked}
-                      >
-                        <span>Dock to window</span>
-                      </DropdownItem>
-                      <DropdownItem
-                        value={ChatbotDisplayMode.fullscreen}
-                        key="switchDisplayFullscreen"
-                        icon={<ExpandIcon aria-hidden />}
-                        isSelected={displayMode === ChatbotDisplayMode.fullscreen}
-                      >
-                        <span>Fullscreen</span>
-                      </DropdownItem>
-                    </DropdownList>
-                  </DropdownGroup>
-                </ChatbotHeaderOptionsDropdown>
-              </ChatbotHeaderActions>
-            </ChatbotHeader>
-            <ChatbotContent>
-              {showAlert && (
-                <Alert
-                  variant="danger"
-                  actionClose={
-                    <AlertActionCloseButton
-                      onClose={() => {
-                        setShowAlert(false);
-                        setError(undefined);
-                      }}
-                    />
-                  }
-                  title="File upload failed"
-                >
-                  {error}
-                </Alert>
-              )}
-              <MessageBox>
-                <ChatbotWelcomePrompt
-                  title="Hello, Chatbot User"
-                  description="How may I help you today?"
-                  prompts={welcomePrompts}
+                </DropdownGroup>
+              </ChatbotHeaderOptionsDropdown>
+            </ChatbotHeaderActions>
+          </ChatbotHeader>
+          <FileDropZone onFileDrop={handleFileDrop} displayMode={displayMode}>
+            <>
+              <ChatbotContent>
+                {showAlert && (
+                  <Alert
+                    variant="danger"
+                    actionClose={
+                      <AlertActionCloseButton
+                        onClose={() => {
+                          setShowAlert(false);
+                          setError(undefined);
+                        }}
+                      />
+                    }
+                    title="File upload failed"
+                  >
+                    {error}
+                  </Alert>
+                )}
+                <MessageBox>
+                  <ChatbotWelcomePrompt
+                    title="Hello, Chatbot User"
+                    description="How may I help you today?"
+                    prompts={welcomePrompts}
+                  />
+                  {messages.map((message) => (
+                    <Message key={message.name} {...message} />
+                  ))}
+                </MessageBox>
+              </ChatbotContent>
+              <ChatbotFooter>
+                {file && (
+                  <div>
+                    <FileDetailsLabel fileName={file.name} isLoading={isLoadingFile} onClose={onClose} />
+                  </div>
+                )}
+                <MessageBar
+                  onSendMessage={handleSend}
+                  hasMicrophoneButton
+                  hasAttachButton
+                  handleAttach={handleAttach}
                 />
-                {messages.map((message) => (
-                  <Message key={message.name} {...message} />
-                ))}
-              </MessageBox>
-            </ChatbotContent>
-            <ChatbotFooter>
-              {file && (
-                <div>
-                  <FileDetailsLabel fileName={file.name} isLoading={isLoadingFile} onClose={onClose} />
-                </div>
-              )}
-              <MessageBar onSendMessage={handleSend} hasMicrophoneButton hasAttachButton handleAttach={handleAttach} />
-              <ChatbotFootnote {...footnoteProps} />
-            </ChatbotFooter>
-          </>
-        </FileDropZone>
+                <ChatbotFootnote {...footnoteProps} />
+              </ChatbotFooter>
+            </>
+          </FileDropZone>
+        </>
       </Chatbot>
       {currentModalData && (
         <PreviewAttachment
