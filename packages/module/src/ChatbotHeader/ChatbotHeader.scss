@@ -6,6 +6,8 @@
   position: relative;
   background-color: var(--pf-t--chatbot--background);
   justify-content: space-between;
+  padding: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--xs)
+    var(--pf-t--global--spacer--sm);
 
   // Title -or- Brand
   .pf-chatbot__title {
@@ -32,8 +34,8 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__header {
-    padding-top: var(--pf-t--global--spacer--sm);
-    padding-bottom: var(--pf-t--global--spacer--sm);
+    padding: var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--4xl) var(--pf-t--global--spacer--lg)
+      var(--pf-t--global--spacer--4xl);
     background-color: var(--pf-t--global--background--color--primary--default);
   }
   .pf-chatbot__header__divider {
@@ -46,8 +48,8 @@
 // ============================================================================
 .pf-chatbot--docked {
   .pf-chatbot__header {
-    padding-top: var(--pf-t--global--spacer--sm);
-    padding-bottom: var(--pf-t--global--spacer--sm);
+    padding: var(--pf-t--global--spacer--md) var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--md)
+      var(--pf-t--global--spacer--lg);
     background-color: var(--pf-t--chatbot--background);
   }
   .pf-chatbot__header__divider {
@@ -65,14 +67,16 @@
   border-radius: var(--pf-t--global--border--radius--pill);
   padding: var(--pf-t--global--spacer--md);
 
-  .pf-v6-c-button__icon {
+  .pf-v6-c-button__icon,
+  .pf-v6-c-icon__content {
     color: var(--pf-t--chatbot--icon--fill);
   }
 
   // Interactive states
   &:hover,
   &:focus {
-    .pf-v6-c-button__icon {
+    .pf-v6-c-button__icon,
+    .pf-v6-c-icon__content {
       color: var(--pf-t--chatbot--icon--fill--hover);
     }
   }
