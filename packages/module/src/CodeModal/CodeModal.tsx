@@ -1,7 +1,7 @@
 // ============================================================================
 // Code Modal - Chatbot Modal with Code Editor
 // ============================================================================
-import React, { useState } from 'react';
+import React from 'react';
 import path from 'path';
 
 // Import PatternFly components
@@ -58,7 +58,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
   displayMode = ChatbotDisplayMode.default,
   ...props
 }: CodeModalProps) => {
-  const [newCode, setNewCode] = useState(code);
+  const [newCode, setNewCode] = React.useState(code);
 
   const handlePrimaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
@@ -108,8 +108,8 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
     >
       <ModalHeader title={title} labelId="code-modal-title" />
       <ModalBody id="code-modal-body">
-        <Stack hasGutter>
-          <StackItem>
+        <Stack className="pf-chatbot__code-modal-body">
+          <StackItem className="pf-chatbot__code-modal-file-details">
             <FileDetails fileName={fileName} />
           </StackItem>
           <StackItem>
@@ -125,6 +125,10 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               onCodeChange={onCodeChange}
               className={codeEditorClassName}
               height={getHeight(displayMode)}
+              options={{
+                glyphMargin: false,
+                folding: false
+              }}
               {...props}
             />
           </StackItem>
@@ -134,7 +138,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
         <Button isBlock key="code-modal-primary" variant="primary" onClick={handlePrimaryAction} form="code-modal-form">
           {primaryActionBtn}
         </Button>
-        <Button isBlock key="code-modal-secondary" variant="secondary" onClick={handleSecondaryAction}>
+        <Button isBlock key="code-modal-secondary" variant="link" onClick={handleSecondaryAction}>
           {secondaryActionBtn}
         </Button>
       </ModalFooter>
