@@ -23,8 +23,8 @@ import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZon
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
+import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
-import AttachmentIcon from './AttachmentIcon.svg';
 import { useDropzone } from 'react-dropzone';
 
 # Demos

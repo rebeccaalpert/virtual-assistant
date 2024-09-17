@@ -1,0 +1,33 @@
+.pf-chatbot__source-details-subhead {
+  color: var(--pf-t--global--text--color--subtle);
+  font-size: var(--pf-t--global--icon--size--font--xs);
+  font-weight: 500;
+}
+
+.pf-chatbot__source-details-heading {
+  font-size: var(--pf-t--global--font--size--body--default);
+  word-wrap: break-word;
+}
+
+.pf-chatbot__source-details-icon {
+  width: 100%;
+}
+
+// this is only used in demo code
+.pf-chatbot__source-details-icon > .pf-v6-c-icon__content > svg {
+  width: 24px;
+  color: var(--pf-t--global--icon--color--status--custom--default);
+}
+.pf-chatbot-source-details-dropdown-item:hover {
+  .pf-chatbot__source-details-icon > .pf-v6-c-icon__content > svg {
+    color: var(--pf-t--global--icon--color--status--custom--hover);
+  }
+}
+
+.pf-chatbot__source-details {
+  flex-direction: row;
+}
+
+.pf-chatbot__source-details-text {
+  max-width: 20rem;
+}
