@@ -3,7 +3,6 @@
     var(--pf-t--global--spacer--md);
   gap: var(--pf-t--global--spacer--sm);
   --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
-  border: var(--pf-t--global--border--width--strong) solid transparent;
 }
 
 .pf-v6-c-label.pf-chatbot__file-label {
@@ -19,7 +18,6 @@
 .pf-v6-theme-dark {
   .pf-v6-c-label.pf-chatbot__file-label {
     --pf-v6-c-label--m-clickable--hover--Color: var(--pf-t--global--text--color--regular);
-    --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--secondary--hover);
   }
 
   .pf-chatbot__file-label > .pf-v6-c-label__actions > .pf-v6-c-button.pf-m-plain > .pf-v6-c-button__icon {
@@ -29,9 +27,8 @@
 
 .pf-chatbot__file-label.pf-m-clickable:hover,
 .pf-chatbot__file-label.pf-m-clickable:focus-within {
-  border: var(--pf-t--global--border--width--strong) solid var(--pf-t--global--border--color--on-secondary);
-  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
-  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--primary--hover);
+  --pf-v6-c-label--BackgroundColor: var(--pf-t--global--background--color--action--plain--hover);
+  --pf-v6-c-label--m-clickable--hover--BackgroundColor: var(--pf-t--global--background--color--action--plain--hover);
 
   .pf-chatbot__code-icon {
     color: var(--pf-t--global--icon--color--status--custom--hover);
