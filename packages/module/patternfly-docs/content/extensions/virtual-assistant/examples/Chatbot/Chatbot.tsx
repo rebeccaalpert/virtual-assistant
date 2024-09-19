@@ -171,6 +171,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                     value={ChatbotDisplayMode.default}
                     key="switchDisplayOverlay"
                     icon={<OutlinedWindowRestoreIcon aria-hidden />}
+                    isSelected={displayMode === ChatbotDisplayMode.default}
                   >
                     <span>Overlay</span>
                   </DropdownItem>
@@ -178,6 +179,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                     value={ChatbotDisplayMode.docked}
                     key="switchDisplayDock"
                     icon={<OpenDrawerRightIcon aria-hidden />}
+                    isSelected={displayMode === ChatbotDisplayMode.docked}
                   >
                     <span>Dock to window</span>
                   </DropdownItem>
@@ -185,6 +187,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                     value={ChatbotDisplayMode.fullscreen}
                     key="switchDisplayFullscreen"
                     icon={<ExpandIcon aria-hidden />}
+                    isSelected={displayMode === ChatbotDisplayMode.fullscreen}
                   >
                     <span>Fullscreen</span>
                   </DropdownItem>
