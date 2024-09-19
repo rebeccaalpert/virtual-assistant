@@ -1,5 +1,6 @@
 .pf-chatbot__dropzone {
   height: calc(70vh - var(--pf-t--global--spacer--lg) * 2);
+  gap: unset; // default PF value causes alignment issues when this is used to wrap other components, notably in the footer
 
   .pf-v6-c-multiple-file-upload__main {
     background: rgba(224, 224, 224, 0.5);
@@ -47,6 +48,11 @@
       --pf-v6-c-multiple-file-upload__title-icon--Color: #c7c7c7;
     }
   }
+}
+
+.pf-chatbot__dropzone--fullscreen,
+.pf-chatbot__dropzone--docked {
+  height: 100vh;
 }
 
 /** Used in example only */

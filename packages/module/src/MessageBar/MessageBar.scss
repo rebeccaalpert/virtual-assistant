@@ -15,7 +15,6 @@
 
   display: flex;
   flex-wrap: wrap;
-  flex-grow: 1;
   align-items: flex-end;
   justify-content: flex-end;
   background-color: var(--pf-t--global--background--color--primary--default);
@@ -61,7 +60,7 @@
   line-height: 1.5rem;
   max-height: 12rem;
   overflow-y: auto;
-  display:block !important;
+  display: block !important;
 
   .pf-v6-c-form-control__textarea:focus-visible {
     outline: none;

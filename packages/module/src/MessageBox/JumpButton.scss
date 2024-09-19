@@ -19,7 +19,7 @@
     box-shadow var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--sm),
     transform var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--md),
     opacity var(--pf-t--chatbot--timing-function) var(--pf-t--global--motion--duration--md);
-  z-index: var(--pf-t--global--z-index--2xl);
+  z-index: var(--pf-t--global--z-index--md);
 
   &:hover,
   &:focus {

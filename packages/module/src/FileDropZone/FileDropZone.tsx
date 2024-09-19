@@ -1,5 +1,6 @@
 import { DropEvent, MultipleFileUpload, MultipleFileUploadMain } from '@patternfly/react-core';
 import React from 'react';
+import { ChatbotDisplayMode } from '../Chatbot';
 
 export interface FileDropZoneProps {
   /** Content displayed when the drop zone is not currently in use */
@@ -10,6 +11,8 @@ export interface FileDropZoneProps {
   infoText?: string;
   /** When files are dropped or uploaded this callback will be called with all accepted files */
   onFileDrop: (event: DropEvent, data: File[]) => void;
+  /** Display mode for the Chatbot parent; this influences the styles applied */
+  displayMode?: ChatbotDisplayMode;
 }
 
 const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
@@ -17,6 +20,7 @@ const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
   className,
   infoText = 'Maximum file size is 25 MB',
   onFileDrop,
+  displayMode = ChatbotDisplayMode.default,
   ...props
 }: FileDropZoneProps) => {
   const [showDropZone, setShowDropZone] = React.useState(false);
@@ -52,7 +56,7 @@ const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
       onDragEnter={() => setShowDropZone(true)}
       onDragLeave={() => setShowDropZone(false)}
       onFileDrop={onFileDrop}
-      className={`pf-chatbot__dropzone ${className ? className : ''}`}
+      className={`pf-chatbot__dropzone pf-chatbot__dropzone--${displayMode} ${className ? className : ''}`}
     >
       {showDropZone ? renderDropZone() : children}
     </MultipleFileUpload>
