@@ -37,6 +37,8 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 ### Chatbot header with controls
 

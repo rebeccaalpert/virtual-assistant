@@ -47,6 +47,8 @@ import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-dra
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 ### Basic chatbot
 

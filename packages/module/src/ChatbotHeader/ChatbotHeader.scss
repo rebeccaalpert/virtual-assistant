@@ -11,6 +11,11 @@
 
   // Title -or- Brand
   .pf-chatbot__title {
+    display: flex;
+    align-items: center;
+    .pf-v6-l-bullseye {
+      flex: 1;
+    }
     img {
       max-height: 40px;
     }

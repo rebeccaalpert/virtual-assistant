@@ -44,7 +44,7 @@ It usually contains a `<ChatbotMessageBox>` for displaying messages.
     <ChatbotMessageBox>
   </ChatbotContent>
   <ChatbotFooter ... />
-</Chatbot> 
+</Chatbot>
 ```
 
 ### Welcome prompt
