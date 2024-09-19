@@ -37,7 +37,7 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
         aria-label="Chatbot options"
         ref={toggleRef}
         icon={
-          <Icon iconSize="xl" isInline>
+          <Icon iconSize="lg" isInline>
             <EllipsisIcon />
           </Icon>
         }
