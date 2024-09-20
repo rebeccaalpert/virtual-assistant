@@ -14,11 +14,11 @@ const JSConfig = {
             jsc: {
               parser: {
                 syntax: 'typescript',
-                tsx: true,
-              },
-            },
-          },
-        },
+                tsx: true
+              }
+            }
+          }
+        }
       },
       {
         test: /\.s?[ac]ss$/,
@@ -28,40 +28,43 @@ const JSConfig = {
           {
             loader: 'sass-loader',
             options: {
-              sourceMap: true,
-            },
-          },
-        ],
+              sourceMap: true
+            }
+          }
+        ]
       },
       {
         test: /\.(jpe?g|svg|png|gif|ico|eot|ttf|woff2?)(\?v=\d+\.\d+\.\d+)?$/i,
-        type: 'asset/resource',
-      },
-    ],
+        type: 'asset/resource'
+      }
+    ]
   },
   resolve: {
-    extensions: [ '.tsx', '.ts', '.js' ],
+    extensions: ['.tsx', '.ts', '.js'],
+    fallback: {
+      path: require.resolve('path-browserify')
+    }
   },
   output: {
     filename: 'bundle.js',
     hashFunction: 'xxhash64',
-    path: path.resolve(__dirname, 'dist'),
+    path: path.resolve(__dirname, 'dist')
   },
   cache: {
     type: 'filesystem',
     buildDependencies: {
-      config: [ __filename ],
+      config: [__filename]
     },
-    cacheDirectory: path.resolve(__dirname, '../.cypress-cache'),
+    cacheDirectory: path.resolve(__dirname, '../.cypress-cache')
   },
   stats: {
-    errorDetails: true,
+    errorDetails: true
   },
   plugins: [
     new MiniCssExtractPlugin({
-      filename: '[name].[contenthash].css',
-    }),
-  ],
+      filename: '[name].[contenthash].css'
+    })
+  ]
 };
 
 module.exports = JSConfig;
