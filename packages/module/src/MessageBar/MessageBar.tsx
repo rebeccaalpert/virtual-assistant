@@ -44,6 +44,8 @@ export interface MessageBarProps extends TextAreaProps {
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
   attachMenuProps?: MessageBarWithAttachMenuProps;
+  /** Flag to provide manual control over whether send button is disabled */
+  isSendButtonDisabled?: boolean;
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -54,6 +56,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   hasMicrophoneButton,
   handleAttach,
   attachMenuProps,
+  isSendButtonDisabled,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -80,7 +83,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     (event) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
-        handleSend();
+        if (!isSendButtonDisabled) {
+          handleSend();
+        }
       }
     },
     [handleSend]
@@ -119,7 +124,9 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             onSpeechRecognition={setMessage}
           />
         )}
-        {(alwayShowSendButton || message) && <SendButton value={message} onClick={handleSend} />}
+        {(alwayShowSendButton || message) && (
+          <SendButton value={message} onClick={handleSend} isDisabled={isSendButtonDisabled} />
+        )}
       </div>
     </>
   );

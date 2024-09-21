@@ -9,7 +9,7 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
-import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderTitle,
@@ -83,7 +83,7 @@ export default MessageLoading;
 ~~~
 `;
 
-const messages = [
+const initialMessages: MessageProps[] = [
   {
     role: 'user',
     content: 'Hello, can you give me an example of what you can do?',
@@ -94,7 +94,7 @@ const messages = [
     content: markdown,
     name: 'Bot'
   }
-] as any;
+];
 
 const welcomePrompts = [
   {
@@ -109,10 +109,19 @@ const welcomePrompts = [
 
 export const ChatbotDemo: React.FunctionComponent = () => {
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
-
-  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
-
   const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
+  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
+  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
+  const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
+  const dummyRef = React.useRef<HTMLDivElement>(null);
+
+  // Autu-scrolls to the latest message
+  React.useEffect(() => {
+    // don't scroll the first load - in this demo, we know we start with two messages
+    if (messages.length > 2) {
+      dummyRef.current?.scrollIntoView({ behavior: 'smooth' });
+    }
+  }, [messages]);
 
   const onSelectModel = (
     _event: React.MouseEvent<Element, MouseEvent> | undefined,
@@ -128,7 +137,22 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     setDisplayMode(value as ChatbotDisplayMode);
   };
 
-  const handleSend = (message) => alert(message);
+  const handleSend = (message: string) => {
+    setIsSendButtonDisabled(true);
+    const newMessages = structuredClone(messages);
+    newMessages.push({ role: 'user', content: message, name: 'User' });
+    newMessages.push({ role: 'bot', content: 'API response goes here', name: 'bot', isLoading: true });
+    setMessages(newMessages);
+
+    // this is for demo purposes only; in a real situation, there would be an API response we would wait for
+    setTimeout(() => {
+      const loadedMessages = structuredClone(newMessages);
+      loadedMessages.pop();
+      loadedMessages.push({ role: 'bot', content: 'API response goes here', name: 'bot', isLoading: false });
+      setMessages(loadedMessages);
+      setIsSendButtonDisabled(false);
+    }, 5000);
+  };
 
   return (
     <>
@@ -206,10 +230,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             {messages.map((message) => (
               <Message key={message.name} {...message} />
             ))}
+            <div ref={dummyRef}></div>
           </MessageBox>
         </ChatbotContent>
         <ChatbotFooter>
-          <MessageBar onSendMessage={handleSend} hasMicrophoneButton />
+          <MessageBar onSendMessage={handleSend} hasMicrophoneButton isSendButtonDisabled={isSendButtonDisabled} />
           <ChatbotFootnote {...footnoteProps} />
         </ChatbotFooter>
       </Chatbot>
