@@ -5,7 +5,6 @@
   position: fixed;
   inset-block-end: var(--pf-t--global--spacer--800); // no associated semantic token
   inset-inline-end: var(--pf-t--global--spacer--lg);
-  padding: var(--pf-t--global--spacer--lg);
   display: grid;
   grid-template-rows: auto 1fr auto;
   grid-auto-rows: auto;

@@ -12,6 +12,7 @@ import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
+  ChatbotHeaderMain,
   ChatbotHeaderTitle,
   ChatbotHeaderActions,
   ChatbotHeaderSelectorDropdown,
@@ -155,10 +156,12 @@ export const ChatbotDemo: React.FunctionComponent = () => {
       />
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         <ChatbotHeader>
-          <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-          <ChatbotHeaderTitle>
-            {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
-          </ChatbotHeaderTitle>
+          <ChatbotHeaderMain>
+            <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
+            <ChatbotHeaderTitle>
+              {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
+            </ChatbotHeaderTitle>
+          </ChatbotHeaderMain>
           <ChatbotHeaderActions>
             <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
               <DropdownList>

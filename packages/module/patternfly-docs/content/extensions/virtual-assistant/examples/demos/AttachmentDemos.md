@@ -30,6 +30,7 @@ import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg'
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 import ChatbotHeader, {
 ChatbotHeaderMenu,
+ChatbotHeaderMain,
 ChatbotHeaderTitle,
 ChatbotHeaderActions,
 ChatbotHeaderSelectorDropdown,

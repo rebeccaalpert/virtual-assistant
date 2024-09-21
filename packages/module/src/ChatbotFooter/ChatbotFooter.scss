@@ -6,7 +6,7 @@
 // ============================================================================
 .pf-chatbot__footer {
   --pf-chatbot__footer--RowGap: var(--pf-t--global--spacer--md);
-
+  padding: 0 var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg);
   background-color: var(--pf-t--chatbot--background);
   display: flex;
   flex-direction: column;

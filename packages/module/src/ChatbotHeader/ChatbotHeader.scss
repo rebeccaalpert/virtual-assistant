@@ -1,36 +1,51 @@
 // ============================================================================
 // Chatbot Header
 // ============================================================================
+.pf-chatbot__header-container {
+  display: grid;
+}
 .pf-chatbot__header {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: var(--pf-t--global--spacer--sm);
   position: relative;
   background-color: var(--pf-t--chatbot--background);
   justify-content: space-between;
-  padding: var(--pf-t--global--spacer--xs) var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--xs)
-    var(--pf-t--global--spacer--sm);
+  padding: var(--pf-t--global--spacer--lg);
+
+  .pf-chatbot__header-main {
+    display: flex;
+    gap: var(--pf-t--global--spacer--sm);
+  }
 
   // Title -or- Brand
   .pf-chatbot__title {
     display: flex;
     align-items: center;
+    flex: 1;
+
     .pf-v6-l-bullseye {
-      flex: 1;
+      width: 100%;
     }
+
     img {
       max-height: 40px;
+      vertical-align: middle;
     }
   }
 
   .pf-chatbot__menu {
-    flex-shrink: 0;
+    justify-self: start;
   }
 
   .pf-chatbot__actions {
-    width: 218px;
-    flex-shrink: 0;
-    flex-grow: 0;
+    justify-self: end;
     display: flex;
-    justify-content: flex-end;
+    gap: var(--pf-t--global--spacer--sm);
+
+    .pf-v6-c-menu-toggle.pf-m-secondary {
+      width: 150px;
+    }
   }
 }
 
@@ -39,12 +54,16 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__header {
-    padding: var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--4xl) var(--pf-t--global--spacer--lg)
-      var(--pf-t--global--spacer--4xl);
     background-color: var(--pf-t--global--background--color--primary--default);
   }
   .pf-chatbot__header__divider {
     display: none;
+  }
+
+  .pf-chatbot__actions {
+    .pf-v6-c-menu-toggle.pf-m-secondary {
+      width: 200px;
+    }
   }
 }
 
@@ -53,8 +72,6 @@
 // ============================================================================
 .pf-chatbot--docked {
   .pf-chatbot__header {
-    padding: var(--pf-t--global--spacer--md) var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--md)
-      var(--pf-t--global--spacer--lg);
     background-color: var(--pf-t--chatbot--background);
   }
   .pf-chatbot__header__divider {
