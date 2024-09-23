@@ -1,8 +1,8 @@
 ---
 # Sidenav top-level section
 # should be the same for all markdown files
-section: extensions
-subsection: Chat bots / AI
+section: PatternFly-AI
+subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
 id: Chatbot
@@ -10,46 +10,47 @@ id: Chatbot
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents:
-  [
-    'Chatbot',
-    'ChatbotToggle',
-    'ChatbotContent',
-    'ChatbotWelcomePrompt',
-    'ChatbotFooter',
-    'MessageBar',
-    'ChatbotFootnote',
-    'MessageBox',
-    'Message',
-    'MessageBarWithAttachMenuProps'
-  ]
+propComponents: [
+'Chatbot',
+'ChatbotContent', 
+'MessageBox',
+'ChatbotWelcomePrompt',
+'WelcomePrompt'
+]
 ---
 
-import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
-import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
-import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
-import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
-import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
-import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 
-import ChatbotHeader, {
-ChatbotHeaderMenu,
-ChatbotHeaderTitle,
-ChatbotHeaderActions,
-ChatbotHeaderSelectorDropdown,
-ChatbotHeaderOptionsDropdown
-} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+### Container
 
-import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
-import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
-import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes.
 
-### Basic example
+```js file="./ChatbotContainer.tsx" isFullscreen
 
-```js file="./Chatbot.tsx" isFullscreen
+```
+
+### Chatbot content and message box
+
+The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer).
+It usually contains a `<ChatbotMessageBox>` for displaying messages.
+
+```noLive
+<Chatbot>
+  <ChatbotHeader ... />
+  <ChatbotContent>
+    <ChatbotMessageBox>
+    ...
+    <ChatbotMessageBox>
+  </ChatbotContent>
+  <ChatbotFooter ... />
+</Chatbot> 
+```
+
+### Welcome prompt
+
+The welcome prompt fills the message box before the user has input their first message to the chatbot. This message should welcome users to the chatbot experience and encourage them to interact. It may be helpful to display predetermined prompts as a starting point.
+
+```js file="./ChatbotWelcomePrompt.tsx"
 
 ```

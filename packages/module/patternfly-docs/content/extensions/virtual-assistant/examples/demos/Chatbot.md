@@ -5,10 +5,24 @@ section: PatternFly-AI
 subsection: Chatbot
 # Sidenav secondary level section
 # should be the same for all markdown files
-id: Chatbot attachment
+id: Chatbot
 # Tab (react | react-demos | html | html-demos | design-guidelines | accessibility)
 source: react-demos
-sourceLink: https://github.com/patternfly/virtual-assistant/blob/main/packages/module/patternfly-docs/content/extensions/virtual-assistant/examples/demos/demos.md
+# If you use typescript, the name of the interface to display props for
+# These are found through the sourceProps function provided in patternfly-docs.source.js
+propComponents:
+  [
+    'Chatbot',
+    'ChatbotToggle',
+    'ChatbotContent',
+    'ChatbotWelcomePrompt',
+    'ChatbotFooter',
+    'MessageBar',
+    'ChatbotFootnote',
+    'MessageBox',
+    'Message',
+    'MessageBarWithAttachMenuProps'
+  ]
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
@@ -19,15 +33,7 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
-import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
-import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
-import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
-import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
-import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
-import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
-import { useDropzone } from 'react-dropzone';
-import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+
 import ChatbotHeader, {
 ChatbotHeaderMenu,
 ChatbotHeaderTitle,
@@ -35,20 +41,15 @@ ChatbotHeaderActions,
 ChatbotHeaderSelectorDropdown,
 ChatbotHeaderOptionsDropdown
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
+import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
+import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
 
-# Demos
+### Basic chatbot
 
-### Attach via upload button in message bar
-
-```js file="./ChatbotAttachment.tsx" isFullscreen
-
-```
-
-### Attach via menu of options in message bar
-
-```js file="./ChatbotAttachmentMenu.tsx" isFullscreen
+```js file="./Chatbot.tsx" isFullscreen
 
 ```
