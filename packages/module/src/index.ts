@@ -60,6 +60,9 @@ export * from './MessageBox';
 export { default as PreviewAttachment } from './PreviewAttachment';
 export * from './PreviewAttachment';
 
+export { default as ResponseActions } from './ResponseActions';
+export * from './ResponseActions';
+
 export { default as SourceDetailsMenuItem } from './SourceDetailsMenuItem';
 export * from './SourceDetailsMenuItem';
 

@@ -105,7 +105,19 @@ export const BasicDemo: React.FunctionComponent = () => {
     {
       role: 'bot',
       content: 'Great, I can reference this attachment throughout our conversation.',
-      name: 'Bot'
+      name: 'Bot',
+      actions: {
+        // eslint-disable-next-line no-console
+        positive: { onClick: () => console.log('Good response') },
+        // eslint-disable-next-line no-console
+        negative: { onClick: () => console.log('Bad response') },
+        // eslint-disable-next-line no-console
+        copy: { onClick: () => console.log('Copy') },
+        // eslint-disable-next-line no-console
+        share: { onClick: () => console.log('Share') },
+        // eslint-disable-next-line no-console
+        listen: { onClick: () => console.log('Listen') }
+      }
     }
   ];
 
