@@ -59,7 +59,7 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   return (
     <Stack hasGutter>
-      <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Variant">
+      <FormGroup role="radiogroup" isInline fieldId="header-variant-form-radio-group" label="Variant">
         <Checkbox
           isChecked={showMenu && showCenteredLogo && showSelectorDropdown && showOptionsDropdown}
           onChange={() => {
