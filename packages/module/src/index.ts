@@ -15,6 +15,9 @@ export * from './Chatbot';
 export { default as ChatbotContent } from './ChatbotContent';
 export * from './ChatbotContent';
 
+export { default as ChatbotConversationHistoryNav } from './ChatbotConversationHistoryNav';
+export * from './ChatbotConversationHistoryNav';
+
 export { default as ChatbotFooter } from './ChatbotFooter';
 export * from './ChatbotFooter';
 

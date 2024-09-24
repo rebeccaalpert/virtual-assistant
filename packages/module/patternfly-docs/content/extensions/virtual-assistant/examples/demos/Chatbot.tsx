@@ -10,6 +10,7 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import ChatbotConversationHistoryNav from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderMain,
@@ -122,12 +123,40 @@ const welcomePrompts = [
   }
 ];
 
+const initialConversations = {
+  Today: [{ id: '1', text: 'Hello, can you give me an example of what you can do?' }],
+  'This month': [
+    {
+      id: '2',
+      text: 'Enterprise Linux installation and setup'
+    },
+    { id: '3', text: 'Troubleshoot system crash' }
+  ],
+  March: [
+    { id: '4', text: 'Ansible security and updates' },
+    { id: '5', text: 'Red Hat certification' },
+    { id: '6', text: 'Lightspeed user documentation' }
+  ],
+  February: [
+    { id: '7', text: 'Crashing pod assistance' },
+    { id: '8', text: 'OpenShift AI pipelines' },
+    { id: '9', text: 'Updating subscription plan' },
+    { id: '10', text: 'Red Hat licensing options' }
+  ],
+  January: [
+    { id: '11', text: 'RHEL system performance' },
+    { id: '12', text: 'Manage user accounts' }
+  ]
+};
+
 export const ChatbotDemo: React.FunctionComponent = () => {
   const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(false);
   const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
   const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
   const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
   const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [conversations, setConversations] = React.useState(initialConversations);
   const dummyRef = React.useRef<HTMLDivElement>(null);
 
   // Autu-scrolls to the latest message
@@ -191,78 +220,106 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
       />
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
-        <ChatbotHeader>
-          <ChatbotHeaderMain>
-            <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-            <ChatbotHeaderTitle
-              displayMode={displayMode}
-              showOnFullScreen={horizontalLogo}
-              showOnDefault={iconLogo}
-            ></ChatbotHeaderTitle>
-          </ChatbotHeaderMain>
-          <ChatbotHeaderActions>
-            <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
-              <DropdownList>
-                <DropdownItem value="Granite 7B" key="granite">
-                  Granite 7B
-                </DropdownItem>
-                <DropdownItem value="Llama 3.0" key="llama">
-                  Llama 3.0
-                </DropdownItem>
-                <DropdownItem value="Mistral 3B" key="mistral">
-                  Mistral 3B
-                </DropdownItem>
-              </DropdownList>
-            </ChatbotHeaderSelectorDropdown>
-            <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
-              <DropdownGroup label="Display mode">
-                <DropdownList>
-                  <DropdownItem
-                    value={ChatbotDisplayMode.default}
-                    key="switchDisplayOverlay"
-                    icon={<OutlinedWindowRestoreIcon aria-hidden />}
-                    isSelected={displayMode === ChatbotDisplayMode.default}
-                  >
-                    <span>Overlay</span>
-                  </DropdownItem>
-                  <DropdownItem
-                    value={ChatbotDisplayMode.docked}
-                    key="switchDisplayDock"
-                    icon={<OpenDrawerRightIcon aria-hidden />}
-                    isSelected={displayMode === ChatbotDisplayMode.docked}
-                  >
-                    <span>Dock to window</span>
-                  </DropdownItem>
-                  <DropdownItem
-                    value={ChatbotDisplayMode.fullscreen}
-                    key="switchDisplayFullscreen"
-                    icon={<ExpandIcon aria-hidden />}
-                    isSelected={displayMode === ChatbotDisplayMode.fullscreen}
-                  >
-                    <span>Fullscreen</span>
-                  </DropdownItem>
-                </DropdownList>
-              </DropdownGroup>
-            </ChatbotHeaderOptionsDropdown>
-          </ChatbotHeaderActions>
-        </ChatbotHeader>
-        <ChatbotContent>
-          <MessageBox>
-            <ChatbotWelcomePrompt
-              title="Hello, Chatbot User"
-              description="How may I help you today?"
-              prompts={welcomePrompts}
-            />
-            {messages.map((message) => (
-              <Message key={message.name} {...message} />
-            ))}
-            <div ref={dummyRef}></div>
-          </MessageBox>
-        </ChatbotContent>
-        <ChatbotFooter>
-          <MessageBar onSendMessage={handleSend} hasMicrophoneButton isSendButtonDisabled={isSendButtonDisabled} />
-          <ChatbotFootnote {...footnoteProps} />
-        </ChatbotFooter>
+        <ChatbotConversationHistoryNav
+          displayMode={displayMode}
+          onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+          isDrawerOpen={isDrawerOpen}
+          activeItemId="1"
+          // eslint-disable-next-line no-console
+          onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
+          conversations={conversations}
+          onNewChat={() => {
+            setIsDrawerOpen(!isDrawerOpen);
+            setMessages([]);
+          }}
+          handleTextInputChange={(value: string) => {
+            if (value === '') {
+              setConversations(initialConversations);
+            }
+            // this is where you would perform search on the items in the drawer
+            // and update the state
+          }}
+          drawerContent={
+            <>
+              <ChatbotHeader>
+                <ChatbotHeaderMain>
+                  <ChatbotHeaderMenu aria-expanded={isDrawerOpen} onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  <ChatbotHeaderTitle
+                    displayMode={displayMode}
+                    showOnFullScreen={horizontalLogo}
+                    showOnDefault={iconLogo}
+                  ></ChatbotHeaderTitle>
+                </ChatbotHeaderMain>
+                <ChatbotHeaderActions>
+                  <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+                    <DropdownList>
+                      <DropdownItem value="Granite 7B" key="granite">
+                        Granite 7B
+                      </DropdownItem>
+                      <DropdownItem value="Llama 3.0" key="llama">
+                        Llama 3.0
+                      </DropdownItem>
+                      <DropdownItem value="Mistral 3B" key="mistral">
+                        Mistral 3B
+                      </DropdownItem>
+                    </DropdownList>
+                  </ChatbotHeaderSelectorDropdown>
+                  <ChatbotHeaderOptionsDropdown onSelect={onSelectDisplayMode}>
+                    <DropdownGroup label="Display mode">
+                      <DropdownList>
+                        <DropdownItem
+                          value={ChatbotDisplayMode.default}
+                          key="switchDisplayOverlay"
+                          icon={<OutlinedWindowRestoreIcon aria-hidden />}
+                          isSelected={displayMode === ChatbotDisplayMode.default}
+                        >
+                          <span>Overlay</span>
+                        </DropdownItem>
+                        <DropdownItem
+                          value={ChatbotDisplayMode.docked}
+                          key="switchDisplayDock"
+                          icon={<OpenDrawerRightIcon aria-hidden />}
+                          isSelected={displayMode === ChatbotDisplayMode.docked}
+                        >
+                          <span>Dock to window</span>
+                        </DropdownItem>
+                        <DropdownItem
+                          value={ChatbotDisplayMode.fullscreen}
+                          key="switchDisplayFullscreen"
+                          icon={<ExpandIcon aria-hidden />}
+                          isSelected={displayMode === ChatbotDisplayMode.fullscreen}
+                        >
+                          <span>Fullscreen</span>
+                        </DropdownItem>
+                      </DropdownList>
+                    </DropdownGroup>
+                  </ChatbotHeaderOptionsDropdown>
+                </ChatbotHeaderActions>
+              </ChatbotHeader>
+              <ChatbotContent>
+                <MessageBox>
+                  <ChatbotWelcomePrompt
+                    title="Hello, Chatbot User"
+                    description="How may I help you today?"
+                    prompts={welcomePrompts}
+                  />
+                  {messages.map((message) => (
+                    <Message key={message.name} {...message} />
+                  ))}
+                  <div ref={dummyRef}></div>
+                </MessageBox>
+              </ChatbotContent>
+              <ChatbotFooter>
+                <MessageBar
+                  onSendMessage={handleSend}
+                  hasMicrophoneButton
+                  isSendButtonDisabled={isSendButtonDisabled}
+                />
+                <ChatbotFootnote {...footnoteProps} />
+              </ChatbotFooter>
+            </>
+          }
+        ></ChatbotConversationHistoryNav>
       </Chatbot>
     </>
   );
