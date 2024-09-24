@@ -77,11 +77,18 @@
   width: 3rem;
   height: 3rem;
   border-radius: var(--pf-t--global--border--radius--pill);
-  padding: var(--pf-t--global--spacer--md);
+  align-items: center;
+  justify-content: center;
 
   .pf-v6-c-button__icon,
   .pf-v6-c-icon__content {
     color: var(--pf-t--chatbot--icon--fill);
+  }
+
+  .pf-v6-c-button__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 
   // Interactive states
@@ -91,6 +98,13 @@
     .pf-v6-c-icon__content {
       color: var(--pf-t--chatbot--icon--fill--hover);
     }
+  }
+}
+
+// Rotate icon
+.pf-chatbot__button--toggle-options {
+  svg {
+    transform: rotate(90deg);
   }
 }
 
