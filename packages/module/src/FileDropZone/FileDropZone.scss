@@ -1,58 +1,34 @@
 .pf-chatbot__dropzone {
-  height: calc(70vh - var(--pf-t--global--spacer--lg) * 2);
   gap: unset; // default PF value causes alignment issues when this is used to wrap other components, notably in the footer
+}
+
+.pf-chatbot__dropzone--invisible {
+  overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr auto;
+}
+
+.pf-chatbot__dropzone--visible.pf-chatbot__dropzone {
+  margin-block-start: var(--pf-t--global--spacer--lg);
 
   .pf-v6-c-multiple-file-upload__main {
-    background: rgba(224, 224, 224, 0.5);
-    --pf-v6-c-multiple-file-upload__main--BorderWidth: var(--pf-t--global--border--width--action--hover);
+    --pf-v6-c-multiple-file-upload__main--BorderWidth: var(--pf-t--global--border--width--regular);
     --pf-v6-c-multiple-file-upload__main--BorderStyle: dashed;
-    --pf-v6-c-multiple-file-upload__main--BorderColor: rgba(0, 102, 204, 1);
+    --pf-v6-c-multiple-file-upload__main--BorderColor: var(--pf-t--global--border--color--default);
     --pf-v6-c-multiple-file-upload__main--BorderRadius: var(--pf-t--global--border--radius--medium);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
   }
-
-  .pf-v6-c-multiple-file-upload__title-text {
-    --pf-v6-c-multiple-file-upload__title-text--FontSize: var(--pf-t--global--font--size--heading--h3);
-    --pf-v6-c-multiple-file-upload__title-text--FontWeight: 700;
-    --pf-v6-c-multiple-file-upload__title-text--Color: #353535;
-  }
-
-  .pf-v6-c-multiple-file-upload__info {
-    --pf-v6-c-multiple-file-upload__info--MarginBlockStart: var(--pf-t--global--spacer--xs);
-    --pf-v6-c-multiple-file-upload__info--Color: #353535;
-    --pf-v6-c-multiple-file-upload__info--FontSize: var(--pf-t--global--font--size--body--lg);
-  }
-
-  .pf-v6-c-multiple-file-upload__title-icon svg {
-    width: 4rem;
-    height: 4rem;
-  }
 }
 
-.pf-v6-theme-dark {
-  .pf-chatbot__dropzone {
-    .pf-v6-c-multiple-file-upload__main {
-      background: rgba(41, 41, 41, 1);
-      --pf-v6-c-multiple-file-upload__main--BorderColor: rgba(67, 148, 229, 1);
-    }
-    .pf-v6-c-multiple-file-upload__title-text {
-      --pf-v6-c-multiple-file-upload__title-text--Color: #c7c7c7;
-    }
-    .pf-v6-c-multiple-file-upload__info {
-      --pf-v6-c-multiple-file-upload__info--Color: #c7c7c7;
-    }
-    .pf-v6-c-multiple-file-upload__title-icon {
-      --pf-v6-c-multiple-file-upload__title-icon--Color: #c7c7c7;
-    }
-  }
-}
-
-.pf-chatbot__dropzone--fullscreen,
-.pf-chatbot__dropzone--docked {
-  height: 100vh;
+.pf-chatbot__dropzone--visible.pf-chatbot__dropzone--fullscreen,
+.pf-chatbot__dropzone--visible.pf-chatbot__dropzone--docked {
+  margin-block-start: var(--pf-t--global--spacer--lg);
+  margin-block-end: var(--pf-t--global--spacer--lg);
+  margin-inline-start: var(--pf-t--global--spacer--lg);
+  margin-inline-end: var(--pf-t--global--spacer--lg);
 }
 
 /** Used in example only */
