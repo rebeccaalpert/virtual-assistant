@@ -38,6 +38,8 @@ ChatbotHeaderOptionsDropdown
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
+import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 # Demos
 

@@ -24,6 +24,8 @@ import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/ou
 
 import PFHorizontalLogoColor from '../ChatbotHeader/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
@@ -130,6 +132,20 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
   const handleSend = (message) => alert(message);
 
+  const horizontalLogo = (
+    <Bullseye>
+      <Brand className="show-light" src={PFHorizontalLogoColor} alt="PatternFly" />
+      <Brand className="show-dark" src={PFHorizontalLogoReverse} alt="PatternFly" />
+    </Bullseye>
+  );
+
+  const iconLogo = (
+    <>
+      <Brand className="show-light" src={PFIconLogoColor} alt="PatternFly" />
+      <Brand className="show-dark" src={PFIconLogoReverse} alt="PatternFly" />
+    </>
+  );
+
   return (
     <>
       <ChatbotToggle
@@ -141,14 +157,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         <ChatbotHeader>
           <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
           <ChatbotHeaderTitle>
-            <Bullseye>
-              <div className="show-light">
-                <Brand src={PFHorizontalLogoColor} alt="PatternFly" />
-              </div>
-              <div className="show-dark">
-                <Brand src={PFHorizontalLogoReverse} alt="PatternFly" />
-              </div>
-            </Bullseye>
+            {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
           </ChatbotHeaderTitle>
           <ChatbotHeaderActions>
             <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
