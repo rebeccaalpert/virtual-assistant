@@ -162,7 +162,7 @@ export const BasicDemo: React.FunctionComponent = () => {
   const [showAlert, setShowAlert] = React.useState<boolean>(false);
   const [isOpen, setIsOpen] = React.useState<boolean>(false);
 
-  const { open } = useDropzone({
+  const { open, getInputProps } = useDropzone({
     onDropAccepted: (files: File[]) => {
       setIsLoadingFile(true);
       setIsOpen(false);
@@ -279,6 +279,8 @@ export const BasicDemo: React.FunctionComponent = () => {
   // --------------------------------------------------------------------------
   return (
     <>
+      {/* this is required for react-dropzone to work in Safari and Firefox */}
+      <input {...getInputProps()} />
       <ChatbotToggle
         toolTipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}

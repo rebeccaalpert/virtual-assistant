@@ -10,7 +10,7 @@ export const ChatbotMessageBarDefaultAttachExample: React.FunctionComponent = ()
   const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
 
   const handleSend = (message) => alert(message);
-  const { open } = useDropzone({
+  const { open, getInputProps } = useDropzone({
     multiple: true,
     // eslint-disable-next-line no-console
     onDropAccepted: () => console.log('fileUploaded')
@@ -124,21 +124,25 @@ export const ChatbotMessageBarDefaultAttachExample: React.FunctionComponent = ()
   ];
 
   return (
-    <MessageBar
-      onSendMessage={handleSend}
-      attachMenuProps={{
-        isAttachMenuOpen: isOpen,
-        setIsAttachMenuOpen: setIsOpen,
-        attachMenuItems: userFacingMenuItems,
-        onAttachMenuSelect: (_ev, value) => {
-          // eslint-disable-next-line no-console
-          console.log('selected', value);
-          setIsOpen(false);
-        },
-        attachMenuInputPlaceholder: 'Search cluster resources...',
-        onAttachMenuInputChange: onTextChange,
-        onAttachMenuToggleClick: onToggleClick
-      }}
-    />
+    <>
+      {/* this is required for react-dropzone to work in Safari and Firefox */}
+      <input {...getInputProps()} />
+      <MessageBar
+        onSendMessage={handleSend}
+        attachMenuProps={{
+          isAttachMenuOpen: isOpen,
+          setIsAttachMenuOpen: setIsOpen,
+          attachMenuItems: userFacingMenuItems,
+          onAttachMenuSelect: (_ev, value) => {
+            // eslint-disable-next-line no-console
+            console.log('selected', value);
+            setIsOpen(false);
+          },
+          attachMenuInputPlaceholder: 'Search cluster resources...',
+          onAttachMenuInputChange: onTextChange,
+          onAttachMenuToggleClick: onToggleClick
+        }}
+      />
+    </>
   );
 };

@@ -32,37 +32,42 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   innerRef,
   ...props
 }: AttachButtonProps) => {
-  const { open } = useDropzone({
+  const { open, getInputProps } = useDropzone({
     multiple: true,
     onDropAccepted: onAttachAccepted
   });
+
   return (
-    <Tooltip
-      id="pf-chatbot__tooltip--attach"
-      content="Attach"
-      position="top"
-      entryDelay={tooltipProps?.entryDelay || 0}
-      exitDelay={tooltipProps?.exitDelay || 0}
-      distance={tooltipProps?.distance || 8}
-      animationDuration={tooltipProps?.animationDuration || 0}
-      {...tooltipProps}
-    >
-      <Button
-        variant="plain"
-        ref={innerRef}
-        className={`pf-chatbot__button--attach ${className ?? ''}`}
-        aria-describedby="pf-chatbot__tooltip--attach"
-        aria-label={props['aria-label'] || 'Attach Button'}
-        isDisabled={isDisabled}
-        onClick={onClick ?? open}
-        icon={
-          <Icon iconSize="xl" isInline>
-            <PaperclipIcon />
-          </Icon>
-        }
-        {...props}
-      />
-    </Tooltip>
+    <>
+      {/* this is required for react-dropzone to work in Safari and Firefox */}
+      <input {...getInputProps()} />
+      <Tooltip
+        id="pf-chatbot__tooltip--attach"
+        content="Attach"
+        position="top"
+        entryDelay={tooltipProps?.entryDelay || 0}
+        exitDelay={tooltipProps?.exitDelay || 0}
+        distance={tooltipProps?.distance || 8}
+        animationDuration={tooltipProps?.animationDuration || 0}
+        {...tooltipProps}
+      >
+        <Button
+          variant="plain"
+          ref={innerRef}
+          className={`pf-chatbot__button--attach ${className ?? ''}`}
+          aria-describedby="pf-chatbot__tooltip--attach"
+          aria-label={props['aria-label'] || 'Attach Button'}
+          isDisabled={isDisabled}
+          onClick={onClick ?? open}
+          icon={
+            <Icon iconSize="xl" isInline>
+              <PaperclipIcon />
+            </Icon>
+          }
+          {...props}
+        />
+      </Tooltip>
+    </>
   );
 };
 
