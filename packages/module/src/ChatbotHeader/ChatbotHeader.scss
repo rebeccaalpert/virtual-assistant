@@ -42,10 +42,6 @@
     justify-self: end;
     display: flex;
     gap: var(--pf-t--global--spacer--sm);
-
-    .pf-v6-c-menu-toggle.pf-m-secondary {
-      width: 150px;
-    }
   }
 }
 
@@ -58,12 +54,6 @@
   }
   .pf-chatbot__header__divider {
     display: none;
-  }
-
-  .pf-chatbot__actions {
-    .pf-v6-c-menu-toggle.pf-m-secondary {
-      width: 200px;
-    }
   }
 }
 
