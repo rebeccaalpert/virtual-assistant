@@ -13,6 +13,7 @@ source: react
 propComponents:
   [
     'ChatbotHeader',
+    'ChatbotHeaderMain',
     'ChatbotHeaderMenu',
     'ChatbotHeaderActions',
     'ChatbotHeaderTitle',
@@ -23,6 +24,7 @@ propComponents:
 
 import {
 ChatbotHeader,
+ChatbotHeaderMain,
 ChatbotHeaderMenu,
 ChatbotHeaderActions,
 ChatbotHeaderTitle,

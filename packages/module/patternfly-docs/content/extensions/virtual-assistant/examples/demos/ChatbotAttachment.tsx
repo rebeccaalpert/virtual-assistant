@@ -26,7 +26,8 @@ import ChatbotHeader, {
   ChatbotHeaderTitle,
   ChatbotHeaderActions,
   ChatbotHeaderSelectorDropdown,
-  ChatbotHeaderOptionsDropdown
+  ChatbotHeaderOptionsDropdown,
+  ChatbotHeaderMain
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
@@ -223,10 +224,12 @@ export const BasicDemo: React.FunctionComponent = () => {
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         <>
           <ChatbotHeader>
-            <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-            <ChatbotHeaderTitle>
-              {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
-            </ChatbotHeaderTitle>
+            <ChatbotHeaderMain>
+              <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
+              <ChatbotHeaderTitle>
+                {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
+              </ChatbotHeaderTitle>
+            </ChatbotHeaderMain>
             <ChatbotHeaderActions>
               <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
                 <DropdownList>

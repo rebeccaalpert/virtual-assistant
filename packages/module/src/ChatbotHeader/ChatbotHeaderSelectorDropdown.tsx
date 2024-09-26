@@ -39,7 +39,7 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
 
   return (
     <Dropdown
-      className={`pf-chatbot__options ${className ?? ''}`}
+      className={`pf-chatbot__selections ${className ?? ''}`}
       isOpen={isOptionsMenuOpen}
       onSelect={(e, value) => {
         onSelect && onSelect(e, value);

@@ -10,6 +10,9 @@
 
 .pf-chatbot__dropzone--visible.pf-chatbot__dropzone {
   margin-block-start: var(--pf-t--global--spacer--lg);
+  margin-block-end: var(--pf-t--global--spacer--lg);
+  margin-inline-start: var(--pf-t--global--spacer--lg);
+  margin-inline-end: var(--pf-t--global--spacer--lg);
 
   .pf-v6-c-multiple-file-upload__main {
     --pf-v6-c-multiple-file-upload__main--BorderWidth: var(--pf-t--global--border--width--regular);
@@ -21,14 +24,6 @@
     align-items: center;
     justify-content: center;
   }
-}
-
-.pf-chatbot__dropzone--visible.pf-chatbot__dropzone--fullscreen,
-.pf-chatbot__dropzone--visible.pf-chatbot__dropzone--docked {
-  margin-block-start: var(--pf-t--global--spacer--lg);
-  margin-block-end: var(--pf-t--global--spacer--lg);
-  margin-inline-start: var(--pf-t--global--spacer--lg);
-  margin-inline-end: var(--pf-t--global--spacer--lg);
 }
 
 /** Used in example only */

@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Split, Flex, Divider } from '@patternfly/react-core';
+import { Divider } from '@patternfly/react-core';
 
 export interface ChatbotHeaderProps extends React.HTMLProps<HTMLDivElement> {
   /** Content to be displayed in the chatbot header */
@@ -11,15 +11,12 @@ export interface ChatbotHeaderProps extends React.HTMLProps<HTMLDivElement> {
 
 export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
   className,
-  children,
-  ...props
+  children
 }: ChatbotHeaderProps) => (
-  <Flex direction={{ default: 'column' }} rowGap={{ default: 'rowGapMd' }}>
-    <Split className={`pf-chatbot__header ${className ?? ''}`} hasGutter {...props}>
-      {children}
-    </Split>
+  <div className="pf-chatbot__header-container">
+    <div className={`pf-chatbot__header ${className ?? ''}`}>{children}</div>
     <Divider className="pf-chatbot__header__divider" />
-  </Flex>
+  </div>
 );
 
 export default ChatbotHeader;

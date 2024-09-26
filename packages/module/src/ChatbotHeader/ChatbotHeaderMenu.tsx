@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { Button, Icon, SplitItem, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon';
 
 export interface ChatbotHeaderMenuProps {
@@ -17,7 +17,7 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
   onMenuToggle,
   tooltipProps
 }: ChatbotHeaderMenuProps) => (
-  <SplitItem className={`pf-chatbot__menu ${className}`}>
+  <div className={`pf-chatbot__menu ${className}`}>
     <Tooltip content="Menu" position="bottom" {...tooltipProps}>
       <Button
         className="pf-chatbot__button--toggle-menu"
@@ -32,7 +32,7 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
         }
       />
     </Tooltip>
-  </SplitItem>
+  </div>
 );
 
 export default ChatbotHeaderMenu;

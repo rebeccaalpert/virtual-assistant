@@ -1,7 +1,5 @@
 import React from 'react';
 
-import { Split, SplitItem } from '@patternfly/react-core';
-
 export interface ChatbotHeaderActionsProps {
   /** Content to be displayed in the chatbot header */
   children: React.ReactNode;
@@ -12,10 +10,6 @@ export interface ChatbotHeaderActionsProps {
 export const ChatbotHeaderActions: React.FunctionComponent<ChatbotHeaderActionsProps> = ({
   className,
   children
-}: ChatbotHeaderActionsProps) => (
-  <SplitItem className={`pf-chatbot__actions ${className || ''}`}>
-    <Split hasGutter>{children}</Split>
-  </SplitItem>
-);
+}: ChatbotHeaderActionsProps) => <div className={`pf-chatbot__actions ${className || ''}`}>{children}</div>;
 
 export default ChatbotHeaderActions;

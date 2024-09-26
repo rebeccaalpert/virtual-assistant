@@ -35,6 +35,7 @@ import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 
 import ChatbotHeader, {
+ChatbotHeaderMain,
 ChatbotHeaderMenu,
 ChatbotHeaderTitle,
 ChatbotHeaderActions,
