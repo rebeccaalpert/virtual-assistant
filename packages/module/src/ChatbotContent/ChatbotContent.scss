@@ -5,6 +5,7 @@
   position: relative;
   background-color: var(--pf-t--chatbot--background);
   overflow-y: auto;
+  overflow: hidden; // needed in Red Hat Developer Hub workspace
 }
 
 .pf-chatbot--fullscreen {
