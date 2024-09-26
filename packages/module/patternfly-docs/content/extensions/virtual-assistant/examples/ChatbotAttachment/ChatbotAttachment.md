@@ -19,6 +19,8 @@ import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDet
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 
+We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
+
 ### Dialog for editing attachments
 
 ```js file="./AttachmentEdit.tsx"

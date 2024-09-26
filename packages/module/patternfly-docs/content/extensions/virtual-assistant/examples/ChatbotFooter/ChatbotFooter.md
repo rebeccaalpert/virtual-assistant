@@ -31,6 +31,7 @@ import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '
 import { useDropzone } from 'react-dropzone';
 
 ### Footnote with popover
+
 A footnote can be placed in a chatbot footer to display any legal disclaimers or information about the chatbot.
 Footnotes can be static text or a button which triggers a popover.
 
@@ -39,13 +40,15 @@ Footnotes can be static text or a button which triggers a popover.
 ```
 
 ### Message bar with speech to text
-By default the message bar enables uploading files. Setting the `hasAttachButton` to `false` will disable that feature.
+
+In Safari and Chrome, you will see a microphone button in the message bar if the prop `hasMicrophoneButton` is passed in. The button will only appear if `'SpeechRecognition'` or `'webkitSpeechRecognition'` are available in `window`. This does not currently work in Firefox. By default the message bar enables uploading files. Setting the `hasAttachButton` to `false` will disable that feature.
 
 ```js file="./ChatbotMessageBar.tsx"
 
 ```
 
 ### Message bar with attach menu appended to attach button
+
 Attachments can also be added to the chatbot via drag and drop. Attachments can also be previewed, edited or deleted. See the [chatbot attachment](/patternfly-ai/chatbot/chatbot-attachment) documentation for more features.
 
 ```js file="./ChatbotMessageBarAttach.tsx"
@@ -55,6 +58,7 @@ Attachments can also be added to the chatbot via drag and drop. Attachments can 
 ### Simple footer with Message bar and footnote
 
 Footers contain the message bar and optional interactive footnote
+
 ```noLive
 <ChatbotFooter>
   <MessageBar ... />
