@@ -1,10 +1,10 @@
 import React from 'react';
 import {
-  CopyIcon,
   ExternalLinkAltIcon,
   VolumeUpIcon,
   OutlinedThumbsUpIcon,
-  OutlinedThumbsDownIcon
+  OutlinedThumbsDownIcon,
+  OutlinedCopyIcon
 } from '@patternfly/react-icons';
 import ResponseActionButton from './ResponseActionButton';
 import { TooltipProps } from '@patternfly/react-core';
@@ -69,7 +69,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           isDisabled={copy.isDisabled}
           tooltipContent={copy.tooltipContent ?? 'Copy'}
           tooltipProps={copy.tooltipProps}
-          icon={<CopyIcon />}
+          icon={<OutlinedCopyIcon />}
         ></ResponseActionButton>
       )}
       {share && (
