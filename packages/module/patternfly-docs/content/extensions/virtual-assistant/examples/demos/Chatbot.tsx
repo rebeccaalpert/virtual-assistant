@@ -182,9 +182,11 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         <ChatbotHeader>
           <ChatbotHeaderMain>
             <ChatbotHeaderMenu onMenuToggle={() => alert('Menu toggle clicked')} />
-            <ChatbotHeaderTitle>
-              {displayMode === ChatbotDisplayMode.fullscreen ? horizontalLogo : iconLogo}
-            </ChatbotHeaderTitle>
+            <ChatbotHeaderTitle
+              displayMode={displayMode}
+              showOnFullScreen={horizontalLogo}
+              showOnDefault={iconLogo}
+            ></ChatbotHeaderTitle>
           </ChatbotHeaderMain>
           <ChatbotHeaderActions>
             <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>

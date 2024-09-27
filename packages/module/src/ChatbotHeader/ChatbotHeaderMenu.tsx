@@ -26,7 +26,7 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
         onClick={onMenuToggle}
         aria-label="Toggle menu"
         icon={
-          <Icon size="lg" isInline>
+          <Icon size="xl" isInline>
             <BarsIcon />
           </Icon>
         }
