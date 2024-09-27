@@ -10,8 +10,9 @@
 .pf-chatbot__message-bar {
   --pf-chatbot__message-bar-child--PaddingBlockStart: var(--pf-t--global--spacer--xs);
   --pf-chatbot__message-bar-child--PaddingBlockEnd: var(--pf-t--global--spacer--xs);
-  --pf-chatbot__message-bar-child--PaddingInlineStart: var(--pf-t--global--spacer--xs);
-  --pf-chatbot__message-bar-child--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
+
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 0.5rem;
 
   display: flex;
   flex-wrap: wrap;
@@ -34,16 +35,13 @@
     justify-content: end;
     padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
     padding-block-end: var(--pf-t--global--spacer--sm);
-    padding-inline-start: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
-    padding-inline-end: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
+    gap: var(--pf-t--global--spacer--xs);
   }
 
   &-input {
     flex: 1 1 auto;
     padding-block-start: var(--pf-chatbot__message-bar-child--PaddingBlockStart);
     padding-block-end: var(--pf-chatbot__message-bar-child--PaddingBlockEnd);
-    padding-inline-start: var(--pf-chatbot__message-bar-child--PaddingInlineStart);
-    padding-inline-end: var(--pf-chatbot__message-bar-child--PaddingInlineEnd);
   }
 }
 
