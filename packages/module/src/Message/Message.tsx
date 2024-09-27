@@ -11,6 +11,7 @@ import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
 import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
+import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
 
 export interface MessageProps {
   /** Role of the user sending the message */
@@ -33,6 +34,14 @@ export interface MessageProps {
   onAttachmentClick?: () => void;
   /** Callback for when attachment label is closed */
   onAttachmentClose?: (attachmentId: string) => void;
+  /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
+  actions?: {
+    positive?: ActionProps;
+    negative?: ActionProps;
+    copy?: ActionProps;
+    share?: ActionProps;
+    listen?: ActionProps;
+  };
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -45,7 +54,8 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   attachmentId,
   attachmentName,
   onAttachmentClick,
-  onAttachmentClose
+  onAttachmentClose,
+  actions
 }: MessageProps) => {
   // Configure default values
 
@@ -79,13 +89,16 @@ export const Message: React.FunctionComponent<MessageProps> = ({
           <Timestamp>{timestamp}</Timestamp>
         </div>
         <div className="pf-chatbot__message-response">
-          {isLoading ? (
-            <MessageLoading />
-          ) : (
-            <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
-              {content}
-            </Markdown>
-          )}
+          <div className="pf-chatbot__message-and-actions">
+            {isLoading ? (
+              <MessageLoading />
+            ) : (
+              <Markdown components={{ p: TextMessage, code: CodeBlockMessage }} remarkPlugins={[remarkGfm]}>
+                {content}
+              </Markdown>
+            )}
+            {!isLoading && actions && <ResponseActions actions={actions} />}
+          </div>
           {attachmentName && (
             <div className="pf-chatbot__message-attachment">
               <FileDetailsLabel fileName={attachmentName} onClick={onAttachmentClick} onClose={onClose} />
