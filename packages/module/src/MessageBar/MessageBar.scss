@@ -13,6 +13,9 @@
   --pf-chatbot__message-bar-child--PaddingInlineStart: var(--pf-t--global--spacer--xs);
   --pf-chatbot__message-bar-child--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
 
+  padding-inline-start: 0.5rem;
+  padding-inline-end: 0.5rem;
+
   display: flex;
   flex-wrap: wrap;
   align-items: flex-end;
