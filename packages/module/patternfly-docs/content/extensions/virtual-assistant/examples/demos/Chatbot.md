@@ -51,6 +51,8 @@ import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.
 import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
+import cloneDeep from 'lodash/cloneDeep';
+
 ### Basic chatbot
 
 ```js file="./Chatbot.tsx" isFullscreen
