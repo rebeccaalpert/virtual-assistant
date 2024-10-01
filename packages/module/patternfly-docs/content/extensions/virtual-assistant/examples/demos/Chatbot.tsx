@@ -28,8 +28,6 @@ import PFHorizontalLogoReverse from '../ChatbotHeader/PF-HorizontalLogo-Reverse.
 import PFIconLogoColor from '../ChatbotHeader/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
-import cloneDeep from 'lodash/cloneDeep';
-
 const footnoteProps = {
   label: 'Lightspeed uses AI. Check for mistakes.',
   popover: {
@@ -156,7 +154,10 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
   const handleSend = (message: string) => {
     setIsSendButtonDisabled(true);
-    const newMessages = cloneDeep(messages);
+    const newMessages: MessageProps[] = [];
+    // we can't use structuredClone since messages contains functions, but we can't mutate
+    // items that are going into state or the UI won't update correctly
+    messages.forEach((message) => newMessages.push(message));
     newMessages.push({ role: 'user', content: message, name: 'User' });
     newMessages.push({
       role: 'bot',
@@ -168,7 +169,10 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
     // this is for demo purposes only; in a real situation, there would be an API response we would wait for
     setTimeout(() => {
-      const loadedMessages = cloneDeep(newMessages);
+      const loadedMessages: MessageProps[] = [];
+      // we can't use structuredClone since messages contains functions, but we can't mutate
+      // items that are going into state or the UI won't update correctly
+      newMessages.forEach((message) => loadedMessages.push(message));
       loadedMessages.pop();
       loadedMessages.push({
         role: 'bot',
