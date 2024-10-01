@@ -1,5 +1,5 @@
 import React from 'react';
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
@@ -43,23 +43,21 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
   const displayMode = ChatbotDisplayMode.embedded;
 
   return (
-    <Chatbot displayMode={displayMode}>
-      <ChatbotConversationHistoryNav
-        displayMode={displayMode}
-        onDrawerToggle={() => setIsOpen(!isOpen)}
-        isDrawerOpen={isOpen}
-        conversations={conversations}
-        drawerContent={
-          <>
-            <ChatbotHeader>
-              <ChatbotHeaderMain>
-                <ChatbotHeaderMenu aria-expanded={isOpen} onMenuToggle={() => setIsOpen(!isOpen)} />
-                <ChatbotHeaderTitle>Click the menu to open and close the drawer</ChatbotHeaderTitle>
-              </ChatbotHeaderMain>
-            </ChatbotHeader>
-          </>
-        }
-      />
-    </Chatbot>
+    <ChatbotConversationHistoryNav
+      displayMode={displayMode}
+      onDrawerToggle={() => setIsOpen(!isOpen)}
+      isDrawerOpen={isOpen}
+      conversations={conversations}
+      drawerContent={
+        <>
+          <ChatbotHeader>
+            <ChatbotHeaderMain>
+              <ChatbotHeaderMenu aria-expanded={isOpen} onMenuToggle={() => setIsOpen(!isOpen)} />
+              <ChatbotHeaderTitle>Click the menu to open and close the drawer</ChatbotHeaderTitle>
+            </ChatbotHeaderMain>
+          </ChatbotHeader>
+        </>
+      }
+    />
   );
 };

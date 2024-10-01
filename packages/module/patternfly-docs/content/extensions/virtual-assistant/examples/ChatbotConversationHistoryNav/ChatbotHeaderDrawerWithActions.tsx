@@ -1,6 +1,8 @@
 import React from 'react';
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
-import ChatbotConversationHistoryNav, { Conversation } from '../../../../../../dist/esm/ChatbotConversationHistoryNav';
+import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import ChatbotConversationHistoryNav, {
+  Conversation
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 import { Checkbox, DropdownItem, DropdownList } from '@patternfly/react-core';
 
 const menuItems = [
@@ -60,15 +62,13 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         id="drawer-actions-visible"
         name="drawer-actions-visible"
       ></Checkbox>
-      <Chatbot displayMode={displayMode}>
-        <ChatbotConversationHistoryNav
-          displayMode={displayMode}
-          onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
-          isDrawerOpen={isDrawerOpen}
-          conversations={conversations}
-          drawerContent={<div>Drawer content</div>}
-        ></ChatbotConversationHistoryNav>
-      </Chatbot>
+      <ChatbotConversationHistoryNav
+        displayMode={displayMode}
+        onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+        isDrawerOpen={isDrawerOpen}
+        conversations={conversations}
+        drawerContent={<div>Drawer content</div>}
+      />
     </>
   );
 };

@@ -13,7 +13,7 @@ source: react
 propComponents: ['ChatbotConversationHistoryNav', 'Conversation', 'ChatbotConversationHistoryDropdownProps']
 ---
 
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 import {
 ChatbotHeader,

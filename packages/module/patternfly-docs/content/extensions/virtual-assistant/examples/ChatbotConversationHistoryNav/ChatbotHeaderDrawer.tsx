@@ -1,5 +1,5 @@
 import React from 'react';
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
@@ -66,29 +66,27 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         id="drawer-visible"
         name="drawer-visible"
       />
-      <Chatbot displayMode={displayMode}>
-        <ChatbotConversationHistoryNav
-          displayMode={displayMode}
-          onDrawerToggle={() => setIsOpen(!isOpen)}
-          isDrawerOpen={isOpen}
-          // eslint-disable-next-line no-console
-          onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
-          conversations={conversations}
-          onNewChat={() => {
-            setIsOpen(!isOpen);
-          }}
-          handleTextInputChange={(value: string) => {
-            if (value === '') {
-              setConversations(initialConversations);
-            }
-            // this is where you would perform search on the items in the drawer
-            // and update the state
-            const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
-            setConversations(newConversations);
-          }}
-          drawerContent={<div>Drawer content</div>}
-        ></ChatbotConversationHistoryNav>
-      </Chatbot>
+      <ChatbotConversationHistoryNav
+        displayMode={displayMode}
+        onDrawerToggle={() => setIsOpen(!isOpen)}
+        isDrawerOpen={isOpen}
+        // eslint-disable-next-line no-console
+        onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
+        conversations={conversations}
+        onNewChat={() => {
+          setIsOpen(!isOpen);
+        }}
+        handleTextInputChange={(value: string) => {
+          if (value === '') {
+            setConversations(initialConversations);
+          }
+          // this is where you would perform search on the items in the drawer
+          // and update the state
+          const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
+          setConversations(newConversations);
+        }}
+        drawerContent={<div>Drawer content</div>}
+      />
     </>
   );
 };
