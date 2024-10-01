@@ -54,6 +54,7 @@
 .pf-chatbot__history.pf-v6-c-drawer {
   --pf-v6-c-drawer__panel--MinWidth: 384px;
   --pf-v6-c-drawer__panel--xl--MinWidth: 384px;
+  height: 70vh;
 
   // Drawer panel
   .pf-v6-c-drawer__panel {
@@ -123,8 +124,8 @@
 // ============================================================================
 .pf-chatbot--docked {
   .pf-chatbot__history.pf-v6-c-drawer {
+    height: 100vh;
     .pf-v6-c-drawer__body {
-      height: 100%;
     }
   }
 }
@@ -134,8 +135,8 @@
 // ============================================================================
 .pf-chatbot--fullscreen {
   .pf-chatbot__history.pf-v6-c-drawer {
+    height: 100vh;
     .pf-v6-c-drawer__body {
-      height: 100%;
       width: 100%;
     }
   }
@@ -146,6 +147,7 @@
 // ============================================================================
 .pf-chatbot--embedded {
   .pf-chatbot__history.pf-v6-c-drawer {
+    height: 100%;
     .pf-v6-c-drawer__body {
       width: 100%;
       min-height: 100%;
