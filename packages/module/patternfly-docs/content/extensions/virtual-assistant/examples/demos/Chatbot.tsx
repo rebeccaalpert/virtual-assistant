@@ -154,16 +154,44 @@ export const ChatbotDemo: React.FunctionComponent = () => {
 
   const handleSend = (message: string) => {
     setIsSendButtonDisabled(true);
-    const newMessages = structuredClone(messages);
+    const newMessages: MessageProps[] = [];
+    // we can't use structuredClone since messages contains functions, but we can't mutate
+    // items that are going into state or the UI won't update correctly
+    messages.forEach((message) => newMessages.push(message));
     newMessages.push({ role: 'user', content: message, name: 'User' });
-    newMessages.push({ role: 'bot', content: 'API response goes here', name: 'bot', isLoading: true });
+    newMessages.push({
+      role: 'bot',
+      content: 'API response goes here',
+      name: 'bot',
+      isLoading: true
+    });
     setMessages(newMessages);
 
     // this is for demo purposes only; in a real situation, there would be an API response we would wait for
     setTimeout(() => {
-      const loadedMessages = structuredClone(newMessages);
+      const loadedMessages: MessageProps[] = [];
+      // we can't use structuredClone since messages contains functions, but we can't mutate
+      // items that are going into state or the UI won't update correctly
+      newMessages.forEach((message) => loadedMessages.push(message));
       loadedMessages.pop();
-      loadedMessages.push({ role: 'bot', content: 'API response goes here', name: 'bot', isLoading: false });
+      loadedMessages.push({
+        role: 'bot',
+        content: 'API response goes here',
+        name: 'bot',
+        isLoading: false,
+        actions: {
+          // eslint-disable-next-line no-console
+          positive: { onClick: () => console.log('Good response') },
+          // eslint-disable-next-line no-console
+          negative: { onClick: () => console.log('Bad response') },
+          // eslint-disable-next-line no-console
+          copy: { onClick: () => console.log('Copy') },
+          // eslint-disable-next-line no-console
+          share: { onClick: () => console.log('Share') },
+          // eslint-disable-next-line no-console
+          listen: { onClick: () => console.log('Listen') }
+        }
+      });
       setMessages(loadedMessages);
       setIsSendButtonDisabled(false);
     }, 5000);
