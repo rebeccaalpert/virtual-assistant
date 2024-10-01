@@ -30,8 +30,10 @@ import ConversationHistoryDropdown from './ChatbotConversationHistoryDropdown';
 export interface Conversation {
   /** Conversation id */
   id: string;
-  /** Connversation icon */
+  /** Conversation icon */
   icon?: React.ReactNode;
+  /** Flag for no icon */
+  noIcon?: boolean;
   /** Conversation */
   text: string;
   /** Dropdown items rendered in conversation options dropdown */
@@ -48,21 +50,21 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   onDrawerToggle: (event: React.KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void;
   /** Flag to indicate whether drawer is open */
   isDrawerOpen: boolean;
-  /** ID of active item */
-  activeItemId: string | number;
+  /* itemId of the currently active item. */
+  activeItemId?: string | number;
   /** Callback function for when an item is selected */
   onSelectActiveItem?: (event?: React.MouseEvent, itemId?: string | number) => void;
   /** Items shown in conversation history */
   conversations: Conversation[] | { [key: string]: Conversation[] };
   /** Text shown in blue button */
   newChatButtonText?: string;
-  /** Callback function for when blue button is clicked */
+  /** Callback function for when blue button is clicked. Omit to hide blue "new chat button" */
   onNewChat?: () => void;
   /** Content wrapped by conversation history nav */
   drawerContent?: React.ReactNode;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
-  /** A callback for when the input value changes. */
+  /** A callback for when the input value changes. Omit to hide input field */
   handleTextInputChange?: (value: string) => void;
   /** Display mode of chatbot */
   displayMode: ChatbotDisplayMode;
@@ -93,7 +95,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       className="pf-chatbot__menu-item"
       itemId={conversation.id}
       key={conversation.id}
-      icon={conversation.icon ?? <OutlinedCommentAltIcon />}
+      {...(conversation.noIcon ? {} : { icon: conversation.icon ?? <OutlinedCommentAltIcon /> })}
       /* eslint-disable indent */
       {...(conversation.menuItems
         ? {
@@ -155,7 +157,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       <DrawerHead>
         <DrawerActions>
           <DrawerCloseButton onClick={onDrawerToggle} />
-          <Button onClick={onNewChat}>{newChatButtonText}</Button>
+          {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
         </DrawerActions>
       </DrawerHead>
       {handleTextInputChange && (

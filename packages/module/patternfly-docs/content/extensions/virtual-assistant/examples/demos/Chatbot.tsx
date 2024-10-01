@@ -10,7 +10,9 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/di
 import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
-import ChatbotConversationHistoryNav from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
+import ChatbotConversationHistoryNav, {
+  Conversation
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderMain,
@@ -156,7 +158,9 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
   const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [conversations, setConversations] = React.useState(initialConversations);
+  const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
+    initialConversations
+  );
   const dummyRef = React.useRef<HTMLDivElement>(null);
 
   // Autu-scrolls to the latest message
@@ -198,6 +202,22 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     }, 5000);
   };
 
+  const findMatchingItems = (targetValue: string) => {
+    let filteredConversations = Object.entries(initialConversations).reduce((acc, [key, items]) => {
+      const filteredItems = items.filter((item) => item.text.toLowerCase().includes(targetValue.toLowerCase()));
+      if (filteredItems.length > 0) {
+        acc[key] = filteredItems;
+      }
+      return acc;
+    }, {});
+
+    // append message if no items are found
+    if (Object.keys(filteredConversations).length === 0) {
+      filteredConversations = [{ id: '13', noIcon: true, text: 'No results found' }];
+    }
+    return filteredConversations;
+  };
+
   const horizontalLogo = (
     <Bullseye>
       <Brand className="show-light" src={PFHorizontalLogoColor} alt="PatternFly" />
@@ -222,7 +242,10 @@ export const ChatbotDemo: React.FunctionComponent = () => {
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         <ChatbotConversationHistoryNav
           displayMode={displayMode}
-          onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
+          onDrawerToggle={() => {
+            setIsDrawerOpen(!isDrawerOpen);
+            setConversations(initialConversations);
+          }}
           isDrawerOpen={isDrawerOpen}
           activeItemId="1"
           // eslint-disable-next-line no-console
@@ -231,6 +254,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
           onNewChat={() => {
             setIsDrawerOpen(!isDrawerOpen);
             setMessages([]);
+            setConversations(initialConversations);
           }}
           handleTextInputChange={(value: string) => {
             if (value === '') {
@@ -238,6 +262,8 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             }
             // this is where you would perform search on the items in the drawer
             // and update the state
+            const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
+            setConversations(newConversations);
           }}
           drawerContent={
             <>

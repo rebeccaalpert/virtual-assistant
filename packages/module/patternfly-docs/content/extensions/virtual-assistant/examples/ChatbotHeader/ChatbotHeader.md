@@ -39,7 +39,6 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
-import ChatbotConversationHistoryNav from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 
 ### Chatbot header with controls
 
@@ -52,17 +51,5 @@ import ChatbotConversationHistoryNav from '@patternfly/virtual-assistant/dist/dy
 By default, HeaderTitle renders whatever children are passed in. Optionally, you can pass in a displayMode and props showOnEmbedded, showOnDocked, showOnFullScreen, and/or showOnDefault to render content conditionally.
 
 ```js file="./ChatbotHeaderTitle.tsx"
-
-```
-
-### Chatbot header drawer
-
-```js file="./ChatbotHeaderDrawer.tsx"
-
-```
-
-### Chatbot header drawer with actions
-
-```js file="./ChatbotHeaderDrawerWithActions.tsx"
 
 ```
