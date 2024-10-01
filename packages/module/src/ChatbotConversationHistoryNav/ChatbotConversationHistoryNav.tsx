@@ -41,7 +41,7 @@ export interface Conversation {
   /** Tooltip content and aria-label applied to conversation options dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelectItem?: (event?: React.MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Function called to toggle drawer */
@@ -100,7 +100,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
             actions: (
               <ConversationHistoryDropdown
                 menuClassName={conversation.menuClassName}
-                onSelectItem={conversation.onSelectItem}
+                onSelect={conversation.onSelect}
                 menuItems={conversation.menuItems}
                 label={conversation.label}
               />

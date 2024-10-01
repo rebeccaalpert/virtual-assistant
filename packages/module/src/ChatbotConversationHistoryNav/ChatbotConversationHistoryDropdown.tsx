@@ -4,11 +4,11 @@
 import React from 'react';
 
 // Import PatternFly components
-import { MenuToggleElement, Tooltip, MenuToggle, Dropdown } from '@patternfly/react-core';
+import { MenuToggleElement, Tooltip, MenuToggle, Dropdown, DropdownProps } from '@patternfly/react-core';
 
 import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 
-export interface ChatbotConversationHistoryDropdownProps {
+export interface ChatbotConversationHistoryDropdownProps extends Omit<DropdownProps, 'toggle'> {
   /** Dropdown items rendered in conversation options dropdown */
   menuItems: React.ReactNode;
   /** Optional classname applied to conversation options dropdown */
@@ -16,13 +16,13 @@ export interface ChatbotConversationHistoryDropdownProps {
   /** Tooltip content and aria-label applied to conversation options dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelectItem?: (event?: React.MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 
 export const ChatbotConversationHistoryDropdown: React.FunctionComponent<ChatbotConversationHistoryDropdownProps> = ({
   menuItems,
   menuClassName,
-  onSelectItem,
+  onSelect,
   label
 }: ChatbotConversationHistoryDropdownProps) => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -46,7 +46,7 @@ export const ChatbotConversationHistoryDropdown: React.FunctionComponent<Chatbot
     <Dropdown
       className={`pf-chatbot__selections ${menuClassName ?? ''}`}
       isOpen={isOpen}
-      onSelect={onSelectItem}
+      onSelect={onSelect}
       onOpenChange={(isOpen) => setIsOpen(isOpen)}
       popperProps={{ position: 'right' }}
       shouldFocusToggleOnSelect

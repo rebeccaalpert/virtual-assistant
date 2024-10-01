@@ -52,16 +52,16 @@
 // Chatbot Header - Drawer
 // ----------------------------------------------------------------------------
 .pf-chatbot__history.pf-v6-c-drawer {
-  --pf-v6-c-drawer__panel--MinWidth: 384px;
-  --pf-v6-c-drawer__panel--xl--MinWidth: 384px;
+  --pf-v6-c-drawer__panel--MinWidth: 24rem;
+  --pf-v6-c-drawer__panel--xl--MinWidth: 24rem;
   height: 70vh;
 
   // Drawer panel
   .pf-v6-c-drawer__panel {
     --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-t--global--background--color--floating--default);
-    --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--400);
+    --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--lg);
     overflow-x: hidden;
   }
 
@@ -69,13 +69,13 @@
   .pf-v6-c-drawer__head {
     --pf-v6-c-drawer__head--PaddingBlockStart: 0;
     --pf-v6-c-drawer__head--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--400);
+    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 48px;
+    height: var(--pf-t--global--spacer--2xl);
   }
 
   // Drawer actions
@@ -94,8 +94,8 @@
   // Close drawer
   .pf-v6-c-drawer__close {
     .pf-v6-c-button {
-      width: 48px;
-      height: 48px;
+      width: var(--pf-t--global--spacer--2xl);
+      height: var(--pf-t--global--spacer--2xl);
       border-radius: var(--pf-t--global--border--radius--pill);
       justify-content: center;
       align-items: center;
@@ -106,8 +106,8 @@
   .pf-v6-c-drawer__body {
     --pf-v6-c-drawer__panel__body--PaddingBlockStart: 0;
     --pf-v6-c-drawer__panel__body--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--400);
+    --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
 
     overflow-y: auto;
 
@@ -125,8 +125,6 @@
 .pf-chatbot--docked {
   .pf-chatbot__history.pf-v6-c-drawer {
     height: 100vh;
-    .pf-v6-c-drawer__body {
-    }
   }
 }
 

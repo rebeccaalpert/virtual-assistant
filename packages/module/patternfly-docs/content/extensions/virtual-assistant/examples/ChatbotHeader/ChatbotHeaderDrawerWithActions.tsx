@@ -18,7 +18,7 @@ interface Conversation {
   /** Tooltip content and aria-label applied to conversation options dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelectItem?: (event?: React.MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 
 interface ConversationObject {
