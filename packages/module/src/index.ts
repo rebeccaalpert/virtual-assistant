@@ -12,6 +12,9 @@ export * from './AttachMenu';
 export { default as Chatbot } from './Chatbot';
 export * from './Chatbot';
 
+export { default as ChatbotAlert } from './ChatbotAlert';
+export * from './ChatbotAlert';
+
 export { default as ChatbotContent } from './ChatbotContent';
 export * from './ChatbotContent';
 
@@ -32,9 +35,6 @@ export * from './ChatbotWelcomePrompt';
 
 export { default as CodeModal } from './CodeModal';
 export * from './CodeModal';
-
-export { default as ConversationAlert } from './ConversationAlert';
-export * from './ConversationAlert';
 
 export { default as FileDetails } from './FileDetails';
 export * from './FileDetails';

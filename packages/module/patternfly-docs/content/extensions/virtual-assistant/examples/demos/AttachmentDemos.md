@@ -36,6 +36,7 @@ ChatbotHeaderActions,
 ChatbotHeaderSelectorDropdown,
 ChatbotHeaderOptionsDropdown
 } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAlert';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
