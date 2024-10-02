@@ -1,5 +1,6 @@
 .pf-chatbot__dropzone {
   gap: unset; // default PF value causes alignment issues when this is used to wrap other components, notably in the footer
+  flex: 1;
 }
 
 .pf-chatbot__dropzone--invisible {

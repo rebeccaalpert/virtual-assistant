@@ -5,9 +5,8 @@
   position: fixed;
   inset-block-end: var(--pf-t--global--spacer--800); // no associated semantic token
   inset-inline-end: var(--pf-t--global--spacer--lg);
-  display: grid;
-  grid-template-rows: auto 1fr auto;
-  grid-auto-rows: auto;
+  display: flex;
+  flex-direction: column;
   width: 30rem;
   height: 70vh;
   background-color: var(--pf-t--chatbot--background);
