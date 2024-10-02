@@ -32,7 +32,7 @@ const initialConversations: { [key: string]: Conversation[] } = {
 };
 
 export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );

@@ -39,7 +39,7 @@ const conversations: {
 };
 
 export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
   const displayMode = ChatbotDisplayMode.embedded;
 
   return (
@@ -49,14 +49,12 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
       isDrawerOpen={isOpen}
       conversations={conversations}
       drawerContent={
-        <>
-          <ChatbotHeader>
-            <ChatbotHeaderMain>
-              <ChatbotHeaderMenu aria-expanded={isOpen} onMenuToggle={() => setIsOpen(!isOpen)} />
-              <ChatbotHeaderTitle>Click the menu to open and close the drawer</ChatbotHeaderTitle>
-            </ChatbotHeaderMain>
-          </ChatbotHeader>
-        </>
+        <ChatbotHeader>
+          <ChatbotHeaderMain>
+            <ChatbotHeaderMenu aria-expanded={isOpen} onMenuToggle={() => setIsOpen(!isOpen)} />
+            <ChatbotHeaderTitle>Click the menu to open and close the drawer</ChatbotHeaderTitle>
+          </ChatbotHeaderMain>
+        </ChatbotHeader>
       }
     />
   );

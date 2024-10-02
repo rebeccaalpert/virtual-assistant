@@ -50,7 +50,7 @@ const conversations: { [key: string]: Conversation[] } = {
 };
 
 export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
   const displayMode = ChatbotDisplayMode.embedded;
 
   return (

@@ -25,7 +25,7 @@ import {
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
-import ConversationHistoryDropdown from './ChatbotConversationHistoryDropdown';
+// import ConversationHistoryDropdown from './ChatbotConversationHistoryDropdown';
 
 export interface Conversation {
   /** Conversation id */
@@ -37,13 +37,13 @@ export interface Conversation {
   /** Conversation */
   text: string;
   /** Dropdown items rendered in conversation options dropdown */
-  menuItems?: React.ReactNode;
+  // menuItems?: React.ReactNode;
   /** Optional classname applied to conversation options dropdown */
-  menuClassName?: string;
+  // menuClassName?: string;
   /** Tooltip content and aria-label applied to conversation options dropdown */
-  label?: string;
+  // label?: string;
   /** Callback for when user selects item. */
-  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
+  // onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Function called to toggle drawer */
@@ -97,7 +97,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       key={conversation.id}
       {...(conversation.noIcon ? {} : { icon: conversation.icon ?? <OutlinedCommentAltIcon /> })}
       /* eslint-disable indent */
-      {...(conversation.menuItems
+      /* {...(conversation.menuItems
         ? {
             actions: (
               <ConversationHistoryDropdown
@@ -108,7 +108,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
               />
             )
           }
-        : {})}
+        : {})} */
       /* eslint-enable indent */
     >
       {conversation.text}

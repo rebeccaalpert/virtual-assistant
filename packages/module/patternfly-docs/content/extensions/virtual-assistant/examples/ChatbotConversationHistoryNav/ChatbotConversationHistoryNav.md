@@ -10,7 +10,7 @@ id: Chatbot conversation history nav
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: ['ChatbotConversationHistoryNav', 'Conversation', 'ChatbotConversationHistoryDropdownProps']
+propComponents: ['ChatbotConversationHistoryNav', 'Conversation']
 ---
 
 import { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
@@ -61,11 +61,13 @@ Conversations can be searched via an input field, and new conversations can be s
 
 ### Drawer with conversation actions
 
-Actions can be added to conversations with the `menuItems` prop. Optionally, you can also add a className to the menu with `menuClassName`, change the default aria-label and tooltip content with `label`, and add an `onSelect` callback for when a user selects an item.
+<!---Actions can be added to conversations with the `menuItems` prop. Optionally, you can also add a className to the menu with `menuClassName`, change the default aria-label and tooltip content with `label`, and add an `onSelect` callback for when a user selects an item.
 
 ```js file="./ChatbotHeaderDrawerWithActions.tsx"
 
 ```
+
+--->
 
 ### Drawer in header
 
