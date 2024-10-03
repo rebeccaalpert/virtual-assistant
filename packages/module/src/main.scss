@@ -12,10 +12,15 @@
 @import './FileDropZone/FileDropZone';
 @import './MessageBar/MessageBar';
 @import './MessageBox/MessageBox';
+@import './MessageBox/JumpButton';
 @import './Message/Message';
 @import './ChatbotPopover/ChatbotPopover';
 @import './SourceDetailsMenuItem/SourceDetailsMenuItem';
 @import './ResponseActions/ResponseActions';
+@import './ChatbotAlert/ChatbotAlert';
+@import './Message/CodeBlockMessage/CodeBlockMessage';
+@import './Message/TextMessage/TextMessage';
+@import './Message/MessageLoading';
 
 :where(:root) {
   // ============================================================================

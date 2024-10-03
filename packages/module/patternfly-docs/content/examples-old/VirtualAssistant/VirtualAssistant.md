@@ -20,7 +20,6 @@ import SystemMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/Syste
 import LoadingMessage from '@patternfly/virtual-assistant/dist/dynamic/LoadingMessage';
 import { GrinIcon } from '@patternfly/react-icons';
 import { AngleDownIcon } from '@patternfly/react-icons';
-import ConversationAlert from '@patternfly/virtual-assistant/dist/dynamic/ConversationAlert';
 import AssistantMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/AssistantMessageEntry';
 import UserMessageEntry from '@patternfly/virtual-assistant/dist/dynamic/UserMessageEntry';
 
@@ -37,7 +36,6 @@ A blank example of the virtual assistant body.
 ### Customizing input title and placeholder
 
 You can configure a custom title and placeholder input value using `title` and `inputPlaceholder` props.
-
 
 ```js file="./VirtualAssistantCustomText.tsx"
 
@@ -62,7 +60,6 @@ Disabling the send button using `isSendButtonDisabled` prevents it from being c
 ### Using custom actions
 
 Custom actions can be added to the assistant body using the `actions` property.
-
 
 ```js file="./VirtualAssistantWithActions.tsx"
 

@@ -9,15 +9,8 @@ import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import SourceDetailsMenuItem from '@patternfly/virtual-assistant/dist/dynamic/SourceDetailsMenuItem';
-import {
-  Alert,
-  AlertActionCloseButton,
-  Divider,
-  DropdownGroup,
-  DropdownItem,
-  DropdownList,
-  DropEvent
-} from '@patternfly/react-core';
+import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAlert';
+import { Divider, DropdownGroup, DropdownItem, DropdownList, DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
@@ -302,23 +295,19 @@ export const BasicDemo: React.FunctionComponent = () => {
         <FileDropZone onFileDrop={handleFileDrop}>
           <>
             <ChatbotContent>
-              {showAlert && (
-                <Alert
-                  variant="danger"
-                  actionClose={
-                    <AlertActionCloseButton
-                      onClose={() => {
-                        setShowAlert(false);
-                        setError(undefined);
-                      }}
-                    />
-                  }
-                  title="File upload failed"
-                >
-                  {error}
-                </Alert>
-              )}
               <MessageBox>
+                {showAlert && (
+                  <ChatbotAlert
+                    variant="danger"
+                    onClose={() => {
+                      setShowAlert(false);
+                      setError(undefined);
+                    }}
+                    title="File upload failed"
+                  >
+                    {error}
+                  </ChatbotAlert>
+                )}
                 <ChatbotWelcomePrompt
                   title="Hello, Chatbot User"
                   description="How may I help you today?"
