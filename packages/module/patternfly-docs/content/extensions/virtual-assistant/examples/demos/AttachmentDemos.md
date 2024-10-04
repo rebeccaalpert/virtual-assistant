@@ -74,7 +74,6 @@ This demo includes broader chatbot features, including:
 
 This demo displays unique attachment features, including:
 1. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) components that contain:
-- The ability to preview or edit the attachment using the [`<PreviewAttachment>` and `<AttachmentEdit>` components.](/patternfly-ai/chatbot/chatbot-messages#messages-with-attachments)
 - A PatternFly [`<Alert>`](/components/alert) to provide success or error messages for attachments.
 2. `<ChatbotContent>` and `<ChatbotFooter>`, wrapped in a `<FileDropZone>` component to support drag and drop attachments. The footer also:
 - Displays attached files, using a [`<FileDetailsLabel>`](/patternfly-ai/chatbot/chatbot-attachments/#interactive-chip-representing-uploading-file) component.
