@@ -36,6 +36,7 @@ export const ChatbotConversationHistoryDropdown: React.FunctionComponent<Chatbot
         ref={toggleRef}
         isExpanded={isOpen}
         onClick={() => setIsOpen(!isOpen)}
+        role="menuitem"
       >
         <EllipsisIcon />
       </MenuToggle>
