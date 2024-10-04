@@ -1,87 +1,82 @@
 // ============================================================================
 // Chatbot Header - Menu
 // ============================================================================
-.pf-chatbot__menu {
-  .pf-v6-c-nav {
-    --pf-v6-c-nav--PaddingBlockStart: 0;
-    --pf-v6-c-nav--PaddingBlockEnd: 0;
-    --pf-v6-c-nav--PaddingInlineStart: 0;
-    --pf-v6-c-nav--PaddingInlineEnd: 0;
+.pf-chatbot__history {
+  .pf-chatbot__drawer-backdrop {
+    position: absolute;
+  }
+  // Drawer input
+  // ----------------------------------------------------------------------------
+  .pf-chatbot__input {
+    padding-inline-start: var(--pf-t--global--spacer--xl);
+    padding-inline-end: var(--pf-t--global--spacer--xl);
   }
 
-  .pf-v6-c-nav__section-title {
-    --pf-v6-c-nav__section-title--PaddingInlineStart: var(--pf-t--global--spacer--200);
-    --pf-v6-c-nav__section-title--PaddingInlineEnd: 0;
-    --pf-v6-c-nav__section-title--Color: var(--pf-t--color--gray--50);
-
+  // Drawer menu
+  // ----------------------------------------------------------------------------
+  .pf-v6-c-menu {
+    --pf-v6-c-menu--PaddingBlockStart: 0;
+    --pf-v6-c-menu--BackgroundColor: var(--pf-t--global--background--color--floating--default);
+    overflow: initial;
+    position: relative;
+  }
+  .pf-v6-c-menu__item-main {
+    --pf-v6-c-menu__item-main--ColumnGap: var(--pf-t--global--spacer--md);
+  }
+  .pf-chatbot__menu-item-header > .pf-v6-c-menu__group-title {
+    color: var(--pf-t--global--text--color--subtle);
+    font-weight: 500;
+    font-size: var(--pf-t--global--icon--size--font--sm);
+    --pf-v6-c-menu__group-title--PaddingInlineStart: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-menu__group-title--PaddingInlineEnd: var(--pf-t--global--spacer--sm);
+    position: -webkit-sticky;
     position: sticky;
     top: 0;
-    background-color: var(--pf-v6-c-drawer__panel--BackgroundColor);
-    z-index: var(--pf-t--global--z-index--xs);
+    background-color: var(--pf-t--global--background--color--floating--default);
+    z-index: var(--pf-t--global--z-index--md);
   }
-
-  .pf-v6-c-nav__link {
-    --pf-v6-c-nav__link--PaddingBlockStart: var(--pf-t--global--spacer--200);
-    --pf-v6-c-nav__link--PaddingBlockEnd: var(--pf-t--global--spacer--200);
-    --pf-v6-c-nav__link--PaddingInlineStart: var(--pf-t--global--spacer--200);
-    --pf-v6-c-nav__link--PaddingInlineEnd: var(--pf-t--global--spacer--200);
-    --pf-v6-c-nav__link--FontWeight: 500;
-
-    font-family: var(--pf-t--chatbot--heading--font-family);
-
-    &:hover, &:focus {
-      --pf-v6-c-nav__link--hover--BackgroundColor: var(--pf-t--color--gray--10);
-    }
-
-    &.pf-m-current {
-      --pf-v6-c-nav__link--m-current--BackgroundColor: var(--pf-t--color--gray--10);
-      --pf-v6-c-nav__link--m-current--Color: var(--pf-t--color--black);
-    }
+  .pf-chatbot__menu-item {
+    --pf-v6-c-menu__item--PaddingInlineStart: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-menu__item--PaddingInlineEnd: var(--pf-t--global--spacer--sm);
+    padding-block-start: var(--pf-t--global--spacer--xs);
+    padding-block-end: var(--pf-t--global--spacer--xs);
+    color: var(--pf-t--global--text--color--regular);
+    font-size: var(--pf-t--global--font--size--body--lg);
+    font-weight: var(--pf-t--global--font--weight--body--default);
   }
-
-  .pf-v6-c-nav__link-text {
-    display: flex;
-    align-items: center;
-    gap: var(--pf-t--global--spacer--200);
+  .pf-chatbot__history-actions {
+    transform: rotate(90deg);
   }
 }
 
-
-// Chatbot Header - Menu (Drawer)
+// Chatbot Header - Drawer
 // ----------------------------------------------------------------------------
-.pf-chatbot__menu.pf-v6-c-drawer {
-  --pf-v6-c-drawer__panel--MinWidth: 384px;
-  --pf-v6-c-drawer__panel--xl--MinWidth: 384px;
-
-  position: absolute;
-  top: 0;
-  left: 0;
-  pointer-events: none;
-  z-index: calc(var(--pf-t--global--z-index--600) * 2);
-
-  // Expanded drawer
-  &.pf-m-expanded { pointer-events: auto; }
+.pf-chatbot__history.pf-v6-c-drawer {
+  --pf-v6-c-drawer__panel--MinWidth: 24rem;
+  --pf-v6-c-drawer__panel--xl--MinWidth: 24rem;
+  height: 70vh;
 
   // Drawer panel
   .pf-v6-c-drawer__panel {
-    --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--400);
-
-    overflow: hidden;
+    --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-t--global--background--color--floating--default);
+    --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--lg);
+    overflow-x: hidden;
+    overflow-y: hidden;
   }
 
   // Drawer head
   .pf-v6-c-drawer__head {
     --pf-v6-c-drawer__head--PaddingBlockStart: 0;
     --pf-v6-c-drawer__head--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--400);
+    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
 
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 48px;
+    height: var(--pf-t--global--spacer--2xl);
   }
 
   // Drawer actions
@@ -100,9 +95,11 @@
   // Close drawer
   .pf-v6-c-drawer__close {
     .pf-v6-c-button {
-      width: 48px;
-      height: 48px;
+      width: var(--pf-t--global--spacer--2xl);
+      height: var(--pf-t--global--spacer--2xl);
       border-radius: var(--pf-t--global--border--radius--pill);
+      justify-content: center;
+      align-items: center;
     }
   }
 
@@ -110,110 +107,52 @@
   .pf-v6-c-drawer__body {
     --pf-v6-c-drawer__panel__body--PaddingBlockStart: 0;
     --pf-v6-c-drawer__panel__body--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--400);
-    --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--400);
-    
+    --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
+
     overflow-y: auto;
+
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    grid-auto-rows: auto;
+
+    height: 70vh;
   }
 }
 
+// ============================================================================
+// Chatbot Display Mode - Docked
+// ============================================================================
+.pf-chatbot--docked {
+  .pf-chatbot__history.pf-v6-c-drawer {
+    height: 100vh;
+  }
+}
 
 // ============================================================================
 // Chatbot Display Mode - Fullscreen
 // ============================================================================
 .pf-chatbot--fullscreen {
-  .pf-chatbot__menu.pf-v6-c-drawer {
-    --pf-v6-c-drawer__panel--MinWidth: 0;
-    --pf-v6-c-drawer__panel--xl--MinWidth: 0;
-    position: static;
-    width: 0;
-
-    &.pf-m-expanded {
-      width: 384px;
+  .pf-chatbot__history.pf-v6-c-drawer {
+    height: 100vh;
+    .pf-v6-c-drawer__body {
+      width: 100%;
     }
+  }
+}
 
+// ============================================================================
+// Chatbot Display Mode - embedded
+// ============================================================================
+.pf-chatbot--embedded {
+  .pf-chatbot__history.pf-v6-c-drawer {
+    height: inherit;
+    .pf-v6-c-drawer__body {
+      width: 100%;
+      height: 100%;
+    }
     .pf-v6-c-drawer__panel {
-      // transition: none;
-
-      &::after {
-        --pf-v6-c-drawer--m-inline--m-expanded__panel--after--BackgroundColor: var(--pf-t--color--gray--10);
-      }
+      height: 100%;
     }
   }
-}
-
-
-// ============================================================================
-// Chatbot Display Mode - Embedded
-// ============================================================================
-@media screen and (min-width: 1024px) {
-  .pf-chatbot--embedded {
-    .pf-chatbot__menu.pf-v6-c-drawer {
-      --pf-v6-c-drawer__panel--MinWidth: 0;
-      --pf-v6-c-drawer__panel--xl--MinWidth: 0;
-      position: static;
-      width: 0;
-  
-      &.pf-m-expanded {
-        width: 384px;
-      }
-  
-      .pf-v6-c-drawer__panel {
-        // transition: none;
-  
-        &::after {
-          --pf-v6-c-drawer--m-inline--m-expanded__panel--after--BackgroundColor: var(--pf-t--color--gray--10);
-        }
-      }
-    }
-  }
-}
-
-
-// ============================================================================
-// Chatbot Dark Theme
-// ============================================================================
-.pf-v6-theme-dark {
-
-  .pf-chatbot__menu {
-    .pf-v6-c-nav__section-title {
-      --pf-v6-c-nav__section-title--Color: var(--pf-t--color--gray--40);
-    }
-
-    .pf-v6-c-nav__link {
-      &:hover, &:focus {
-        --pf-v6-c-nav__link--hover--BackgroundColor: var(--pf-t--color--gray--70);
-      }
-
-      &.pf-m-current {
-        --pf-v6-c-nav__link--m-current--BackgroundColor: var(--pf-t--color--gray--70);
-        --pf-v6-c-nav__link--m-current--Color: var(--pf-t--color--white);
-      }
-    }
-  }
-
-  .pf-chatbot--fullscreen {
-    .pf-chatbot__menu.pf-v6-c-drawer {  
-      .pf-v6-c-drawer__panel {
-        --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-t--color--gray--90);
-        &::after {
-          --pf-v6-c-drawer--m-inline--m-expanded__panel--after--BackgroundColor: var(--pf-t--color--gray--95);
-        }
-      }
-    }
-  }
-
-  @media screen and (min-width: 1024px) {
-    .pf-chatbot--embedded {
-      .pf-chatbot__menu.pf-v6-c-drawer {
-        .pf-v6-c-drawer__panel {
-          --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-t--color--gray--90);    
-          &::after {
-            --pf-v6-c-drawer--m-inline--m-expanded__panel--after--BackgroundColor: var(--pf-t--color--gray--95);
-          }
-        }
-      }
-    }
-  }
-
 }
