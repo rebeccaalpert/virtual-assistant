@@ -12,13 +12,15 @@ propComponents: [
 'Message',
 'PreviewAttachment',
 'AttachmentEdit',
-'ActionProps'
+'ActionProps',
+'PaginatedCardProps'
 ]
 ---
 
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
+import PaginatedCard from '@patternfly/virtual-assistant/dist/dynamic/PaginatedCard';
 import customImage from './custom_user_img.jpeg';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
 
@@ -61,6 +63,7 @@ Note that this example does not actually apply any edits to the attached file. T
 ### Messages actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:
+
 - Feedback responses that allow users to rate a message as "good" or "bad".
 - Copy and share controls that allow users to share the message content with others.
 - A listen action, that will read the message content out loud.
@@ -71,3 +74,12 @@ Note that the logic for the actions is not built into the component and must be 
 
 ```
 
+### Messages with sources
+
+You can add Sources to a message if you are using Retrieval-Augmented Generation.
+
+Sources allows you to paginate between any sources you provide the component.
+
+```js file="./MessageWithSources.tsx"
+
+```

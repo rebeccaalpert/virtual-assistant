@@ -60,6 +60,9 @@ export * from './MessageBar';
 export { default as MessageBox } from './MessageBox';
 export * from './MessageBox';
 
+export { default as PaginatedCard } from './PaginatedCard';
+export * from './PaginatedCard';
+
 export { default as PreviewAttachment } from './PreviewAttachment';
 export * from './PreviewAttachment';
 
