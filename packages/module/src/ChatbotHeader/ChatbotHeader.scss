@@ -85,11 +85,13 @@
   justify-content: center;
 
   .pf-v6-c-button__icon,
+  .pf-v6-c-menu-toggle__icon,
   .pf-v6-c-icon__content {
     color: var(--pf-t--chatbot--icon--fill);
   }
 
-  .pf-v6-c-button__icon {
+  .pf-v6-c-button__icon,
+  .pf-v6-c-menu-toggle__icon {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -99,6 +101,7 @@
   &:hover,
   &:focus {
     .pf-v6-c-button__icon,
+    .pf-v6-c-menu-toggle__icon,
     .pf-v6-c-icon__content {
       color: var(--pf-t--chatbot--icon--fill--hover);
     }
