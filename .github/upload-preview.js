@@ -1,4 +1,3 @@
-const fs = require('fs');
 const path = require('path');
 const { Octokit } = require('@octokit/rest');
 const octokit = new Octokit({ auth: process.env.GH_PR_TOKEN });
@@ -22,15 +21,14 @@ if (!uploadFolder) {
 const uploadFolderName = path.basename(uploadFolder);
 let uploadURL = `${repo}-${prnum ? `pr-virtual-assistant-${prnum}` : prbranch}`.replace(/[\/|\.]/g, '-');
 
-switch(uploadFolderName) {
+switch (uploadFolderName) {
   case 'coverage':
     uploadURL += '-a11y.surge.sh';
     break;
   case 'public':
     if (!prnum && prbranch === 'main') {
       uploadURL = 'https://pf-extensions.surge.sh/';
-    }
-    else {
+    } else {
       uploadURL += '.surge.sh';
     }
     break;
@@ -57,15 +55,16 @@ function tryAddComment(comment, commentBody) {
 }
 
 if (prnum) {
-  octokit.issues.listComments({
-    owner,
-    repo,
-    issue_number: prnum
-  })
-    .then(res => res.data)
-    .then(comments => {
+  octokit.issues
+    .listComments({
+      owner,
+      repo,
+      issue_number: prnum
+    })
+    .then((res) => res.data)
+    .then((comments) => {
       let commentBody = '';
-      const existingComment = comments.find(comment => comment.user.login === 'patternfly-build');
+      const existingComment = comments.find((comment) => comment.user.login === 'patternfly-build');
       if (existingComment) {
         commentBody += existingComment.body.trim();
         commentBody += '\n\n';
@@ -73,25 +72,28 @@ if (prnum) {
 
       if (uploadFolderName === 'public') {
         commentBody += tryAddComment(`Preview: https://${uploadURL}`, commentBody);
-      }
-      else if (uploadFolderName === 'coverage') {
+      } else if (uploadFolderName === 'coverage') {
         commentBody += tryAddComment(`A11y report: https://${uploadURL}`, commentBody);
       }
 
       if (existingComment) {
-        octokit.issues.updateComment({
-          owner,
-          repo,
-          comment_id: existingComment.id,
-          body: commentBody
-        }).then(() => console.log('Updated comment!'));
+        octokit.issues
+          .updateComment({
+            owner,
+            repo,
+            comment_id: existingComment.id,
+            body: commentBody
+          })
+          .then(() => console.log('Updated comment!'));
       } else {
-        octokit.issues.createComment({
-          owner,
-          repo,
-          issue_number: prnum,
-          body: commentBody
-        }).then(() => console.log('Created comment!'));
+        octokit.issues
+          .createComment({
+            owner,
+            repo,
+            issue_number: prnum,
+            body: commentBody
+          })
+          .then(() => console.log('Created comment!'));
       }
     });
 }
