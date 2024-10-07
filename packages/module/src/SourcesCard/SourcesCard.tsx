@@ -61,6 +61,14 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
 }: SourcesCardProps) => {
   const [page, setPage] = React.useState(1);
 
+  /* Icons appear uncentered due to PatternFly viewBox due to their shape in a round button */
+  React.useEffect(() => {
+    const leftIcon = document.getElementById('left-icon');
+    leftIcon?.setAttribute('viewBox', '0 0 280 500');
+    const rightIcon = document.getElementById('right-icon');
+    rightIcon?.setAttribute('viewBox', '0 0 200 500');
+  }, []);
+
   const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
@@ -69,12 +77,14 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   return (
     <div className="pf-chatbot__source">
       <span>{pluralize(sources.length, sourceWord, sourceWordPlural)}</span>
-      <Card className="pf-chatbot__paginated-card" {...props}>
+      <Card className="pf-chatbot__sources-card" {...props}>
         <CardTitle>{sources[page - 1].title}</CardTitle>
-        {sources[page - 1].body && <CardBody>{sources[page - 1].body}</CardBody>}
-        <CardFooter className="pf-chatbot__paginated-card-footer-container">
-          <div className="pf-chatbot__paginated-card-footer">
-            <nav className={`pf-chatbot__paginated-card-footer-buttons ${className}`} aria-label={paginationAriaLabel}>
+        {sources[page - 1].body && (
+          <CardBody className="pf-chatbot__sources-card-body">{sources[page - 1].body}</CardBody>
+        )}
+        <CardFooter className="pf-chatbot__sources-card-footer-container">
+          <div className="pf-chatbot__sources-card-footer">
+            <nav className={`pf-chatbot__sources-card-footer-buttons ${className}`} aria-label={paginationAriaLabel}>
               <Button
                 variant={ButtonVariant.plain}
                 isDisabled={isDisabled || page === 1}
@@ -87,7 +97,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                 aria-label={toPreviousPageAriaLabel}
               >
                 <Icon iconSize="xl">
-                  <AngleLeftIcon />
+                  <AngleLeftIcon id="left-icon" />
                 </Icon>
               </Button>
               <Button
@@ -102,7 +112,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                 }}
               >
                 <Icon isInline iconSize="xl">
-                  <AngleRightIcon />
+                  <AngleRightIcon id="right-icon" />
                 </Icon>
               </Button>
             </nav>

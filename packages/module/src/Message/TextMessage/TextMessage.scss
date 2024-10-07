@@ -4,6 +4,7 @@
 
 // Need to inline shorter text
 .pf-chatbot__message-text {
+  width: fit-content;
   padding: var(--pf-t--chatbot-message--type--padding);
   background-color: var(--pf-t--chatbot-message--type--background--color--default);
   border-radius: var(--pf-t--chatbot-message--type--border--radius);

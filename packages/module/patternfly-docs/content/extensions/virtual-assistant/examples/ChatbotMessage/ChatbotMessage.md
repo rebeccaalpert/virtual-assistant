@@ -76,9 +76,9 @@ Note that the logic for the actions is not built into the component and must be 
 
 ### Messages with sources
 
-You can add Sources to a message if you are using Retrieval-Augmented Generation.
+If you are using Retrieval-Augmented Generation, you may want to display sources.
 
-Sources allows you to paginate between any sources you provide the component.
+A `SourcesCard` allows you to paginate between any sources you provide.
 
 ```js file="./MessageWithSources.tsx"
 

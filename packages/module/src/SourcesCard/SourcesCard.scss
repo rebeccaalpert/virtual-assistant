@@ -3,18 +3,31 @@
   flex-direction: column;
   gap: var(--pf-t--global--spacer--sm);
   padding-block-start: var(--pf-t--global--spacer--sm);
+  max-width: 22.5rem;
 }
 
-.pf-chatbot__paginated-card {
+.pf-chatbot__sources-card {
   box-shadow: var(--pf-t--global--box-shadow--X--sm--default) var(--pf-t--global--box-shadow--Y--sm--default) 4px 0px
     #00000029;
 }
 
-.pf-chatbot__paginated-card-footer-container {
+.pf-chatbot__sources-card-body {
+  display: block;
+  display: -webkit-box;
+  height: 45px;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: var(--pf-t--global--spacer--md);
+}
+
+.pf-chatbot__sources-card-footer-container {
   border-top: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
   padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--md) var(--pf-t--global--spacer--sm)
     var(--pf-t--global--spacer--sm);
-  .pf-chatbot__paginated-card-footer {
+  .pf-chatbot__sources-card-footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
