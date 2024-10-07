@@ -12,7 +12,7 @@ import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
 import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
-import PaginatedCard, { PaginatedCardProps } from '../PaginatedCard';
+import SourcesCard, { SourcesCardProps } from '../SourcesCard';
 
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Role of the user sending the message */
@@ -45,7 +45,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
     share?: ActionProps;
     listen?: ActionProps;
   };
-  sources?: PaginatedCardProps;
+  sources?: SourcesCardProps;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -104,7 +104,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
                 {content}
               </Markdown>
             )}
-            {!isLoading && sources && <PaginatedCard {...sources} />}
+            {!isLoading && sources && <SourcesCard {...sources} />}
             {!isLoading && actions && <ResponseActions actions={actions} />}
           </div>
           {attachmentName && (

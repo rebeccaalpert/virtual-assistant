@@ -13,14 +13,14 @@ propComponents: [
 'PreviewAttachment',
 'AttachmentEdit',
 'ActionProps',
-'PaginatedCardProps'
+'SourcesCardProps'
 ]
 ---
 
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
-import PaginatedCard from '@patternfly/virtual-assistant/dist/dynamic/PaginatedCard';
+import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard';
 import customImage from './custom_user_img.jpeg';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
 

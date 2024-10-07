@@ -17,7 +17,7 @@ import {
 } from '@patternfly/react-core';
 import { AngleLeftIcon, AngleRightIcon } from '@patternfly/react-icons';
 
-export interface PaginatedCardProps extends CardProps {
+export interface SourcesCardProps extends CardProps {
   /** Additional classes for the pagination navigation container. */
   className?: string;
   /** Flag indicating if the pagination is disabled. */
@@ -44,7 +44,7 @@ export interface PaginatedCardProps extends CardProps {
   onSetPage?: (event: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => void;
 }
 
-const PaginatedCard: React.FunctionComponent<PaginatedCardProps> = ({
+const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   className,
   isDisabled,
   ofWord = 'of',
@@ -58,7 +58,7 @@ const PaginatedCard: React.FunctionComponent<PaginatedCardProps> = ({
   onPreviousClick,
   onSetPage,
   ...props
-}: PaginatedCardProps) => {
+}: SourcesCardProps) => {
   const [page, setPage] = React.useState(1);
 
   const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
@@ -117,4 +117,4 @@ const PaginatedCard: React.FunctionComponent<PaginatedCardProps> = ({
   );
 };
 
-export default PaginatedCard;
+export default SourcesCard;
