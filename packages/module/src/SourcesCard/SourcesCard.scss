@@ -23,6 +23,10 @@
   margin-bottom: var(--pf-t--global--spacer--md);
 }
 
+.pf-chatbot__sources-card-no-footer {
+  margin-bottom: var(--pf-t--global--spacer--lg);
+}
+
 .pf-chatbot__sources-card-footer-container {
   border-top: var(--pf-t--global--border--width--regular) solid var(--pf-t--global--border--color--default);
   padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--md) var(--pf-t--global--spacer--sm)
