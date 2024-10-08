@@ -25,12 +25,12 @@ import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard'
 import customImage from './custom_user_img.jpeg';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
 
-
 The `content` prop of the `<Message>` component is passed to a `<Markdown>` component (from [react-markdown](https://remarkjs.github.io/react-markdown/)), which is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
 
 ### Bot messages
 
-Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users. The chatbot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
+Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users.
+The chatbot can display different content types (via `content`), including plain text, code, or a loading animation (via `isLoading`).
 
 <br />
 
@@ -52,9 +52,15 @@ Messages from users have a different background color, in order to differentiate
 
 When [attachments](/patternfly-ai/chatbot/chatbot-attachments) are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details. Selecting the file can open a preview modal, which allows users to view or make edits to the file contents.
 
-The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
+<br />
+
+The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will trigger the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
+
+<br />
 
 If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`, they both default to overlaying the default `displayMode` of the `<Chatbot>` component.
+
+<br />
 
 Note that this example does not actually apply any edits to the attached file. That logic depends on the implementation.
 
@@ -69,6 +75,8 @@ You can add actions to a message, to allow users to interact with the message co
 - Feedback responses that allow users to rate a message as "good" or "bad".
 - Copy and share controls that allow users to share the message content with others.
 - A listen action, that will read the message content out loud.
+
+<br />
 
 Note that the logic for the actions is not built into the component and must be implemented by the consuming application.
 

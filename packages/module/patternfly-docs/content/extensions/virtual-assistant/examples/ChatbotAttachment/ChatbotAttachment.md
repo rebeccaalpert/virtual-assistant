@@ -23,13 +23,14 @@ import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAler
 
 We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
 
-### Attachment chip 
+### Attachment chip
 
-When an attachment is successfully uploaded, a chip will appear in the message box. There are several chip variants that cover different attachment states, including: 
-- **Plain:** Default attachment chips, which display the filename and extension.
+When an attachment is successfully uploaded, a chip will appear in the message box. There are several chip variants that cover different attachment states, including:
+
+- **Plain:** Default attachment chips, which display the file name and extension.
 - **Closeable:** Attachments that can be dismissed.
-- **Clickable:** Attachments that can be selected, typically to open file details.
-- **Loading:** Attachments that are still being uploaded. 
+- **Clickable:** Attachments that can be select, typically to open file details.
+- **Loading:** Attachments that are still being uploaded.
 
 ```js file="./FileDetailsLabel.tsx"
 
@@ -57,7 +58,7 @@ When an attachment upload fails, a [danger alert](/components/alert) is displaye
 
 ```
 
-### Attachment dropzone 
+### Attachment dropzone
 
 An attachment dropzone allows users to upload files via drag and drop.
 

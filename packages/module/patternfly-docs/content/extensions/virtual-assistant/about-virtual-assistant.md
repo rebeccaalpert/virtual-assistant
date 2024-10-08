@@ -1,7 +1,7 @@
 ---
 section: PatternFly-AI
 subsection: Chatbot
-id: About chatbot
+id: About the PatternFly chatbot
 sortValue: 1
 ---
 

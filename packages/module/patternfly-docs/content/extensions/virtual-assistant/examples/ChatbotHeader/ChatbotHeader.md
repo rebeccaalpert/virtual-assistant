@@ -45,13 +45,18 @@ import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
 The chatbot header is persistent, and contains the title for the chatbot window, as well as any related controls and actions.
 
+<br />
+
 The `<ChatbotHeader>` has 2 sections:
+
 - `<ChatbotHeaderMain>` contains the title and an optional menu toggle:
   - `<ChatbotHeaderTitle>` handles the layout and display of a title or image at different responsive sizes.
   - `<ChatbotHeaderMenu>` (optional) is placed on the left side of the header and used to toggle a chat history menu.
 - `<ChatbotHeaderActions>` contains any additional controls:
-  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that matches the chatbot styles.
+  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that is matches the chatbot styles.
   - The `<ChatbotHeaderOptionsDropdown>` component is a dropdown with a menu toggle that is intended to be used to update chatbot settings (like the display mode).
+
+<br />
 
 Your `<ChatbotHeader>` code structure should look like this:
 
@@ -78,12 +83,14 @@ By default, `<HeaderTitle>` renders any children that are passed in. Optionally,
 
 ### Header options
 
-There are a variety of options and customizations you can make to the header, to adjust how information is displayed, or to add additional controls. 
+There are a variety of options and customizations you can make to the header, to adjust how information is displayed, or to add additional controls.
 
+<br />
 
-In this example, select the respective checkbox to toggle these features: 
-- **Menu:** Users can select the menu toggle to open a menu of additional options or actions. 
-- **Left-aligned logo** 
+In this example, select the respective checkbox to toggle these features:
+
+- **Menu:** Users can select the menu toggle to open a menu of additional options or actions.
+- **Left-aligned logo**
 - **Centered logo**
 - **Selector dropdown:** Users can choose from preselected options in a dropdown menu. For example, they can toggle between AI models.
 - **Options dropdown:** Users can select chatbot options from a menu. For example, they can switch between chatbot display modes.
@@ -91,4 +98,3 @@ In this example, select the respective checkbox to toggle these features:
 ```js file="./ChatbotHeaderBasic.tsx"
 
 ```
-

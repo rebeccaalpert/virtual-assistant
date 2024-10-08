@@ -18,7 +18,7 @@ import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotTog
 
 ### Basic toggle
 
-To allow users to open and close the chatbot window as needed, add a toggle. 
+To allow users to open and close the chatbot window as needed, add a toggle.
 
 ```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
