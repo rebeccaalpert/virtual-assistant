@@ -80,10 +80,12 @@ This demo displays a basic chatbot, which includes:
 
 ### Embedded chatbot
 
-This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in a consuming application. Based on viewport size, it responsively switches between small (overlay/dock) and large (fullscreen) layouts. This demo includes:
+This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in a consuming application. This demo includes:
 
-2. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
-3. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) with:
+1. A [PatternFly Page](/components/page) with a sidebar and masthead
+2. A [`<Chatbot>`](/patternfly-ai/chatbot/chatbot) container.
+3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
+4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) with:
 
 - A `<ChatbotWelcomePrompt>`
 - An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)

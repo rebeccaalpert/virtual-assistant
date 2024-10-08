@@ -5,7 +5,6 @@ import {
   Brand,
   DropdownList,
   DropdownItem,
-  PageSection,
   Page,
   Masthead,
   MastheadMain,
@@ -167,6 +166,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
+  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
   const displayMode = ChatbotDisplayMode.embedded;
   // Autu-scrolls to the latest message
@@ -256,7 +256,13 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     <Masthead>
       <MastheadMain>
         <MastheadToggle>
-          <PageToggleButton variant="plain" aria-label="Global navigation" isSidebarOpen={true} id="fill-nav-toggle">
+          <PageToggleButton
+            variant="plain"
+            aria-label="Global navigation"
+            isSidebarOpen={isSidebarOpen}
+            onSidebarToggle={() => setIsSidebarOpen(!isSidebarOpen)}
+            id="fill-nav-toggle"
+          >
             <BarsIcon />
           </PageToggleButton>
         </MastheadToggle>
@@ -270,92 +276,87 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   );
 
   const sidebar = (
-    <PageSidebar isSidebarOpen={true} id="fill-sidebar">
+    <PageSidebar isSidebarOpen={isSidebarOpen} id="fill-sidebar">
       <PageSidebarBody>Navigation</PageSidebarBody>
     </PageSidebar>
   );
 
   return (
-    <Page masthead={masthead} sidebar={sidebar}>
-      <PageSection padding={{ default: 'noPadding' }} variant="secondary">
-        <Chatbot displayMode={displayMode}>
-          <ChatbotConversationHistoryNav
-            displayMode={displayMode}
-            onDrawerToggle={() => {
-              setIsDrawerOpen(!isDrawerOpen);
+    <Page masthead={masthead} sidebar={sidebar} isContentFilled>
+      <Chatbot displayMode={displayMode}>
+        <ChatbotConversationHistoryNav
+          displayMode={displayMode}
+          onDrawerToggle={() => {
+            setIsDrawerOpen(!isDrawerOpen);
+            setConversations(initialConversations);
+          }}
+          isDrawerOpen={isDrawerOpen}
+          activeItemId="1"
+          // eslint-disable-next-line no-console
+          onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
+          conversations={conversations}
+          onNewChat={() => {
+            setIsDrawerOpen(!isDrawerOpen);
+            setMessages([]);
+            setConversations(initialConversations);
+          }}
+          handleTextInputChange={(value: string) => {
+            if (value === '') {
               setConversations(initialConversations);
-            }}
-            isDrawerOpen={isDrawerOpen}
-            activeItemId="1"
-            // eslint-disable-next-line no-console
-            onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
-            conversations={conversations}
-            onNewChat={() => {
-              setIsDrawerOpen(!isDrawerOpen);
-              setMessages([]);
-              setConversations(initialConversations);
-            }}
-            handleTextInputChange={(value: string) => {
-              if (value === '') {
-                setConversations(initialConversations);
-              }
-              // this is where you would perform search on the items in the drawer
-              // and update the state
-              const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
-              setConversations(newConversations);
-            }}
-            drawerContent={
-              <>
-                <ChatbotHeader>
-                  <ChatbotHeaderMain>
-                    <ChatbotHeaderMenu
-                      aria-expanded={isDrawerOpen}
-                      onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)}
-                    />
-                    <ChatbotHeaderTitle>{horizontalLogo}</ChatbotHeaderTitle>
-                  </ChatbotHeaderMain>
-                  <ChatbotHeaderActions>
-                    <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
-                      <DropdownList>
-                        <DropdownItem value="Granite 7B" key="granite">
-                          Granite 7B
-                        </DropdownItem>
-                        <DropdownItem value="Llama 3.0" key="llama">
-                          Llama 3.0
-                        </DropdownItem>
-                        <DropdownItem value="Mistral 3B" key="mistral">
-                          Mistral 3B
-                        </DropdownItem>
-                      </DropdownList>
-                    </ChatbotHeaderSelectorDropdown>
-                  </ChatbotHeaderActions>
-                </ChatbotHeader>
-                <ChatbotContent>
-                  <MessageBox>
-                    <ChatbotWelcomePrompt
-                      title="Hello, Chatbot User"
-                      description="How may I help you today?"
-                      prompts={welcomePrompts}
-                    />
-                    {messages.map((message) => (
-                      <Message key={message.name} {...message} />
-                    ))}
-                    <div ref={scrollToBottomRef}></div>
-                  </MessageBox>
-                </ChatbotContent>
-                <ChatbotFooter>
-                  <MessageBar
-                    onSendMessage={handleSend}
-                    hasMicrophoneButton
-                    isSendButtonDisabled={isSendButtonDisabled}
-                  />
-                  <ChatbotFootnote {...footnoteProps} />
-                </ChatbotFooter>
-              </>
             }
-          ></ChatbotConversationHistoryNav>
-        </Chatbot>
-      </PageSection>
+            // this is where you would perform search on the items in the drawer
+            // and update the state
+            const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
+            setConversations(newConversations);
+          }}
+          drawerContent={
+            <>
+              <ChatbotHeader>
+                <ChatbotHeaderMain>
+                  <ChatbotHeaderMenu aria-expanded={isDrawerOpen} onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)} />
+                  <ChatbotHeaderTitle>{horizontalLogo}</ChatbotHeaderTitle>
+                </ChatbotHeaderMain>
+                <ChatbotHeaderActions>
+                  <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>
+                    <DropdownList>
+                      <DropdownItem value="Granite 7B" key="granite">
+                        Granite 7B
+                      </DropdownItem>
+                      <DropdownItem value="Llama 3.0" key="llama">
+                        Llama 3.0
+                      </DropdownItem>
+                      <DropdownItem value="Mistral 3B" key="mistral">
+                        Mistral 3B
+                      </DropdownItem>
+                    </DropdownList>
+                  </ChatbotHeaderSelectorDropdown>
+                </ChatbotHeaderActions>
+              </ChatbotHeader>
+              <ChatbotContent>
+                <MessageBox>
+                  <ChatbotWelcomePrompt
+                    title="Hello, Chatbot User"
+                    description="How may I help you today?"
+                    prompts={welcomePrompts}
+                  />
+                  {messages.map((message) => (
+                    <Message key={message.name} {...message} />
+                  ))}
+                  <div ref={scrollToBottomRef}></div>
+                </MessageBox>
+              </ChatbotContent>
+              <ChatbotFooter>
+                <MessageBar
+                  onSendMessage={handleSend}
+                  hasMicrophoneButton
+                  isSendButtonDisabled={isSendButtonDisabled}
+                />
+                <ChatbotFootnote {...footnoteProps} />
+              </ChatbotFooter>
+            </>
+          }
+        ></ChatbotConversationHistoryNav>
+      </Chatbot>
     </Page>
   );
 };
