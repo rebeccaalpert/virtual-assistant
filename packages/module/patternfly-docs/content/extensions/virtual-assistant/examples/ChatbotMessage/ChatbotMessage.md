@@ -15,6 +15,7 @@ propComponents: [
 'ActionProps',
 'SourcesCardProps'
 ]
+sortValue: 6
 ---
 
 import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
@@ -32,6 +33,9 @@ The `content` prop of the `<Message>` component is passed to a `<Markdown>` comp
 
 Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users.
 The chatbot can display different content types (via `content`), including plain text, code, or a loading animation (via `isLoading`).
+
+<br />
+
 By default, a date and timestamp is displayed with each message. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
 
 ```js file="./BotMessage.tsx"
@@ -50,9 +54,15 @@ Messages from users utilize different background colors, in order to differentia
 
 When attachments are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details. Selecting the file can open a preview modal, which allows users to view or make edits to the file contents.
 
+<br />
+
 The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will trigger the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
 
+<br />
+
 If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`, they both default to overlaying the default `displayMode` of the `<Chatbot>` component.
+
+<br />
 
 Note that this example does not actually apply any edits to the attached file. That logic depends on the implementation.
 
@@ -67,6 +77,8 @@ You can add actions to a message, to allow users to interact with the message co
 - Feedback responses that allow users to rate a message as "good" or "bad".
 - Copy and share controls that allow users to share the message content with others.
 - A listen action, that will read the message content out loud.
+
+<br />
 
 Note that the logic for the actions is not built into the component and must be implemented by the consuming application.
 
