@@ -76,9 +76,7 @@ Note that the logic for the actions is not built into the component and must be 
 
 ### Messages with sources
 
-If you are using Retrieval-Augmented Generation, you may want to display sources.
-
-A `SourcesCard` allows you to paginate between any sources you provide.
+If you are using Retrieval-Augmented Generation, you may want to display sources. Sources allow you to paginate between any sources you provide. The API for a source requires a link at minimum, but we strongly recommend providing a more descriptive title and body so users have enough context. The title is limited to one line and the body is limited to two lines.
 
 ```js file="./MessageWithSources.tsx"
 

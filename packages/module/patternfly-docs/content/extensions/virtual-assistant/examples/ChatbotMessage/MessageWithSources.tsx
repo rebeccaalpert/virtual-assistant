@@ -9,27 +9,100 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
   };
 
   return (
-    <Message
-      role="bot"
-      content="Example content with updated timestamp text"
-      timestamp="1 hour ago"
-      sources={{
-        sources: [
-          {
-            title: <a href="#">Getting started with Red Hat OpenShift</a>,
-            body: 'Red Hat OpenShift on IBM Cloud is a managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud ...'
-          },
-          {
-            title: <a href="#">Azure Red Hat OpenShift documentation</a>,
-            body: 'Microsoft Azure Red Hat OpenShift allows you to deploy a production ready Red Hat OpenShift cluster in Azure ...'
-          },
-          {
-            title: <a href="#">OKD Documentation: Home</a>,
-            body: 'OKD is a distribution of Kubernetes optimized for continuous application development and multi-tenant deployment. OKD also serves as the upstream code base upon ...'
-          }
-        ],
-        onSetPage
-      }}
-    />
+    <>
+      <Message
+        role="bot"
+        content="Example with sources"
+        sources={{
+          sources: [
+            {
+              title: 'Getting started with Red Hat OpenShift',
+              link: '#',
+              body: 'Red Hat OpenShift on IBM Cloud is a managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud ...'
+            },
+            {
+              title: 'Azure Red Hat OpenShift documentation',
+              link: '#',
+              body: 'Microsoft Azure Red Hat OpenShift allows you to deploy a production ready Red Hat OpenShift cluster in Azure ...'
+            },
+            {
+              title: 'OKD Documentation: Home',
+              link: '#',
+              body: 'OKD is a distribution of Kubernetes optimized for continuous application development and multi-tenant deployment. OKD also serves as the upstream code base upon ...'
+            }
+          ],
+          onSetPage
+        }}
+      />
+      <Message
+        role="bot"
+        content="Example with very long sources"
+        sources={{
+          sources: [
+            {
+              title: 'Getting started with Red Hat OpenShift AI and other products',
+              link: '#',
+              body: 'Red Hat OpenShift on IBM Cloud is a managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud ...'
+            },
+            {
+              title: 'Azure Red Hat OpenShift documentation | Red Hat',
+              link: '#',
+              body: 'Microsoft Azure Red Hat OpenShift allows you to deploy a production ready Red Hat OpenShift cluster in Azure ...'
+            }
+          ],
+          onSetPage
+        }}
+      />
+      <Message
+        role="bot"
+        content="Example with only one source"
+        sources={{
+          sources: [
+            {
+              title: 'Getting started with Red Hat OpenShift',
+              link: '#',
+              body: 'Red Hat OpenShift on IBM Cloud is a managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud ...'
+            }
+          ],
+          onSetPage
+        }}
+      />
+      <Message
+        role="bot"
+        content="Example with sources that include a title and link"
+        sources={{
+          sources: [
+            { title: 'Getting started with Red Hat OpenShift', link: '#' },
+            {
+              title: 'Azure Red Hat OpenShift documentation',
+              link: '#'
+            },
+            {
+              title: 'OKD Documentation: Home',
+              link: '#'
+            }
+          ],
+          onSetPage
+        }}
+      />
+      <Message
+        role="bot"
+        content="Example with link-only sources (not recommended)"
+        sources={{
+          sources: [
+            {
+              link: '#'
+            },
+            {
+              link: '#'
+            },
+            {
+              link: '#'
+            }
+          ],
+          onSetPage
+        }}
+      />
+    </>
   );
 };

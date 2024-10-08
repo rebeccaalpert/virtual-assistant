@@ -15,7 +15,6 @@ import {
   Icon,
   pluralize
 } from '@patternfly/react-core';
-import { AngleLeftIcon, AngleRightIcon } from '@patternfly/react-icons';
 
 export interface SourcesCardProps extends CardProps {
   /** Additional classes for the pagination navigation container. */
@@ -27,7 +26,7 @@ export interface SourcesCardProps extends CardProps {
   /** Accessible label for the pagination component. */
   paginationAriaLabel?: string;
   /** Content rendered inside the paginated card */
-  sources: { title: React.ReactNode; body?: React.ReactNode }[];
+  sources: { title?: React.ReactNode; link: string; body?: React.ReactNode }[];
   /** Label for the English word "source" */
   sourceWord?: string;
   /** Plural for sourceWord */
@@ -61,14 +60,6 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
 }: SourcesCardProps) => {
   const [page, setPage] = React.useState(1);
 
-  /* Icons appear uncentered due to PatternFly viewBox due to their shape in a round button */
-  React.useEffect(() => {
-    const leftIcon = document.getElementById('left-icon');
-    leftIcon?.setAttribute('viewBox', '0 0 280 500');
-    const rightIcon = document.getElementById('right-icon');
-    rightIcon?.setAttribute('viewBox', '0 0 180 500');
-  }, []);
-
   const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
@@ -78,7 +69,9 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
     <div className="pf-chatbot__source">
       <span>{pluralize(sources.length, sourceWord, sourceWordPlural)}</span>
       <Card className="pf-chatbot__sources-card" {...props}>
-        <CardTitle>{sources[page - 1].title}</CardTitle>
+        <CardTitle className="pf-chatbot__sources-card-title">
+          <a href={sources[page - 1].link}>{sources[page - 1].title ?? `Source ${page}`}</a>
+        </CardTitle>
         {sources[page - 1].body && (
           <CardBody
             className={`pf-chatbot__sources-card-body ${sources.length === 1 && 'pf-chatbot__sources-card-no-footer'}`}
@@ -102,7 +95,18 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                   aria-label={toPreviousPageAriaLabel}
                 >
                   <Icon iconSize="xl">
-                    <AngleLeftIcon id="left-icon" />
+                    {/* these are inline because the viewBox that works in a round icon is different than the PatternFly default */}
+                    <svg
+                      className="pf-v6-svg"
+                      viewBox="0 0 280 500"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      role="img"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path d="M31.7 239l136-136c9.4-9.4 24.6-9.4 33.9 0l22.6 22.6c9.4 9.4 9.4 24.6 0 33.9L127.9 256l96.4 96.4c9.4 9.4 9.4 24.6 0 33.9L201.7 409c-9.4 9.4-24.6 9.4-33.9 0l-136-136c-9.5-9.4-9.5-24.6-.1-34z"></path>
+                    </svg>
                   </Icon>
                 </Button>
                 <Button
@@ -117,7 +121,18 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                   }}
                 >
                   <Icon isInline iconSize="xl">
-                    <AngleRightIcon id="right-icon" />
+                    {/* these are inline because the viewBox that works in a round icon is different than the PatternFly default */}
+                    <svg
+                      className="pf-v6-svg"
+                      viewBox="0 0 180 500"
+                      fill="currentColor"
+                      aria-hidden="true"
+                      role="img"
+                      width="1em"
+                      height="1em"
+                    >
+                      <path d="M224.3 273l-136 136c-9.4 9.4-24.6 9.4-33.9 0l-22.6-22.6c-9.4-9.4-9.4-24.6 0-33.9l96.4-96.4-96.4-96.4c-9.4-9.4-9.4-24.6 0-33.9L54.3 103c9.4-9.4 24.6-9.4 33.9 0l136 136c9.5 9.4 9.5 24.6.1 34z"></path>
+                    </svg>
                   </Icon>
                 </Button>
               </nav>
