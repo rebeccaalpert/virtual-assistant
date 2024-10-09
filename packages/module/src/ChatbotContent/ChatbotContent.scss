@@ -6,6 +6,7 @@
   background-color: var(--pf-t--chatbot--background);
   overflow-y: auto;
   overflow: hidden; // needed in Red Hat Developer Hub workspace
+  flex: 1; // needed in Composer AI
 }
 
 // ============================================================================

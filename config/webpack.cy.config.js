@@ -40,10 +40,7 @@ const JSConfig = {
     ]
   },
   resolve: {
-    extensions: ['.tsx', '.ts', '.js'],
-    fallback: {
-      path: require.resolve('path-browserify')
-    }
+    extensions: ['.tsx', '.ts', '.js']
   },
   output: {
     filename: 'bundle.js',

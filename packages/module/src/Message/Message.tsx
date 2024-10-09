@@ -15,6 +15,8 @@ import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions
 import SourcesCard, { SourcesCardProps } from '../SourcesCard';
 
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
+  /** Unique id for message */
+  id?: string;
   /** Role of the user sending the message */
   role: 'user' | 'bot';
   /** Message content */
