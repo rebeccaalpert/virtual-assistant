@@ -25,14 +25,12 @@ import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard'
 import customImage from './custom_user_img.jpeg';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
 
-## Messages
 
-The `content` prop of the `<Message>` component is passed to a `<Markdown>` component from [react-markdown](https://remarkjs.github.io/react-markdown/). `<Markdown>` is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
+The `content` prop of the `<Message>` component is passed to a `<Markdown>` component (from [react-markdown](https://remarkjs.github.io/react-markdown/)), which is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
 
 ### Bot messages
 
-Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users.
-The chatbot can display different content types (via `content`), including plain text, code, or a loading animation (via `isLoading`).
+Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users. The chatbot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
 
 <br />
 
@@ -44,7 +42,7 @@ By default, a date and timestamp is displayed with each message. You can update 
 
 ### User messages
 
-Messages from users utilize different background colors, in order to differentiate from bot messages. They can also display a custom avatar that is uploaded by the user.
+Messages from users have a different background color, in order to differentiate from bot messages. You can also display a custom avatar that is uploaded by the user.
 
 ```js file="./UserMessage.tsx"
 
@@ -52,11 +50,11 @@ Messages from users utilize different background colors, in order to differentia
 
 ### Messages with attachments
 
-When attachments are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details. Selecting the file can open a preview modal, which allows users to view or make edits to the file contents.
+When [attachments](/patternfly-ai/chatbot/chatbot-attachments) are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details. Selecting the file can open a preview modal, which allows users to view or make edits to the file contents.
 
 <br />
 
-The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will trigger the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
+The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
 
 <br />
 
