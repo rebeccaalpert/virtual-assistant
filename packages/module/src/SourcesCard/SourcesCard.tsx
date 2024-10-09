@@ -13,7 +13,8 @@ import {
   CardProps,
   CardTitle,
   Icon,
-  pluralize
+  pluralize,
+  Truncate
 } from '@patternfly/react-core';
 
 export interface SourcesCardProps extends CardProps {
@@ -26,7 +27,7 @@ export interface SourcesCardProps extends CardProps {
   /** Accessible label for the pagination component. */
   paginationAriaLabel?: string;
   /** Content rendered inside the paginated card */
-  sources: { title?: React.ReactNode; link: string; body?: React.ReactNode }[];
+  sources: { title?: string; link: string; body?: React.ReactNode | string }[];
   /** Label for the English word "source" */
   sourceWord?: string;
   /** Plural for sourceWord */
@@ -65,12 +66,19 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
     onSetPage && onSetPage(_evt, newPage);
   };
 
+  const renderTitle = (title?: string) => {
+    if (title) {
+      return <Truncate content={title} />;
+    }
+    return `Source ${page}`;
+  };
+
   return (
     <div className="pf-chatbot__source">
       <span>{pluralize(sources.length, sourceWord, sourceWordPlural)}</span>
       <Card className="pf-chatbot__sources-card" {...props}>
         <CardTitle className="pf-chatbot__sources-card-title">
-          <a href={sources[page - 1].link}>{sources[page - 1].title ?? `Source ${page}`}</a>
+          <a href={sources[page - 1].link}>{renderTitle(sources[page - 1].title)}</a>
         </CardTitle>
         {sources[page - 1].body && (
           <CardBody

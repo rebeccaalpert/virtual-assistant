@@ -11,18 +11,6 @@
     #00000029;
 }
 
-.pf-chatbot__sources-card-title {
-  display: block;
-  display: -webkit-box;
-  height: var(--pf-v6-c-card__title-text--LineHeight);
-  -webkit-line-clamp: 1;
-  line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-  text-overflow: ellipsis;
-  color: var(--pf-t--global--text--color--link--default); // for ellipsis, if present
-}
-
 .pf-chatbot__sources-card-body {
   display: block;
   display: -webkit-box;
