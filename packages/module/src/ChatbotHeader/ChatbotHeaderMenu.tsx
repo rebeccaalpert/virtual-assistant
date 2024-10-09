@@ -10,12 +10,15 @@ export interface ChatbotHeaderMenuProps {
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
   tooltipProps?: TooltipProps;
+  /** Aria label for menu */
+  menuAriaLabel?: string;
 }
 
 export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
   className,
   onMenuToggle,
-  tooltipProps
+  tooltipProps,
+  menuAriaLabel = 'Toggle menu'
 }: ChatbotHeaderMenuProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
     <Tooltip content="Menu" position="bottom" {...tooltipProps}>
@@ -24,7 +27,7 @@ export const ChatbotHeaderMenu: React.FunctionComponent<ChatbotHeaderMenuProps> 
         variant="plain"
         aria-describedby="pf-chatbot__tooltip--toggle-menu"
         onClick={onMenuToggle}
-        aria-label="Toggle menu"
+        aria-label={menuAriaLabel}
         icon={
           <Icon size="xl" isInline>
             <BarsIcon />

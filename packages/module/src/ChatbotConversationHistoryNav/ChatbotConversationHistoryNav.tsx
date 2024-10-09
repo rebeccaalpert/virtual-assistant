@@ -64,6 +64,8 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   drawerContent?: React.ReactNode;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
+  /** Aria label for search input */
+  searchInputAriaLabel?: string;
   /** A callback for when the input value changes. Omit to hide input field */
   handleTextInputChange?: (value: string) => void;
   /** Display mode of chatbot */
@@ -79,7 +81,8 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   newChatButtonText = 'New chat',
   drawerContent,
   onNewChat,
-  searchInputPlaceholder,
+  searchInputPlaceholder = 'Search...',
+  searchInputAriaLabel = 'Filter menu items',
   handleTextInputChange,
   displayMode,
   ...props
@@ -163,9 +166,9 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       {handleTextInputChange && (
         <div className="pf-chatbot__input">
           <SearchInput
-            aria-label="Filter menu items"
+            aria-label={searchInputAriaLabel}
             onChange={(_event, value) => handleTextInputChange(value)}
-            placeholder={searchInputPlaceholder ?? 'Search...'}
+            placeholder={searchInputPlaceholder}
           />
         </div>
       )}

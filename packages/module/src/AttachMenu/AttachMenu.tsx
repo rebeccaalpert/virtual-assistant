@@ -35,6 +35,8 @@ export interface AttachMenuProps extends DropdownProps {
   onSelect?: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
+  /** Aria label for search input */
+  searchInputAriaLabel?: string;
   /** Toggle to be rendered */
   toggle: DropdownToggleProps | ((toggleRef: React.RefObject<any>) => React.ReactNode);
 }
@@ -49,6 +51,7 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
   onOpenChangeKeys,
   onSelect,
   searchInputPlaceholder,
+  searchInputAriaLabel = 'Filter menu items',
   toggle,
   ...props
 }: AttachMenuProps) => (
@@ -65,7 +68,7 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
     <MenuSearch>
       <MenuSearchInput>
         <SearchInput
-          aria-label="Filter menu items"
+          aria-label={searchInputAriaLabel}
           onChange={(_event, value) => handleTextInputChange(value)}
           placeholder={searchInputPlaceholder}
         />
