@@ -12,6 +12,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
   return (
     <>
       <Message
+        name="User"
         role="user"
         content="Here is an uploaded file"
         attachmentName="auth-operator.yml"
