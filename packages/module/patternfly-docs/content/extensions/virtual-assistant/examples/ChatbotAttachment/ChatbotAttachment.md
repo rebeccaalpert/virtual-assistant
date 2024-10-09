@@ -25,10 +25,6 @@ We are using [react-dropzone](https://react-dropzone.js.org) for opening the fil
 
 ### Attachment chip
 
-When an attachment is successfully uploaded, a chip will appear in the message box. There are several chip variants that cover different attachment states, including:
-
-When an attachment is successfully uploaded, a chip will appear in the message box. There are several chip variants that cover different attachment states, including:
-
 - **Plain:** Default attachment chips, which display the filename and extension.
 - **Closeable:** Attachments that can be dismissed.
 - **Clickable:** Attachments that can be selected, typically to open file details.

@@ -28,11 +28,7 @@ import { ChatbotContent } from '@patternfly/virtual-assistant/dist/dynamic/Chatb
 
 The chatbot conversation history is contained in an interactive drawer that allows users to interact with previous conversations or start a new conversation.
 
-<br />
-
 The `<ChatbotConversationHistoryNav>` component is a wrapper placed within the `<Chatbot>` that contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
-
-<br />
 
 The code structure will look like this:
 

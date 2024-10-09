@@ -81,7 +81,6 @@ By default, `<HeaderTitle>` renders any children that are passed in. Optionally,
 
 There are a variety of options and customizations you can make to the header, to adjust how information is displayed, or to add additional controls.
 
-<br />
 
 In this example, select the respective checkbox to toggle these features:
 
