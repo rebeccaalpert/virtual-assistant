@@ -29,8 +29,7 @@ The `content` prop of the `<Message>` component is passed to a `<Markdown>` comp
 
 ### Bot messages
 
-Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users.
-The chatbot can display different content types (via `content`), including plain text, code, or a loading animation (via `isLoading`).
+Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users. The chatbot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
 
 <br />
 
@@ -54,7 +53,7 @@ When [attachments](/patternfly-ai/chatbot/chatbot-attachments) are shared and di
 
 <br />
 
-The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will trigger the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
+The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
 
 <br />
 

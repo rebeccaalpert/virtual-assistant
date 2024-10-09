@@ -45,18 +45,14 @@ import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
 The chatbot header is persistent, and contains the title for the chatbot window, as well as any related controls and actions.
 
-<br />
-
 The `<ChatbotHeader>` has 2 sections:
 
 - `<ChatbotHeaderMain>` contains the title and an optional menu toggle:
   - `<ChatbotHeaderTitle>` handles the layout and display of a title or image at different responsive sizes.
   - `<ChatbotHeaderMenu>` (optional) is placed on the left side of the header and used to toggle a chat history menu.
 - `<ChatbotHeaderActions>` contains any additional controls:
-  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that is matches the chatbot styles.
+  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that matches the chatbot styles.
   - The `<ChatbotHeaderOptionsDropdown>` component is a dropdown with a menu toggle that is intended to be used to update chatbot settings (like the display mode).
-
-<br />
 
 Your `<ChatbotHeader>` code structure should look like this:
 

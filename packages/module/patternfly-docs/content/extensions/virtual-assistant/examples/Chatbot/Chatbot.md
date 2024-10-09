@@ -27,6 +27,8 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 The PatternFly chatbot is anchored to the bottom of the screen, in a separate window that overlays other content in the UI. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
 
+<br />
+
 The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes and supports both light and dark themes.
 
 ```js file="./ChatbotContainer.tsx" isFullscreen
@@ -56,7 +58,9 @@ Your code structure should look like this:
 ### Welcome prompt
 
 To introduce users to the chatbot experience, a welcome prompt can fill the message box before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
+
 <br />
+
 To provide users with a more specific direction, you can also include optional welcome prompts.
 
 ```js file="./ChatbotWelcomePrompt.tsx"
