@@ -1,6 +1,6 @@
 import React, { PropsWithChildren } from 'react';
 import { Flex, Stack, StackItem } from '@patternfly/react-core';
-import path from 'path';
+import path from 'path-browserify';
 interface FileDetailsProps {
   /** Name of file, including extension */
   fileName: string;

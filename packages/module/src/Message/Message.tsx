@@ -14,6 +14,8 @@ import FileDetailsLabel from '../FileDetailsLabel/FileDetailsLabel';
 import ResponseActions, { ActionProps } from '../ResponseActions/ResponseActions';
 
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
+  /** Unique id for message */
+  id?: string;
   /** Role of the user sending the message */
   role: 'user' | 'bot';
   /** Message content */

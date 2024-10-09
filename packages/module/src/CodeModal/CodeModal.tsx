@@ -2,7 +2,7 @@
 // Code Modal - Chatbot Modal with Code Editor
 // ============================================================================
 import React from 'react';
-import path from 'path';
+import path from 'path-browserify';
 
 // Import PatternFly components
 import { CodeEditor } from '@patternfly/react-code-editor';
