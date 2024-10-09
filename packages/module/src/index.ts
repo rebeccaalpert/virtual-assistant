@@ -69,6 +69,9 @@ export * from './ResponseActions';
 export { default as SourceDetailsMenuItem } from './SourceDetailsMenuItem';
 export * from './SourceDetailsMenuItem';
 
+export { default as SourcesCard } from './SourcesCard';
+export * from './SourcesCard';
+
 export { default as SystemMessageEntry } from './SystemMessageEntry';
 export * from './SystemMessageEntry';
 

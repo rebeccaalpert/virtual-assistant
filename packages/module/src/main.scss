@@ -21,6 +21,7 @@
 @import './Message/CodeBlockMessage/CodeBlockMessage';
 @import './Message/TextMessage/TextMessage';
 @import './Message/MessageLoading';
+@import './SourcesCard/SourcesCard.scss';
 
 :where(:root) {
   // ============================================================================
