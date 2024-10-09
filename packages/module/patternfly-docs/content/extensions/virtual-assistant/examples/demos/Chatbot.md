@@ -23,6 +23,7 @@ propComponents:
     'Message',
     'MessageBarWithAttachMenuProps'
   ]
+sortValue: 2
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';

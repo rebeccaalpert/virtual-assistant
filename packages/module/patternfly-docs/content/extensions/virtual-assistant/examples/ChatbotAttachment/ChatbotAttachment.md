@@ -23,7 +23,6 @@ import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAler
 
 We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
 
-
 ### Attachment chip 
 
 When an attachment is successfully uploaded, a chip will appear in the message box. There are several chip variants that cover different attachment states, including: 
