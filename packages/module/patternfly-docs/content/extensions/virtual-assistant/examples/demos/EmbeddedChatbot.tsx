@@ -158,7 +158,7 @@ const initialConversations = {
   ]
 };
 
-export const ChatbotDemo: React.FunctionComponent = () => {
+export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
   const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
   const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
   const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
