@@ -94,7 +94,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                   }}
                   aria-label={toPreviousPageAriaLabel}
                 >
-                  <Icon iconSize="xl">
+                  <Icon iconSize="lg">
                     {/* these are inline because the viewBox that works in a round icon is different than the PatternFly default */}
                     <svg
                       className="pf-v6-svg"
@@ -120,7 +120,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                     handleNewPage(event, newPage);
                   }}
                 >
-                  <Icon isInline iconSize="xl">
+                  <Icon isInline iconSize="lg">
                     {/* these are inline because the viewBox that works in a round icon is different than the PatternFly default */}
                     <svg
                       className="pf-v6-svg"
