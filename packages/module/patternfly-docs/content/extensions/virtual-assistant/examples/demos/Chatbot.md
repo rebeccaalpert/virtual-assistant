@@ -80,24 +80,20 @@ This demo displays a basic chatbot, which includes:
 
 ### Embedded chatbot
 
-This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in a consuming application. This demo includes:
+This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in your product. This demo includes:
 
-1. A [PatternFly Page](/components/page) with a sidebar and masthead
+1. A [PatternFly page](/components/page) with a sidebar and masthead
 2. A [`<Chatbot>`](/patternfly-ai/chatbot/chatbot) container.
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot#chatbot-content-and-message-box) with:
-
-- A `<ChatbotWelcomePrompt>`
-- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
-- Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
-
+   - A `<ChatbotWelcomePrompt>`
+   - An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
+   - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
-
-- [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-to-text)
-- Sending a message to the chatbot.
-- Receiving a response from a backend AI tool with a loading message state.
-
-6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history-nav) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
+   - [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-to-text)
+   - Sending a message to the chatbot.
+   - Receiving a response from a backend AI tool with a loading message state.
+6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/chatbot-conversation-history-nav) that can be toggled by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
 ```js file="./EmbeddedChatbot.tsx" isFullscreen
 

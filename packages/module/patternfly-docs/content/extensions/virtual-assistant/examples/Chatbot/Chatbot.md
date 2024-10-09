@@ -24,7 +24,7 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 ### Container
 
-The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes. The "embedded" display mode is meant to be used within a [PatternFly Page](/components/page) or other container within a consuming application.
+The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes. The "embedded" display mode is meant to be used within a [PatternFly page](/components/page) or other container within your product.
 
 ```js file="./ChatbotContainer.tsx" isFullscreen
 
