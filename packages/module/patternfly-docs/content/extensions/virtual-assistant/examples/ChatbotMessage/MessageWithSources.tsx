@@ -11,6 +11,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
   return (
     <>
       <Message
+        name="Bot"
         role="bot"
         content="Example with sources"
         sources={{
@@ -35,6 +36,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
         }}
       />
       <Message
+        name="Bot"
         role="bot"
         content="Example with very long sources"
         sources={{
@@ -54,6 +56,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
         }}
       />
       <Message
+        name="Bot"
         role="bot"
         content="Example with only one source"
         sources={{
@@ -68,6 +71,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
         }}
       />
       <Message
+        name="Bot"
         role="bot"
         content="Example with sources that include a title and link"
         sources={{
@@ -86,6 +90,7 @@ export const AttachmentMenuExample: React.FunctionComponent = () => {
         }}
       />
       <Message
+        name="Bot"
         role="bot"
         content="Example with link-only sources (not recommended)"
         sources={{
