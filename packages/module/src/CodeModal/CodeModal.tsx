@@ -145,7 +145,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
     </Modal>
   );
 
-  if (displayMode === ChatbotDisplayMode.fullscreen && isModalOpen) {
+  if ((displayMode === ChatbotDisplayMode.fullscreen || displayMode === ChatbotDisplayMode.embedded) && isModalOpen) {
     return <div className="pf-v6-c-backdrop pf-chatbot__backdrop">{modal}</div>;
   }
   return modal;
