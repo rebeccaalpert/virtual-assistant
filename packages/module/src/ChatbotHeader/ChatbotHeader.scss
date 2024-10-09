@@ -50,14 +50,17 @@
 }
 
 // ============================================================================
-// Chatbot Display Mode - Fullscreen
+// Chatbot Display Mode - Fullscreen and Embedded
 // ============================================================================
-.pf-chatbot--fullscreen {
-  .pf-chatbot__header {
-    background-color: var(--pf-t--global--background--color--primary--default);
-  }
-  .pf-chatbot__header__divider {
-    display: none;
+@media screen and (min-width: 64rem) {
+  .pf-chatbot--fullscreen,
+  .pf-chatbot--embedded {
+    .pf-chatbot__header {
+      background-color: var(--pf-t--global--background--color--primary--default);
+    }
+    .pf-chatbot__header__divider {
+      display: none;
+    }
   }
 }
 

@@ -43,6 +43,13 @@ export const ChatbotContainerDemo: React.FunctionComponent = () => {
               label="Fullscreen"
               id="fullscreen"
             />
+            <Radio
+              isChecked={displayMode === ChatbotDisplayMode.embedded}
+              onChange={() => setDisplayMode(ChatbotDisplayMode.embedded)}
+              name="basic-inline-radio"
+              label="Embedded"
+              id="embedded"
+            />
           </FormGroup>
           <Checkbox
             label="Display chatbot container"

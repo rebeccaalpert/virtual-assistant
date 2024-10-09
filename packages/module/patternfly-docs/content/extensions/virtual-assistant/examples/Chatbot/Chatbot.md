@@ -24,7 +24,7 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 ### Container
 
-The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes.
+The `Chatbot` component is the chatbot container which adapts to various display modes, as well as both light and dark themes. The "embedded" display mode is meant to be used within a [PatternFly page](/components/page) or other container within your product.
 
 ```js file="./ChatbotContainer.tsx" isFullscreen
 
@@ -50,6 +50,7 @@ It usually contains a `<ChatbotMessageBox>` for displaying messages.
 ### Welcome prompt
 
 To introduce users to the chatbot experience, a welcome prompt can fill the message box before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
+
 ```js file="./ChatbotWelcomePrompt.tsx"
 
 ```
