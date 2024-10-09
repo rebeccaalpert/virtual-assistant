@@ -18,6 +18,8 @@ export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, '
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
   tooltipProps?: TooltipProps;
+  /** Aria label for menu toggle */
+  menuToggleAriaLabel?: string;
 }
 
 export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeaderOptionsDropdownProps> = ({
@@ -25,6 +27,7 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
   children,
   onSelect,
   tooltipProps,
+  menuToggleAriaLabel = 'Chatbot options',
   ...props
 }: ChatbotHeaderOptionsDropdownProps) => {
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = React.useState(false);
@@ -34,7 +37,7 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
       <MenuToggle
         className="pf-chatbot__button--toggle-options"
         variant="plain"
-        aria-label="Chatbot options"
+        aria-label={menuToggleAriaLabel}
         ref={toggleRef}
         icon={
           <Icon iconSize="xl" isInline>
