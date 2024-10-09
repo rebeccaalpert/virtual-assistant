@@ -4,6 +4,7 @@ import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 
 export const AttachmentMenuExample: React.FunctionComponent = () => (
   <Message
+    name="Bot"
     role="bot"
     content="Example content with updated timestamp text"
     timestamp="1 hour ago"
