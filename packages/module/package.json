@@ -1,26 +1,8 @@
 {
-  "name": "@patternfly/virtual-assistant",
-  "version": "1.0.0-prerelease.0",
-  "description": "Virtual assistant used for Red Hat projects.",
-  "main": "dist/cjs/index.js",
-  "module": "dist/esm/index.js",
-  "scripts": {
-    "build": "sass src/main.scss dist/css/main.css && npm run build:index && npm run build:js && npm run build:esm && npm run build:fed:packages",
-    "build:watch": "npm run build:js && npm run build:esm -- --watch && npm run build:fed:packages -- --watch",
-    "build:esm": "tsc --build --verbose ./tsconfig.json",
-    "build:fed:packages": "node generate-fed-package-json.js",
-    "build:js": "tsc -p tsconfig.cjs.json",
-    "build:index": "node generate-index.js",
-    "clean": "rimraf dist",
-    "docs:develop": "pf-docs-framework start",
-    "docs:build": "pf-docs-framework build all --output public",
-    "docs:serve": "pf-docs-framework serve public --port 5001",
-    "docs:screenshots": "pf-docs-framework screenshots --urlPrefix http://localhost:5001",
-    "test:a11y": "patternfly-a11y --config patternfly-a11y.config",
-    "serve:a11y": "serve coverage"
-  },
-  "repository": "git+https://github.com/patternfly/virtual-assistant.git",
-  "author": "Red Hat",
+  "name": "@patternfly/virtual-assistant-root",
+  "private": true,
+  "version": "0.0.0",
+  "description": "This library provides a virtual assistant.",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/patternfly/virtual-assistant/issues"
