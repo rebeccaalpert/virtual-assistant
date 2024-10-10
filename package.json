@@ -86,7 +86,6 @@
     "whatwg-fetch": "^3.6.20"
   },
   "dependencies": {
-    "@patternfly/virtual-assistant": "^1.0.0-prerelease.0",
     "path-browserify": "^1.0.1",
     "react-dropzone": "^14.2.3"
   }

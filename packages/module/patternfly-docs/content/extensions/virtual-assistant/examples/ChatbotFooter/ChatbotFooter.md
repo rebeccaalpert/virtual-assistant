@@ -44,7 +44,6 @@ Footnotes can be static text or a button that opens a popover.
 
 In Safari and Chrome, you will see a microphone button in the message bar if `hasMicrophoneButton` is passed to `<MessageBar>`. The button will only appear if `'SpeechRecognition'` or `'webkitSpeechRecognition'` are available in `window`. This does not currently work in Firefox.
 
-
 By default the message bar supports file uploads via an attach button. Setting `hasAttachButton` to `false` will disable that feature.
 
 ```js file="./ChatbotMessageBar.tsx"
@@ -55,8 +54,7 @@ By default the message bar supports file uploads via an attach button. Setting `
 
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments.
 
-
-Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/chatbot-attachments#dropzone)
+Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/chatbot-attachments#attachment-dropzone)
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 
