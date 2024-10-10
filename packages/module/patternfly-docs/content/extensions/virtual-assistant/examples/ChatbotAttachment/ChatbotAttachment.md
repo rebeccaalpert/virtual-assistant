@@ -23,9 +23,11 @@ import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAler
 
 We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
 
-### Attachment chip
+### Attachment label
 
-- **Plain:** Default attachment chips, which display the filename and extension.
+When an attachment is successfully uploaded, a label will appear in the message box. There are several label variants that cover different attachment states, including:
+
+- **Plain:** Default attachment labels, which display the filename and extension.
 - **Closeable:** Attachments that can be dismissed.
 - **Clickable:** Attachments that can be selected, typically to open file details.
 - **Loading:** Attachments that are still being uploaded.
@@ -42,7 +44,7 @@ We are using [react-dropzone](https://react-dropzone.js.org) for opening the fil
 
 ### Editable attachments
 
-To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, users can make edits to a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
+To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, you can allow users can make edits to a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
 
 ```js file="./AttachmentEdit.tsx"
 

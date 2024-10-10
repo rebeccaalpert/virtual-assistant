@@ -58,7 +58,7 @@ import PFIconLogoReverse from '../ChatbotHeader/PF-IconLogo-Reverse.svg';
 
 This demo displays a basic chatbot, which includes:
 
-1. The [`<ChatbotToggle>`](/patternfly-ai/chatbot/chatbot-toggle) that controls the [`<Chatbot>`](/patternfly-ai/chatbot/chatbot) container.
+1. The [`<ChatbotToggle>`](/patternfly-ai/chatbot/chatbot-toggle) that controls the [`<Chatbot>` container.](/patternfly-ai/chatbot/chatbot-container)
 2. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>` that changes its presentation depending on the display mode.
 3. The ability to swap display modes via `<ChatbotHeaderOptionsDropdown>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:

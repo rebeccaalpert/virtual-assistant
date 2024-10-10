@@ -25,7 +25,7 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 ### Container
 
-The PatternFly chatbot is anchored to the bottom of the screen, in a separate window that overlays other content in the UI. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
+The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
 
 The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes and supports both light and dark themes. 
 
