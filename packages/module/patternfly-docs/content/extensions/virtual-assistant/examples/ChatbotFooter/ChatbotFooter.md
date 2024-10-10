@@ -56,7 +56,7 @@ By default the message bar supports file uploads via an attach button. Setting `
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments. 
 
 
-Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/chatbot-attachments#dropzone) 
+Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/chatbot-attachments#attachment-dropzone) 
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 

@@ -50,7 +50,7 @@ The code structure will look like this:
 </Chatbot>
 ```
 
-The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main chatbot demo](/patternfly-ai/chatbot/chatbot/react-demos#basic-chatbot).):
+The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main chatbot demo](/patternfly-ai/chatbot/chatbot-container/react-demos#basic-chatbot).):
 - `Default` and `docked` display modes display the conversation history on top of the rest of the chatbot content, with a PatternFly backdrop between the drawer panel and drawer content.
 - `Fullscreen` and `embedded` display modes display the conversation history in line with the drawer content.
 
