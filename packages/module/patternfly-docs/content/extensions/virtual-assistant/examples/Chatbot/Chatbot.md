@@ -27,7 +27,7 @@ import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/Cha
 
 The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
 
-The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes and supports both light and dark themes. 
+The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes. 
 
 The "embedded" display mode is meant to be used within a [PatternFly page](/components/page) or other container within your product.
 
@@ -37,9 +37,9 @@ The "embedded" display mode is meant to be used within a [PatternFly page](/comp
 
 ### Content and message box
 
-The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer).
+The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`.](/patternfly-ai/chatbot/chatbot-footer)
 
-It usually contains a `<ChatbotMessageBox>` for displaying messages.
+`<ChatbotContent>` usually contains a `<ChatbotMessageBox>` for displaying messages.
 
 Your code structure should look like this:
 

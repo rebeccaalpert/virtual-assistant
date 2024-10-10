@@ -13,11 +13,11 @@ It is important to leverage AI in a way that improves the experiences of your us
 
 ## How to use the chatbot
 
-To illustrate the capabilities of the chatbot, we offer a [chatbot demo](/patternfly-ai/chatbot/chatbot-container/react-demos) and a [chatbot attachments demo](/patternfly-ai/chatbot/chatbot-attachments/react-demos). To learn how to write for chatbot experiences, refer to our [chatbot writing guidelines.](/patternfly-ai/conversation-design/#writing-for-chatbots)
+To illustrate the capabilities of the chatbot, we offer a [chatbot container demo](/patternfly-ai/chatbot/chatbot-container/react-demos) and a [chatbot attachments demo](/patternfly-ai/chatbot/chatbot-attachments/react-demos). To learn how to write for chatbot experiences, refer to our [chatbot writing guidelines.](/patternfly-ai/conversation-design/#writing-for-chatbots)
 
 We currently support the follow features to customize your chatbot experience: 
-- [The chatbot window](/patternfly-ai/chatbot/chatbot-container)
-- [A toggle for the chatbot window](/patternfly-ai/chatbot/chatbot-toggle)
+- [The chatbot container](/patternfly-ai/chatbot/chatbot-container)
+- [A toggle for the chatbot container](/patternfly-ai/chatbot/chatbot-toggle)
 - [The chatbot header](/patternfly-ai/chatbot/chatbot-header)
 - [The chatbot footer](/patternfly-ai/chatbot/chatbot-footer)
 - [Messages, from the chatbot and from users](/patternfly-ai/chatbot/chatbot-messages)

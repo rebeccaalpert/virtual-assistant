@@ -21,7 +21,7 @@ import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZon
 import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAlert';
 
-We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
+We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io.](https://uppy.io/)
 
 ### Attachment label
 
@@ -38,13 +38,17 @@ When an attachment is successfully uploaded, a label will appear in the message 
 
 ### Attachment preview
 
+To allow users to preview the contents of an attachment, load a read-only view of the file contents in a new modal.
+
+When users select the "edit" button it will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file. This logic is not shown in this example, but can be seen in [editable attachments.](#editable-attachments)
+
 ```js file="./PreviewAttachment.tsx"
 
 ```
 
 ### Editable attachments
 
-To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, you can allow users can make edits to a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
+To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, you can allow users to edit a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
 
 ```js file="./AttachmentEdit.tsx"
 

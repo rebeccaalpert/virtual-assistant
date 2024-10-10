@@ -41,7 +41,7 @@ By default, a date and timestamp is displayed with each message. You can update 
 
 ### User messages
 
-Messages from users have a different background color, in order to differentiate from bot messages. You can also display a custom avatar that is uploaded by the user.
+Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user.
 
 ```js file="./UserMessage.tsx"
 
@@ -49,13 +49,13 @@ Messages from users have a different background color, in order to differentiate
 
 ### Messages with attachments
 
-When [attachments](/patternfly-ai/chatbot/chatbot-attachments) are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details. Selecting the file can open a preview modal, which allows users to view or make edits to the file contents.
+When [attachments](/patternfly-ai/chatbot/chatbot-attachments) are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details in a label. Selecting the file label can open a preview modal, which allows users to view or make edits to the file contents.
 
 The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
 
 If a `displayMode` is not passed to `<PreviewAttachment>` or `<AttachmentEdit>`, they both default to overlaying the default `displayMode` of the `<Chatbot>` component.
 
-Note that this example does not actually apply any edits to the attached file. That logic depends on the implementation.
+**Note:** This example does not actually apply any edits to the attached file. That logic depends on the implementation.
 
 ```js file="./MessageWithAttachment.tsx"
 
@@ -69,7 +69,7 @@ You can add actions to a message, to allow users to interact with the message co
 - Copy and share controls that allow users to share the message content with others.
 - A listen action, that will read the message content out loud.
 
-Note that the logic for the actions is not built into the component and must be implemented by the consuming application.
+**Note:** The logic for the actions is not built into the component and must be implemented by the consuming application.
 
 ```js file="./MessageWithResponseActions.tsx"
 
@@ -77,7 +77,9 @@ Note that the logic for the actions is not built into the component and must be 
 
 ### Messages with sources
 
-If you are using Retrieval-Augmented Generation, you may want to display sources. Sources allow you to paginate between any sources you provide. The API for a source requires a link at minimum, but we strongly recommend providing a more descriptive title and body so users have enough context. The title is limited to one line and the body is limited to two lines.
+If you are using Retrieval-Augmented Generation, you may want to display sources in a message. Passing `sources` to `<Message>` allows you to paginate between the sources you provide. 
+
+The API for a source requires a link at minimum, but we strongly recommend providing a more descriptive title and body description so users have enough context. The title is limited to 1 line and the body is limited to 2 lines.
 
 ```js file="./MessageWithSources.tsx"
 

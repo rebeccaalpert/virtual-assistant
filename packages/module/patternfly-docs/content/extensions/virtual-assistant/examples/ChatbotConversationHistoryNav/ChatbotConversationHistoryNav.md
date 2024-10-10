@@ -26,9 +26,9 @@ import { ChatbotContent } from '@patternfly/virtual-assistant/dist/dynamic/Chatb
 
 ### Conversation history navigation
 
-The chatbot conversation history is contained in an interactive drawer that allows users to interact with previous conversations or start a new conversation.
+The chatbot conversation history is contained in an interactive drawer, where users can interact with previous conversations or start a new conversation.
 
-The `<ChatbotConversationHistoryNav>` component is a wrapper placed within the `<Chatbot>` that contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
+The `<ChatbotConversationHistoryNav>` component is a wrapper placed within `<Chatbot>`, which contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
 
 The code structure will look like this:
 
@@ -57,7 +57,11 @@ The conversation history drawer looks different depending on the `displayMode` o
 
 ### Drawer with search and "new chat" button
 
-In the conversation history drawer, users can search previous chatbot conversations via an input field. They can also start new conversations via a "New chat" button. Both the search input field and "New chat" buttons are optional.
+In the conversation history drawer, users can search previous chatbot conversations via an input field. To customize the placeholder text, use `searchInputPlaceholder`. Provide an aria label via `searchInputAriaLabel`.
+
+They can also start new conversations via a "New chat" button. To customize the button label, use `newChatButtonText`.
+
+Both the search input field and "New chat" buttons are optional.
 
 ```js file="./ChatbotHeaderDrawer.tsx"
 
@@ -65,7 +69,7 @@ In the conversation history drawer, users can search previous chatbot conversati
 
 ### Drawer with conversation actions
 
-Actions can be added to conversations with the `menuItems` prop. Optionally, you can also add a `className` to the menu with `menuClassName`, change the default aria-label and tooltip content with `label`, and add an `onSelect` callback for when a user selects an item.
+Actions can be added to conversations with `menuItems`. Optionally, you can also add a `className` to the menu via `menuClassName`, change the default aria-label and tooltip content via `label`, or add an `onSelect` callback for when a user selects an item.
 
 ```js file="./ChatbotHeaderDrawerWithActions.tsx"
 
