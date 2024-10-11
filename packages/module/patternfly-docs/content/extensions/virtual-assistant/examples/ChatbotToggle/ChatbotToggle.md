@@ -23,3 +23,11 @@ To allow users to open and close the chatbot window as needed, add a toggle.
 ```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
 ```
+
+### Custom toggle icon 
+
+A custom icon can be passed to the toggle. To ensure the icon is visible in both light and dark themes, use an SVG image and set `fill="currentColor"`.
+
+```js file="./CustomClosedIcon.tsx" isFullscreen
+
+```
