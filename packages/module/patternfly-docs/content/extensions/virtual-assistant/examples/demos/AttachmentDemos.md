@@ -82,9 +82,6 @@ This demo displays unique attachment features, including:
 
    - Displays attached files, using a [`<FileDetailsLabel>`](/patternfly-ai/chatbot/chatbot-attachments/#attachment-label) component.
    - Demonstrates custom handling of file uploads, using the `handleAttach` in `<MessageBar>` and `handleFileDrop` in `<FileDropZone>`.
-   - # Demonstrates how to define the `attachMenuProps` in the `<MessageBar>` to create a menu that allows users to select the source of an item they're attaching.
-   - Displays attached files, using a [`<FileDetailsLabel>`](/patternfly-ai/chatbot/chatbot-attachments/#attachment-label) component.
-   - Demonstrates custom handling of file uploads, using the `handleAttach` in `<MessageBar>` and `handleFileDrop` in `<FileDropZone>`.
    - Demonstrates how to define the `attachMenuProps` in the `<MessageBar>` to create a menu that allows users to select the source of an item they're attaching.
 
 This demo includes broader chatbot features, including:

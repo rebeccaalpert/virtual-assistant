@@ -40,8 +40,6 @@ When an attachment is successfully uploaded, a label will appear in the message 
 
 To allow users to preview the contents of an attachment, load a read-only view of the file contents in a new modal.
 
-When users select the "edit" button it will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file. This logic is not shown in this example, but can be seen in [editable attachments.](#editable-attachments)
-
 ```js file="./PreviewAttachment.tsx"
 
 ```
