@@ -47,11 +47,11 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   /** Role of the user sending the message */
   role: 'user' | 'bot';
   /** Message content */
-  content: string;
+  content?: string;
   /** Name of the user */
   name?: string;
   /** Avatar src for the user */
-  avatar?: string;
+  avatar: string;
   /** Timestamp for the message */
   timestamp?: string;
   /** Set this to true if message is being loaded */
@@ -95,19 +95,6 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   attachments,
   ...props
 }: MessageProps) => {
-  // Configure default values
-  const DEFAULTS = {
-    user: {
-      name: 'User',
-      avatar: 'https://img.freepik.com/premium-photo/graphic-designer-digital-avatar-generative-ai_934475-9292.jpg'
-    },
-    bot: {
-      name: 'Bot',
-      avatar:
-        'https://yt3.googleusercontent.com/ej8uvIe1AIFiJQXBwY9cfJmt0kO1cAeWxpBqG_cJndGHx95mFq1F8WakSoXIjtcprTbMQJoqH5M=s900-c-k-c0x00ffffff-no-rj'
-    }
-  };
-
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
@@ -119,7 +106,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       {...props}
     >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
-      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt="" />
+      <Avatar src={avatar} alt="" />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
           {name && (
