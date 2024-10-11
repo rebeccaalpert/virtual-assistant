@@ -93,12 +93,14 @@ export default MessageLoading;
 
 const initialMessages: MessageProps[] = [
   {
+    id: '1',
     role: 'user',
     content: 'Hello, can you give me an example of what you can do?',
     name: 'User',
     avatar: userAvatar
   },
   {
+    id: '2',
     role: 'bot',
     content: markdown,
     name: 'Bot',
@@ -165,6 +167,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
+  const [announcement, setAnnouncement] = React.useState<string>();
   const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
 
   // Autu-scrolls to the latest message
@@ -189,21 +192,30 @@ export const ChatbotDemo: React.FunctionComponent = () => {
     setDisplayMode(value as ChatbotDisplayMode);
   };
 
+  // you will likely want to come up with your own unique id function; this is for demo purposes only
+  const generateId = () => {
+    const id = Date.now() + Math.random();
+    return id.toString();
+  };
+
   const handleSend = (message: string) => {
     setIsSendButtonDisabled(true);
     const newMessages: MessageProps[] = [];
     // we can't use structuredClone since messages contains functions, but we can't mutate
     // items that are going into state or the UI won't update correctly
     messages.forEach((message) => newMessages.push(message));
-    newMessages.push({ role: 'user', content: message, name: 'User', avatar: userAvatar });
+    newMessages.push({ id: generateId(), role: 'user', content: message, name: 'User', avatar: userAvatar });
     newMessages.push({
+      id: generateId(),
       role: 'bot',
       content: 'API response goes here',
-      name: 'bot',
+      name: 'Bot',
       isLoading: true,
       avatar: patternflyAvatar
     });
     setMessages(newMessages);
+    // make announcement to assistive devices that new messages have been added
+    setAnnouncement(`Message from User: ${message}. Message from Bot is loading.`);
 
     // this is for demo purposes only; in a real situation, there would be an API response we would wait for
     setTimeout(() => {
@@ -213,9 +225,10 @@ export const ChatbotDemo: React.FunctionComponent = () => {
       newMessages.forEach((message) => loadedMessages.push(message));
       loadedMessages.pop();
       loadedMessages.push({
+        id: generateId(),
         role: 'bot',
         content: 'API response goes here',
-        name: 'bot',
+        name: 'Bot',
         isLoading: false,
         avatar: patternflyAvatar,
         actions: {
@@ -232,6 +245,8 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         }
       });
       setMessages(loadedMessages);
+      // make announcement to assistive devices that new message has loaded
+      setAnnouncement(`Message from Bot: API response goes here`);
       setIsSendButtonDisabled(false);
     }, 5000);
   };
@@ -357,16 +372,30 @@ export const ChatbotDemo: React.FunctionComponent = () => {
                 </ChatbotHeaderActions>
               </ChatbotHeader>
               <ChatbotContent>
-                <MessageBox>
+                {/* Update the announcement prop on MessageBox whenever a new message is sent
+                 so that users of assistive devices receive sufficient context  */}
+                <MessageBox announcement={announcement}>
                   <ChatbotWelcomePrompt
                     title="Hello, Chatbot User"
                     description="How may I help you today?"
                     prompts={welcomePrompts}
                   />
-                  {messages.map((message) => (
-                    <Message key={message.name} {...message} />
-                  ))}
-                  <div ref={scrollToBottomRef}></div>
+                  {/* This code block enables scrolling to the top of the last message.
+                  You can instead choose to move the div with scrollToBottomRef on it below 
+                  the map of messages, so that users are forced to scroll to the bottom.
+                  If you are using streaming, you will want to take a different approach; 
+                  see: https://github.com/patternfly/virtual-assistant/issues/201#issuecomment-2400725173 */}
+                  {messages.map((message, index) => {
+                    if (index === messages.length - 1) {
+                      return (
+                        <>
+                          <div ref={scrollToBottomRef}></div>
+                          <Message key={message.id} {...message} />
+                        </>
+                      );
+                    }
+                    return <Message key={message.id} {...message} />;
+                  })}
                 </MessageBox>
               </ChatbotContent>
               <ChatbotFooter>
