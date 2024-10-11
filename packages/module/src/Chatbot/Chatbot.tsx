@@ -50,7 +50,7 @@ export const Chatbot: React.FunctionComponent<ChatbotProps> = ({
       initial="hidden"
       animate={isVisible ? 'visible' : 'hidden'}
     >
-      {children}
+      {isVisible ? children : undefined}
     </motion.div>
   );
 };
