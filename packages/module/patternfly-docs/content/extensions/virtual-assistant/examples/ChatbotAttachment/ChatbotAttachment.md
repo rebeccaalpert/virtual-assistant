@@ -11,6 +11,7 @@ source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents: ['AttachMenu', 'AttachmentEdit', 'FileDetails', 'FileDetailsLabel', 'FileDropZone', 'PreviewAttachment']
+sortValue: 7
 ---
 
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
@@ -20,42 +21,49 @@ import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZon
 import { PreviewAttachment } from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAlert';
 
-We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io](https://uppy.io/).
+We are using [react-dropzone](https://react-dropzone.js.org) for opening the file dialog and handling drag and drop. It does not process files or provide any way to make HTTP requests to a server. If you need this, [react-dropzone](https://react-dropzone.js.org) suggests [filepond](https://pqina.nl/filepond/) or [uppy.io.](https://uppy.io/)
 
-### Dialog for editing attachments
+### Attachment label
 
-```js file="./AttachmentEdit.tsx"
+When an attachment is successfully uploaded, a label will appear in the message box. There are several label variants that cover different attachment states, including:
 
-```
-
-### Error displayed when attachment fails
-
-```js file="./AttachmentError.tsx"
-
-```
-
-### Details of file attached to chat conversation
-
-The file extension on the uploaded file is reflected in the text below the file name.
-
-```js file="./FileDetails.tsx"
-
-```
-
-### Interactive chip representing uploading file
+- **Plain:** Default attachment labels, which display the filename and extension.
+- **Closeable:** Attachments that can be dismissed.
+- **Clickable:** Attachments that can be selected, typically to open file details.
+- **Loading:** Attachments that are still being uploaded.
 
 ```js file="./FileDetailsLabel.tsx"
 
 ```
 
-### Dropzone for uploading files via drag and drop
+### Attachment preview
 
-```js file="./FileDropZone.tsx"
+To allow users to preview the contents of an attachment, load a read-only view of the file contents in a new modal.
+
+```js file="./PreviewAttachment.tsx"
 
 ```
 
-### Preview attachment in modal
+### Editable attachments
 
-```js file="./PreviewAttachment.tsx"
+To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, you can allow users to edit a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
+
+```js file="./AttachmentEdit.tsx"
+
+```
+
+### Failed attachment error
+
+When an attachment upload fails, a [danger alert](/components/alert) is displayed to provide details about the reason for failure.
+
+```js file="./AttachmentError.tsx"
+
+```
+
+### Attachment dropzone
+
+An attachment dropzone allows users to upload files via drag and drop.
+
+```js file="./FileDropZone.tsx"
 
 ```

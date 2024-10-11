@@ -11,11 +11,14 @@ source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
 propComponents: ['ChatbotToggle']
+sortValue: 3
 ---
 
 import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
 
-### Basic example
+### Basic toggle
+
+To allow users to open and close the chatbot window as needed, add a toggle.
 
 ```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
