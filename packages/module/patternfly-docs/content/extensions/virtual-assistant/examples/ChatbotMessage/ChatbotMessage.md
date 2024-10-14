@@ -22,8 +22,9 @@ import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import SourcesCard from '@patternfly/virtual-assistant/dist/dynamic/SourcesCard';
-import customImage from './custom_user_img.jpeg';
 import { RobotIcon } from '@patternfly/react-icons/dist/esm/icons/robot-icon';
+import patternflyAvatar from './patternfly_avatar.jpg';
+import userAvatar from './user_avatar.jpg';
 
 The `content` prop of the `<Message>` component is passed to a `<Markdown>` component (from [react-markdown](https://remarkjs.github.io/react-markdown/)), which is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
 
@@ -77,7 +78,7 @@ You can add actions to a message, to allow users to interact with the message co
 
 ### Messages with sources
 
-If you are using Retrieval-Augmented Generation, you may want to display sources in a message. Passing `sources` to `<Message>` allows you to paginate between the sources you provide. 
+If you are using Retrieval-Augmented Generation, you may want to display sources in a message. Passing `sources` to `<Message>` allows you to paginate between the sources you provide.
 
 The API for a source requires a link at minimum, but we strongly recommend providing a more descriptive title and body description so users have enough context. The title is limited to 1 line and the body is limited to 2 lines.
 
