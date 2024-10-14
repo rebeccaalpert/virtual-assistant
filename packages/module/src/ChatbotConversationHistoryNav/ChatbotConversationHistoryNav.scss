@@ -111,11 +111,8 @@
     --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
 
     overflow-y: auto;
-
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    grid-auto-rows: auto;
-
+    display: flex;
+    flex-direction: column;
     height: 70vh;
   }
 }

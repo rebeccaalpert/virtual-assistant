@@ -202,14 +202,12 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
     >
       <DrawerContent panelContent={panelContent}>
         <DrawerContentBody>
-          {isDrawerOpen && (displayMode === ChatbotDisplayMode.default || displayMode === ChatbotDisplayMode.docked) ? (
-            <>
-              <div className="pf-v6-c-backdrop pf-chatbot__drawer-backdrop"></div>
-              {drawerContent}
-            </>
-          ) : (
-            drawerContent
-          )}
+          <>
+            <div
+              className={`${isDrawerOpen && (displayMode === ChatbotDisplayMode.default || displayMode === ChatbotDisplayMode.docked) ? 'pf-v6-c-backdrop pf-chatbot__drawer-backdrop' : undefined} `}
+            ></div>
+            {drawerContent}
+          </>
         </DrawerContentBody>
       </DrawerContent>
     </Drawer>
