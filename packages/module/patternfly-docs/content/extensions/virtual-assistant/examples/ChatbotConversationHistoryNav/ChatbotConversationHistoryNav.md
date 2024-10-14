@@ -74,11 +74,3 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 ```js file="./ChatbotHeaderDrawerWithActions.tsx"
 
 ```
-
-### Drawer in header
-
-This example illustrates how to use `aria-expanded` and the `<ChatbotHeaderMenu>` with the drawer.
-
-```js file="./ChatbotHeaderDrawerInHeader.tsx"
-
-```
