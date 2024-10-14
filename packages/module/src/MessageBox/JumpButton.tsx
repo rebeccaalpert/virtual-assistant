@@ -18,20 +18,21 @@ export interface JumpButtonProps {
   isHidden?: boolean;
 }
 
-const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidden, onClick }: JumpButtonProps) => (
-  <Tooltip id={`pf-chatbot__tooltip--jump-${position}`} content={`Back to ${position}`} position="top">
-    <Button
-      variant="plain"
-      className={`pf-chatbot__jump pf-chatbot__jump--${position} ${isHidden && `pf-chatbot__jump--${position}--hidden`}`}
-      aria-label={`Jump ${position} button`}
-      aria-describedby={`pf-chatbot__tooltip--jump-${position}`}
-      onClick={onClick}
-    >
-      <Icon iconSize="xl" isInline>
-        {position === 'top' ? <ArrowUpIcon /> : <ArrowDownIcon />}
-      </Icon>
-    </Button>
-  </Tooltip>
-);
+const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidden, onClick }: JumpButtonProps) =>
+  isHidden ? undefined : (
+    <Tooltip id={`pf-chatbot__tooltip--jump-${position}`} content={`Back to ${position}`} position="top">
+      <Button
+        variant="plain"
+        className={`pf-chatbot__jump pf-chatbot__jump--${position} ${isHidden && `pf-chatbot__jump--${position}--hidden`}`}
+        aria-label={`Jump ${position} button`}
+        aria-describedby={`pf-chatbot__tooltip--jump-${position}`}
+        onClick={onClick}
+      >
+        <Icon iconSize="xl" isInline>
+          {position === 'top' ? <ArrowUpIcon /> : <ArrowDownIcon />}
+        </Icon>
+      </Button>
+    </Tooltip>
+  );
 
 export default JumpButton;
