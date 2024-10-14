@@ -25,8 +25,6 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   name?: string;
   /** Avatar src for the user */
   avatar?: string;
-  /** Alt text placed on the avatar */
-  avatarAltText?: string;
   /** Timestamp for the message */
   timestamp?: string;
   /** Set this to true if message is being loaded */
@@ -63,7 +61,6 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   onAttachmentClose,
   actions,
   sources,
-  avatarAltText,
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -86,7 +83,8 @@ export const Message: React.FunctionComponent<MessageProps> = ({
 
   return (
     <div className={`pf-chatbot__message pf-chatbot__message--${role}`} {...props}>
-      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt={avatarAltText || `Profile picture of ${role}`} />
+      {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
+      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt="" />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
           <span className="pf-chatbot__message-name">{name}</span>
