@@ -81,6 +81,8 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
 
   return (
     <Tooltip
+      aria="none"
+      aria-live="polite"
       id="pf-chatbot__tooltip--use-microphone"
       content={isListening ? 'Stop listening' : 'Use microphone'}
       position={tooltipProps?.position || 'top'}
