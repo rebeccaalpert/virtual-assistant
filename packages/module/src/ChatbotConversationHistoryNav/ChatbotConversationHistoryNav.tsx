@@ -50,6 +50,8 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   onDrawerToggle: (event: React.KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void;
   /** Flag to indicate whether drawer is open */
   isDrawerOpen: boolean;
+  /** Function called to close drawer */
+  setIsDrawerOpen: (bool: boolean) => void;
   /* itemId of the currently active item. */
   activeItemId?: string | number;
   /** Callback function for when an item is selected */
@@ -75,6 +77,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
   onDrawerToggle,
   isDrawerOpen,
+  setIsDrawerOpen,
   activeItemId,
   onSelectActiveItem,
   conversations,
@@ -180,13 +183,11 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   // the drawer panel and deactivating the focus trap via the Escape key.
   const onEscape = (event: React.KeyboardEvent) => {
     if (event.key === 'Escape') {
-      onDrawerToggle(event);
+      // prevents using escape key on menu buttons from closing the panel, but I'm not sure if this is allowed
+      if ('type' in event.target && event.target.type !== 'button') {
+        setIsDrawerOpen(false);
+      }
     }
-  };
-
-  // Prevent 'Escape' key usage in main chatbot from toggling drawer; only panel content should work
-  const onChildKeyDown = (event: React.KeyboardEvent) => {
-    event.stopPropagation();
   };
 
   return (
@@ -200,7 +201,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       {...props}
     >
       <DrawerContent panelContent={panelContent}>
-        <DrawerContentBody onKeyDown={onChildKeyDown}>
+        <DrawerContentBody>
           {isDrawerOpen && (displayMode === ChatbotDisplayMode.default || displayMode === ChatbotDisplayMode.docked) ? (
             <>
               <div className="pf-v6-c-backdrop pf-chatbot__drawer-backdrop"></div>

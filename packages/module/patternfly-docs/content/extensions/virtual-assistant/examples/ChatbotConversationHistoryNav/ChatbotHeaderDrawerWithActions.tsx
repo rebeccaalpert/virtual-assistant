@@ -66,6 +66,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         displayMode={displayMode}
         onDrawerToggle={() => setIsDrawerOpen(!isDrawerOpen)}
         isDrawerOpen={isDrawerOpen}
+        setIsDrawerOpen={setIsDrawerOpen}
         conversations={conversations}
         drawerContent={<div>Drawer content</div>}
       />
