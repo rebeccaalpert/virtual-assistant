@@ -5,16 +5,19 @@ import React from 'react';
 import JumpButton from './JumpButton';
 
 export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
+  /** Content that can be announced, such as a new message, for screen readers */
+  announcement?: string;
+  /** Custom aria-label for scrollable portion of message box */
+  ariaLabel?: string;
   /** Content to be displayed in the message box */
   children: React.ReactNode;
   /** Custom classname for the MessageBox component */
   className?: string;
-  /** Content that can be announced, such as a new message, for screen readers */
-  announcement?: string;
 }
 
 const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
   announcement,
+  ariaLabel = 'Scrollable message log',
   children,
   className
 }: MessageBoxProps) => {
@@ -28,7 +31,6 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
     const element = messageBoxRef.current;
     if (element) {
       const { scrollTop, scrollHeight, clientHeight } = element;
-
       setAtTop(scrollTop === 0);
       setAtBottom(Math.round(scrollTop) + Math.round(clientHeight) >= Math.round(scrollHeight) - 1); // rounding means it could be within a pixel of the bottom
     }
@@ -76,7 +78,13 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
   return (
     <>
       <JumpButton position="top" isHidden={isOverflowing && atTop} onClick={scrollToTop} />
-      <div className={`pf-chatbot__messagebox ${className ?? ''}`} ref={messageBoxRef}>
+      <div
+        role="region"
+        tabIndex={0}
+        aria-label={ariaLabel}
+        className={`pf-chatbot__messagebox ${className ?? ''}`}
+        ref={messageBoxRef}
+      >
         {children}
         <div className="pf-chatbot__messagebox-announcement" aria-live="polite">
           {announcement}
