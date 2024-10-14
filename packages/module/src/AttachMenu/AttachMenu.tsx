@@ -59,7 +59,7 @@ export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
     className={`pf-chatbot__menu ${className ?? ''}`}
     isOpen={isOpen}
     onOpenChange={(isOpen) => onOpenChange(isOpen)}
-    onOpenChangeKeys={onOpenChangeKeys}
+    onOpenChangeKeys={onOpenChangeKeys ?? ['Esc']}
     toggle={toggle}
     popperProps={popperProps}
     onSelect={onSelect}
