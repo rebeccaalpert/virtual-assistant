@@ -275,6 +275,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             setConversations(initialConversations);
           }}
           isDrawerOpen={isDrawerOpen}
+          setIsDrawerOpen={setIsDrawerOpen}
           activeItemId="1"
           // eslint-disable-next-line no-console
           onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}

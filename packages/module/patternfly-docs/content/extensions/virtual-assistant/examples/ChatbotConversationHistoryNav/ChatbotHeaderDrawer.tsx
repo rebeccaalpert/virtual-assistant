@@ -70,6 +70,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         displayMode={displayMode}
         onDrawerToggle={() => setIsOpen(!isOpen)}
         isDrawerOpen={isOpen}
+        setIsDrawerOpen={setIsOpen}
         // eslint-disable-next-line no-console
         onSelectActiveItem={(e, selectedItem) => console.log(`Selected history item with id ${selectedItem}`)}
         conversations={conversations}
