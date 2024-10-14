@@ -9,9 +9,15 @@ export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
   children: React.ReactNode;
   /** Custom classname for the MessageBox component */
   className?: string;
+  /** Content that can be announced, such as a new message, for screen readers */
+  announcement?: string;
 }
 
-const MessageBox: React.FunctionComponent<MessageBoxProps> = ({ children, className }: MessageBoxProps) => {
+const MessageBox: React.FunctionComponent<MessageBoxProps> = ({
+  announcement,
+  children,
+  className
+}: MessageBoxProps) => {
   const [atTop, setAtTop] = React.useState(false);
   const [atBottom, setAtBottom] = React.useState(true);
   const [isOverflowing, setIsOverflowing] = React.useState(false);
@@ -72,6 +78,9 @@ const MessageBox: React.FunctionComponent<MessageBoxProps> = ({ children, classN
       <JumpButton position="top" isHidden={isOverflowing && atTop} onClick={scrollToTop} />
       <div className={`pf-chatbot__messagebox ${className ?? ''}`} ref={messageBoxRef}>
         {children}
+        <div className="pf-chatbot__messagebox-announcement" aria-live="polite">
+          {announcement}
+        </div>
       </div>
       <JumpButton position="bottom" isHidden={isOverflowing && atBottom} onClick={scrollToBottom} />
     </>

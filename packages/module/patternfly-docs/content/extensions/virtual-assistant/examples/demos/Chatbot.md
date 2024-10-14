@@ -66,7 +66,7 @@ This demo displays a basic chatbot, which includes:
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:
 
 - A `<ChatbotWelcomePrompt>`
-- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
+- An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
 - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
@@ -90,7 +90,7 @@ This demo displays an embedded chatbot. Embedded chatbots are meant to be placed
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/chatbot-container#content-and-message-box) with:
    - A `<ChatbotWelcomePrompt>`
-   - An initial [user `<Message>`]/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [response actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
+   - An initial [user `<Message>`](/patternfly-ai/chatbot/chatbot-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/chatbot-messages/#messages-actions)
    - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/chatbot-footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/chatbot-footer#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
    - [Speech to text.](/patternfly-ai/chatbot/chatbot-footer#message-bar-with-speech-recognition-and-file-attachment)

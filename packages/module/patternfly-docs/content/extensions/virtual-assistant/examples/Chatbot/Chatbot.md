@@ -21,13 +21,16 @@ sortValue: 2
 ---
 
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
 import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
+import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
+import Message from '@patternfly/virtual-assistant/dist/dynamic/Message';
 
 ### Container
 
 The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/chatbot-toggle)
 
-The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes. 
+The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes.
 
 The "embedded" display mode is meant to be used within a [PatternFly page](/components/page) or other container within your product.
 
@@ -38,9 +41,11 @@ The "embedded" display mode is meant to be used within a [PatternFly page](/comp
 ### Content and message box
 
 The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/chatbot-header) and [`<ChatbotFooter>`.](/patternfly-ai/chatbot/chatbot-footer)
-
+<br />
+<br />
 `<ChatbotContent>` usually contains a `<ChatbotMessageBox>` for displaying messages.
-
+<br />
+<br />
 Your code structure should look like this:
 
 ```noLive
@@ -54,6 +59,8 @@ Your code structure should look like this:
   <ChatbotFooter ... />
 </Chatbot>
 ```
+
+**Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos#basic-chatbot) and [embedded chatbot](/patternfly-ai/chatbot/chatbot-container/react-demos#embedded-chatbot) demos.
 
 ### Welcome prompt
 
