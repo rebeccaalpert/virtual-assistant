@@ -81,8 +81,16 @@ export const Message: React.FunctionComponent<MessageProps> = ({
     onAttachmentClose && attachmentId && onAttachmentClose(attachmentId);
   };
 
+  // Keep timestamps consistent between Timestamp component and aria-label
+  const date = new Date();
+  const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+
   return (
-    <div className={`pf-chatbot__message pf-chatbot__message--${role}`} {...props}>
+    <section
+      aria-label={`Message from ${role} - ${dateString}`}
+      className={`pf-chatbot__message pf-chatbot__message--${role}`}
+      {...props}
+    >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
       <Avatar src={avatar ?? DEFAULTS[role].avatar} alt="" />
       <div className="pf-chatbot__message-contents">
@@ -93,7 +101,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               AI
             </Label>
           )}
-          <Timestamp>{timestamp}</Timestamp>
+          <Timestamp date={date}>{timestamp}</Timestamp>
         </div>
         <div className="pf-chatbot__message-response">
           <div className="pf-chatbot__message-and-actions">
@@ -114,7 +122,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
           )}
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 
