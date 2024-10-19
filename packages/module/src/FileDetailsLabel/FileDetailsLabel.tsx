@@ -49,7 +49,7 @@ export const FileDetailsLabel = ({
       </FlexItem>
       {isLoading && (
         <FlexItem>
-          <Spinner size="sm" />
+          <Spinner data-testid="spinner" size="sm" />
         </FlexItem>
       )}
     </Flex>
