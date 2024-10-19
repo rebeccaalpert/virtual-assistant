@@ -956,7 +956,11 @@ export const FileDetails = ({ fileName }: PropsWithChildren<FileDetailsProps>) =
         <StackItem>
           <span className="pf-chatbot__code-fileName">{path.parse(fileName).name}</span>
         </StackItem>
-        {language && <StackItem className="pf-chatbot__code-language">{language}</StackItem>}
+        {language && (
+          <StackItem data-testid="language" className="pf-chatbot__code-language">
+            {language}
+          </StackItem>
+        )}
       </Stack>
     </Flex>
   );
