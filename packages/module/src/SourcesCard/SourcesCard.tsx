@@ -74,7 +74,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   };
 
   return (
-    <div className="pf-chatbot__source">
+    <div data-testid="sources" className="pf-chatbot__source">
       <span>{pluralize(sources.length, sourceWord, sourceWordPlural)}</span>
       <Card className="pf-chatbot__sources-card" {...props}>
         <CardTitle className="pf-chatbot__sources-card-title">
