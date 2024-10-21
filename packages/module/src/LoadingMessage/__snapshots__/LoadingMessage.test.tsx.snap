@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoadingMessage should render file drop zone 1`] = `
+exports[`LoadingMessage should render loading message 1`] = `
 <div>
   <div
     class="pf-v6-l-split"

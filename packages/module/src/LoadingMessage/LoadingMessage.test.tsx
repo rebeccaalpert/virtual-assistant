@@ -4,11 +4,11 @@ import '@testing-library/jest-dom';
 import LoadingMessage from './LoadingMessage';
 
 describe('LoadingMessage', () => {
-  it('should render file drop zone', () => {
+  it('should render loading message', () => {
     const { container } = render(<LoadingMessage />);
     expect(container).toMatchSnapshot();
   });
-  it('should render children', () => {
+  it('should render loading message correctly', () => {
     render(<LoadingMessage />);
     expect(screen.getByTestId('assistant-loading-dots')).toBeTruthy();
   });

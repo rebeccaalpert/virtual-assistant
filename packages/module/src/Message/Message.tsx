@@ -47,7 +47,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   };
   /** Sources for message */
   sources?: SourcesCardProps;
-  /** Label for the English word "AI", used to tag messages with role "bot" */
+  /** Label for the English word "AI," used to tag messages with role "bot" */
   botWord?: string;
   /** Label for the English "Loading message," displayed to screenreaders when loading a message */
   loadingWord?: string;
