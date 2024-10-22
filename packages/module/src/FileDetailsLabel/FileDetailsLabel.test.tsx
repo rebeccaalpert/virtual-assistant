@@ -15,16 +15,16 @@ describe('FileDetailsLabel', () => {
     expect(screen.getByText('TEXT')).toBeTruthy();
   });
   it('should skip language if we do not support an extension', () => {
-    render(<FileDetailsLabel fileName="test.joke" />);
+    render(<FileDetailsLabel fileName="test.joke" languageTestId="language" />);
     expect(screen.getByText('test')).toBeTruthy();
     expect(screen.queryByTestId('language')).toBeFalsy();
   });
   it('should not show spinner by default', () => {
-    render(<FileDetailsLabel fileName="test.txt" />);
+    render(<FileDetailsLabel fileName="test.txt" spinnerTestId="spinner" />);
     expect(screen.queryByTestId('spinner')).toBeFalsy();
   });
   it('should show spinner if loading', () => {
-    render(<FileDetailsLabel fileName="test.txt" isLoading />);
+    render(<FileDetailsLabel fileName="test.txt" isLoading spinnerTestId="spinner" />);
     expect(screen.getByText('test')).toBeTruthy();
     expect(screen.getByText('TEXT')).toBeTruthy();
     expect(screen.queryByTestId('spinner')).toBeTruthy();

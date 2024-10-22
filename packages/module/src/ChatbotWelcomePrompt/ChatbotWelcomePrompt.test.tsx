@@ -51,7 +51,12 @@ describe('ChatbotWelcomePrompt', () => {
   });
   it('should apply className appropriately', () => {
     render(
-      <ChatbotWelcomePrompt title="Hello, Chatbot User" description="How may I help you today?" className="test" />
+      <ChatbotWelcomePrompt
+        title="Hello, Chatbot User"
+        description="How may I help you today?"
+        className="test"
+        testId="welcome-prompt"
+      />
     );
     const element = screen.getByTestId('welcome-prompt');
     expect(element).toHaveClass('test');

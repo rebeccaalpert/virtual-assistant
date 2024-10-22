@@ -10,6 +10,7 @@ describe('LoadingMessage', () => {
   });
   it('should render loading message correctly', () => {
     render(<LoadingMessage />);
-    expect(screen.getByTestId('assistant-loading-dots')).toBeTruthy();
+    expect(screen.getAllByText('.')).toBeTruthy();
+    expect(screen.getAllByText('.')).toHaveLength(3);
   });
 });

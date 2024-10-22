@@ -10,7 +10,6 @@ exports[`LoadingMessage should render loading message 1`] = `
     >
       <span
         class="pf-v6-c-icon pf-m-lg pf-v6-u-mr-sm pf-v6-u-pt-md"
-        data-test-id="assistant-loading-icon"
       >
         <span
           class="pf-v6-c-icon__content"
@@ -36,7 +35,6 @@ exports[`LoadingMessage should render loading message 1`] = `
     >
       <div
         class="pf-v6-u-display-flex pf-u-align-items-center"
-        data-testid="assistant-loading-dots"
       >
         <div>
           .

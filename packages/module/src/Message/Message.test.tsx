@@ -4,6 +4,14 @@ import '@testing-library/jest-dom';
 import Message from './Message';
 import userEvent from '@testing-library/user-event';
 
+const ALL_ACTIONS = [
+  { label: /Good response/i },
+  { label: /Bad response/i },
+  { label: /Copy/i },
+  { label: /Share/i },
+  { label: /Listen/i }
+];
+
 describe('Message', () => {
   it('should render user messages correctly', () => {
     render(<Message role="user" name="User" content="Hi" />);
@@ -11,7 +19,7 @@ describe('Message', () => {
     expect(screen.getByText('Hi')).toBeTruthy();
     const date = new Date();
     expect(screen.getByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeTruthy();
-    expect(screen.queryByTestId('loading-message')).toBeFalsy();
+    expect(screen.queryByText('Loading message')).toBeFalsy();
   });
   it('should render bot messages correctly', () => {
     render(<Message role="bot" name="Bot" content="Hi" />);
@@ -72,7 +80,7 @@ describe('Message', () => {
     expect(screen.queryByText('Hi')).toBeFalsy();
     const date = new Date();
     expect(screen.getByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeTruthy();
-    expect(screen.getByTestId('loading-message')).toBeTruthy();
+    expect(screen.getByText('Loading message')).toBeTruthy();
   });
   it('should be able to show sources', async () => {
     render(
@@ -91,7 +99,7 @@ describe('Message', () => {
         }}
       />
     );
-    expect(screen.getByTestId('sources')).toBeTruthy();
+    expect(screen.getByText('Getting started with Red Hat OpenShift')).toBeTruthy();
   });
   it('should not show sources if loading', () => {
     render(
@@ -111,8 +119,8 @@ describe('Message', () => {
         }}
       />
     );
-    expect(screen.getByTestId('loading-message')).toBeTruthy();
-    expect(screen.queryByTestId('sources')).toBeFalsy();
+    expect(screen.getByText('Loading message')).toBeTruthy();
+    expect(screen.queryByText('Getting started with Red Hat OpenShift')).toBeFalsy();
   });
   it('should be able to show actions', async () => {
     render(
@@ -134,7 +142,9 @@ describe('Message', () => {
         }}
       />
     );
-    expect(screen.getByTestId('actions')).toBeTruthy();
+    ALL_ACTIONS.forEach(({ label }) => {
+      expect(screen.getByRole('button', { name: label })).toBeTruthy();
+    });
   });
   it('should not show actions if loading', async () => {
     render(
@@ -157,7 +167,9 @@ describe('Message', () => {
         }}
       />
     );
-    expect(screen.getByTestId('loading-message')).toBeTruthy();
-    expect(screen.queryByTestId('actions')).toBeFalsy();
+    expect(screen.getByText('Loading message')).toBeTruthy();
+    ALL_ACTIONS.forEach(({ label }) => {
+      expect(screen.queryByRole('button', { name: label })).toBeFalsy();
+    });
   });
 });

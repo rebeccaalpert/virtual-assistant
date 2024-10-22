@@ -4,7 +4,6 @@ exports[`ChatbotWelcomePrompt should render welcome prompt 1`] = `
 <div>
   <div
     class="pf-chatbot--layout--welcome "
-    data-testid="welcome-prompt"
   >
     <h1
       class="pf-v6-c-content--h1"

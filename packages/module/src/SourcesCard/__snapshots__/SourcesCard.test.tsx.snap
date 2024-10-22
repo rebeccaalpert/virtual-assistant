@@ -4,7 +4,6 @@ exports[`SourcesCard should render card 1`] = `
 <div>
   <div
     class="pf-chatbot__source"
-    data-testid="sources"
   >
     <span>
       1 source

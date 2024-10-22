@@ -38,7 +38,7 @@ export interface ResponseActionProps {
 export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
   const { positive, negative, copy, share, listen } = actions;
   return (
-    <div data-testid="actions" className="pf-chatbot__response-actions">
+    <div className="pf-chatbot__response-actions">
       {positive && (
         <ResponseActionButton
           ariaLabel={positive.ariaLabel ?? 'Good response'}

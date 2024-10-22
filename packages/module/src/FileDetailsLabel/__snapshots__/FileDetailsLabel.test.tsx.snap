@@ -69,7 +69,6 @@ exports[`FileDetailsLabel should render file details label 1`] = `
                 </div>
                 <div
                   class="pf-v6-l-stack__item pf-chatbot__code-language"
-                  data-testid="language"
                 >
                   TEXT
                 </div>
