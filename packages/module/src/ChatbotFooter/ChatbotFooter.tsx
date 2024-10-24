@@ -25,8 +25,10 @@ export const ChatbotFooter: React.FunctionComponent<ChatbotFooterProps> = ({
   ...props
 }: ChatbotFooterProps) => (
   <div className={`pf-chatbot__footer ${className ?? ''}`} {...props}>
-    <Divider />
-    {children}
+    <div className="pf-chatbot__footer-container">
+      <Divider />
+      {children}
+    </div>
   </div>
 );
 

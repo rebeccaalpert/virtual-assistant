@@ -8,6 +8,8 @@
   --pf-chatbot__footer--RowGap: var(--pf-t--global--spacer--md);
   padding: 0 var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg);
   background-color: var(--pf-t--chatbot--background);
+}
+.pf-chatbot__footer-container {
   display: flex;
   flex-direction: column;
   justify-content: stretch;
@@ -21,11 +23,17 @@
   .pf-chatbot--embedded,
   .pf-chatbot--fullscreen {
     .pf-chatbot__footer {
-      padding: var(--pf-t--global--spacer--sm) 12rem;
+      padding: var(--pf-t--global--spacer--sm) 0;
+      display: flex;
+      justify-content: center;
 
       .pf-v6-c-divider {
         display: none;
       }
+    }
+
+    .pf-chatbot__footer-container {
+      width: 60rem;
     }
   }
 }
