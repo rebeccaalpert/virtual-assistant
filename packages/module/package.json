@@ -28,7 +28,7 @@
   "homepage": "https://github.com/patternfly/virtual-assistant#readme",
   "publishConfig": {
     "access": "public",
-    "tag": "alpha"
+    "tag": "prerelease"
   },
   "dependencies": {
     "@patternfly/react-core": "6.0.0-prerelease.21",

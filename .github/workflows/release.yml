@@ -2,7 +2,7 @@ name: release
 on:
   push:
     branches:
-      - v6
+      - main
 jobs:
   call-build-lint-test-workflow:
     uses: ./.github/workflows/build-lint-test.yml
