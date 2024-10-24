@@ -64,3 +64,14 @@
     outline: none;
   }
 }
+
+// ============================================================================
+// Chatbot Display Mode - Fullscreen and Embedded
+// ============================================================================
+@media screen and (min-width: 64rem) {
+  .pf-chatbot--embedded,
+  .pf-chatbot--fullscreen {
+    .pf-chatbot__message-bar {
+    }
+  }
+}
