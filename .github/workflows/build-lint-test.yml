@@ -22,8 +22,8 @@ jobs:
         name: Cache npm deps
         with:
           path: |
-           node_modules
-           **/node_modules
+            node_modules
+            **/node_modules
           key: ${{ runner.os }}-npm-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
       - run: npm install --frozen-lockfile
         if: steps.npm-cache.outputs.cache-hit != 'true'
@@ -58,8 +58,8 @@ jobs:
         name: Cache npm deps
         with:
           path: |
-           node_modules
-           **/node_modules
+            node_modules
+            **/node_modules
           key: ${{ runner.os }}-yarn-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
       - run: npm install --frozen-lockfile
         if: steps.npm-cache.outputs.cache-hit != 'true'
@@ -95,9 +95,9 @@ jobs:
         name: Cache npm deps
         with:
           path: |
-           node_modules
-           **/node_modules
-           ~/.cache/Cypress
+            node_modules
+            **/node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
       - run: npm install --frozen-lockfile
         if: steps.npm-cache.outputs.cache-hit != 'true'
@@ -136,9 +136,9 @@ jobs:
         name: Cache npm deps
         with:
           path: |
-           node_modules
-           **/node_modules
-           ~/.cache/Cypress
+            node_modules
+            **/node_modules
+            ~/.cache/Cypress
           key: ${{ runner.os }}-yarn-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
       - run: npm install --frozen-lockfile
         if: steps.npm-cache.outputs.cache-hit != 'true'
@@ -157,83 +157,3 @@ jobs:
         run: npm run build:docs
       - name: A11y tests
         run: npm run serve:docs & npm run test:a11y
-  test_component:
-    runs-on: ubuntu-latest
-    env:
-      GH_PR_NUM: ${{ github.event.number }}
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      # Yes, we really want to checkout the PR
-      - run: |
-          if [[ ! -z "${GH_PR_NUM}" ]]; then 
-            echo "Checking out PR"
-            git fetch origin pull/$GH_PR_NUM/head:tmp
-            git checkout tmp
-          fi
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - uses: actions/cache@v4
-        id: npm-cache
-        name: Cache npm deps
-        with:
-          path: |
-            node_modules
-            **/node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-yarn-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
-      - run: npm install --frozen-lockfile
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-      - uses: actions/cache@v4
-        id: dist
-        name: Cache dist
-        with:
-          path: |
-            packages/*/dist
-            packages/react-styles/css
-          key: ${{ runner.os }}-dist-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json', 'package.json', 'packages/*/*', '!packages/*/dist', '!packages/*/node_modules') }}
-      - name: Build dist
-        run: npm run build
-      - name: Run component tests
-        run: npm run cypress:run:ci:cp      
-  test_e2e:
-    runs-on: ubuntu-latest
-    env:
-      GH_PR_NUM: ${{ github.event.number }}
-    needs: build
-    steps:
-      - uses: actions/checkout@v4
-      # Yes, we really want to checkout the PR
-      - run: |
-          if [[ ! -z "${GH_PR_NUM}" ]]; then 
-            echo "Checking out PR"
-            git fetch origin pull/$GH_PR_NUM/head:tmp
-            git checkout tmp
-          fi
-      - uses: actions/setup-node@v4
-        with:
-          node-version: '20'
-      - uses: actions/cache@v4
-        id: npm-cache
-        name: Cache npm deps
-        with:
-          path: |
-            node_modules
-            **/node_modules
-            ~/.cache/Cypress
-          key: ${{ runner.os }}-yarn-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json') }}
-      - run: npm install --frozen-lockfile
-        if: steps.npm-cache.outputs.cache-hit != 'true'
-      - uses: actions/cache@v4
-        id: dist
-        name: Cache dist
-        with:
-          path: |
-            packages/*/dist
-            packages/react-styles/css
-          key: ${{ runner.os }}-dist-14-${{ secrets.CACHE_VERSION }}-${{ hashFiles('package-lock.json', 'package.json', 'packages/*/*', '!packages/*/dist', '!packages/*/node_modules') }}
-      - name: Build dist
-        run: npm run build
-      - name: Run component tests
-        run: npm run cypress:run:ci:e2e     

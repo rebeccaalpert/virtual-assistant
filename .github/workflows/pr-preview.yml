@@ -8,7 +8,7 @@ jobs:
       SURGE_LOGIN: ${{ secrets.SURGE_LOGIN }}
       SURGE_TOKEN: ${{ secrets.SURGE_TOKEN }}
       GH_PR_TOKEN: ${{ secrets.GH_PR_TOKEN }}
-      GH_PR_NUM:   ${{ github.event.number }}
+      GH_PR_NUM: ${{ github.event.number }}
     steps:
       - uses: actions/checkout@v4
       # Yes, we really want to checkout the PR
@@ -17,10 +17,10 @@ jobs:
           git checkout tmp
 
       - run: |
-          git rev-parse origin/v6
+          git rev-parse origin/main
           git rev-parse HEAD
-          git rev-parse origin/v6..HEAD
-          git log origin/v6..HEAD --format="%b"
+          git rev-parse origin/main..HEAD
+          git log origin/main..HEAD --format="%b"
 
       # Yes, we really want to checkout the PR
       # Injected by generate-workflows.js
