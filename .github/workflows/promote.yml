@@ -1,9 +1,10 @@
 name: promote
 on:
-  push:
-    # Sequence of patterns matched against refs/tags
-    tags:
-      - v2.*
+  workflow_dispatch:
+    inputs:
+      new_tag_name:
+        description: Name of tag created to be associated with this promotion.
+        required: true
 jobs:
   build-and-promote:
     runs-on: ubuntu-latest
@@ -11,6 +12,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
       NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+      NEW_TAG_NAME: ${{ github.event.inputs.new_tag_name }}
     steps:
       - uses: actions/checkout@v4
       - name: Build for promotion
@@ -26,5 +28,5 @@ jobs:
       - name: Manual publish
         run: |
           cd packages/module
-          npm version ${{ github.ref_name }} --git-tag-version false
+          npm version "$NEW_TAG_NAME" --git-tag-version false
           npm publish --tag=latest
