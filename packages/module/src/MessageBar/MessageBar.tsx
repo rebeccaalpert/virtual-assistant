@@ -7,6 +7,7 @@ import SendButton from './SendButton';
 import MicrophoneButton from './MicrophoneButton';
 import { AttachButton } from './AttachButton';
 import AttachMenu from '../AttachMenu';
+import StopButton from './StopButton';
 
 export interface MessageBarWithAttachMenuProps {
   /** Flag to enable whether attach menu is open */
@@ -40,6 +41,10 @@ export interface MessageBarProps extends TextAreaProps {
   hasAttachButton?: boolean;
   /** Flag to enable the Microphone button  */
   hasMicrophoneButton?: boolean;
+  /** Flag to enable the Stop button, used for streaming content */
+  hasStopButton?: boolean;
+  /** Callback function for when stop button is clicked */
+  handleStopButton?: () => void;
   /** Callback function for when attach button is used to upload a file */
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
@@ -57,6 +62,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   handleAttach,
   attachMenuProps,
   isSendButtonDisabled,
+  handleStopButton,
+  hasStopButton,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -83,7 +90,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     (event) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
-        if (!isSendButtonDisabled) {
+        if (!isSendButtonDisabled && !hasStopButton) {
           handleSend();
         }
       }
@@ -96,21 +103,12 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     attachMenuProps?.onAttachMenuToggleClick();
   };
 
-  const messageBarContents = (
-    <>
-      <div className="pf-chatbot__message-bar-input">
-        <AutoTextArea
-          ref={textareaRef}
-          className="pf-chatbot__message-textarea"
-          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
-          onKeyDown={handleKeyDown}
-          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
-          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
-          {...props}
-        />
-      </div>
-      <div className="pf-chatbot__message-bar-actions">
+  const renderButtons = () => {
+    if (hasStopButton && handleStopButton) {
+      return <StopButton onClick={handleStopButton} />;
+    }
+    return (
+      <>
         {attachMenuProps && (
           <AttachButton ref={attachButtonRef} onClick={handleAttachMenuToggle} isDisabled={isListeningMessage} />
         )}
@@ -127,7 +125,25 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         {(alwayShowSendButton || message) && (
           <SendButton value={message} onClick={handleSend} isDisabled={isSendButtonDisabled} />
         )}
+      </>
+    );
+  };
+
+  const messageBarContents = (
+    <>
+      <div className="pf-chatbot__message-bar-input">
+        <AutoTextArea
+          ref={textareaRef}
+          className="pf-chatbot__message-textarea"
+          value={message as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onChange={handleChange as any} // Added any to make the third part TextArea component types happy. Remove when replced with PF TextArea
+          onKeyDown={handleKeyDown}
+          placeholder={isListeningMessage ? 'Listening' : 'Send a message...'}
+          aria-label={isListeningMessage ? 'Listening' : 'Send a message...'}
+          {...props}
+        />
       </div>
+      <div className="pf-chatbot__message-bar-actions">{renderButtons()}</div>
     </>
   );
 

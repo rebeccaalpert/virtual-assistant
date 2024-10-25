@@ -60,6 +60,16 @@ Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai
 
 ```
 
+### Message bar with stop button
+
+If you are using streaming, you may wish to allow users to stop a response from a chatbot.
+
+Setting `hasStopButton` to true and passing in a `handleStopButton` callback function will enable the stop button. You can use this callback to trigger an [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) configured as part of your API call.
+
+```js file="./ChatbotMessageBarStop.tsx"
+
+```
+
 ### Footer with message bar and footnote
 
 A simple footer with a message bar and footnote would have this code structure:
@@ -72,5 +82,9 @@ A simple footer with a message bar and footnote would have this code structure:
 ```
 
 ```js file="./ChatbotFooter.tsx"
+
+```
+
+```
 
 ```
