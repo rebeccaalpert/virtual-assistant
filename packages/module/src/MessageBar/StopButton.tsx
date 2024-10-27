@@ -8,8 +8,8 @@ import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/re
 
 export interface StopButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
-  onClick: () => void;
-  /** Class name for the stop button */
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Class name for StopButton */
   className?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;

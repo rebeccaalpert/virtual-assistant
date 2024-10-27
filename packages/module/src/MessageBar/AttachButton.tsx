@@ -9,18 +9,20 @@ import { useDropzone } from 'react-dropzone';
 import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-icon';
 
 export interface AttachButtonProps extends ButtonProps {
-  /** OnClick Handler for the Attach Button */
-  onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
-  /** Callback function for attach button when an attachment is made */
+  /** Callback for when button is clicked */
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  /** Callback function for AttachButton when an attachment is made */
   onAttachAccepted?: (data: File[], event: DropEvent) => void;
-  /** Class Name for the Attach button */
+  /** Class name for AttachButton */
   className?: string;
-  /** Props to control is the attach button should be disabled */
+  /** Props to control if the AttachButton should be disabled */
   isDisabled?: boolean;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** Ref applied to AttachButton and used in tooltip */
   innerRef?: React.Ref<any>;
+  /** English text "Attach" used in the tooltip */
+  tooltipContent?: string;
 }
 
 const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
@@ -30,6 +32,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   className,
   tooltipProps,
   innerRef,
+  tooltipContent = 'Attach',
   ...props
 }: AttachButtonProps) => {
   const { open, getInputProps } = useDropzone({
@@ -43,7 +46,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
       <input {...getInputProps()} />
       <Tooltip
         id="pf-chatbot__tooltip--attach"
-        content="Attach"
+        content={tooltipContent}
         position="top"
         entryDelay={tooltipProps?.entryDelay || 0}
         exitDelay={tooltipProps?.exitDelay || 0}
@@ -55,7 +58,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
           variant="plain"
           ref={innerRef}
           className={`pf-chatbot__button--attach ${className ?? ''}`}
-          aria-label={props['aria-label'] || 'Attach Button'}
+          aria-label={props['aria-label'] || 'Attach button'}
           isDisabled={isDisabled}
           onClick={onClick ?? open}
           icon={

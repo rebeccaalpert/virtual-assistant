@@ -1,5 +1,5 @@
 import React from 'react';
-import { DropEvent, TextAreaProps } from '@patternfly/react-core';
+import { ButtonProps, DropEvent, TextAreaProps } from '@patternfly/react-core';
 import { AutoTextArea } from 'react-textarea-auto-witdth-height';
 
 // Import Chatbot components
@@ -44,13 +44,20 @@ export interface MessageBarProps extends TextAreaProps {
   /** Flag to enable the Stop button, used for streaming content */
   hasStopButton?: boolean;
   /** Callback function for when stop button is clicked */
-  handleStopButton?: () => void;
+  handleStopButton?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback function for when attach button is used to upload a file */
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
   attachMenuProps?: MessageBarWithAttachMenuProps;
   /** Flag to provide manual control over whether send button is disabled */
   isSendButtonDisabled?: boolean;
+  /** Prop to allow passage of additional props to buttons */
+  buttonProps?: {
+    attach: { tooltipContent?: string; props?: ButtonProps };
+    stop: { tooltipContent?: string; props?: ButtonProps };
+    send: { tooltipContent?: string; props?: ButtonProps };
+    microphone: { tooltipContent?: { active: string; inactive: string }; props?: ButtonProps };
+  };
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -64,6 +71,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   isSendButtonDisabled,
   handleStopButton,
   hasStopButton,
+  buttonProps,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -105,25 +113,50 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
 
   const renderButtons = () => {
     if (hasStopButton && handleStopButton) {
-      return <StopButton onClick={handleStopButton} />;
+      return (
+        <StopButton
+          onClick={handleStopButton}
+          tooltipContent={buttonProps?.stop.tooltipContent}
+          {...buttonProps?.stop.props}
+        />
+      );
     }
     return (
       <>
         {attachMenuProps && (
-          <AttachButton ref={attachButtonRef} onClick={handleAttachMenuToggle} isDisabled={isListeningMessage} />
+          <AttachButton
+            ref={attachButtonRef}
+            onClick={handleAttachMenuToggle}
+            isDisabled={isListeningMessage}
+            tooltipContent={buttonProps?.attach.tooltipContent}
+            {...buttonProps?.attach.props}
+          />
         )}
         {!attachMenuProps && hasAttachButton && (
-          <AttachButton onAttachAccepted={handleAttach} isDisabled={isListeningMessage} />
+          <AttachButton
+            onAttachAccepted={handleAttach}
+            isDisabled={isListeningMessage}
+            tooltipContent={buttonProps?.attach.tooltipContent}
+            {...buttonProps?.attach.props}
+          />
         )}
         {hasMicrophoneButton && (
           <MicrophoneButton
             isListening={isListeningMessage}
             onIsListeningChange={setIsListeningMessage}
             onSpeechRecognition={setMessage}
+            tooltipContent={buttonProps?.microphone.tooltipContent}
+            {...buttonProps?.microphone.props}
           />
         )}
         {(alwayShowSendButton || message) && (
-          <SendButton value={message} onClick={handleSend} isDisabled={isSendButtonDisabled} />
+          <SendButton
+            value={message}
+            onClick={handleSend}
+            isDisabled={isSendButtonDisabled}
+            tooltipContent={buttonProps?.send.tooltipContent}
+            {...buttonProps?.send.props}
+          />
         )}
       </>
     );
