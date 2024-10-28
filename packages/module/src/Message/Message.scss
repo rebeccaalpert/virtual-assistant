@@ -80,6 +80,20 @@
     display: grid;
     gap: var(--pf-t--global--spacer--sm);
   }
+
+  &-quick-response {
+    .pf-v6-c-label {
+      --pf-v6-c-label--FontSize: var(--pf-t--global--font--size--md);
+
+      @media screen and (min-width: 401px) and (max-width: 600px) {
+        --pf-v6-c-label__text--MaxWidth: 20ch;
+      }
+
+      @media screen and (max-width: 400px) {
+        --pf-v6-c-label__text--MaxWidth: 15ch;
+      }
+    }
+  }
 }
 
 @import './MessageLoading';
