@@ -64,7 +64,7 @@ Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai
 
 If you are using streaming, you can add a stop button to the message bar that allows users to stop a response from a chatbot.
 
-Setting `hasStopButton` to true and passing in a `handleStopButton` callback function will enable the stop button. You can use this callback to trigger an [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) configured as part of your API call.
+To enable the stop button, set `hasStopButton` to `true` and pass in a `handleStopButton` callback function. You can use this callback to trigger an [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) configured as part of your API call.
 
 ```js file="./ChatbotMessageBarStop.tsx"
 
