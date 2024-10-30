@@ -31,7 +31,7 @@ export const MessageWithQuickResponsesExample: React.FunctionComponent = () => (
       name="Bot"
       role="bot"
       avatar={patternflyAvatar}
-      content="Welcome back! Ready to continue?"
+      content="Welcome back! How can I help?"
       quickResponses={[
         { id: '1', content: 'Help me with an access issue', onClick: () => alert('Clicked id 1') },
         { id: '2', content: 'Show my critical vulnerabilities', onClick: () => alert('Clicked id 2') },
