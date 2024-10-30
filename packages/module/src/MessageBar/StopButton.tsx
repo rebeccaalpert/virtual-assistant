@@ -1,5 +1,5 @@
 // ============================================================================
-// Chatbot Footer - Message Bar - Send
+// Chatbot Footer - Message Bar - Stop
 // ============================================================================
 import React from 'react';
 
@@ -21,11 +21,11 @@ export const StopButton: React.FunctionComponent<StopButtonProps> = ({
   className,
   onClick,
   tooltipProps,
-  tooltipContent = 'Send',
+  tooltipContent = 'Stop',
   ...props
 }: StopButtonProps) => (
   <Tooltip
-    id="pf-chatbot__tooltip--send"
+    id="pf-chatbot__tooltip--stop"
     content={tooltipContent}
     position={tooltipProps?.position || 'top'}
     entryDelay={tooltipProps?.entryDelay || 0}

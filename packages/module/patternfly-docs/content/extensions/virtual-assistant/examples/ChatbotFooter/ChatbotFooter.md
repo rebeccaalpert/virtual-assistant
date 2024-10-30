@@ -84,7 +84,3 @@ A simple footer with a message bar and footnote would have this code structure:
 ```js file="./ChatbotFooter.tsx"
 
 ```
-
-```
-
-```
