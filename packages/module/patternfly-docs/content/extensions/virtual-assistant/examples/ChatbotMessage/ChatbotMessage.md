@@ -88,7 +88,9 @@ The API for a source requires a link at minimum, but we strongly recommend provi
 
 ### Messages with quick responses
 
-You may want to offer quick, clickable responses to messages. Passing `quickResponses` to `<Message>` allows you to quickly add these custom actions. Quick actions are [PatternFly `<Label>` components](/components/label/) in a PatternFly `<LabelGroup>`, configurated to show up to 5 visible labels. This can be overriden by passing additional `<LabelGroup>` props to `quickResponseContainerProps`, or additional `<Label>` props to `quickResponses`.
+You can offer convenient, clickable responses to messages in the form of quick actions. Quick actions are [PatternFly labels](/components/label/) in a label group, configured to display up to 5 visible labels.
+
+To add quick actions, pass `quickResponses` to `<Message>`. This can be overridden by passing additional `<LabelGroup>` props to `quickResponseContainerProps`, or additional `<Label>` props to `quickResponses`.
 
 ```js file="./MessageWithQuickResponses.tsx"
 
