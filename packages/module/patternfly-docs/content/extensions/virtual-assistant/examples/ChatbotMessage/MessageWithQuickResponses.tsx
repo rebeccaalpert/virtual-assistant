@@ -8,7 +8,7 @@ export const MessageWithQuickResponsesExample: React.FunctionComponent = () => (
       name="Bot"
       role="bot"
       avatar={patternflyAvatar}
-      content="Did you clear your cache"
+      content="Did you clear your cache?"
       quickResponses={[
         { id: '1', content: 'Yes', onClick: () => alert('Clicked yes') },
         { id: '2', content: 'No', onClick: () => alert('Clicked no') }
