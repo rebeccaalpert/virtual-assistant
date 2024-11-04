@@ -1,11 +1,15 @@
 import React, { PropsWithChildren } from 'react';
-import { Flex, Stack, StackItem } from '@patternfly/react-core';
+import { Flex, Stack, StackItem, Truncate } from '@patternfly/react-core';
 import path from 'path-browserify';
 interface FileDetailsProps {
+  /** Class name applied to container */
+  className?: string;
   /** Name of file, including extension */
   fileName: string;
   /** Custom test id for the component-generated language */
   languageTestId?: string;
+  /** Class name applied to file name */
+  fileNameClassName?: string;
 }
 
 // source https://gist.github.com/ppisarczyk/43962d06686722d26d176fad46879d41
@@ -934,10 +938,15 @@ export const extensionToLanguage = {
   pdf: 'PDF'
 };
 
-export const FileDetails = ({ fileName, languageTestId }: PropsWithChildren<FileDetailsProps>) => {
+export const FileDetails = ({
+  className,
+  fileName,
+  fileNameClassName,
+  languageTestId
+}: PropsWithChildren<FileDetailsProps>) => {
   const language = extensionToLanguage[path.extname(fileName).slice(1)]?.toUpperCase();
   return (
-    <Flex gap={{ default: 'gapSm' }}>
+    <Flex className={`pf-chatbot__file-details ${className}`} gap={{ default: 'gapSm' }}>
       <Flex
         className="pf-chatbot__code-icon"
         justifyContent={{ default: 'justifyContentCenter' }}
@@ -964,7 +973,9 @@ export const FileDetails = ({ fileName, languageTestId }: PropsWithChildren<File
       </Flex>
       <Stack>
         <StackItem>
-          <span className="pf-chatbot__code-fileName">{path.parse(fileName).name}</span>
+          <span className="pf-chatbot__code-fileName">
+            <Truncate className={fileNameClassName} content={path.parse(fileName).name} />
+          </span>
         </StackItem>
         {language && (
           <StackItem data-testid={languageTestId} className="pf-chatbot__code-language">
