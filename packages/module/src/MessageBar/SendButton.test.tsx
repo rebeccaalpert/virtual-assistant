@@ -17,7 +17,13 @@ describe('Send button', () => {
     const spy = jest.fn();
     render(<SendButton onClick={spy} />);
     await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    expect(screen.getByRole('tooltip', { name: 'Send' })).toBeTruthy();
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should handle custom tooltip correctly', async () => {
+    render(<SendButton onClick={jest.fn} tooltipContent="Test" />);
+    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('should handle className prop', () => {
     renderSend({ className: 'test' });
