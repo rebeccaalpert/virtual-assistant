@@ -21,7 +21,13 @@ describe('Attach button', () => {
     const spy = jest.fn();
     render(<AttachButton onClick={spy} />);
     await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    expect(screen.getByRole('tooltip', { name: 'Attach' })).toBeTruthy();
     expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should handle custom tooltip correctly', async () => {
+    render(<AttachButton onClick={jest.fn} tooltipContent="Test" />);
+    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('should handle className prop', () => {
     render(<AttachButton className="test" />);
