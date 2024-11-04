@@ -1,33 +1,31 @@
 // ============================================================================
-// Chatbot Footer - Message Bar - Send
+// Chatbot Footer - Message Bar - Stop
 // ============================================================================
 import React from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 
-import { PaperPlaneIcon } from '@patternfly/react-icons/dist/esm/icons/paper-plane-icon';
-
-export interface SendButtonProps extends ButtonProps {
+export interface StopButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
   onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
-  /** Class Name for SendButton */
+  /** Class name for StopButton */
   className?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
-  /** English text "Send" used in the tooltip */
+  /** English text "Stop" used in the tooltip */
   tooltipContent?: string;
 }
 
-export const SendButton: React.FunctionComponent<SendButtonProps> = ({
+export const StopButton: React.FunctionComponent<StopButtonProps> = ({
   className,
   onClick,
   tooltipProps,
-  tooltipContent = 'Send',
+  tooltipContent = 'Stop',
   ...props
-}: SendButtonProps) => (
+}: StopButtonProps) => (
   <Tooltip
-    id="pf-chatbot__tooltip--send"
+    id="pf-chatbot__tooltip--stop"
     content={tooltipContent}
     position={tooltipProps?.position || 'top'}
     entryDelay={tooltipProps?.entryDelay || 0}
@@ -37,13 +35,18 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
     {...tooltipProps}
   >
     <Button
-      className={`pf-chatbot__button--send ${className ?? ''}`}
+      className={`pf-chatbot__button--stop ${className ?? ''}`}
       variant="link"
-      aria-label={props['aria-label'] || 'Send button'}
+      aria-label={props['aria-label'] || 'Stop button'}
       onClick={onClick}
       icon={
         <Icon iconSize="xl" isInline>
-          <PaperPlaneIcon />
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path
+              d="M0.5 3C0.5 1.62109 1.62109 0.5 3 0.5H13C14.3789 0.5 15.5 1.62109 15.5 3V13C15.5 14.3789 14.3789 15.5 13 15.5H3C1.62109 15.5 0.5 14.3789 0.5 13V3Z"
+              fill="currentColor"
+            />
+          </svg>
         </Icon>
       }
       {...props}
@@ -51,4 +54,4 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   </Tooltip>
 );
 
-export default SendButton;
+export default StopButton;
