@@ -54,6 +54,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   botWord?: string;
   /** Label for the English "Loading message," displayed to screenreaders when loading a message */
   loadingWord?: string;
+  codeBlockProps?: {
+    'aria-label'?: string;
+    className?: string;
+  };
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -71,6 +75,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   sources,
   botWord = 'AI',
   loadingWord = 'Loading message',
+  codeBlockProps,
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -120,7 +125,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               <Markdown
                 components={{
                   p: TextMessage,
-                  code: CodeBlockMessage,
+                  code: ({ children }) => <CodeBlockMessage {...codeBlockProps}>{children}</CodeBlockMessage>,
                   ul: UnorderedListMessage,
                   ol: OrderedListMessage,
                   li: ListItemMessage
