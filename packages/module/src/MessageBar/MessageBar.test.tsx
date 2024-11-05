@@ -72,6 +72,14 @@ describe('Message bar', () => {
     expect(input).toHaveValue('Hello world');
     expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
   });
+  it('can disable send button shown when text is input', async () => {
+    render(<MessageBar onSendMessage={jest.fn} isSendButtonDisabled />);
+    const input = screen.getByRole('textbox', { name: /Send a message.../i });
+    await userEvent.type(input, 'Hello world');
+    expect(input).toHaveValue('Hello world');
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeDisabled();
+  });
   it('can click send button', async () => {
     const spy = jest.fn();
     render(<MessageBar onSendMessage={spy} />);
@@ -141,5 +149,25 @@ describe('Message bar', () => {
   it('can show stop button', () => {
     render(<MessageBar onSendMessage={jest.fn} hasStopButton handleStopButton={jest.fn} />);
     expect(screen.getByRole('button', { name: 'Stop button' })).toBeTruthy();
+  });
+  it('can call handleStopButton', async () => {
+    const spy = jest.fn();
+    render(<MessageBar onSendMessage={jest.fn} hasStopButton handleStopButton={spy} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('can always show send button', () => {
+    render(<MessageBar onSendMessage={jest.fn} alwayShowSendButton />);
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeEnabled();
+  });
+  it('can disable send button if always showing', () => {
+    render(<MessageBar onSendMessage={jest.fn} alwayShowSendButton isSendButtonDisabled />);
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeDisabled();
+  });
+  it('can hide attach button', () => {
+    render(<MessageBar onSendMessage={jest.fn} hasAttachButton={false} />);
+    expect(screen.queryByRole('button', { name: 'Attach button' })).toBeFalsy();
   });
 });
