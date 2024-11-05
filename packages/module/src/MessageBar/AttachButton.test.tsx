@@ -24,13 +24,18 @@ describe('Attach button', () => {
     expect(screen.getByRole('tooltip', { name: 'Attach' })).toBeTruthy();
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should handle className prop', () => {
+    render(<AttachButton className="test" />);
+    expect(screen.getByRole('button', { name: 'Attach button' })).toHaveClass('test');
+  });
   it('should handle custom tooltip correctly', async () => {
     render(<AttachButton onClick={jest.fn} tooltipContent="Test" />);
     await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
-  it('should handle className prop', () => {
-    render(<AttachButton className="test" />);
-    expect(screen.getByRole('button', { name: 'Attach button' })).toHaveClass('test');
+  it('should handle tooltipProps prop', async () => {
+    render(<AttachButton tooltipProps={{ id: 'test' }} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    expect(screen.getByRole('tooltip', { name: 'Attach' })).toHaveAttribute('id', 'test');
   });
 });

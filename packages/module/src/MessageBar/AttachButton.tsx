@@ -18,7 +18,7 @@ export interface AttachButtonProps extends ButtonProps {
   /** Props to control if the AttachButton should be disabled */
   isDisabled?: boolean;
   /** Props to control the PF Tooltip component */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Ref applied to AttachButton and used in tooltip */
   innerRef?: React.Ref<any>;
   /** English text "Attach" used in the tooltip */
