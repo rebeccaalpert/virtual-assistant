@@ -3,8 +3,9 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { SendButton } from './SendButton';
+import { TooltipProps } from '@patternfly/react-core';
 
-const renderSend = (props?: { [key: string]: string }) => {
+const renderSend = (props?: { [key: string]: string | Omit<TooltipProps, 'content'> }) => {
   const spy = jest.fn();
   render(<SendButton onClick={spy} {...props} />);
 };
@@ -33,5 +34,10 @@ describe('Send button', () => {
   it('should handle spread props, including aria-label', () => {
     renderSend({ 'aria-label': 'test' });
     expect(screen.getByRole('button', { name: 'test' }));
+  });
+  it('should handle tooltipProps prop', async () => {
+    renderSend({ tooltipProps: { id: 'test' } });
+    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    expect(screen.getByRole('tooltip', { name: 'Send' })).toHaveAttribute('id', 'test');
   });
 });
