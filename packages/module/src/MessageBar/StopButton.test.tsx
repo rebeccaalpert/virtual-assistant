@@ -3,14 +3,15 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import { StopButton } from './StopButton';
+import { TooltipProps } from '@patternfly/react-core';
 
-const renderSend = (props?: { [key: string]: string }) => {
+const renderStop = (props?: { [key: string]: string | Omit<TooltipProps, 'content'> }) => {
   const spy = jest.fn();
   render(<StopButton onClick={spy} {...props} />);
 };
 describe('Stop button', () => {
   it('should render button correctly', () => {
-    renderSend();
+    renderStop();
     expect(screen.getByRole('button', { name: 'Stop button' })).toBeTruthy();
   });
   it('should handle onClick correctly', async () => {
@@ -26,12 +27,16 @@ describe('Stop button', () => {
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('should handle className prop', () => {
-    renderSend({ className: 'test' });
+    renderStop({ className: 'test' });
     expect(screen.getByRole('button', { name: 'Stop button' })).toHaveClass('test');
   });
-
   it('should handle spread props, including aria-label', () => {
-    renderSend({ 'aria-label': 'test' });
+    renderStop({ 'aria-label': 'test' });
     expect(screen.getByRole('button', { name: 'test' }));
+  });
+  it('should handle tooltipProps prop', async () => {
+    renderStop({ tooltipProps: { id: 'test' } });
+    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    expect(screen.getByRole('tooltip', { name: 'Stop' })).toHaveAttribute('id', 'test');
   });
 });

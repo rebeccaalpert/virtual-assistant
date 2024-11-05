@@ -12,7 +12,7 @@ export interface StopButtonProps extends ButtonProps {
   /** Class name for StopButton */
   className?: string;
   /** Props to control the PF Tooltip component */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Stop" used in the tooltip */
   tooltipContent?: string;
 }
