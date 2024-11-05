@@ -57,7 +57,7 @@ export default MessageLoading;
 
 2. **Using a \`knife\`:**
 
-     Acquire 1 tablespoon of room temperature \`butter\`. Use \`knife\` to spread butter on \`toast\`. Bon appetit!
+     Acquire 1 tablespoon of room temperature \`butter\`. Use \`knife\` to spread butter on \`toast\`. Bon appétit!
  `;
 
   return (
