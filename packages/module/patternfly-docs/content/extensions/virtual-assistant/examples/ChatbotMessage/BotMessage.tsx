@@ -48,7 +48,7 @@ export default MessageLoading;
   * Item 2
   * Item 3`;
 
-  const moreComplexList = `You may be wondering whether you can display more complex lists with formatting. In response to your question, I will explain how to butter toast.
+  const moreComplexList = `You may be wondering whether you can display more complex lists with formatting. In response to your question, I will explain how to spread butter on toast.
 
 1. **Using a \`toaster\`:**
 
