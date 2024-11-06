@@ -21,7 +21,7 @@ export interface MicrophoneButtonProps extends ButtonProps {
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** English text "Use microphone" and "Stop listening" used in the tooltip */
-  tooltipContent?: { active: string; inactive: string };
+  tooltipContent?: { active?: string; inactive?: string };
 }
 
 export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = ({

@@ -56,12 +56,25 @@ const ATTACH_MENU_ITEMS = [
   </DropdownGroup>
 ];
 
+const originalSpeechRecognition = window.SpeechRecognition;
+
+const mockSpeechRecognition = () => {
+  const MockSpeechRecognition = jest.fn().mockImplementation(() => ({
+    start: jest.fn(),
+    stop: jest.fn()
+  }));
+  (MockSpeechRecognition as any).prototype = {};
+  window.SpeechRecognition = MockSpeechRecognition as any;
+};
+
 describe('Message bar', () => {
+  afterAll(() => {
+    window.SpeechRecognition = originalSpeechRecognition;
+  });
   it('should render correctly', () => {
     render(<MessageBar onSendMessage={jest.fn} />);
     expect(screen.getByRole('button', { name: 'Attach button' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Send button' })).toBeFalsy();
-    // jest doesn't have browser recognition
     expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toBeTruthy();
   });
@@ -169,5 +182,96 @@ describe('Message bar', () => {
   it('can hide attach button', () => {
     render(<MessageBar onSendMessage={jest.fn} hasAttachButton={false} />);
     expect(screen.queryByRole('button', { name: 'Attach button' })).toBeFalsy();
+  });
+  it('can hide microphone button when window.SpeechRecognition is not there', () => {
+    render(<MessageBar onSendMessage={jest.fn} hasMicrophoneButton />);
+    expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
+  });
+  it('can show microphone button', () => {
+    mockSpeechRecognition();
+    render(<MessageBar onSendMessage={jest.fn} hasMicrophoneButton />);
+    expect(screen.getByRole('button', { name: 'Microphone button' })).toBeTruthy();
+  });
+  it('can handle buttonProps tooltipContent  appropriately for attach', async () => {
+    render(<MessageBar onSendMessage={jest.fn} hasAttachButton buttonProps={{ attach: { tooltipContent: 'Test' } }} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
+  });
+  it('can handle buttonProps props appropriately for attach', async () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasAttachButton
+        buttonProps={{ attach: { props: { 'aria-label': 'Test' } } }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Test' }));
+  });
+  it('can handle buttonProps tooltipContent appropriately for stop', async () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasStopButton
+        handleStopButton={jest.fn}
+        buttonProps={{ stop: { tooltipContent: 'Test' } }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
+  });
+  it('can handle buttonProps props appropriately for stop', async () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasStopButton
+        handleStopButton={jest.fn}
+        buttonProps={{ stop: { props: { 'aria-label': 'Test' } } }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Test' }));
+  });
+  it('can handle buttonProps tooltipContent  appropriately for send', async () => {
+    render(
+      <MessageBar onSendMessage={jest.fn} alwayShowSendButton buttonProps={{ send: { tooltipContent: 'Test' } }} />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
+  });
+  it('can handle buttonProps props appropriately for send', async () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        alwayShowSendButton
+        buttonProps={{ send: { props: { 'aria-label': 'Test' } } }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Test' }));
+  });
+  it('can handle buttonProps appropriately for microphone', async () => {
+    mockSpeechRecognition();
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasMicrophoneButton
+        buttonProps={{
+          microphone: { tooltipContent: { active: 'Currently listening', inactive: 'Not currently listening' } }
+        }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
+    expect(screen.getByRole('tooltip', { name: 'Currently listening' })).toBeTruthy();
+    await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
+    expect(screen.getByRole('tooltip', { name: 'Not currently listening' })).toBeTruthy();
+  });
+  it('can handle buttonProps props appropriately for microphone', async () => {
+    mockSpeechRecognition();
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasMicrophoneButton
+        buttonProps={{ microphone: { props: { 'aria-label': 'Test' } } }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Test' }));
   });
 });
