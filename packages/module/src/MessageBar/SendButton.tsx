@@ -14,7 +14,7 @@ export interface SendButtonProps extends ButtonProps {
   /** Class Name for SendButton */
   className?: string;
   /** Props to control the PF Tooltip component */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Send" used in the tooltip */
   tooltipContent?: string;
 }

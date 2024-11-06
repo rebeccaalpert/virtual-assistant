@@ -12,6 +12,56 @@ const ALL_ACTIONS = [
   { label: /Listen/i }
 ];
 
+const UNORDERED_LIST = `
+  Here is an unordered list:
+
+  * Item 1
+  * Item 2
+  * Item 3
+`;
+
+const ORDERED_LIST = `
+  Here is an ordered list:
+
+  1. Item 1
+  2. Item 2
+  3. Item 3
+`;
+
+const CODE_MESSAGE = `
+Here is some YAML code:
+
+~~~yaml
+apiVersion: helm.openshift.io/v1beta1/
+kind: HelmChartRepository
+metadata:
+  name: azure-sample-repo0oooo00ooo
+spec:
+  connectionConfig:
+  url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
+~~~`;
+
+const CODE = `
+apiVersion: helm.openshift.io/v1beta1/
+kind: HelmChartRepository
+metadata:
+  name: azure-sample-repo0oooo00ooo
+spec:
+  connectionConfig:
+  url: https://raw.githubusercontent.com/Azure-Samples/helm-charts/master/docs
+`;
+
+const INLINE_CODE = `Here is an inline code - \`() => void\``;
+
+const checkListItemsRendered = () => {
+  const items = ['Item 1', 'Item 2', 'Item 3'];
+  expect(screen.getAllByRole('listitem')).toHaveLength(3);
+  items.forEach((item) => {
+    // list item text gets wrapped in a span by the third-party library so we can't just check the listitem
+    expect(screen.getByText(item)).toBeTruthy();
+  });
+};
+
 describe('Message', () => {
   it('should render user messages correctly', () => {
     render(<Message role="user" name="User" content="Hi" />);
@@ -171,5 +221,46 @@ describe('Message', () => {
     ALL_ACTIONS.forEach(({ label }) => {
       expect(screen.queryByRole('button', { name: label })).toBeFalsy();
     });
+  });
+  it('should render unordered lists correctly', () => {
+    render(<Message role="user" name="User" content={UNORDERED_LIST} />);
+    expect(screen.getByText('Here is an unordered list:')).toBeTruthy();
+    checkListItemsRendered();
+  });
+  it('should render ordered lists correctly', () => {
+    render(<Message role="user" name="User" content={ORDERED_LIST} />);
+    expect(screen.getByText('Here is an ordered list:')).toBeTruthy();
+    checkListItemsRendered();
+  });
+  it('should render inline code', () => {
+    render(<Message role="user" name="User" content={INLINE_CODE} />);
+    expect(screen.getByText(/() => void/i)).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Copy code button' })).toBeFalsy();
+  });
+  it('should render code correctly', () => {
+    render(<Message role="user" name="User" content={CODE_MESSAGE} />);
+    expect(screen.getByText('Here is some YAML code:')).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
+    expect(screen.getByText(/apiVersion: helm.openshift.io\/v1beta1/i)).toBeTruthy();
+    expect(screen.getByText(/metadata:/i)).toBeTruthy();
+    expect(screen.getByText(/name: azure-sample-repo0oooo00ooo/i)).toBeTruthy();
+    expect(screen.getByText(/spec/i)).toBeTruthy();
+    expect(screen.getByText(/connectionConfig:/i)).toBeTruthy();
+    expect(
+      screen.getByText(/url: https:\/\/raw.githubusercontent.com\/Azure-Samples\/helm-charts\/master\/docs/i)
+    ).toBeTruthy();
+  });
+  it('can click copy code button', async () => {
+    // need explicit setup since RTL stubs clipboard if you do this
+    const user = userEvent.setup();
+    render(<Message role="user" name="User" content={CODE_MESSAGE} />);
+    expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
+    await user.click(screen.getByRole('button', { name: 'Copy code button' }));
+    const clipboardText = await navigator.clipboard.readText();
+    expect(clipboardText.trim()).toEqual(CODE.trim());
+  });
+  it('should handle codeBlockProps correctly by spreading it onto the CodeMessage', () => {
+    render(<Message role="user" name="User" content={CODE_MESSAGE} codeBlockProps={{ 'aria-label': 'test' }} />);
+    expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
   });
 });

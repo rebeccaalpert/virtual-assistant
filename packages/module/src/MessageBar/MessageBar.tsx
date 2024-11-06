@@ -53,10 +53,13 @@ export interface MessageBarProps extends TextAreaProps {
   isSendButtonDisabled?: boolean;
   /** Prop to allow passage of additional props to buttons */
   buttonProps?: {
-    attach: { tooltipContent?: string; props?: ButtonProps };
-    stop: { tooltipContent?: string; props?: ButtonProps };
-    send: { tooltipContent?: string; props?: ButtonProps };
-    microphone: { tooltipContent?: { active: string; inactive: string }; props?: ButtonProps };
+    attach?: { tooltipContent?: string; props?: ButtonProps; inputTestId?: string };
+    stop?: { tooltipContent?: string; props?: ButtonProps };
+    send?: { tooltipContent?: string; props?: ButtonProps };
+    microphone?: {
+      tooltipContent?: { active?: string; inactive?: string };
+      props?: ButtonProps;
+    };
   };
 }
 
@@ -116,8 +119,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
       return (
         <StopButton
           onClick={handleStopButton}
-          tooltipContent={buttonProps?.stop.tooltipContent}
-          {...buttonProps?.stop.props}
+          tooltipContent={buttonProps?.stop?.tooltipContent}
+          {...buttonProps?.stop?.props}
         />
       );
     }
@@ -128,16 +131,17 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             ref={attachButtonRef}
             onClick={handleAttachMenuToggle}
             isDisabled={isListeningMessage}
-            tooltipContent={buttonProps?.attach.tooltipContent}
-            {...buttonProps?.attach.props}
+            tooltipContent={buttonProps?.attach?.tooltipContent}
+            {...buttonProps?.attach?.props}
           />
         )}
         {!attachMenuProps && hasAttachButton && (
           <AttachButton
             onAttachAccepted={handleAttach}
             isDisabled={isListeningMessage}
-            tooltipContent={buttonProps?.attach.tooltipContent}
-            {...buttonProps?.attach.props}
+            tooltipContent={buttonProps?.attach?.tooltipContent}
+            inputTestId={buttonProps?.attach?.inputTestId}
+            {...buttonProps?.attach?.props}
           />
         )}
         {hasMicrophoneButton && (
@@ -145,8 +149,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             isListening={isListeningMessage}
             onIsListeningChange={setIsListeningMessage}
             onSpeechRecognition={setMessage}
-            tooltipContent={buttonProps?.microphone.tooltipContent}
-            {...buttonProps?.microphone.props}
+            tooltipContent={buttonProps?.microphone?.tooltipContent}
+            {...buttonProps?.microphone?.props}
           />
         )}
         {(alwayShowSendButton || message) && (
@@ -154,8 +158,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             value={message}
             onClick={handleSend}
             isDisabled={isSendButtonDisabled}
-            tooltipContent={buttonProps?.send.tooltipContent}
-            {...buttonProps?.send.props}
+            tooltipContent={buttonProps?.send?.tooltipContent}
+            {...buttonProps?.send?.props}
           />
         )}
       </>
