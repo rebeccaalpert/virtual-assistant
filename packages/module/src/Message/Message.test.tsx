@@ -259,4 +259,8 @@ describe('Message', () => {
     const clipboardText = await navigator.clipboard.readText();
     expect(clipboardText.trim()).toEqual(CODE.trim());
   });
+  it('should handle codeBlockProps correctly by spreading it onto the CodeMessage', () => {
+    render(<Message role="user" name="User" content={CODE_MESSAGE} codeBlockProps={{ 'aria-label': 'test' }} />);
+    expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
+  });
 });
