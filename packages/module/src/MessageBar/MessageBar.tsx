@@ -53,10 +53,13 @@ export interface MessageBarProps extends TextAreaProps {
   isSendButtonDisabled?: boolean;
   /** Prop to allow passage of additional props to buttons */
   buttonProps?: {
-    attach?: { tooltipContent?: string; props?: ButtonProps };
+    attach?: { tooltipContent?: string; props?: ButtonProps; inputTestId?: string };
     stop?: { tooltipContent?: string; props?: ButtonProps };
     send?: { tooltipContent?: string; props?: ButtonProps };
-    microphone?: { tooltipContent?: { active?: string; inactive?: string }; props?: ButtonProps };
+    microphone?: {
+      tooltipContent?: { active?: string; inactive?: string };
+      props?: ButtonProps;
+    };
   };
 }
 
@@ -137,6 +140,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             onAttachAccepted={handleAttach}
             isDisabled={isListeningMessage}
             tooltipContent={buttonProps?.attach?.tooltipContent}
+            inputTestId={buttonProps?.attach?.inputTestId}
             {...buttonProps?.attach?.props}
           />
         )}

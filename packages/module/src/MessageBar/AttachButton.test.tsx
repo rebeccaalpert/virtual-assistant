@@ -38,4 +38,16 @@ describe('Attach button', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
     expect(screen.getByRole('tooltip', { name: 'Attach' })).toHaveAttribute('id', 'test');
   });
+  // Based on this because I had no idea how to do this and was looking around: https://stackoverflow.com/a/75562651
+  // See also https://developer.mozilla.org/en-US/docs/Web/API/File/File for what that file variable is doing
+  it('should handle onAttachAccepted prop', async () => {
+    const spy = jest.fn();
+    render(<AttachButton onAttachAccepted={spy} inputTestId="input" />);
+    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    const file = new File(['test'], 'test.json');
+    const input = screen.getByTestId('input') as HTMLInputElement;
+    await userEvent.upload(input, file);
+    expect(input.files).toHaveLength(1);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
 });

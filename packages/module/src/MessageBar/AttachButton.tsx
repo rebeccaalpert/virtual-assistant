@@ -23,6 +23,8 @@ export interface AttachButtonProps extends ButtonProps {
   innerRef?: React.Ref<any>;
   /** English text "Attach" used in the tooltip */
   tooltipContent?: string;
+  /** Test id applied to input */
+  inputTestId?: string;
 }
 
 const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
@@ -33,6 +35,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   tooltipProps,
   innerRef,
   tooltipContent = 'Attach',
+  inputTestId,
   ...props
 }: AttachButtonProps) => {
   const { open, getInputProps } = useDropzone({
@@ -43,7 +46,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   return (
     <>
       {/* this is required for react-dropzone to work in Safari and Firefox */}
-      <input {...getInputProps()} />
+      <input data-testid={inputTestId} {...getInputProps()} />
       <Tooltip
         id="pf-chatbot__tooltip--attach"
         content={tooltipContent}
