@@ -6,7 +6,7 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Avatar, Label, Timestamp } from '@patternfly/react-core';
+import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp } from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
@@ -17,6 +17,11 @@ import ListItemMessage from './ListMessage/ListItemMessage';
 import UnorderedListMessage from './ListMessage/UnorderedListMessage';
 import OrderedListMessage from './ListMessage/OrderedListMessage';
 
+export interface QuickResponse extends Omit<LabelProps, 'children'> {
+  content: string;
+  id: string;
+  onClick: () => void;
+}
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
   id?: string;
@@ -58,6 +63,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
     'aria-label'?: string;
     className?: string;
   };
+  /** Props for quick responses */
+  quickResponses?: QuickResponse[];
+  /** Props for quick responses container */
+  quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -76,6 +85,8 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   botWord = 'AI',
   loadingWord = 'Loading message',
   codeBlockProps,
+  quickResponses,
+  quickResponseContainerProps = { numLabels: 5 },
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -137,6 +148,18 @@ export const Message: React.FunctionComponent<MessageProps> = ({
             )}
             {!isLoading && sources && <SourcesCard {...sources} />}
             {!isLoading && actions && <ResponseActions actions={actions} />}
+            {!isLoading && quickResponses && (
+              <LabelGroup
+                className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}
+                {...quickResponseContainerProps}
+              >
+                {quickResponses.map(({ id, onClick, content, ...props }: QuickResponse) => (
+                  <Label variant="outline" color="blue" key={id} onClick={onClick} {...props}>
+                    {content}
+                  </Label>
+                ))}
+              </LabelGroup>
+            )}
           </div>
           {attachmentName && (
             <div className="pf-chatbot__message-attachment">
