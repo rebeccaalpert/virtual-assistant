@@ -61,6 +61,8 @@ export interface MessageBarProps extends TextAreaProps {
       props?: ButtonProps;
     };
   };
+  /** A callback for when the text area value changes. */
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
 }
 
 export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
@@ -75,6 +77,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   handleStopButton,
   hasStopButton,
   buttonProps,
+  onChange,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -86,6 +89,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   const attachButtonRef = React.useRef<HTMLButtonElement>(null);
 
   const handleChange = React.useCallback((event) => {
+    onChange && onChange(event, event.target.value);
     setMessage(event.target.value);
   }, []);
 
@@ -98,7 +102,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   }, [onSendMessage]);
 
   const handleKeyDown = React.useCallback(
-    (event) => {
+    (event: React.KeyboardEvent) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         if (!isSendButtonDisabled && !hasStopButton) {
