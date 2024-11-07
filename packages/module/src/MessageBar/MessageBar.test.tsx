@@ -87,6 +87,15 @@ describe('Message bar', () => {
     await userEvent.type(input, '[Enter]');
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('calls onChange callback appropriately', async () => {
+    const spy = jest.fn();
+    render(<MessageBar onSendMessage={jest.fn} onChange={spy} />);
+    const input = screen.getByRole('textbox', { name: /Send a message.../i });
+    await userEvent.type(input, 'A');
+    expect(input).toHaveValue('A');
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(expect.any(Object), 'A');
+  });
 
   // Send button
   // --------------------------------------------------------------------------
