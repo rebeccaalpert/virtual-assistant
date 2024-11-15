@@ -93,7 +93,7 @@ export const ChatbotWelcomeInteractionDemo: React.FunctionComponent = () => {
 
   return (
     <>
-      <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Position">
+      <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Direction">
         <Radio
           isChecked={position === 'top'}
           onChange={() => setPosition('top')}

@@ -135,6 +135,14 @@ To provide users with a more specific direction, you can also include optional w
 
 ```
 
+### Welcome interaction
+
+The welcome prompt can be turned off when a user inputs their first message. You can also reposition the direction of the content via the `position` prop on `MessageBox`.
+
+```js file="./ChatbotWelcomeInteraction.tsx" isFullscreen
+
+```
+
 ### Skip to content
 
 To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content, using a [PatternFly skip to content component](/components/skip-to-content). To display this button, you must tab into the main window.
