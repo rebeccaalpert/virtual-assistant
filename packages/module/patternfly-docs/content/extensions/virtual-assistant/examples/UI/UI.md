@@ -10,32 +10,33 @@ id: UI
 source: react
 # If you use typescript, the name of the interface to display props for
 # These are found through the sourceProps function provided in patternfly-docs.source.js
-propComponents: [
-  'Chatbot',
-  'ChatbotContent', 
-  'MessageBox',
-  'ChatbotWelcomePrompt',
-  'WelcomePrompt',
-  'ChatbotToggle',
-  'ChatbotHeader',
-  'ChatbotHeaderMain',
-  'ChatbotHeaderMenu',
-  'ChatbotHeaderActions',
-  'ChatbotHeaderTitle',
-  'ChatbotHeaderOptionsDropdown',
-  'ChatbotHeaderSelectorDropdown',
-  'ChatbotFooter',
-  'MessageBar',
-  'ChatbotFootnote',
-  'ChatbotFootnotePopover',
-  'ChatbotFootnotePopoverCTA',
-  'ChatbotFootnotePopoverBannerImage',
-  'ChatbotFootnotePopoverLink',
-  'MessageBarWithAttachMenuProps',
-  'SourceDetailsMenuItem',
-  'ChatbotConversationHistoryNav', 
-  'Conversation'
-]
+propComponents:
+  [
+    'Chatbot',
+    'ChatbotContent',
+    'MessageBox',
+    'ChatbotWelcomePrompt',
+    'WelcomePrompt',
+    'ChatbotToggle',
+    'ChatbotHeader',
+    'ChatbotHeaderMain',
+    'ChatbotHeaderMenu',
+    'ChatbotHeaderActions',
+    'ChatbotHeaderTitle',
+    'ChatbotHeaderOptionsDropdown',
+    'ChatbotHeaderSelectorDropdown',
+    'ChatbotFooter',
+    'MessageBar',
+    'ChatbotFootnote',
+    'ChatbotFootnotePopover',
+    'ChatbotFootnotePopoverCTA',
+    'ChatbotFootnotePopoverBannerImage',
+    'ChatbotFootnotePopoverLink',
+    'MessageBarWithAttachMenuProps',
+    'SourceDetailsMenuItem',
+    'ChatbotConversationHistoryNav',
+    'Conversation'
+  ]
 sortValue: 2
 ---
 
@@ -74,6 +75,8 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
+import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ## Structure
 
@@ -113,9 +116,17 @@ Your code structure should look like this:
 
 **Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic chatbot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and [embedded chatbot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot) demos.
 
-### Welcome prompt
+### Welcome message
 
-To introduce users to the chatbot experience, a welcome prompt can fill the message box before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
+To introduce users to the chatbot experience, display a welcome message before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
+
+This message can be dismissed once a user sends their first message. To change the arrangement of the message within the message box, specify the `position` in the `<MessageBox>` component.
+
+```js file="./ChatbotWelcomeInteraction.tsx" isFullscreen
+
+```
+
+### Welcome prompt
 
 To provide users with a more specific direction, you can also include optional welcome prompts.
 
@@ -265,6 +276,7 @@ To enable the stop button, set `hasStopButton` to `true` and pass in a `handleSt
 ## Navigation
 
 ### Side nav in a drawer
+
 The chatbot conversation history is contained in an interactive drawer, where users can interact with previous conversations or start a new conversation.
 
 The `<ChatbotConversationHistoryNav>` component is a wrapper placed within `<Chatbot>`, which contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
