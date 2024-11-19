@@ -129,17 +129,17 @@ This message can be dismissed once a user sends their first message. To change t
 
 ### Welcome prompt
 
-To provide users with a more specific direction, you can also include optional welcome prompts.
+The welcome prompt can be dismissed once a user sends their first message. To reposition the direction of the welcome content, you can change the `position` of the `<MessageBox>` component.
 
-```js file="./ChatbotWelcomePrompt.tsx"
+```js file="./ChatbotWelcomeInteraction.tsx" isFullscreen
 
 ```
 
-### Welcome interaction
+### Welcome prompt
 
-The welcome prompt can be turned off when a user inputs their first message. You can also reposition the direction of the content via the `position` prop on `MessageBox`.
+To provide users with a more specific direction, you can also include optional welcome prompts.
 
-```js file="./ChatbotWelcomeInteraction.tsx" isFullscreen
+```js file="./ChatbotWelcomePrompt.tsx"
 
 ```
 
