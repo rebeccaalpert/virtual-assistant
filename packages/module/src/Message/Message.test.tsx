@@ -261,4 +261,8 @@ describe('Message', () => {
     render(<Message role="user" name="User" content={CODE_MESSAGE} codeBlockProps={{ 'aria-label': 'test' }} />);
     expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
   });
+  it('should handle hasCursor correctly', () => {
+    render(<Message role="user" name="User" content="Hi" hasCursor />);
+    expect(screen.getByText('Hi')).toHaveClass('pf-chatbot__message--streaming');
+  });
 });

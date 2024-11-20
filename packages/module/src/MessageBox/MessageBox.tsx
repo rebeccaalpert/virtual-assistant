@@ -94,7 +94,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
         role="region"
         tabIndex={0}
         aria-label={ariaLabel}
-        className={`pf-chatbot__messagebox ${position === 'bottom' && 'pf-chatbot__messagebox--bottom'} ${className ?? ''}`}
+        className={`pf-chatbot__messagebox ${position === 'bottom' ? 'pf-chatbot__messagebox--bottom' : ''} ${className ?? ''}`}
         ref={innerRef ?? messageBoxRef}
       >
         {children}

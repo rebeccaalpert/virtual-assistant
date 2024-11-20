@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
+import { Button } from '@patternfly/react-core';
 
 export const BotMessageExample: React.FunctionComponent = () => {
   const markdown = `
@@ -82,6 +83,11 @@ export default MessageLoading;
         avatar={patternflyAvatar}
         content="Text-based message, where the bot's name is truncated"
       />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content="Text-based message with a cursor" hasCursor />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={markdown} hasCursor />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={orderedList} hasCursor />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={unorderedList} hasCursor />
+      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={moreComplexList} hasCursor />
     </>
   );
 };

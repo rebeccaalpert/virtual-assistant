@@ -113,6 +113,24 @@
   flex-wrap: wrap;
 }
 
+.pf-chatbot__message--bot.pf-chatbot__message--streaming {
+  .pf-chatbot__markdown {
+    position: relative;
+  }
+
+  .pf-chatbot__markdown > ul:last-child::after,
+  .pf-chatbot__markdown > ol:last-child::after,
+  .pf-chatbot__markdown > li:last-child::after,
+  .pf-chatbot__markdown > :last-child::after {
+    content: '|';
+    font-weight: 500;
+    position: absolute;
+    right: -3px;
+    top: 0;
+    color: var(--pf-t--global--icon--color--brand--default);
+  }
+}
+
 @import './MessageLoading';
 @import './CodeBlockMessage/CodeBlockMessage';
 @import './TextMessage/TextMessage';

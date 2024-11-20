@@ -57,6 +57,12 @@ By default, a date and timestamp is displayed with each message. We recommend us
 
 ```
 
+### Streaming message
+
+```js file="./StreamingMessage.tsx" isFullscreen
+
+```
+
 ### Messages actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:

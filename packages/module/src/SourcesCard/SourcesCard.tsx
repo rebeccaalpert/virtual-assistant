@@ -82,7 +82,7 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
         </CardTitle>
         {sources[page - 1].body && (
           <CardBody
-            className={`pf-chatbot__sources-card-body ${sources.length === 1 && 'pf-chatbot__sources-card-no-footer'}`}
+            className={`pf-chatbot__sources-card-body ${sources.length === 1 ? 'pf-chatbot__sources-card-no-footer' : ''}`}
           >
             {sources[page - 1].body}
           </CardBody>

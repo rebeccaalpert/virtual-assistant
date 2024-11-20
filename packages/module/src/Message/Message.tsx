@@ -76,6 +76,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   quickResponses?: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Whether content has cursor */
+  hasCursor?: boolean;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -93,6 +95,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
   attachments,
+  hasCursor = false,
   ...props
 }: MessageProps) => {
   // Configure default values
@@ -115,7 +118,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
-      className={`pf-chatbot__message pf-chatbot__message--${role}`}
+      className={`pf-chatbot__message pf-chatbot__message--${role} ${hasCursor ? 'pf-chatbot__message--streaming' : ''}`}
       {...props}
     >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
@@ -140,6 +143,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               <MessageLoading loadingWord={loadingWord} />
             ) : (
               <Markdown
+                className="pf-chatbot__markdown"
                 components={{
                   p: TextMessage,
                   code: ({ children }) => <CodeBlockMessage {...codeBlockProps}>{children}</CodeBlockMessage>,
@@ -152,6 +156,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
                 {content}
               </Markdown>
             )}
+
             {!isLoading && sources && <SourcesCard {...sources} />}
             {!isLoading && actions && <ResponseActions actions={actions} />}
             {!isLoading && quickResponses && (
