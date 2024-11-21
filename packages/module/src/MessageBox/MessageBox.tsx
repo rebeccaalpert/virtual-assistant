@@ -15,6 +15,8 @@ export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
   className?: string;
   /** Ref applied to message box */
   innerRef?: React.Ref<HTMLDivElement>;
+  /** Modifier that controls how content in MessageBox is positioned within the container */
+  position?: 'top' | 'bottom';
 }
 
 const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
@@ -22,7 +24,8 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   ariaLabel = 'Scrollable message log',
   children,
   innerRef,
-  className
+  className,
+  position = 'top'
 }: MessageBoxProps) => {
   const [atTop, setAtTop] = React.useState(false);
   const [atBottom, setAtBottom] = React.useState(true);
@@ -91,7 +94,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
         role="region"
         tabIndex={0}
         aria-label={ariaLabel}
-        className={`pf-chatbot__messagebox ${className ?? ''}`}
+        className={`pf-chatbot__messagebox ${position === 'bottom' && 'pf-chatbot__messagebox--bottom'} ${className ?? ''}`}
         ref={innerRef ?? messageBoxRef}
       >
         {children}
