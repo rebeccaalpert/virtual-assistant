@@ -6,4 +6,4 @@ import '@patternfly/patternfly/patternfly-addons.css';
 import '@patternfly/documentation-framework/global.css';
 
 // Add your extension CSS below
-import '@patternfly/virtual-assistant/dist/css/main.css';
+import '@patternfly/chatbot/dist/css/main.css';
