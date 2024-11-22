@@ -88,6 +88,8 @@ export const MyComponent: React.FunctionComponent<MyComponentProps> = ({ customL
 
 #### Markdown file example:
 
+Note: You'll need to add any imports required in a component usage file example like MyComponentExample.tsx, below, here as well.
+
 ````
 ---
 section: extensions
@@ -109,6 +111,8 @@ MyComponent has been created to demo contributing to this repository.
 ````
 
 #### Component usage file example: (`MyComponentExample.tsx`)
+
+Note: You'll need to add any imports required here in the parent folder's markdown file as well.
 
 ```
 import React from 'react';
