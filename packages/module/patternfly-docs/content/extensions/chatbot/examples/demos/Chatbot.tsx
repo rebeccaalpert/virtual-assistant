@@ -30,7 +30,7 @@ import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
-import userAvatar from '../Messages/user_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 const footnoteProps = {
@@ -102,7 +102,8 @@ const initialMessages: MessageProps[] = [
     content: 'Hello, can you give me an example of what you can do?',
     name: 'User',
     avatar: userAvatar,
-    timestamp: date.toLocaleString()
+    timestamp: date.toLocaleString(),
+    avatarProps: { isBordered: true }
   },
   {
     id: '2',
@@ -222,7 +223,8 @@ export const ChatbotDemo: React.FunctionComponent = () => {
       content: message,
       name: 'User',
       avatar: userAvatar,
-      timestamp: date.toLocaleString()
+      timestamp: date.toLocaleString(),
+      avatarProps: { isBordered: true }
     });
     newMessages.push({
       id: generateId(),
@@ -335,7 +337,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         Skip to chatbot
       </SkipToContent>
       <ChatbotToggle
-        toolTipLabel="Chatbot"
+        tooltipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
         id="chatbot-toggle"

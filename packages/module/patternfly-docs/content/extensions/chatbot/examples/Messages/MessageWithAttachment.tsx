@@ -3,7 +3,7 @@ import React from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 import AttachmentEdit from '@patternfly/chatbot/dist/dynamic/AttachmentEdit';
-import userAvatar from './user_avatar.jpg';
+import userAvatar from './user_avatar.svg';
 
 interface ModalData {
   code: string;

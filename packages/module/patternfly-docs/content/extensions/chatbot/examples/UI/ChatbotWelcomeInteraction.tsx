@@ -7,7 +7,7 @@ import ChatbotFooter from '@patternfly/chatbot/dist/dynamic/ChatbotFooter';
 import MessageBar from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/chatbot/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/chatbot/dist/dynamic/Message';
-import userAvatar from '../Messages/user_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import { FormGroup, Radio } from '@patternfly/react-core';
 
@@ -41,7 +41,8 @@ export const ChatbotWelcomeInteractionDemo: React.FunctionComponent = () => {
       content: message,
       name: 'User',
       avatar: userAvatar,
-      timestamp: date.toLocaleString()
+      timestamp: date.toLocaleString(),
+      avatarProps: { isBordered: true }
     });
     newMessages.push({
       id: generateId(),

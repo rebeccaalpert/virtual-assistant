@@ -76,7 +76,7 @@ import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
-import userAvatar from '../Messages/user_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ## Structure
@@ -161,6 +161,14 @@ To allow users to open and close the chatbot window as needed, add a toggle.
 A custom icon can be passed to the toggle. To ensure the icon is visible in both light and dark themes, use an SVG image and set `fill="currentColor"`.
 
 ```js file="./CustomClosedIcon.tsx" isFullscreen
+
+```
+
+### Custom toggle shape
+
+A custom shape can be set for the toggle. To override the default circle shape, set `isRound` to `false`. This will set the toggle to a square shape, but you can pass in additional classes to further customize the shape.
+
+```js file="./SquareChatbotToggle.tsx" isFullscreen
 
 ```
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
+import squareImg from './PF-social-color-square.svg';
 
 export const BotMessageExample: React.FunctionComponent = () => {
   const markdown = `
@@ -81,6 +82,13 @@ export default MessageLoading;
         role="bot"
         avatar={patternflyAvatar}
         content="Text-based message, where the bot's name is truncated"
+      />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={squareImg}
+        content="Text-based message from a bot with a square avatar. You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`."
+        hasRoundAvatar={false}
       />
     </>
   );

@@ -6,7 +6,16 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp, Truncate } from '@patternfly/react-core';
+import {
+  Avatar,
+  AvatarProps,
+  Label,
+  LabelGroup,
+  LabelGroupProps,
+  LabelProps,
+  Timestamp,
+  Truncate
+} from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
@@ -76,6 +85,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   quickResponses?: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Whether avatar is round */
+  hasRoundAvatar?: boolean;
+  /** Any additional props applied to the avatar, for additional customization  */
+  avatarProps?: Omit<AvatarProps, 'alt'>;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -93,12 +106,19 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
   attachments,
+  hasRoundAvatar = true,
+  avatarProps,
   ...props
 }: MessageProps) => {
+  let avatarClassName;
+  if (avatarProps && 'className' in avatarProps) {
+    const { className, ...rest } = avatarProps;
+    avatarClassName = className;
+    avatarProps = { ...rest };
+  }
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -106,7 +126,12 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       {...props}
     >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
-      <Avatar src={avatar} alt="" />
+      <Avatar
+        className={`pf-chatbot__message-avatar ${hasRoundAvatar ? 'pf-chatbot__message-avatar--round' : ''} ${avatarClassName ? avatarClassName : ''}`}
+        src={avatar}
+        alt=""
+        {...avatarProps}
+      />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
           {name && (

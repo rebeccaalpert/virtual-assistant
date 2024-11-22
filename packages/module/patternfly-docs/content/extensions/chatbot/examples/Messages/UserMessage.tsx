@@ -1,7 +1,7 @@
 import React from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
-import userAvatar from './user_avatar.jpg';
+import userAvatar from './user_avatar.svg';
 
 export const UserMessageExample: React.FunctionComponent = () => {
   const markdown = `A paragraph with *emphasis* and **strong importance**.
@@ -32,6 +32,13 @@ Here is an unordered list:
         avatar={userAvatar}
       />
       <Message name="User" role="user" content={markdown} avatar={userAvatar} />
+      <Message
+        name="User"
+        role="user"
+        content="Example user message with `avatarProps` set to add a border"
+        avatar={userAvatar}
+        avatarProps={{ isBordered: true }}
+      />
     </>
   );
 };

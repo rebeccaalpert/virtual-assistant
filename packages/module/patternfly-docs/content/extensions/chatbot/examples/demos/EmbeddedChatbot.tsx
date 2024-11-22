@@ -38,7 +38,7 @@ import ChatbotHeader, {
 import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import { BarsIcon } from '@patternfly/react-icons';
-import userAvatar from '../Messages/user_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 const footnoteProps = {
@@ -110,7 +110,8 @@ const initialMessages: MessageProps[] = [
     content: 'Hello, can you give me an example of what you can do?',
     name: 'User',
     avatar: userAvatar,
-    timestamp: date.toLocaleString()
+    timestamp: date.toLocaleString(),
+    avatarProps: { isBordered: true }
   },
   {
     id: '2',
@@ -221,7 +222,8 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
       content: message,
       name: 'User',
       avatar: userAvatar,
-      timestamp: date.toLocaleString()
+      timestamp: date.toLocaleString(),
+      avatarProps: { isBordered: true }
     });
     newMessages.push({
       id: generateId(),
