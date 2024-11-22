@@ -107,7 +107,7 @@ The API for a source requires a link at minimum, but we strongly recommend provi
 
 ### User messages
 
-Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user. You also apply `avatarProps` to the Message to adjust any [PatternFly Avatar](/components/avatar/) props you might need to change, or to apply an additional class.
+Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user. You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`.
 
 ```js file="./UserMessage.tsx"
 
