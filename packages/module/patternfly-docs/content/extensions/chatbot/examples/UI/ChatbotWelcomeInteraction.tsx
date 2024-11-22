@@ -41,7 +41,8 @@ export const ChatbotWelcomeInteractionDemo: React.FunctionComponent = () => {
       content: message,
       name: 'User',
       avatar: userAvatar,
-      timestamp: date.toLocaleString()
+      timestamp: date.toLocaleString(),
+      avatarProps: { isBordered: true }
     });
     newMessages.push({
       id: generateId(),
