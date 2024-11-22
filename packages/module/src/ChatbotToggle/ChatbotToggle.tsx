@@ -20,6 +20,10 @@ export interface ChatbotToggleProps extends ButtonProps {
   closedToggleIcon?: () => JSX.Element;
   /** Ref applied to toggle */
   innerRef?: React.Ref<HTMLButtonElement>;
+  /** Whether toggle is a circle */
+  isRound?: boolean;
+  /** Class name applied to toggle */
+  className?: string;
 }
 
 const ChatIcon = () => (
@@ -49,6 +53,8 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   toggleButtonLabel,
   closedToggleIcon: ClosedToggleIcon,
   innerRef,
+  isRound = true,
+  className,
   ...props
 }: ChatbotToggleProps) => {
   // Configure icon
@@ -58,7 +64,7 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   return (
     <Tooltip content={toolTipLabel} {...tooltipProps}>
       <Button
-        className={`pf-chatbot__button ${isChatbotVisible ? 'pf-chatbot__button--active' : ''}`}
+        className={`pf-chatbot__button ${isChatbotVisible ? 'pf-chatbot__button--active' : ''} ${isRound ? 'pf-chatbot__button--round' : ''} ${className ? className : ''}`}
         variant="plain"
         aria-label={toggleButtonLabel || `${toolTipLabel} toggle`}
         onClick={onToggleChatbot}
