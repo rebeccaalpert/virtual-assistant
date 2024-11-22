@@ -9,8 +9,8 @@
   padding: var(--pf-t--global--spacer--lg);
 }
 
-.pf-chatbot__messagebox--bottom {
-  justify-content: flex-end;
+.pf-chatbot__messagebox--bottom > :first-child {
+  margin-top: auto !important;
 }
 
 // hide from view but not assistive technologies
