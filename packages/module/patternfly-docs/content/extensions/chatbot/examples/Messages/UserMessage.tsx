@@ -35,7 +35,7 @@ Here is an unordered list:
       <Message
         name="User"
         role="user"
-        content="Example user message with avatarProps set to change the border"
+        content="Example user message with `avatarProps` set to add a border"
         avatar={userAvatar}
         avatarProps={{ isBordered: true }}
       />
