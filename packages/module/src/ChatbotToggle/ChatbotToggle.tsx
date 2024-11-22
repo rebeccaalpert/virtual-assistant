@@ -7,7 +7,7 @@ import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-ico
 
 export interface ChatbotToggleProps extends ButtonProps {
   /** Contents of the tooltip applied to the toggle button */
-  toolTipLabel?: React.ReactNode;
+  tooltipLabel: React.ReactNode;
   /** Props spread to the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Flag indicating visibility of the chatbot appended to the toggle */
@@ -24,6 +24,8 @@ export interface ChatbotToggleProps extends ButtonProps {
   isRound?: boolean;
   /** Class name applied to toggle */
   className?: string;
+  /** Test id applied to default open icon */
+  openIconTestId?: string;
 }
 
 const ChatIcon = () => (
@@ -46,7 +48,7 @@ const ChatIcon = () => (
 );
 
 const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
-  toolTipLabel,
+  tooltipLabel,
   isChatbotVisible,
   onToggleChatbot,
   tooltipProps,
@@ -55,18 +57,19 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   innerRef,
   isRound = true,
   className,
+  openIconTestId,
   ...props
 }: ChatbotToggleProps) => {
   // Configure icon
   const closedIcon = ClosedToggleIcon ? <ClosedToggleIcon /> : <ChatIcon />;
-  const icon = isChatbotVisible ? <AngleDownIcon /> : closedIcon;
+  const icon = isChatbotVisible ? <AngleDownIcon data-testid={openIconTestId} /> : closedIcon;
 
   return (
-    <Tooltip content={toolTipLabel} {...tooltipProps}>
+    <Tooltip content={tooltipLabel} {...tooltipProps}>
       <Button
         className={`pf-chatbot__button ${isChatbotVisible ? 'pf-chatbot__button--active' : ''} ${isRound ? 'pf-chatbot__button--round' : ''} ${className ? className : ''}`}
         variant="plain"
-        aria-label={toggleButtonLabel || `${toolTipLabel} toggle`}
+        aria-label={toggleButtonLabel || `${tooltipLabel} toggle`}
         onClick={onToggleChatbot}
         aria-expanded={isChatbotVisible}
         icon={<Icon isInline>{icon}</Icon>}

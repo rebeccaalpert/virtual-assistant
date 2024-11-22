@@ -80,7 +80,7 @@ export const BasicDemo: React.FunctionComponent = () => {
 
   return (
     <ChatbotToggle
-      toolTipLabel="Virtual assistant"
+      tooltipLabel="Virtual assistant"
       isChatbotVisible={chatbotVisible}
       onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
       closedToggleIcon={closedToggleIcon}

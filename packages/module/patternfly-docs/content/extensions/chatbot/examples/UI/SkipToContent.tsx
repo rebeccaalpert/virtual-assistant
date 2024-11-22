@@ -26,7 +26,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
         Skip to chatbot
       </SkipToContent>
       <ChatbotToggle
-        toolTipLabel="Chatbot"
+        tooltipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
         onToggleChatbot={() => setChatbotVisible(!chatbotVisible)}
         id="chatbot-toggle"

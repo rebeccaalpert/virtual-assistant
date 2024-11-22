@@ -1,25 +1,25 @@
 import React from 'react';
-import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
-import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
-import ChatbotWelcomePrompt from '@patternfly/chatbot/dist/dynamic/ChatbotWelcomePrompt';
-import ChatbotFooter, { ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic/ChatbotFooter';
-import MessageBar from '@patternfly/chatbot/dist/dynamic/MessageBar';
-import MessageBox from '@patternfly/chatbot/dist/dynamic/MessageBox';
-import Message, { MessageProps } from '@patternfly/chatbot/dist/dynamic/Message';
-import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
+import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
+import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
+import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
+import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
+import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
+import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
+import FileDropZone from '@patternfly/virtual-assistant/dist/dynamic/FileDropZone';
 import { Brand, Bullseye, DropdownGroup, DropdownItem, DropdownList, DropEvent } from '@patternfly/react-core';
-import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel';
-import PreviewAttachment from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
-import AttachmentEdit from '@patternfly/chatbot/dist/dynamic/AttachmentEdit';
+import FileDetailsLabel from '@patternfly/virtual-assistant/dist/dynamic/FileDetailsLabel';
+import PreviewAttachment from '@patternfly/virtual-assistant/dist/dynamic/PreviewAttachment';
+import AttachmentEdit from '@patternfly/virtual-assistant/dist/dynamic/AttachmentEdit';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderTitle,
   ChatbotHeaderActions,
   ChatbotHeaderOptionsDropdown,
   ChatbotHeaderMain
-} from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
-import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
+import ChatbotAlert from '@patternfly/virtual-assistant/dist/dynamic/ChatbotAlert';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
@@ -27,7 +27,7 @@ import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
-import userAvatar from '../Messages/user_avatar.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 interface ModalData {
@@ -54,7 +54,6 @@ export const BasicDemo: React.FunctionComponent = () => {
       content: "I'm referring to this attachment for added context in our conversation.",
       name: 'User',
       avatar: userAvatar,
-      avatarProps: { isBordered: true },
       attachmentName: 'auth-operator.yml',
       attachmentId: '1',
       onAttachmentClose,

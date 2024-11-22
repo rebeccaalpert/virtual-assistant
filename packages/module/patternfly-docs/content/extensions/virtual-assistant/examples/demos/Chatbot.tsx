@@ -2,17 +2,17 @@ import React from 'react';
 
 import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup, SkipToContent } from '@patternfly/react-core';
 
-import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
-import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
-import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
-import ChatbotWelcomePrompt from '@patternfly/chatbot/dist/dynamic/ChatbotWelcomePrompt';
-import ChatbotFooter, { ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic/ChatbotFooter';
-import MessageBar from '@patternfly/chatbot/dist/dynamic/MessageBar';
-import MessageBox from '@patternfly/chatbot/dist/dynamic/MessageBox';
-import Message, { MessageProps } from '@patternfly/chatbot/dist/dynamic/Message';
+import ChatbotToggle from '@patternfly/virtual-assistant/dist/dynamic/ChatbotToggle';
+import Chatbot, { ChatbotDisplayMode } from '@patternfly/virtual-assistant/dist/dynamic/Chatbot';
+import ChatbotContent from '@patternfly/virtual-assistant/dist/dynamic/ChatbotContent';
+import ChatbotWelcomePrompt from '@patternfly/virtual-assistant/dist/dynamic/ChatbotWelcomePrompt';
+import ChatbotFooter, { ChatbotFootnote } from '@patternfly/virtual-assistant/dist/dynamic/ChatbotFooter';
+import MessageBar from '@patternfly/virtual-assistant/dist/dynamic/MessageBar';
+import MessageBox from '@patternfly/virtual-assistant/dist/dynamic/MessageBox';
+import Message, { MessageProps } from '@patternfly/virtual-assistant/dist/dynamic/Message';
 import ChatbotConversationHistoryNav, {
   Conversation
-} from '@patternfly/chatbot/dist/dynamic/ChatbotConversationHistoryNav';
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotConversationHistoryNav';
 import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderMain,
@@ -20,7 +20,7 @@ import ChatbotHeader, {
   ChatbotHeaderActions,
   ChatbotHeaderSelectorDropdown,
   ChatbotHeaderOptionsDropdown
-} from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
+} from '@patternfly/virtual-assistant/dist/dynamic/ChatbotHeader';
 
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
@@ -30,7 +30,7 @@ import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
-import userAvatar from '../Messages/user_avatar.svg';
+import userAvatar from '../Messages/user_avatar.jpg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 const footnoteProps = {
@@ -102,8 +102,7 @@ const initialMessages: MessageProps[] = [
     content: 'Hello, can you give me an example of what you can do?',
     name: 'User',
     avatar: userAvatar,
-    timestamp: date.toLocaleString(),
-    avatarProps: { isBordered: true }
+    timestamp: date.toLocaleString()
   },
   {
     id: '2',
@@ -223,8 +222,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
       content: message,
       name: 'User',
       avatar: userAvatar,
-      timestamp: date.toLocaleString(),
-      avatarProps: { isBordered: true }
+      timestamp: date.toLocaleString()
     });
     newMessages.push({
       id: generateId(),
@@ -444,7 +442,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
                   You can instead choose to move the div with scrollToBottomRef on it below 
                   the map of messages, so that users are forced to scroll to the bottom.
                   If you are using streaming, you will want to take a different approach; 
-                  see: https://github.com/patternfly/chatbot/issues/201#issuecomment-2400725173 */}
+                  see: https://github.com/patternfly/virtual-assistant/issues/201#issuecomment-2400725173 */}
                   {messages.map((message, index) => {
                     if (index === messages.length - 1) {
                       return (
