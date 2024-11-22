@@ -57,7 +57,7 @@ By default, a date and timestamp is displayed with each message. We recommend us
 
 <br />
 
-If you need to adjust the avatar further, you can also apply `avatarProps` to the Message to adjust any [PatternFly Avatar](/components/avatar/) props you might need to change, or to apply an additional class.
+You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`.
 
 ```js file="./BotMessage.tsx"
 
