@@ -33,13 +33,15 @@ import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-i
 import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import RedoIcon from '@patternfly/react-icons/dist/esm/icons/redo-icon';
 import patternflyAvatar from './patternfly_avatar.jpg';
-import userAvatar from './user_avatar.jpg';
 import AttachmentEdit from '@patternfly/chatbot/dist/dynamic/AttachmentEdit';
 import FileDetails from '@patternfly/chatbot/dist/dynamic/FileDetails';
 import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel';
 import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
+
+import userAvatar from './user_avatar.svg';
+import squareImg from './PF-social-color-square.svg';
 
 The `content` prop of the `<Message>` component is passed to a `<Markdown>` component (from [react-markdown](https://remarkjs.github.io/react-markdown/)), which is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
 
@@ -52,6 +54,10 @@ Messages from the chatbot will be marked with an "AI" label to clearly communica
 <br />
 
 By default, a date and timestamp is displayed with each message. We recommend using the `timestamp` prop in real chatbots, since it will allow you to set persistent dates and times on messages, even if the messages re-render. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
+
+<br />
+
+If you need to adjust the avatar further, you can also apply `avatarProps` to the Message to adjust any [PatternFly Avatar](/components/avatar/) props you might need to change, or to apply an additional class.
 
 ```js file="./BotMessage.tsx"
 
@@ -101,7 +107,7 @@ The API for a source requires a link at minimum, but we strongly recommend provi
 
 ### User messages
 
-Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user.
+Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user. You also apply `avatarProps` to the Message to adjust any [PatternFly Avatar](/components/avatar/) props you might need to change, or to apply an additional class.
 
 ```js file="./UserMessage.tsx"
 

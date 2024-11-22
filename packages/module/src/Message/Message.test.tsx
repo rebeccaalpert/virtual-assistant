@@ -278,4 +278,20 @@ describe('Message', () => {
     );
     expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
   });
+  it('should handle hasRoundAvatar correctly', () => {
+    render(<Message role="user" name="User" content="Hi" hasRoundAvatar={false} />);
+    expect(screen.getByRole('img')).toBeTruthy();
+    expect(screen.getByRole('img')).toHaveClass('pf-chatbot__message-avatar');
+  });
+  it('should handle avatarProps correctly by spreading it onto the Message Avatar', () => {
+    render(<Message role="user" name="User" content="Hi" avatarProps={{ className: 'test' }} />);
+    expect(screen.getByRole('img')).toBeTruthy();
+    expect(screen.getByRole('img')).toHaveClass('test');
+  });
+  it('should handle avatarProps and hasRoundAvatar correctly', () => {
+    render(<Message role="user" name="User" content="Hi" avatarProps={{ className: 'test' }} hasRoundAvatar={false} />);
+    expect(screen.getByRole('img')).toBeTruthy();
+    expect(screen.getByRole('img')).toHaveClass('test');
+    expect(screen.getByRole('img')).toHaveClass('pf-chatbot__message-avatar');
+  });
 });

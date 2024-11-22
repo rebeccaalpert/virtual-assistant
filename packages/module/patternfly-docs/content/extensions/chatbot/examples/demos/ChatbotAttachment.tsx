@@ -27,7 +27,7 @@ import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
-import userAvatar from '../Messages/user_avatar.jpg';
+import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 interface ModalData {
@@ -54,6 +54,7 @@ export const BasicDemo: React.FunctionComponent = () => {
       content: "I'm referring to this attachment for added context in our conversation.",
       name: 'User',
       avatar: userAvatar,
+      avatarProps: { isBordered: true },
       attachmentName: 'auth-operator.yml',
       attachmentId: '1',
       onAttachmentClose,
