@@ -87,7 +87,7 @@ export default MessageLoading;
         name="Bot"
         role="bot"
         avatar={squareImg}
-        content="Text-based message from a bot with a square avatar. If you need to adjust the avatar further, you can also apply `avatarProps` to the Message to adjust any PatternFly Avatar props you might need to change, or apply an additional class."
+        content="Text-based message from a bot with a square avatar. You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`."
         hasRoundAvatar={false}
       />
     </>
