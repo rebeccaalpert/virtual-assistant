@@ -64,15 +64,16 @@ const checkListItemsRendered = () => {
 
 describe('Message', () => {
   it('should render user messages correctly', () => {
-    render(<Message role="user" name="User" content="Hi" />);
+    render(<Message avatar="./img" role="user" name="User" content="Hi" />);
     expect(screen.getByText('User')).toBeTruthy();
     expect(screen.getByText('Hi')).toBeTruthy();
     const date = new Date();
     expect(screen.getByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeTruthy();
     expect(screen.queryByText('Loading message')).toBeFalsy();
+    expect(screen.getByRole('img')).toHaveAttribute('src', './img');
   });
   it('should render bot messages correctly', () => {
-    render(<Message role="bot" name="Bot" content="Hi" />);
+    render(<Message avatar="./img" role="bot" name="Bot" content="Hi" />);
     expect(screen.getByText('Bot')).toBeTruthy();
     expect(screen.getByText('AI')).toBeTruthy();
     expect(screen.getByText('Hi')).toBeTruthy();
@@ -80,18 +81,18 @@ describe('Message', () => {
     expect(screen.getByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeTruthy();
   });
   it('should render avatar correctly', () => {
-    render(<Message role="bot" name="Bot" content="Hi" avatar="./testImg" />);
+    render(<Message avatar="./testImg" role="bot" name="Bot" content="Hi" />);
     expect(screen.getByRole('img')).toHaveAttribute('src', './testImg');
   });
   it('should render botWord correctly', () => {
-    render(<Message role="bot" name="Bot" content="Hi" botWord="人工知能" />);
+    render(<Message avatar="./img" role="bot" name="Bot" content="Hi" botWord="人工知能" />);
     expect(screen.getByText('Bot')).toBeTruthy();
     expect(screen.getByText('人工知能')).toBeTruthy();
     expect(screen.queryByText('AI')).toBeFalsy();
     expect(screen.getByText('Hi')).toBeTruthy();
   });
   it('should render timestamps', () => {
-    render(<Message role="bot" name="Bot" content="Hi" timestamp="2 hours ago" />);
+    render(<Message avatar="./img" role="bot" name="Bot" content="Hi" timestamp="2 hours ago" />);
     expect(screen.getByText('Bot')).toBeTruthy();
     expect(screen.getByText('AI')).toBeTruthy();
     expect(screen.getByText('Hi')).toBeTruthy();
@@ -100,13 +101,15 @@ describe('Message', () => {
     expect(screen.queryByText(`${date.toLocaleDateString()}, ${date.toLocaleTimeString()}`)).toBeFalsy();
   });
   it('should render attachments', () => {
-    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment' }]} />);
+    render(<Message avatar="./img" role="user" content="Hi" attachments={[{ name: 'testAttachment' }]} />);
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
   });
   it('should be able to click attachments', async () => {
     const spy = jest.fn();
-    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment', onClick: spy }]} />);
+    render(
+      <Message avatar="./img" role="user" content="Hi" attachments={[{ name: 'testAttachment', onClick: spy }]} />
+    );
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
     await userEvent.click(screen.getByRole('button', { name: /testAttachment/i }));
@@ -114,7 +117,9 @@ describe('Message', () => {
   });
   it('should be able to close attachments', async () => {
     const spy = jest.fn();
-    render(<Message role="user" content="Hi" attachments={[{ name: 'testAttachment', onClose: spy }]} />);
+    render(
+      <Message avatar="./img" role="user" content="Hi" attachments={[{ name: 'testAttachment', onClose: spy }]} />
+    );
     expect(screen.getByText('Hi')).toBeTruthy();
     expect(screen.getByText('testAttachment')).toBeTruthy();
     expect(screen.getByRole('button', { name: /close testAttachment/i })).toBeTruthy();
@@ -122,7 +127,7 @@ describe('Message', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should render loading state', () => {
-    render(<Message role="bot" name="Bot" content="Hi" isLoading />);
+    render(<Message avatar="./img" role="bot" name="Bot" content="Hi" isLoading />);
     expect(screen.getByText('Bot')).toBeTruthy();
     expect(screen.getByText('AI')).toBeTruthy();
     expect(screen.queryByText('Hi')).toBeFalsy();
@@ -133,6 +138,7 @@ describe('Message', () => {
   it('should be able to show sources', async () => {
     render(
       <Message
+        avatar="./img"
         role="bot"
         name="Bot"
         content="Hi"
@@ -152,6 +158,7 @@ describe('Message', () => {
   it('should not show sources if loading', () => {
     render(
       <Message
+        avatar="./img"
         role="bot"
         name="Bot"
         content="Hi"
@@ -173,6 +180,7 @@ describe('Message', () => {
   it('should be able to show actions', async () => {
     render(
       <Message
+        avatar="./img"
         role="bot"
         name="Bot"
         content="Hi"
@@ -197,6 +205,7 @@ describe('Message', () => {
   it('should not show actions if loading', async () => {
     render(
       <Message
+        avatar="./img"
         role="bot"
         name="Bot"
         content="Hi"
@@ -221,22 +230,22 @@ describe('Message', () => {
     });
   });
   it('should render unordered lists correctly', () => {
-    render(<Message role="user" name="User" content={UNORDERED_LIST} />);
+    render(<Message avatar="./img" role="user" name="User" content={UNORDERED_LIST} />);
     expect(screen.getByText('Here is an unordered list:')).toBeTruthy();
     checkListItemsRendered();
   });
   it('should render ordered lists correctly', () => {
-    render(<Message role="user" name="User" content={ORDERED_LIST} />);
+    render(<Message avatar="./img" role="user" name="User" content={ORDERED_LIST} />);
     expect(screen.getByText('Here is an ordered list:')).toBeTruthy();
     checkListItemsRendered();
   });
   it('should render inline code', () => {
-    render(<Message role="user" name="User" content={INLINE_CODE} />);
+    render(<Message avatar="./img" role="user" name="User" content={INLINE_CODE} />);
     expect(screen.getByText(/() => void/i)).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Copy code button' })).toBeFalsy();
   });
   it('should render code correctly', () => {
-    render(<Message role="user" name="User" content={CODE_MESSAGE} />);
+    render(<Message avatar="./img" role="user" name="User" content={CODE_MESSAGE} />);
     expect(screen.getByText('Here is some YAML code:')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
     expect(screen.getByText(/apiVersion: helm.openshift.io\/v1beta1/i)).toBeTruthy();
@@ -251,14 +260,22 @@ describe('Message', () => {
   it('can click copy code button', async () => {
     // need explicit setup since RTL stubs clipboard if you do this
     const user = userEvent.setup();
-    render(<Message role="user" name="User" content={CODE_MESSAGE} />);
+    render(<Message avatar="./img" role="user" name="User" content={CODE_MESSAGE} />);
     expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
     await user.click(screen.getByRole('button', { name: 'Copy code button' }));
     const clipboardText = await navigator.clipboard.readText();
     expect(clipboardText.trim()).toEqual(CODE.trim());
   });
   it('should handle codeBlockProps correctly by spreading it onto the CodeMessage', () => {
-    render(<Message role="user" name="User" content={CODE_MESSAGE} codeBlockProps={{ 'aria-label': 'test' }} />);
+    render(
+      <Message
+        avatar="./img"
+        role="user"
+        name="User"
+        content={CODE_MESSAGE}
+        codeBlockProps={{ 'aria-label': 'test' }}
+      />
+    );
     expect(screen.getByRole('button', { name: 'test' })).toBeTruthy();
   });
 });
