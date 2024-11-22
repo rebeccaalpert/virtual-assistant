@@ -166,7 +166,7 @@ A custom icon can be passed to the toggle. To ensure the icon is visible in both
 
 ### Custom toggle shape
 
-The `isRound` prop can be set to false to make the toggle a different shape. Classes can also be passed to the toggle to further customize it beyond this.
+A custom shape can be set for the toggle. To override the default circle shape, set `isRound` to `false`. This will set the toggle to a square shape, but you can pass in additional classes to further customize the shape.
 
 ```js file="./SquareChatbotToggle.tsx" isFullscreen
 
