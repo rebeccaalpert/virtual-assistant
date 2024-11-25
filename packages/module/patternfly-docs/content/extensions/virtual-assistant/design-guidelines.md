@@ -16,18 +16,13 @@ import "./images.css"
 
 1. **Container:** The window that contains the entire ChatBot experience and all of its components.
 1. **Header:** A persistent region at the top of the ChatBot window that contains navigation, branding, and actions.
+1. **Options menu:** Contains display options and other settings. More details can be found in the [ChatBot variations section](#variations). 
 1. **Navigation:** A menu that contains navigational options, including access to the conversation history.
-1. **Messages:** Elements of the conversation between a ChatBot and user. For more details, refer to the [ChatBot message guidelines](#messages).
+1. **Messages:** Elements of the conversation between a ChatBot and user. More details can be found in the [message guidelines](#messages).
 1. **Attachments:** Details about files that a user has uploaded to the ChatBot.
 1. **Footer:** A persistent region at the bottom of the ChatBot window that contains the message bar and the footnote.
-1. **Footnote (optional):** A persistent, short message that contains any legal disclaimers or important information about the ChatBot. Footnotes are optional, but strongly recommended. For more information, refer to the [ChatBot footnote guidelines](#footnotes).
-1. **Toggle:** The button that allows users to open and close the ChatBot window. When the ChatBot is opened, the toggle should appear below the ChatBot window.
-
-### Toggle 
-
-Users can toggle a ChatBot open and closed, so that conversations can persist over time and be revisited as needed. The toggle is a floating button that's placed in the bottom corner of the UI. 
-
-In addition to this floating button, you can place an icon in the masthead that acts as a toggle. 
+1. **Footnote (optional):** A persistent, short message that contains any legal disclaimers or important information about the ChatBot. Footnotes are optional, but strongly recommended. More details can be found in the [footnote guidelines](#footnotes).
+1. **Toggle:** The button that allows users to open and close the ChatBot window. When the ChatBot is opened, the toggle should appear below the ChatBot window. The toggle shape and icon can be customized as needed, as shown in these [ChatBot toggle examples](/patternfly-ai/chatbot/ui#custom-toggle-icon). More details can be found in the [guidelines for accessing a ChatBot](#accessing-a-chatbot).
 
 ### Messages 
 
@@ -35,13 +30,39 @@ In addition to this floating button, you can place an icon in the masthead that 
 ![A basic user message, bot message, and quick reply buttons.](./img/message-elements.svg)
 </div>
 
-1. **Bot message:** Messages from the ChatBot, which are marked with an "AI" label to communicate the use of AI to users. You should choose a descriptive name for your ChatBot.
 1. **User message:** Messages that the user has sent to the ChatBot.
-1. **Avatar:** Representative image for your ChatBot and the user. ChatBot avatars should align with your product's brand, adhering to any brand standards that exist.
+1. **Bot message:** Messages from the ChatBot, which are marked with an "AI" label to communicate the use of AI to users. You should choose a descriptive name for your ChatBot.
+1. **Avatar:** Representative image for your ChatBot and the user. ChatBot avatars should align with your product's brand and any existing brand standards.
 1. **Name:** Identifier for your ChatBot and the user. Choose a name for your ChatBot that users can easily identify as a bot. 
 1. **Label:** Labels ChatBot messages as "AI."
 1. **Timestamp:** The relative or absolute time that a message was sent.
 1. **Quick responses:** Programmable, clickable actions that allow users to quickly answer questions from the ChatBot.
+1. **Sources:** Cards that link to documentation or other external resources. When multiple sources are included, users can paginate through the different options. 
+1. **Response actions:** Actions that allow users to interact with a bot message. these typically include providing feedback, copying, sharing, or reading aloud, but [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) are also supported.
+
+### Message bar 
+
+To message the ChatBot, users can type directly into the message bar in the footer or click any included actions. 
+
+<div class="ws-docs-content-img">
+![Elements of a message bar, including input actions.](./img/message-bar-elements.svg)
+</div>
+
+1. **Attach button:** Allows users to upload files from their computer. 
+1. **Use microphone button:** Supports speech recognition to allow users to use voice input. This feature is currently only available in Chrome and Safari.
+1. **Send button:** Allows users to send a typed message. This button should be disabled until a user has input text. 
+
+When a user chooses to use speech input via the microphone button, the button will display an animation to indicate that the ChatBot is listening to the user (as shown in [this speech recognition example](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)). To stop voice input, users will need to select the microphone button again.
+
+<div class="ws-docs-content-img">
+![Active listening button in the message bar.](./img/listening.svg)
+</div>
+
+When a user selects the "listen" [message action](/patternfly-ai/chatbot/messages#messages-actions) on a bot message, the message contents will be read aloud and a stop button will be displayed as the only action in the message bar. Selecting this button will halt the message playback.
+
+<div class="ws-docs-content-img">
+![Stop button in the message bar.](./img/stop-button.svg)
+</div>
 
 ### Footnotes 
 
@@ -102,29 +123,45 @@ When there is an unread message from the ChatBot, a notification badge should be
 ![Toggle with notification badge.](./img/chatbot-toggle-notification.svg)
 </div>
 
-### Sending messages and attaching files
-
-To message the ChatBot, users can type directly into the message bar in the footer or click any included actions. 
-
-<div class="ws-docs-content-img">
-![Elements of a message bar, including input actions.](./img/message-bar-elements.svg)
-</div>
-
-1. **Attach button:** Allows users to upload files from their computer. 
-1. **Use microphone button:** Supports speech recognition to allow users to use voice input.
-1. **Send button:** Allows users to send a typed message. This button should be disabled until a user has input text.
-
 ### Using the navigation menu
 
 The ChatBot navigation menu primarily contains a users' conversation history with the ChatBot. Clicking the menu icon opens a side drawer in the ChatBot window. 
+
+By clicking into the navigation menu, users can search through previous conversations and perform additional actions, such as sharing a conversation with others. 
 
 <div class="ws-docs-content-img">
 ![Conversation history with an options menu opened on a previous conversation.](./img/conversation-history.svg)
 </div>
 
-By clicking into the navigation menu, users can search through previous conversations and perform additional actions, such as sharing a conversation with others. 
+### Attaching files 
+
+Using [the attach button](/patternfly-ai/chatbot/overview/design-guidelines#message-bar) in the message bar, users can [attach files](/patternfly-ai/chatbot/messages#file-attachments) to their message to share with the ChatBot. 
+
+The attach button can follow a couple of patterns, including: 
+- Opening the file explorer for a user's operating system
+- Opening a menu with attachment options that are chosen by designers and developers
+
+<div class="ws-docs-content-img">
+![Menu with file attachment options.](./img/attachment-menu.svg)
+</div>
+
+If a message attachment is successful, a label with the file details will be displayed in the message:
+
+<div class="ws-docs-content-img">
+![File attached to user message.](./img/attached-file.svg)
+</div>
+
+Users can select the file label to either preview or edit their attachment, as shown in these [attachment examples](/patternfly-ai/chatbot/messages#attachment-preview).
+
+If a message attachment fails, an error message should share the reason for failure:
+
+<div class="ws-docs-content-img">
+![Error alert for failed attachment.](./img/attachment-error.svg)
+</div>
 
 ## Variations 
+
+### Display modes
 
 There are a few display modes that users can choose when interacting with a ChatBot.
 
@@ -132,29 +169,33 @@ There are a few display modes that users can choose when interacting with a Chat
 ![Menu of display options.](./img/display-menu.svg)
 </div>
 
-- **Overlay:** The default display mode, which places the ChatBot window on top of a product's UI. In overlay mode, the ChatBot can be closed and opened through the toggle. 
+1. **Overlay:** The default display mode, which floats the ChatBot window on top of a product's UI. In overlay mode, the ChatBot can be opened and minimized with the toggle. 
 
 <div class="ws-docs-content-img">
 ![ChatBot in overlay mode.](./img/overlay.svg)
 </div>
 
-- **Docked:** Anchors the ChatBot in the UI as a side drawer. When docked, the ChatBot window is persistent, and cannot be toggled.
+2. **Docked:** Anchors the ChatBot to the side of the page content. When docked, the ChatBot window is persistent, and cannot be toggled.
 
 <div class="ws-docs-content-img">
 ![ChatBot in docked mode.](./img/docked.svg)
 </div>
 
-- **Full screen:** The ChatBot window takes up the whole screen.
+3. **Full screen:** Fills the screen with the ChatBot window.
 
 <div class="ws-docs-content-img">
 ![ChatBot in full-screen mode.](./img/fullscreen.svg)
 </div>
 
-- **Embedded:** The ChatBot is embedded within a product as its own page.
+4. **Embedded:** Places the ChatBot within a product as its own page with its own item navigation menu.
+
+<div class="ws-docs-content-img">
+![ChatBot embedded in a product.](./img/embedded.svg)
+</div>
 
 ## Placement
 
-Your users will expect your ChatBot to be in a reliable, permanent location. By default, this will be in the bottom right of the screen.
+Your users will expect your ChatBot to be in a reliable, permanent location. Overlay displays are placed in the bottom right of the screen by default. If you're using a full screen or embedded ChatBot, stick to a consistent access location, like a button in the masthead or an item in the navigation menu.
 
 ## Content considerations
 
