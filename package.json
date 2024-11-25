@@ -1,8 +1,8 @@
 {
-  "name": "@patternfly/virtual-assistant-root",
+  "name": "@patternfly/chatbot-root",
   "private": true,
   "version": "0.0.0",
-  "description": "This library provides a virtual assistant.",
+  "description": "This library provides React components based on PatternFly 6 that can be used to build chatbots.",
   "license": "MIT",
   "workspaces": [
     "packages/*"
@@ -10,17 +10,17 @@
   "scripts": {
     "build": "npm run build:packages && npm run build:fed:packages",
     "build:watch": "concurrently \"npm run build:packages:watch\" \"npx wait-on packages/module/dist/esm && npm run build:fed:packages\"",
-    "build:docs": "npm run docs:build -w @patternfly/virtual-assistant",
-    "build:packages": "npm run build -w @patternfly/virtual-assistant",
-    "build:packages:watch": "npm run build:watch -w @patternfly/virtual-assistant",
-    "build:fed:packages": "npm run build:fed:packages -w @patternfly/virtual-assistant",
+    "build:docs": "npm run docs:build -w @patternfly/chatbot",
+    "build:packages": "npm run build -w @patternfly/chatbot",
+    "build:packages:watch": "npm run build:watch -w @patternfly/chatbot",
+    "build:fed:packages": "npm run build:fed:packages -w @patternfly/chatbot",
     "cypress:open": "cypress open",
     "cypress:run:ci:cp": "cypress run --component",
     "cypress:run:e2e": "cypress run --headless",
     "cypress:run:ci:e2e": "start-server-and-test start http://localhost:8006 cypress:run:e2e",
-    "start": "concurrently \"npm run build:watch\" \"npx wait-on packages/module/dist && npm run docs:develop -w @patternfly/virtual-assistant\"",
-    "serve:docs": "npm run docs:serve -w @patternfly/virtual-assistant",
-    "clean": "npm run clean -w @patternfly/virtual-assistant",
+    "start": "concurrently \"npm run build:watch\" \"npx wait-on packages/module/dist && npm run docs:develop -w @patternfly/chatbot\"",
+    "serve:docs": "npm run docs:serve -w @patternfly/chatbot",
+    "clean": "npm run clean -w @patternfly/chatbot",
     "lint:js": "node --max-old-space-size=4096 node_modules/.bin/eslint packages --ext js,jsx,ts,tsx --cache",
     "lint:js:fix": "node --max-old-space-size=4096 node_modules/.bin/eslint packages --ext js,jsx,ts,tsx --cache --fix",
     "lint:md": "eslint packages --ext md --no-eslintrc --config .eslintrc-md.json --cache",
@@ -28,8 +28,8 @@
     "lint": "npm run lint:js && npm run lint:md",
     "lint:fix": "npm run lint:js:fix && npm run lint:md:fix",
     "test": "TZ=EST jest packages --passWithNoTests",
-    "test:a11y": "npm run test:a11y -w @patternfly/virtual-assistant",
-    "serve:a11y": "npm run serve:a11y -w @patternfly/virtual-assistant"
+    "test:a11y": "npm run test:a11y -w @patternfly/chatbot",
+    "serve:a11y": "npm run serve:a11y -w @patternfly/chatbot"
   },
   "devDependencies": {
     "@babel/core": "^7.24.0",

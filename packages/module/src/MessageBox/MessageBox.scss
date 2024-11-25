@@ -6,7 +6,11 @@
   display: flex;
   flex-direction: column;
   row-gap: var(--pf-t--global--spacer--sm);
-  padding: 0 var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg) var(--pf-t--global--spacer--lg);
+  padding: var(--pf-t--global--spacer--lg);
+}
+
+.pf-chatbot__messagebox--bottom > :first-child {
+  margin-top: auto !important;
 }
 
 // hide from view but not assistive technologies

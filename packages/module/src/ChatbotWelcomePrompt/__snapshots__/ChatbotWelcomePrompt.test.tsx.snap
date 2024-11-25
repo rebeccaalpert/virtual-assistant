@@ -24,9 +24,6 @@ exports[`ChatbotWelcomePrompt should render welcome prompt 1`] = `
         How may I help you today?
       </span>
     </h1>
-    <div
-      class="pf-chatbot__prompt-suggestions"
-    />
   </div>
 </div>
 `;

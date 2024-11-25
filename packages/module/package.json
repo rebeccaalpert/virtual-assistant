@@ -1,7 +1,7 @@
 {
-  "name": "@patternfly/virtual-assistant",
-  "version": "1.0.0-prerelease.0",
-  "description": "Virtual assistant used for Red Hat projects.",
+  "name": "@patternfly/chatbot",
+  "version": "1.0.0",
+  "description": "This library provides React components based on PatternFly 6 that can be used to build chatbots.",
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
   "scripts": {
@@ -19,13 +19,13 @@
     "test:a11y": "patternfly-a11y --config patternfly-a11y.config",
     "serve:a11y": "serve coverage"
   },
-  "repository": "git+https://github.com/patternfly/virtual-assistant.git",
+  "repository": "git+https://github.com/patternfly/chatbot.git",
   "author": "Red Hat",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/patternfly/virtual-assistant/issues"
+    "url": "https://github.com/patternfly/chatbot/issues"
   },
-  "homepage": "https://github.com/patternfly/virtual-assistant#readme",
+  "homepage": "https://github.com/patternfly/chatbot#readme",
   "publishConfig": {
     "access": "public",
     "tag": "prerelease"

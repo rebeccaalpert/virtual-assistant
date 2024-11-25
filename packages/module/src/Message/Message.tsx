@@ -6,7 +6,16 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import { Avatar, Label, LabelGroup, LabelGroupProps, LabelProps, Timestamp, Truncate } from '@patternfly/react-core';
+import {
+  Avatar,
+  AvatarProps,
+  Label,
+  LabelGroup,
+  LabelGroupProps,
+  LabelProps,
+  Timestamp,
+  Truncate
+} from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
@@ -47,11 +56,11 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   /** Role of the user sending the message */
   role: 'user' | 'bot';
   /** Message content */
-  content: string;
+  content?: string;
   /** Name of the user */
   name?: string;
   /** Avatar src for the user */
-  avatar?: string;
+  avatar: string;
   /** Timestamp for the message */
   timestamp?: string;
   /** Set this to true if message is being loaded */
@@ -76,6 +85,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   quickResponses?: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Whether avatar is round */
+  hasRoundAvatar?: boolean;
+  /** Any additional props applied to the avatar, for additional customization  */
+  avatarProps?: Omit<AvatarProps, 'alt'>;
 }
 
 export const Message: React.FunctionComponent<MessageProps> = ({
@@ -93,25 +106,19 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
   attachments,
+  hasRoundAvatar = true,
+  avatarProps,
   ...props
 }: MessageProps) => {
-  // Configure default values
-  const DEFAULTS = {
-    user: {
-      name: 'User',
-      avatar: 'https://img.freepik.com/premium-photo/graphic-designer-digital-avatar-generative-ai_934475-9292.jpg'
-    },
-    bot: {
-      name: 'Bot',
-      avatar:
-        'https://yt3.googleusercontent.com/ej8uvIe1AIFiJQXBwY9cfJmt0kO1cAeWxpBqG_cJndGHx95mFq1F8WakSoXIjtcprTbMQJoqH5M=s900-c-k-c0x00ffffff-no-rj'
-    }
-  };
-
+  let avatarClassName;
+  if (avatarProps && 'className' in avatarProps) {
+    const { className, ...rest } = avatarProps;
+    avatarClassName = className;
+    avatarProps = { ...rest };
+  }
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -119,7 +126,12 @@ export const Message: React.FunctionComponent<MessageProps> = ({
       {...props}
     >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
-      <Avatar src={avatar ?? DEFAULTS[role].avatar} alt="" />
+      <Avatar
+        className={`pf-chatbot__message-avatar ${hasRoundAvatar ? 'pf-chatbot__message-avatar--round' : ''} ${avatarClassName ? avatarClassName : ''}`}
+        src={avatar}
+        alt=""
+        {...avatarProps}
+      />
       <div className="pf-chatbot__message-contents">
         <div className="pf-chatbot__message-meta">
           {name && (
