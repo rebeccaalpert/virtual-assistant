@@ -16,8 +16,8 @@ import "./images.css"
 
 1. **Container:** The window that contains the entire ChatBot experience and all of its components.
 1. **Header:** A persistent region at the top of the ChatBot window that contains navigation, branding, and actions.
-1. **Options menu:** Contains display options and other settings. More details can be found in the [ChatBot variations section](#variations). 
 1. **Navigation:** A menu that contains navigational options, including access to the conversation history.
+1. **Options menu:** Contains display options and other settings. More details can be found in the [ChatBot variations section](#variations). 
 1. **Messages:** Elements of the conversation between a ChatBot and user. More details can be found in the [message guidelines](#messages).
 1. **Attachments:** Details about files that a user has uploaded to the ChatBot.
 1. **Footer:** A persistent region at the bottom of the ChatBot window that contains the message bar and the footnote.
@@ -34,8 +34,8 @@ import "./images.css"
 1. **Bot message:** Messages from the ChatBot, which are marked with an "AI" label to communicate the use of AI to users. You should choose a descriptive name for your ChatBot.
 1. **Avatar:** Representative image for your ChatBot and the user. ChatBot avatars should align with your product's brand and any existing brand standards.
 1. **Name:** Identifier for your ChatBot and the user. Choose a name for your ChatBot that users can easily identify as a bot. 
-1. **Label:** Labels ChatBot messages as "AI."
 1. **Timestamp:** The relative or absolute time that a message was sent.
+1. **Label:** Labels ChatBot messages as "AI."
 1. **Quick responses:** Programmable, clickable actions that allow users to quickly answer questions from the ChatBot.
 1. **Sources:** Cards that link to documentation or other external resources. When multiple sources are included, users can paginate through the different options. 
 1. **Response actions:** Actions that allow users to interact with a bot message. these typically include providing feedback, copying, sharing, or reading aloud, but [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) are also supported.
@@ -58,7 +58,7 @@ When a user chooses to use speech input via the microphone button, the button wi
 ![Active listening button in the message bar.](./img/listening.svg)
 </div>
 
-When a user selects the "listen" [message action](/patternfly-ai/chatbot/messages#messages-actions) on a bot message, the message contents will be read aloud and a stop button will be displayed as the only action in the message bar. Selecting this button will halt the message playback.
+When a bot is responding (or "streaming") to the user, a stop button will be displayed as the only action in the message bar. Selecting this button will halt the bot's message where it's at.
 
 <div class="ws-docs-content-img">
 ![Stop button in the message bar.](./img/stop-button.svg)
@@ -145,6 +145,12 @@ The attach button can follow a couple of patterns, including:
 ![Menu with file attachment options.](./img/attachment-menu.svg)
 </div>
 
+When users attach a file to a message that they're drafting, it will be displayed in the ChatBot footer, above the message bar. This allows them to remove an attachment before sending if necessary:
+
+<div class="ws-docs-content-img">
+![Attachment in message bar, before a user has sent the message.](./img/attachment-unsent.svg)
+</div>
+
 If a message attachment is successful, a label with the file details will be displayed in the message:
 
 <div class="ws-docs-content-img">
@@ -187,7 +193,7 @@ There are a few display modes that users can choose when interacting with a Chat
 ![ChatBot in full-screen mode.](./img/fullscreen.svg)
 </div>
 
-4. **Embedded:** Places the ChatBot within a product as its own page with its own item navigation menu.
+4. **Embedded:** Places the ChatBot within a product as its own page. An embedded ChatBot could be displayed in the product's navigation menu.
 
 <div class="ws-docs-content-img">
 ![ChatBot embedded in a product.](./img/embedded.svg)
