@@ -47,7 +47,10 @@ export const ChatbotConversationHistoryDropdown: React.FunctionComponent<Chatbot
     <Dropdown
       className={`pf-chatbot__selections ${menuClassName ?? ''}`}
       isOpen={isOpen}
-      onSelect={onSelect}
+      onSelect={(props) => {
+        onSelect?.(props);
+        setIsOpen((prev) => !prev);
+      }}
       onOpenChange={(isOpen) => setIsOpen(isOpen)}
       popperProps={{ position: 'right' }}
       shouldFocusToggleOnSelect
