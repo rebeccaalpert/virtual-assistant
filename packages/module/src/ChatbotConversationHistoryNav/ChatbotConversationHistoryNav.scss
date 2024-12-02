@@ -93,6 +93,10 @@
     height: 100%;
   }
 
+  .pf-v6-c-drawer__actions--reversed {
+    flex-direction: row-reverse;
+  }
+
   // Close drawer
   .pf-v6-c-drawer__close {
     .pf-v6-c-button {

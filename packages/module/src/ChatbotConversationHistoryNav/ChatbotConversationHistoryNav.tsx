@@ -72,6 +72,8 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   handleTextInputChange?: (value: string) => void;
   /** Display mode of chatbot */
   displayMode: ChatbotDisplayMode;
+  /** Reverses the order of the drawer action buttons */
+  reverseButtonOrder?: boolean;
 }
 
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
@@ -88,6 +90,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   searchInputAriaLabel = 'Filter menu items',
   handleTextInputChange,
   displayMode,
+  reverseButtonOrder = false,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -161,7 +164,10 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   const panelContent = (
     <DrawerPanelContent focusTrap={{ enabled: true }} minSize="384px" maxSize="384px">
       <DrawerHead>
-        <DrawerActions>
+        <DrawerActions
+          data-testid="chatbot-nav-drawer-actions"
+          className={reverseButtonOrder ? 'pf-v6-c-drawer__actions--reversed' : ''}
+        >
           <DrawerCloseButton onClick={onDrawerToggle} />
           {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
         </DrawerActions>
