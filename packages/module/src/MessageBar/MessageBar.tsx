@@ -139,6 +139,15 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     attachMenuProps?.onAttachMenuToggleClick();
   };
 
+  const handleSpeechRecognition = (message) => {
+    setMessage(message);
+    const textarea = textareaRef.current;
+    if (textarea) {
+      textarea.focus();
+      textarea.textContent = DOMPurify.sanitize(message);
+    }
+  };
+
   const renderButtons = () => {
     if (hasStopButton && handleStopButton) {
       return (
@@ -173,7 +182,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           <MicrophoneButton
             isListening={isListeningMessage}
             onIsListeningChange={setIsListeningMessage}
-            onSpeechRecognition={setMessage}
+            onSpeechRecognition={handleSpeechRecognition}
             tooltipContent={buttonProps?.microphone?.tooltipContent}
             {...buttonProps?.microphone?.props}
           />
@@ -216,7 +225,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           ref={textareaRef}
           onKeyDown={handleKeyDown}
           {...props}
-        ></div>
+        />
       </div>
       <div className="pf-chatbot__message-bar-actions">{renderButtons()}</div>
     </>
