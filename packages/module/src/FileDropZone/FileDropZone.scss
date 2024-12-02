@@ -39,3 +39,18 @@
   width: 100%;
   padding: var(--pf-t--global--spacer--md);
 }
+
+.pf-chatbot--default {
+  // allows for zoom conditions; try zooming to 200% to see
+  .pf-chatbot__dropzone--visible.pf-chatbot__dropzone {
+    @media screen and (max-height: 518px) {
+      display: flex;
+      height: 100%;
+      overflow: hidden;
+
+      .pf-v6-c-multiple-file-upload__main {
+        width: 100%;
+      }
+    }
+  }
+}
