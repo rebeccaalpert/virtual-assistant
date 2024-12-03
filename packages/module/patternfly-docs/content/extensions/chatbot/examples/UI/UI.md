@@ -247,6 +247,16 @@ By default the message bar supports file uploads via an attach button. Setting `
 
 ```
 
+### Message bar with speech recognition in a different language
+
+Speech recognition defaults to en-US. You can update the locale as needed. Locale codes are a combination of the ISO 639-1 language code and the ISO 3166-1 country code, separated by a dash.
+
+In this example, we are changing it to ja-JP. You can try it out by saying "hajimemashite" (初めまして).
+
+```js file="./ChatbotMessageBarLanguage.tsx"
+
+```
+
 ### Message bar with attach menu appended to attach button
 
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments.
