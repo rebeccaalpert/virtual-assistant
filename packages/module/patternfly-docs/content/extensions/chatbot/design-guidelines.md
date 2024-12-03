@@ -8,7 +8,7 @@ source: design-guidelines
 
 import "./images.css"
 
-## Elements 
+## Elements
 
 <div class="ws-docs-content-img">
 ![Main elements of a ChatBot.](./img/chatbot-elements.svg)
@@ -17,14 +17,14 @@ import "./images.css"
 1. **Container:** The window that contains the entire ChatBot experience and all of its components.
 1. **Header:** A persistent region at the top of the ChatBot window that contains navigation, branding, and actions.
 1. **Navigation:** A menu that contains navigational options, including access to the conversation history.
-1. **Options menu:** Contains display options and other settings. More details can be found in the [ChatBot variations section](#variations). 
+1. **Options menu:** Contains display options and other settings. More details can be found in the [ChatBot variations section](#variations).
 1. **Messages:** Elements of the conversation between a ChatBot and user. More details can be found in the [message guidelines](#messages).
 1. **Attachments:** Details about files that a user has uploaded to the ChatBot.
 1. **Footer:** A persistent region at the bottom of the ChatBot window that contains the message bar and the footnote.
 1. **Footnote (optional):** A persistent, short message that contains any legal disclaimers or important information about the ChatBot. Footnotes are optional, but strongly recommended. More details can be found in the [footnote guidelines](#footnotes).
 1. **Toggle:** The button that allows users to open and close the ChatBot window. When the ChatBot is opened, the toggle should appear below the ChatBot window. The toggle shape and icon can be customized as needed, as shown in these [ChatBot toggle examples](/patternfly-ai/chatbot/ui#custom-toggle-icon). More details can be found in the [guidelines for accessing a ChatBot](#accessing-a-chatbot).
 
-### Messages 
+### Messages
 
 <div class="ws-docs-content-img">
 ![A basic user message, bot message, and quick reply buttons.](./img/message-elements.svg)
@@ -33,26 +33,26 @@ import "./images.css"
 1. **User message:** Messages that the user has sent to the ChatBot.
 1. **Bot message:** Messages from the ChatBot, which are marked with an "AI" label to communicate the use of AI to users. You should choose a descriptive name for your ChatBot.
 1. **Avatar:** Representative image for your ChatBot and the user. ChatBot avatars should align with your product's brand and any existing brand standards.
-1. **Name:** Identifier for your ChatBot and the user. Choose a name for your ChatBot that users can easily identify as a bot. 
+1. **Name:** Identifier for your ChatBot and the user. Choose a name for your ChatBot that users can easily identify as a bot.
 1. **Timestamp:** The relative or absolute time that a message was sent.
 1. **Label:** Labels ChatBot messages as "AI."
 1. **Quick responses:** Programmable, clickable actions that allow users to quickly answer questions from the ChatBot.
-1. **Sources:** Cards that link to documentation or other external resources. When multiple sources are included, users can paginate through the different options. 
+1. **Sources:** Cards that link to documentation or other external resources. When multiple sources are included, users can paginate through the different options.
 1. **Response actions:** Actions that allow users to interact with a bot message. these typically include providing feedback, copying, sharing, or reading aloud, but [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) are also supported.
 
-### Message bar 
+### Message bar
 
-To message the ChatBot, users can type directly into the message bar in the footer or click any included actions. 
+To message the ChatBot, users can type directly into the message bar in the footer or click any included actions.
 
 <div class="ws-docs-content-img">
 ![Elements of a message bar, including input actions.](./img/message-bar-elements.svg)
 </div>
 
-1. **Attach button:** Allows users to upload files from their computer. 
+1. **Attach button:** Allows users to upload files from their computer.
 1. **Use microphone button:** Supports speech recognition to allow users to use voice input. This feature is currently only available in Chrome and Safari.
-1. **Send button:** Allows users to send a typed message. This button should be disabled until a user has input text. 
+1. **Send button:** Allows users to send a typed message. This button should be disabled until a user has input text.
 
-When a user chooses to use speech input via the microphone button, the button will display an animation to indicate that the ChatBot is listening to the user (as shown in [this speech recognition example](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)). To stop voice input, users will need to select the microphone button again.
+When a user chooses to use speech input via the microphone button, the button will display an animation to indicate that the ChatBot is listening to the user (as shown in [this speech recognition example](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)).
 
 <div class="ws-docs-content-img">
 ![Active listening button in the message bar.](./img/listening.svg)
@@ -64,11 +64,11 @@ When a bot is responding (or "streaming") to the user, a stop button will be dis
 ![Stop button in the message bar.](./img/stop-button.svg)
 </div>
 
-### Footnotes 
+### Footnotes
 
 The footnote provides a persistent space to display messaging about your product's Terms and Conditions, which focus on the rules of using the service, and Privacy Policy, which focuses on the handling of personal data.
 
-Though footnotes are not required, they are highly recommended to ensure legal compliance, establish user trust, and clearly define the usage guidelines and data handling practices. 
+Though footnotes are not required, they are highly recommended to ensure legal compliance, establish user trust, and clearly define the usage guidelines and data handling practices.
 
 When users select the footnote, you can display a popover that provides more information than would fit in the footnote:
 
@@ -81,6 +81,7 @@ When users select the footnote, you can display a popover that provides more inf
 When ChatBots are designed to meet the needs of your users, they can improve the overall UX of your product by offering convenient, efficient, and persistent support. When your ChatBot cannot find an answer for your users, you must provide them with a method to contact human support.
 
 Before building a ChatBot, make sure that you have justified it as an appropriate solution by asking yourself these questions:
+
 - What are the users’ goals?
 - How in-depth is the assistance the user will need?
 - Does human assistance better serve your users?
@@ -89,9 +90,10 @@ Before building a ChatBot, make sure that you have justified it as an appropriat
 
 Do not create a ChatBot simply for the sake of novelty.
 
-### When to use a ChatBot 
+### When to use a ChatBot
 
 Use a ChatBot to offer your users on-demand help at any time, including:
+
 - Technical support and troubleshooting.
 - Product information and documentation.
 - Sales and product recommendations.
@@ -102,12 +104,13 @@ Use a ChatBot to offer your users on-demand help at any time, including:
 
 ### When not to use a ChatBot
 
-Do not use a ChatBot when: 
-- A task could be accomplished more efficiently through the UI. 
+Do not use a ChatBot when:
+
+- A task could be accomplished more efficiently through the UI.
 - A process is very complex or could take a long time.
 - A real human is needed for sensitive or emotional topics.
 
-## Behavior 
+## Behavior
 
 ### Accessing a ChatBot
 
@@ -125,19 +128,20 @@ When there is an unread message from the ChatBot, a notification badge should be
 
 ### Using the navigation menu
 
-The ChatBot navigation menu primarily contains a users' conversation history with the ChatBot. Clicking the menu icon opens a side drawer in the ChatBot window. 
+The ChatBot navigation menu primarily contains a users' conversation history with the ChatBot. Clicking the menu icon opens a side drawer in the ChatBot window.
 
-By clicking into the navigation menu, users can search through previous conversations and perform additional actions, such as sharing a conversation with others. 
+By clicking into the navigation menu, users can search through previous conversations and perform additional actions, such as sharing a conversation with others.
 
 <div class="ws-docs-content-img">
 ![Conversation history with an options menu opened on a previous conversation.](./img/conversation-history.svg)
 </div>
 
-### Attaching files 
+### Attaching files
 
-Using [the attach button](/patternfly-ai/chatbot/overview/design-guidelines#message-bar) in the message bar, users can [attach files](/patternfly-ai/chatbot/messages#file-attachments) to their message to share with the ChatBot. 
+Using [the attach button](/patternfly-ai/chatbot/overview/design-guidelines#message-bar) in the message bar, users can [attach files](/patternfly-ai/chatbot/messages#file-attachments) to their message to share with the ChatBot.
 
-The attach button can follow a couple of patterns, including: 
+The attach button can follow a couple of patterns, including:
+
 - Opening the file explorer for a user's operating system
 - Opening a menu with attachment options that are chosen by designers and developers
 
@@ -165,7 +169,7 @@ If a message attachment fails, an error message should share the reason for fail
 ![Error alert for failed attachment.](./img/attachment-error.svg)
 </div>
 
-## Variations 
+## Variations
 
 ### Display modes
 
@@ -175,7 +179,7 @@ There are a few display modes that users can choose when interacting with a Chat
 ![Menu of display options.](./img/display-menu.svg)
 </div>
 
-1. **Overlay:** The default display mode, which floats the ChatBot window on top of a product's UI. In overlay mode, the ChatBot can be opened and minimized with the toggle. 
+1. **Overlay:** The default display mode, which floats the ChatBot window on top of a product's UI. In overlay mode, the ChatBot can be opened and minimized with the toggle.
 
 <div class="ws-docs-content-img">
 ![ChatBot in overlay mode.](./img/overlay.svg)
@@ -207,6 +211,6 @@ Your users will expect your ChatBot to be in a reliable, permanent location. Ove
 
 For guidance on writing ChatBot content, refer to our [conversation design guidelines](/patternfly-ai/conversation-design).
 
-## Accessibility 
+## Accessibility
 
 Although accessibility has been integrated into the design of our ChatBot components, it is important to ensure that your implementation is inclusive of all users. For more guidance, refer to [our accessibility guidelines](/accessibility/about-accessibility).
