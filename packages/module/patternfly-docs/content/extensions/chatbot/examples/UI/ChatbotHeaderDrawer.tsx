@@ -33,6 +33,7 @@ const initialConversations: { [key: string]: Conversation[] } = {
 
 export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(true);
+  const [isButtonOrderReversed, setIsbuttonOrderReversed] = React.useState(false);
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
@@ -66,6 +67,13 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         id="drawer-visible"
         name="drawer-visible"
       />
+      <Checkbox
+        label="Reverse action buttons"
+        isChecked={isButtonOrderReversed}
+        onChange={() => setIsbuttonOrderReversed(!isButtonOrderReversed)}
+        id="drawer-actions-visible"
+        name="drawer-actions-visible"
+      ></Checkbox>
       <ChatbotConversationHistoryNav
         displayMode={displayMode}
         onDrawerToggle={() => setIsOpen(!isOpen)}
@@ -77,6 +85,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         onNewChat={() => {
           setIsOpen(!isOpen);
         }}
+        reverseButtonOrder={isButtonOrderReversed}
         handleTextInputChange={(value: string) => {
           if (value === '') {
             setConversations(initialConversations);

@@ -321,7 +321,7 @@ In the conversation history drawer, users can search previous chatbot conversati
 
 They can also start new conversations via a "New chat" button. To customize the button label, use `newChatButtonText`.
 
-Both the search input field and "New chat" buttons are optional.
+Both the search input field and "New chat" buttons are optional. The `reverseButtonOrder` prop allows you to invert the positions of the Close and "New chat" buttons within the drawer when set to `true`.
 
 ```js file="./ChatbotHeaderDrawer.tsx"
 
