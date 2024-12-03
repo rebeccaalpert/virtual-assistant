@@ -251,7 +251,7 @@ By default the message bar supports file uploads via an attach button. Setting `
 
 Speech recognition defaults to en-US. You can update the locale as needed. Locale codes are a combination of the ISO 639-1 language code and the ISO 3166-1 country code, separated by a dash.
 
-In this example, we are changing it to ja-JP. You can try it out by saying "hajimemashite" (初めまして).
+In this example, the locale is set to to ja-JP. You can try it out by saying "hajimemashite" (初めまして).
 
 ```js file="./ChatbotMessageBarLanguage.tsx"
 
