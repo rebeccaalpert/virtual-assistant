@@ -56,9 +56,9 @@ import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
-### Basic chatbot
+### Basic ChatBot
 
-This demo displays a basic chatbot, which includes:
+This demo displays a basic ChatBot, which includes:
 
 1. The [`<ChatbotToggle>`](/patternfly-ai/chatbot/ui#toggle) that controls the [`<Chatbot>` container.](/patternfly-ai/chatbot/ui#container)
 2. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>` that changes its presentation depending on the display mode.
@@ -72,22 +72,22 @@ This demo displays a basic chatbot, which includes:
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
 
 - [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
-- Sending a message to the chatbot.
+- Sending a message to the ChatBot.
 - Receiving a response from a backend AI tool with a loading message state.
 
 6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/ui#navigation) toggled open and closed by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 
-7. A "skip to chatbot" button that allows you to skip to the chatbot content via the [PatternFly skip to content component](/patternfly-ai/chatbot/ui#skip-to-content). To display this button you must tab into the main window.
+7. A "Skip to chatbot" button that allows you to skip to the chatbot content via the [PatternFly skip to content component](/patternfly-ai/chatbot/ui#skip-to-content). To display this button you must tab into the main window.
 
 ```js file="./Chatbot.tsx" isFullscreen
 
 ```
 
-### Embedded chatbot
+### Embedded ChatBot
 
-This demo displays an embedded chatbot. Embedded chatbots are meant to be placed within a page in your product. This demo includes:
+This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed within a page in your product. This demo includes:
 
-1. A [PatternFly page](/components/page) with a sidebar, "skip to chatbot" button, and masthead. To display the "skip to chatbot" button you must tab into the main window.
+1. A [PatternFly page](/components/page) with a sidebar, "Skip to chatbot" button, and masthead. To display the "Skip to chatbot" button you must tab into the main window.
 2. A [`<Chatbot>`](/patternfly-ai/chatbot/ui#container) container.
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
@@ -96,7 +96,7 @@ This demo displays an embedded chatbot. Embedded chatbots are meant to be placed
    - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
    - [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
-   - Sending a message to the chatbot.
+   - Sending a message to the ChatBot.
    - Receiving a response from a backend AI tool with a loading message state.
 6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/ui#navigation) that can be toggled by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
 

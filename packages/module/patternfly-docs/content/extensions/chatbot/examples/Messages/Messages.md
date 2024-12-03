@@ -49,11 +49,11 @@ The `content` prop of the `<Message>` component is passed to a `<Markdown>` comp
 
 ### Bot messages
 
-Messages from the chatbot will be marked with an "AI" label to clearly communicate the use of AI to users. The chatbot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
+Messages from the ChatBot will be marked with an "AI" label to clearly communicate the use of AI to users. The ChatBot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
 
 <br />
 
-By default, a date and timestamp is displayed with each message. We recommend using the `timestamp` prop in real chatbots, since it will allow you to set persistent dates and times on messages, even if the messages re-render. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
+By default, a date and timestamp is displayed with each message. We recommend using the `timestamp` prop in real ChatBots, since it will allow you to set persistent dates and times on messages, even if the messages re-render. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
 
 <br />
 
@@ -117,7 +117,7 @@ Messages from users have a different background color to differentiate them from
 
 ### Messages with attachments
 
-When [attachments](/patternfly-ai/chatbot/messages#file-attachments) are shared and displayed in the chatbot window, users will see a selectable and dismissible message that contains file details in a label. Selecting the file label can open a preview modal, which allows users to view or make edits to the file contents.
+When [attachments](/patternfly-ai/chatbot/messages#file-attachments) are shared and displayed in the ChatBot window, users will see a selectable and dismissible message that contains file details in a label. Selecting the file label can open a preview modal, which allows users to view or make edits to the file contents.
 
 The `<PreviewAttachment>` component displays a modal with a read-only view of the attached file's contents. Selecting the "edit" button will open the `<AttachmentEdit>` component, which provides an interactive environment where users can make changes to the file.
 
@@ -154,7 +154,7 @@ To allow users to preview the contents of an attachment, load a read-only view o
 
 ### Editable attachments
 
-To allow users to edit an attached file, load a new code editor within the chatbot window. On this screen, you can allow users to edit a file and save changes if they'd like. Return users to the main chatbot window once they dismiss the editor.
+To allow users to edit an attached file, load a new code editor within the ChatBot window. On this screen, you can allow users to edit a file and save changes if they'd like. Return users to the main ChatBot window once they dismiss the editor.
 
 ```js file="./AttachmentEdit.tsx"
 

@@ -83,9 +83,9 @@ import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ### Container
 
-The PatternFly chatbot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the chatbot toggle.](/patternfly-ai/chatbot/ui#toggle)
+The PatternFly ChatBot is a separate window that overlays or is embedded within other UI content. This container can be shown and hidden via [the ChatBot toggle.](/patternfly-ai/chatbot/ui#toggle)
 
-The `<Chatbot>` component is the container that encompasses the chatbot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes.
+The `<Chatbot>` component is the container that encompasses the ChatBot experience. It adapts to various display modes (overlay/default, docked, fullscreen, and embedded) and supports both light and dark themes.
 
 The "embedded" display mode is meant to be used within a [PatternFly page](/components/page) or other container within your product.
 
@@ -115,11 +115,11 @@ Your code structure should look like this:
 </Chatbot>
 ```
 
-**Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic chatbot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and [embedded chatbot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot) demos.
+**Note**: When messages update, it is important to announce new messages to users of assistive technology. To do this, make sure to set the `announcement` prop on `<MessageBox>` whenever you display a new message in `<MessageBox>`. You can view this in action in our [basic ChatBot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and [embedded ChatBot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot) demos.
 
 ### Welcome message
 
-To introduce users to the chatbot experience, display a welcome message before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the chatbot experience and encourage them to interact.
+To introduce users to the ChatBot experience, display a welcome message before they input their first message. This brief message should follow our [conversation design guidelines](/patternfly-ai/conversation-design) to welcome users to the ChatBot experience and encourage them to interact.
 
 This message can be dismissed once a user sends their first message. To change the arrangement of the message within the message box, specify the `position` in the `<MessageBox>` component.
 
@@ -137,10 +137,10 @@ To provide users with a more specific direction, you can also include optional w
 
 ### Skip to content
 
-To provide page context, we recommend using a "skip to chatbot" button. This allows you to skip past other content on the page, directly to the chatbot content, using a [PatternFly skip to content component](/components/skip-to-content). To display this button, you must tab into the main window.
+To provide page context, we recommend using a "Skip to chatbot" button. This allows you to skip past other content on the page, directly to the ChatBot content, using a [PatternFly skip to content component](/components/skip-to-content). To display this button, you must tab into the main window.
 <br />
 <br />
-When using default or docked modes, we recommend putting focus on the toggle if the chatbot is closed, and the chatbot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the chatbot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen chatbot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and the [embedded chatbot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot).
+When using default or docked modes, we recommend putting focus on the toggle if the ChatBot is closed, and the ChatBot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the ChatBot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen ChatBot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and the [embedded ChatBot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot).
 
 ```js file="./SkipToContent.tsx" isFullscreen
 
@@ -150,7 +150,7 @@ When using default or docked modes, we recommend putting focus on the toggle if 
 
 ### Basic toggle
 
-To allow users to open and close the chatbot window as needed, add a toggle.
+To allow users to open and close the ChatBot window as needed, add a toggle.
 
 ```js file="./ChatbotToggleBasic.tsx" isFullscreen
 
@@ -176,7 +176,7 @@ A custom shape can be set for the toggle. To override the default circle shape, 
 
 ### Header sections
 
-The chatbot header is persistent, and contains the title for the chatbot window, as well as any related controls and actions.
+The ChatBot header is persistent, and contains the title for the ChatBot window, as well as any related controls and actions.
 
 The `<ChatbotHeader>` has 2 sections:
 
@@ -184,8 +184,8 @@ The `<ChatbotHeader>` has 2 sections:
   - `<ChatbotHeaderTitle>` handles the layout and display of a title or image at different responsive sizes.
   - `<ChatbotHeaderMenu>` (optional) is placed on the left side of the header and used to toggle a chat history menu.
 - `<ChatbotHeaderActions>` contains any additional controls:
-  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that matches the chatbot styles.
-  - The `<ChatbotHeaderOptionsDropdown>` component is a dropdown with a menu toggle that is intended to be used to update chatbot settings (like the display mode).
+  - The `<ChatbotHeaderSelectorDropdown>` component is a standard PatternFly dropdown that matches the ChatBot styles.
+  - The `<ChatbotHeaderOptionsDropdown>` component is a dropdown with a menu toggle that is intended to be used to update ChatBot settings (like the display mode).
 
 Your `<ChatbotHeader>` code structure should look like this:
 
@@ -220,7 +220,7 @@ In this example, select the respective checkbox to toggle these features:
 - **Left-aligned logo**
 - **Centered logo**
 - **Selector dropdown:** Users can choose from preselected options in a dropdown menu. For example, they can toggle between AI models.
-- **Options dropdown:** Users can select chatbot options from a menu. For example, they can switch between chatbot display modes.
+- **Options dropdown:** Users can select ChatBot options from a menu. For example, they can switch between ChatBot display modes.
 
 ```js file="./ChatbotHeaderBasic.tsx"
 
@@ -230,7 +230,7 @@ In this example, select the respective checkbox to toggle these features:
 
 ### Footnote with popover
 
-A footnote can be placed in the chatbot footer to communicate any legal disclaimers or information about the chatbot.
+A footnote can be placed in the ChatBot footer to communicate any legal disclaimers or information about the ChatBot.
 Footnotes can be static text or a button that opens a popover.
 
 ```js file="./ChatbotFootnote.tsx"
@@ -251,7 +251,7 @@ By default the message bar supports file uploads via an attach button. Setting `
 
 You can change the behavior of the attach button to open a menu, rather than the default file viewer for your operating system. This menu can display different actions related to attachments.
 
-Attachments can also be added to the chatbot via [drag and drop.](/patternfly-ai/chatbot/messages#attachment-dropzone)
+Attachments can also be added to the ChatBot via [drag and drop.](/patternfly-ai/chatbot/messages#attachment-dropzone)
 
 ```js file="./ChatbotMessageBarAttach.tsx"
 
@@ -274,7 +274,7 @@ A simple footer with a message bar and footnote would have this code structure:
 
 ### Message bar with stop button
 
-If you are using streaming, you can add a stop button to the message bar that allows users to stop a response from a chatbot.
+If you are using streaming, you can add a stop button to the message bar that allows users to stop a response from a ChatBot.
 
 To enable the stop button, set `hasStopButton` to `true` and pass in a `handleStopButton` callback function. You can use this callback to trigger an [AbortController](https://developer.mozilla.org/en-US/docs/Web/API/AbortController) configured as part of your API call.
 
@@ -286,9 +286,9 @@ To enable the stop button, set `hasStopButton` to `true` and pass in a `handleSt
 
 ### Side nav in a drawer
 
-The chatbot conversation history is contained in an interactive drawer, where users can interact with previous conversations or start a new conversation.
+The ChatBot conversation history is contained in an interactive drawer, where users can interact with previous conversations or start a new conversation.
 
-The `<ChatbotConversationHistoryNav>` component is a wrapper placed within `<Chatbot>`, which contains all other chatbot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
+The `<ChatbotConversationHistoryNav>` component is a wrapper placed within `<Chatbot>`, which contains all other ChatBot components in `drawerContent`. There is a focus trap so users can only tab within the drawer while it is open.
 
 The code structure will look like this:
 
@@ -310,14 +310,14 @@ The code structure will look like this:
 </Chatbot>
 ```
 
-The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main chatbot demo](/patternfly-ai/chatbot/overview/demo#basic-chatbot).):
+The conversation history drawer looks different depending on the `displayMode` of the parent `<Chatbot>`. (As shown in the [main ChatBot demo](/patternfly-ai/chatbot/overview/demo#basic-chatbot).):
 
-- `Default` and `docked` display modes display the conversation history on top of the rest of the chatbot content, with a PatternFly backdrop between the drawer panel and drawer content.
+- `Default` and `docked` display modes display the conversation history on top of the rest of the ChatBot content, with a PatternFly backdrop between the drawer panel and drawer content.
 - `Fullscreen` and `embedded` display modes display the conversation history in line with the drawer content.
 
 ### Drawer with search and "new chat" button
 
-In the conversation history drawer, users can search previous chatbot conversations via an input field. To customize the placeholder text, use `searchInputPlaceholder`. Provide an aria label via `searchInputAriaLabel`.
+In the conversation history drawer, users can search previous ChatBot conversations via an input field. To customize the placeholder text, use `searchInputPlaceholder`. Provide an aria label via `searchInputAriaLabel`.
 
 They can also start new conversations via a "New chat" button. To customize the button label, use `newChatButtonText`.
 
@@ -337,7 +337,7 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 
 ### Modal
 
-Based on the [PatternFly modal](/components/modal), this modal adapts to the chatbot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the chatbot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
+Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the ChatBot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
 
 ```js file="./ChatbotModal.tsx" isFullscreen
 
