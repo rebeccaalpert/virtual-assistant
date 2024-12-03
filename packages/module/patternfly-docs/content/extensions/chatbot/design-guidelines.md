@@ -97,7 +97,7 @@ Use a ChatBot to offer your users on-demand help at any time, including:
 - Sales and product recommendations.
 - Training and onboarding.
 - System monitoring and alerts.
-- Community engagement .
+- Community engagement.
 - Feedback collection and surveys.
 
 ### When not to use a ChatBot
