@@ -66,6 +66,8 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
         const result = event.results[0][0].transcript;
         onSpeechRecognition(result);
         recognition.stop();
+        // turn button off
+        onIsListeningChange(false);
       };
 
       recognition.onerror = (event) => {
