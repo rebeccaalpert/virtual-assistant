@@ -55,12 +55,12 @@
 }
 
 html.pf-chatbot-allow--docked {
-  padding-right: 480px;
+  padding-inline-start: 480px;
 
   // 30rem is the width of the docked chatbot
   // if the screen is smaller, we want to be 100%
   @media screen and (max-width: 30rem) {
-    padding-right: 0px;
+    padding-inline-start: 0px;
   }
 }
 
