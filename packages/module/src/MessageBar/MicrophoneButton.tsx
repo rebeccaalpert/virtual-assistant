@@ -22,6 +22,8 @@ export interface MicrophoneButtonProps extends ButtonProps {
   tooltipProps?: TooltipProps;
   /** English text "Use microphone" and "Stop listening" used in the tooltip */
   tooltipContent?: { active?: string; inactive?: string };
+  /** Locale code for language speech recognition is conducted in. This should be in the format 'en-US', a.k.a. the ISO 639-1 code, a dash, and the ISO_3166-1 code. */
+  language?: string;
 }
 
 export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = ({
@@ -31,6 +33,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   className,
   tooltipProps,
   tooltipContent = { active: 'Stop listening', inactive: 'Use microphone' },
+  language = 'en-US',
   ...props
 }: MicrophoneButtonProps) => {
   // Microphone
@@ -60,12 +63,14 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
       const recognition: SpeechRecognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();
       recognition.continuous = false;
       recognition.interimResults = false;
-      recognition.lang = 'en-US';
+      recognition.lang = language;
 
       recognition.onresult = (event) => {
         const result = event.results[0][0].transcript;
         onSpeechRecognition(result);
         recognition.stop();
+        // turn button off
+        onIsListeningChange(false);
       };
 
       recognition.onerror = (event) => {

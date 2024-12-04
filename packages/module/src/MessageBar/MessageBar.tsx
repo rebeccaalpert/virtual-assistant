@@ -58,6 +58,7 @@ export interface MessageBarProps {
     send?: { tooltipContent?: string; props?: ButtonProps };
     microphone?: {
       tooltipContent?: { active?: string; inactive?: string };
+      language?: string;
       props?: ButtonProps;
     };
   };
@@ -184,6 +185,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             onIsListeningChange={setIsListeningMessage}
             onSpeechRecognition={handleSpeechRecognition}
             tooltipContent={buttonProps?.microphone?.tooltipContent}
+            language={buttonProps?.microphone?.language}
             {...buttonProps?.microphone?.props}
           />
         )}
