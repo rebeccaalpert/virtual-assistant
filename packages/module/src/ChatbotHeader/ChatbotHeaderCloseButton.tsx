@@ -1,11 +1,11 @@
 import React from 'react';
 
 import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
-import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon';
+import { CloseIcon } from '@patternfly/react-icons';
 
-export interface ChatbotHeaderMenuProps {
-  /** Callback function to attach to menu toggle on top right of chatbot header. */
-  onMenuToggle: () => void;
+export interface ChatbotHeaderCloseButtonProps {
+  /** Callback function for when button is clicked */
+  onClick: () => void;
   /** Custom classname for the header component */
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
@@ -18,25 +18,25 @@ export interface ChatbotHeaderMenuProps {
   tooltipContent?: string;
 }
 
-const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
+const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseButtonProps> = ({
   className,
-  onMenuToggle,
+  onClick,
   tooltipProps,
-  menuAriaLabel = 'Toggle menu',
+  menuAriaLabel = 'Close',
   innerRef,
-  tooltipContent = 'Menu'
-}: ChatbotHeaderMenuProps) => (
+  tooltipContent = 'Close'
+}: ChatbotHeaderCloseButtonProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
     <Tooltip content={tooltipContent} position="bottom" {...tooltipProps}>
       <Button
         className="pf-chatbot__button--toggle-menu"
         variant="plain"
-        onClick={onMenuToggle}
+        onClick={onClick}
         aria-label={menuAriaLabel}
         ref={innerRef}
         icon={
           <Icon size="xl" isInline>
-            <BarsIcon />
+            <CloseIcon />
           </Icon>
         }
       />
@@ -44,8 +44,8 @@ const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = (
   </div>
 );
 
-export const ChatbotHeaderMenu = React.forwardRef(
-  (props: ChatbotHeaderMenuProps, ref: React.Ref<HTMLButtonElement>) => (
-    <ChatbotHeaderMenuBase innerRef={ref} {...props} />
+export const ChatbotHeaderCloseButton = React.forwardRef(
+  (props: ChatbotHeaderCloseButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+    <ChatbotHeaderCloseButtonBase innerRef={ref} {...props} />
   )
 );

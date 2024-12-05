@@ -18,6 +18,9 @@ export * from './ChatbotContent';
 export { default as ChatbotConversationHistoryNav } from './ChatbotConversationHistoryNav';
 export * from './ChatbotConversationHistoryNav';
 
+export { default as ChatbotDrawer } from './ChatbotDrawer';
+export * from './ChatbotDrawer';
+
 export { default as ChatbotFooter } from './ChatbotFooter';
 export * from './ChatbotFooter';
 
@@ -65,6 +68,9 @@ export * from './PreviewAttachment';
 
 export { default as ResponseActions } from './ResponseActions';
 export * from './ResponseActions';
+
+export { default as Settings } from './Settings';
+export * from './Settings';
 
 export { default as SourceDetailsMenuItem } from './SourceDetailsMenuItem';
 export * from './SourceDetailsMenuItem';
