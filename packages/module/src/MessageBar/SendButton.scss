@@ -17,6 +17,11 @@
   }
 }
 
+.pf-v6-c-button:disabled.pf-chatbot__button--send {
+  color: var(--pf-t--global--icon--color--disabled);
+  background-color: initial;
+}
+
 @keyframes motionSendButton {
   0% {
     opacity: 0;
