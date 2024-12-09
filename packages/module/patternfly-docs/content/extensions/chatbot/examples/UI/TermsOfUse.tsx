@@ -51,7 +51,7 @@ export const TermsOfUseExample: React.FunctionComponent = () => {
   const terminology = (
     <>
       <p>
-        The following terminology applies to these Terms and Conditions, Privacy Statement, and Disclaimer Notice and
+        The following terminology applies to these Terms and Conditions, Privacy Statement, Disclaimer Notice, and
         all Agreements:
       </p>
       <ul>
