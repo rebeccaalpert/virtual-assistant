@@ -42,7 +42,8 @@ export const TermsOfUseExample: React.FunctionComponent = () => {
         website, located at <a href="https://patternfly.org">www.patternfly.org.</a>
       </p>
       <p>
-        By accessing this website, you are agreeing with our terms and conditions. If you do not agree to all of these terms and conditions, do not continue to use PatternFly.
+        By accessing this website, you are agreeing with our terms and conditions. If you do not agree to all of these
+        terms and conditions, do not continue to use PatternFly.
       </p>
     </>
   );
@@ -50,8 +51,8 @@ export const TermsOfUseExample: React.FunctionComponent = () => {
   const terminology = (
     <>
       <p>
-        The following terminology applies to these Terms and Conditions, Privacy Statement, Disclaimer Notice, and
-        all Agreements:
+        The following terminology applies to these Terms and Conditions, Privacy Statement, Disclaimer Notice, and all
+        Agreements:
       </p>
       <ul>
         <li>
