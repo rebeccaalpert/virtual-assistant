@@ -367,11 +367,11 @@ If you're showing a conversation that is already active, you can set the `active
 
 ```
 
-### Terms of Use
+### Terms of use
 
 Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and is meant to display terms and conditions for using a ChatBot in your project. The image in the header can be toggled on or off depending on whether the `image` and `altText` props are provided.
 
-This example also includes an example of how to use [skip to content](/patternfly-ai/chatbot/ui#skip-to-content). When the terms of use modal is open, focus is placed on the terms of use container. When it is closed, focus is placed on the chatbot. In a real example with a functioning toggle, you would also want to place focus on the toggle when appropriate.
+This example also includes an example of how to use [skip to content](/patternfly-ai/chatbot/ui#skip-to-content). When the terms of use modal is open, focus is placed on the terms of use container. When it is closed, focus is placed on the ChatBot. In a real example with a functioning ChatBot toggle, you would also want to place focus on the toggle when appropriate.
 
 ```js file="./TermsOfUse.tsx" isFullscreen
 
