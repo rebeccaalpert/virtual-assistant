@@ -56,7 +56,7 @@ export const TermsOfUseExample: React.FunctionComponent = () => {
       </p>
       <ul>
         <li>
-          "Client", "You", and "Your" refer to you, the person logging on this website and compliant with the Company's
+          "Client", "You", and "Your" refer to you, the person using this website who is compliant with the Company's
           terms and conditions.
         </li>
         <li>
