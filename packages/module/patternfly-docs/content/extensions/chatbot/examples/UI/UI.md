@@ -259,7 +259,11 @@ In this example, the locale is set to to ja-JP. You can try it out by saying "ha
 
 ### Message bar with always-shown send button
 
-You can use the `alwaysShowSendButton` prop if you want to always show the send button. You may also wish to apply the `isSendButtonDisabled` prop. Sending via the enter key will be disabled when this is passed in, demonstrated in the example below. You may want to enable or disable the send button based on whether there is text in the message bar. Whether text is present in the input can be detected via the `onChange` prop for `<MessageBar>`.
+By default, the send button is only shown once a user has entered a valid message. If you choose to keep the send button visible at all times, disable the button when there is no valid message to send.
+
+To always show the send button in the message bar, use the `alwaysShowSendButton` prop. Use the `isSendButtonDisabled` prop to disable the button as needed. If you want to enable or disable the send button based on the presence of text in the message bar, you can detect text via the `onChange` prop for `<MessageBar>`.
+
+To disable the send button in the following example, select the "Disable send button" checkbox. When the button is disabled, you also cannot send via the enter key.
 
 ```js file="./ChatbotMessageBarDisabled.tsx"
 
