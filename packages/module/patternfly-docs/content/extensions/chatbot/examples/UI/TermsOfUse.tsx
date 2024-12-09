@@ -39,7 +39,7 @@ export const TermsOfUseExample: React.FunctionComponent = () => {
     <>
       <p>
         Welcome to PatternFly! These terms and conditions outline the rules and regulations for the use of PatternFly's
-        website, located at <a href="https://patternfly.org">www.patternfly.org/</a>
+        website, located at <a href="https://patternfly.org">www.patternfly.org.</a>
       </p>
       <p>
         By accessing this website, we assume you accept these terms and conditions. Do not continue to use PatternFly if
