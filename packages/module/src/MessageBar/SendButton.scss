@@ -30,6 +30,11 @@
     }
   }
 
+  .pf-v6-c-button:disabled.pf-chatbot__button--send:disabled {
+    --pf-v6-c-button--disabled--Color: var(--pf-t--global--icon--color--disabled);
+    background-color: var(--pf-t--global--background--color--disabled--default);
+  }
+
   .pf-v6-c-button.pf-chatbot__button--send:hover,
   .pf-v6-c-button.pf-chatbot__button--send:focus {
     background-color: var(--pf-t--chatbot--blue-icon--background--color--hover);
