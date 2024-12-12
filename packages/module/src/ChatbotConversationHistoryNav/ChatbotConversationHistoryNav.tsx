@@ -45,6 +45,8 @@ export interface Conversation {
   label?: string;
   /** Callback for when user selects item. */
   onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
+  /** Whether menu item should display active background color */
+  isActive?: boolean;
   /** Additional props passed to conversation menu item */
   additionalProps?: MenuItemProps;
 }
@@ -107,7 +109,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
 
   const getNavItem = (conversation: Conversation) => (
     <MenuItem
-      className="pf-chatbot__menu-item"
+      className={`pf-chatbot__menu-item ${conversation.isActive ? 'pf-chatbot__menu-item--active' : ''}`}
       itemId={conversation.id}
       key={conversation.id}
       {...(conversation.noIcon ? {} : { icon: conversation.icon ?? <OutlinedCommentAltIcon /> })}

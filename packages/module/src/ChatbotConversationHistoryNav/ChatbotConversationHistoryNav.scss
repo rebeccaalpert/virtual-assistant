@@ -48,6 +48,13 @@
   .pf-chatbot__history-actions {
     transform: rotate(90deg);
   }
+
+  .pf-chatbot__menu-item--active {
+    background-color: var(--pf-t--global--background--color--action--plain--clicked);
+  }
+  button.pf-chatbot__menu-item--active {
+    background-color: initial;
+  }
 }
 
 // Chatbot Header - Drawer
