@@ -347,7 +347,7 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 
 ### Drawer with active conversation
 
-If you're showing a conversation that is already active, you can set the `isActive` prop on your `Conversation` to true for a visual state change.
+If you're showing a conversation that is already active, you can set the `activeItemId` prop on your `ChatbotConversationHistoryNav` to apply an active visual state.
 
 ```js file="./ChatbotHeaderDrawerWithSelection.tsx"
 

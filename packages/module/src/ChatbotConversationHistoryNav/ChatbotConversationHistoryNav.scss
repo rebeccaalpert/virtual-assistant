@@ -44,6 +44,11 @@
     color: var(--pf-t--global--text--color--regular);
     font-size: var(--pf-t--global--font--size--body--lg);
     font-weight: var(--pf-t--global--font--weight--body--default);
+    border-radius: var(--pf-t--global--border--radius--small);
+  }
+  // allows focus state to have border radius
+  .pf-v6-c-menu__list-item.pf-chatbot__menu-item {
+    overflow: hidden;
   }
   .pf-chatbot__history-actions {
     transform: rotate(90deg);
@@ -52,6 +57,7 @@
   .pf-chatbot__menu-item--active {
     background-color: var(--pf-t--global--background--color--action--plain--clicked);
   }
+
   button.pf-chatbot__menu-item--active {
     background-color: initial;
   }
@@ -112,6 +118,7 @@
       border-radius: var(--pf-t--global--border--radius--pill);
       justify-content: center;
       align-items: center;
+      border-radius: var(--pf-t--global--border--radius--small);
     }
   }
 
