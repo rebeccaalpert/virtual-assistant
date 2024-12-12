@@ -15,16 +15,20 @@ export const CustomActionExample: React.FunctionComponent = () => (
     actions={{
       regenerate: {
         ariaLabel: 'Regenerate',
+        clickedAriaLabel: 'Regenerated',
         // eslint-disable-next-line no-console
         onClick: () => console.log('Clicked regenerate'),
         tooltipContent: 'Regenerate',
+        clickedTooltipContent: 'Regenerated',
         icon: <RedoIcon />
       },
       download: {
         ariaLabel: 'Download',
+        clickedAriaLabel: 'Downloaded',
         // eslint-disable-next-line no-console
         onClick: () => console.log('Clicked download'),
         tooltipContent: 'Download',
+        clickedTooltipContent: 'Downloaded',
         icon: <DownloadIcon />
       },
       info: {
