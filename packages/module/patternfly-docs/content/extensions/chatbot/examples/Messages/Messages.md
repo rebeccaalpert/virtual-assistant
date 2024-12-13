@@ -63,7 +63,7 @@ You can further customize the avatar by applying an additional class or passing 
 
 ```
 
-### Messages actions
+### Message actions
 
 You can add actions to a message, to allow users to interact with the message content. These actions can include:
 
@@ -79,7 +79,18 @@ You can add actions to a message, to allow users to interact with the message co
 
 ### Custom message actions
 
-Beyond the standard message actions (positive, negative, copy, share, or listen), you can add custom actions to a bot message by passing an `actions` object to the `<Message>` component. This object can contain the following customizations: `ariaLabel`, `clickedAriaLabel`, `onClick`, `className`, `isDisabled`, `tooltipContent`, `tooltipContent`, `tooltipProps`, and `icon`. `clickedAriaLabel` and `clickedTooltipContent` are applied only when a button is clicked. If `clickedAriaLabel` or `clickedTooltipContent` are omitted, they will default to the `ariaLabel` or `tooltipContent` supplied.
+Beyond the standard message actions (good response, bad response, copy, share, or listen), you can add custom actions to a bot message by passing an `actions` object to the `<Message>` component. This object can contain the following customizations:
+
+- `ariaLabel`
+- `onClick`
+- `className`
+- `isDisabled`
+- `tooltipContent`
+- `tooltipContent`
+- `tooltipProps`
+- `icon`
+
+You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is clicked. If either of these props are omitted, their values will default to the `ariaLabel` or `tooltipContent` supplied.
 
 ```js file="./MessageWithCustomResponseActions.tsx"
 

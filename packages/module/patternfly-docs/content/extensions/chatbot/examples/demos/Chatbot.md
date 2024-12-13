@@ -66,7 +66,7 @@ This demo displays a basic ChatBot, which includes:
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
 
 - A `<ChatbotWelcomePrompt>`
-- An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages#messages-actions)
+- An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages#message-actions)
 - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
@@ -92,7 +92,7 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
 4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
    - A `<ChatbotWelcomePrompt>`
-   - An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages/#messages-actions)
+   - An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages/#message-actions)
    - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
 5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
    - [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
