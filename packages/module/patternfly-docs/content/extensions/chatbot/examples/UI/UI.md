@@ -383,7 +383,9 @@ This example also includes an example of how to use [skip to content](/patternfl
 
 ### Settings
 
-A settings layout can be substituted for other components within the chatbot. It should accept any number of buttons, dropdowns, toggles, etc. and labels, and render them appropriately within all four display modes.
+To contain user preference controls and other ChatBot setting options, you can create a separate settings page that can accept any number of buttons, dropdown menus, toggles, labels, and so on. This settings page will render all components appropriately within all 4 display modes.
+
+In this demo, you can toggle the settings page by clicking the "Settings" button in the display mode menu.
 
 ```js file="./Settings.tsx" isFullscreen
 

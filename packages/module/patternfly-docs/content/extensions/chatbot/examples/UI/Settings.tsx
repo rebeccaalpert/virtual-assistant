@@ -8,10 +8,8 @@ import {
   DropdownGroup,
   DropdownItem,
   DropdownList,
-  FormGroup,
   MenuToggle,
   MenuToggleElement,
-  Radio,
   Switch,
   Title
 } from '@patternfly/react-core';
@@ -267,48 +265,6 @@ export const SettingsDemo: React.FunctionComponent = () => {
 
   return (
     <>
-      <div
-        style={{
-          position: 'fixed',
-          padding: 'var(--pf-t--global--spacer--lg)',
-          zIndex: '601',
-          boxShadow: 'var(--pf-t--global--box-shadow--lg)',
-          left: 0,
-          bottom: 120
-        }}
-      >
-        <FormGroup role="radiogroup" isInline fieldId="basic-form-radio-group" label="Display mode">
-          <Radio
-            isChecked={displayMode === ChatbotDisplayMode.default}
-            onChange={() => setDisplayMode(ChatbotDisplayMode.default)}
-            name="basic-inline-radio"
-            label="Default"
-            id="default"
-          />
-          <Radio
-            isChecked={displayMode === ChatbotDisplayMode.docked}
-            onChange={() => setDisplayMode(ChatbotDisplayMode.docked)}
-            name="basic-inline-radio"
-            label="Docked"
-            id="docked"
-          />
-          <Radio
-            isChecked={displayMode === ChatbotDisplayMode.fullscreen}
-            onChange={() => setDisplayMode(ChatbotDisplayMode.fullscreen)}
-            name="basic-inline-radio"
-            label="Fullscreen"
-            id="fullscreen"
-          />
-          <Radio
-            isChecked={displayMode === ChatbotDisplayMode.embedded}
-            onChange={() => setDisplayMode(ChatbotDisplayMode.embedded)}
-            name="basic-inline-radio"
-            label="Embedded"
-            id="embedded"
-          />
-        </FormGroup>
-        <Button onClick={() => setAreSettingsOpen(!areSettingsOpen)}>Launch settings</Button>
-      </div>
       <Chatbot isVisible={chatbotVisible} displayMode={displayMode}>
         {areSettingsOpen ? (
           <>

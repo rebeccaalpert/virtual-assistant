@@ -18,9 +18,6 @@ export * from './ChatbotContent';
 export { default as ChatbotConversationHistoryNav } from './ChatbotConversationHistoryNav';
 export * from './ChatbotConversationHistoryNav';
 
-export { default as ChatbotDrawer } from './ChatbotDrawer';
-export * from './ChatbotDrawer';
-
 export { default as ChatbotFooter } from './ChatbotFooter';
 export * from './ChatbotFooter';
 
