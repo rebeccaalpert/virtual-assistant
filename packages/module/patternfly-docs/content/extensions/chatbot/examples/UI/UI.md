@@ -52,6 +52,7 @@ import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel'
 import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
 import { PreviewAttachment } from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
+import TermsOfUse from '@patternfly/chatbot/dist/dynamic/TermsOfUse';
 import {
 ChatbotHeader,
 ChatbotHeaderMain,
@@ -78,6 +79,7 @@ import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
+import termsAndConditionsHeader from './PF-TermsAndConditionsHeader.svg';
 
 ## Structure
 
@@ -364,6 +366,18 @@ If you're showing a conversation that is already active, you can set the `active
 ```js file="./ChatbotHeaderDrawerWithSelection.tsx"
 
 ```
+
+### Terms of use
+
+Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and is meant to display terms and conditions for using a ChatBot in your project. The image in the header can be toggled on or off depending on whether the `image` and `altText` props are provided.
+
+This example also includes an example of how to use [skip to content](/patternfly-ai/chatbot/ui#skip-to-content). When the terms of use modal is open, focus is placed on the terms of use container. When it is closed, focus is placed on the ChatBot. In a real example with a functioning ChatBot toggle, you would also want to place focus on the toggle when appropriate.
+
+```js file="./TermsOfUse.tsx" isFullscreen
+
+```
+
+## Modals
 
 ### Modal
 
