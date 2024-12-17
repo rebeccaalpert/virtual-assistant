@@ -55,6 +55,7 @@ import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
 import TermsOfUse from '@patternfly/chatbot/dist/dynamic/TermsOfUse';
 import {
 ChatbotHeader,
+ChatbotHeaderCloseButton,
 ChatbotHeaderMain,
 ChatbotHeaderMenu,
 ChatbotHeaderActions,
@@ -66,6 +67,7 @@ import { ChatbotFooter, ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic
 import { MessageBar } from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { ChatbotModal } from '@patternfly/chatbot/dist/dynamic/ChatbotModal';
+import SettingsForm from '@patternfly/chatbot/dist/dynamic/Settings';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
 
@@ -75,11 +77,13 @@ import { DropdownItem, DropdownList, Checkbox } from '@patternfly/react-core';
 import OutlinedWindowRestoreIcon from '@patternfly/react-icons/dist/esm/icons/outlined-window-restore-icon';
 import ExpandIcon from '@patternfly/react-icons/dist/esm/icons/expand-icon';
 import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-drawer-right-icon';
+import CogIcon from '@patternfly/react-icons/dist/esm/icons/cog-icon';
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import termsAndConditionsHeader from './PF-TermsAndConditionsHeader.svg';
+import { CloseIcon } from '@patternfly/react-icons';
 
 ## Structure
 
@@ -374,6 +378,16 @@ Based on the [PatternFly modal](/components/modal), this modal adapts to the Cha
 This example also includes an example of how to use [skip to content](/patternfly-ai/chatbot/ui#skip-to-content). When the terms of use modal is open, focus is placed on the terms of use container. When it is closed, focus is placed on the ChatBot. In a real example with a functioning ChatBot toggle, you would also want to place focus on the toggle when appropriate.
 
 ```js file="./TermsOfUse.tsx" isFullscreen
+
+```
+
+### Settings
+
+To contain user preference controls and other ChatBot setting options, you can create a separate settings page that can accept any number of buttons, dropdown menus, toggles, labels, and so on. This settings page will render all components appropriately within all 4 display modes.
+
+In this demo, you can toggle the settings page by clicking the "Settings" button in the display mode menu.
+
+```js file="./Settings.tsx" isFullscreen
 
 ```
 
