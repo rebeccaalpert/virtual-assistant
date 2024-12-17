@@ -47,6 +47,7 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
     <Tooltip
       id={`pf-chatbot__tooltip-response-action-${tooltipContent}`}
       content={isClicked ? clickedTooltipContent : tooltipContent}
+      aria-live="polite"
       position="bottom"
       entryDelay={tooltipProps?.entryDelay || 0}
       exitDelay={tooltipProps?.exitDelay || 0}
