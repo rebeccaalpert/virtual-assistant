@@ -31,6 +31,8 @@ export interface TermsOfUseProps extends ModalProps {
   altText?: string;
   /** Ref applied to modal */
   innerRef?: React.Ref<HTMLDivElement>;
+  /** OuiaID applied to modal */
+  ouiaId?: string;
 }
 
 export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
@@ -47,6 +49,7 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   className,
   children,
   innerRef,
+  ouiaId = 'TermsOfUse',
   ...props
 }: TermsOfUseProps) => {
   const handlePrimaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
@@ -61,7 +64,7 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   const modal = (
     <ChatbotModal
       isOpen={isModalOpen}
-      ouiaId="TermsOfUse"
+      ouiaId={ouiaId}
       aria-labelledby="terms-of-use-title"
       aria-describedby="terms-of-use-modal"
       className={`pf-chatbot__terms-of-use-modal pf-chatbot__terms-of-use-modal--${displayMode} ${className ? className : ''}`}
@@ -73,12 +76,10 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
         <ModalHeader>
           <div className="pf-chatbot__terms-of-use--header">
             {image && altText && <img src={image} className="pf-chatbot__terms-of-use--image" alt={altText} />}
-            <h1 className="pf-chatbot__terms-of-use--title" id="modal-custom-header-label">
-              {title}
-            </h1>
+            <h1 className="pf-chatbot__terms-of-use--title">{title}</h1>
           </div>
         </ModalHeader>
-        <ModalBody id="terms-of-use-modal-body">
+        <ModalBody>
           <Content>{children}</Content>
         </ModalBody>
         <ModalFooter className="pf-chatbot__terms-of-use--footer">
@@ -88,7 +89,6 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
             variant="primary"
             onClick={handlePrimaryAction}
             form="terms-of-use-form"
-            id="pf-chatbot__terms-of-use--primary-btn"
             size="lg"
           >
             {primaryActionBtn}
