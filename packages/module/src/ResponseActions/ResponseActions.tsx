@@ -12,6 +12,8 @@ import { TooltipProps } from '@patternfly/react-core';
 export interface ActionProps {
   /** Aria-label for the button */
   ariaLabel?: string;
+  /** Aria-label for the button, shown when the button is clicked. */
+  clickedAriaLabel?: string;
   /** On-click handler for the button */
   onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class name for the button */
@@ -20,6 +22,8 @@ export interface ActionProps {
   isDisabled?: boolean;
   /** Content shown in the tooltip */
   tooltipContent?: string;
+  /** Content shown in the tooltip when the button is clicked. */
+  clickedTooltipContent?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** Icon for custom response action */
@@ -38,74 +42,117 @@ export interface ResponseActionProps {
 }
 
 export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
+  const [activeButton, setActiveButton] = React.useState<string>();
   const { positive, negative, copy, share, listen, ...additionalActions } = actions;
+  const responseActions = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    const handleClickOutside = (e) => {
+      if (responseActions.current && !responseActions.current.contains(e.target)) {
+        setActiveButton(undefined);
+      }
+    };
+    window.addEventListener('click', handleClickOutside);
+
+    return () => {
+      window.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
+  const handleClick = (
+    e: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent,
+    id: string,
+    onClick?: (event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void
+  ) => {
+    setActiveButton(id);
+    onClick && onClick(e);
+  };
+
   return (
-    <div className="pf-chatbot__response-actions">
+    <div ref={responseActions} className="pf-chatbot__response-actions">
       {positive && (
         <ResponseActionButton
           ariaLabel={positive.ariaLabel ?? 'Good response'}
-          onClick={positive.onClick}
+          clickedAriaLabel={positive.ariaLabel ?? 'Response recorded'}
+          onClick={(e) => handleClick(e, 'positive', positive.onClick)}
           className={positive.className}
           isDisabled={positive.isDisabled}
           tooltipContent={positive.tooltipContent ?? 'Good response'}
+          clickedTooltipContent={positive.clickedTooltipContent ?? 'Response recorded'}
           tooltipProps={positive.tooltipProps}
           icon={<OutlinedThumbsUpIcon />}
+          isClicked={activeButton === 'positive'}
         ></ResponseActionButton>
       )}
       {negative && (
         <ResponseActionButton
           ariaLabel={negative.ariaLabel ?? 'Bad response'}
-          onClick={negative.onClick}
+          clickedAriaLabel={negative.ariaLabel ?? 'Response recorded'}
+          onClick={(e) => handleClick(e, 'negative', negative.onClick)}
           className={negative.className}
           isDisabled={negative.isDisabled}
           tooltipContent={negative.tooltipContent ?? 'Bad response'}
+          clickedTooltipContent={negative.clickedTooltipContent ?? 'Response recorded'}
           tooltipProps={negative.tooltipProps}
           icon={<OutlinedThumbsDownIcon />}
+          isClicked={activeButton === 'negative'}
         ></ResponseActionButton>
       )}
       {copy && (
         <ResponseActionButton
           ariaLabel={copy.ariaLabel ?? 'Copy'}
-          onClick={copy.onClick}
+          clickedAriaLabel={copy.ariaLabel ?? 'Copied'}
+          onClick={(e) => handleClick(e, 'copy', copy.onClick)}
           className={copy.className}
           isDisabled={copy.isDisabled}
           tooltipContent={copy.tooltipContent ?? 'Copy'}
+          clickedTooltipContent={copy.clickedTooltipContent ?? 'Copied'}
           tooltipProps={copy.tooltipProps}
           icon={<OutlinedCopyIcon />}
+          isClicked={activeButton === 'copy'}
         ></ResponseActionButton>
       )}
       {share && (
         <ResponseActionButton
           ariaLabel={share.ariaLabel ?? 'Share'}
-          onClick={share.onClick}
+          clickedAriaLabel={share.ariaLabel ?? 'Shared'}
+          onClick={(e) => handleClick(e, 'share', share.onClick)}
           className={share.className}
           isDisabled={share.isDisabled}
           tooltipContent={share.tooltipContent ?? 'Share'}
+          clickedTooltipContent={share.clickedTooltipContent ?? 'Shared'}
           tooltipProps={share.tooltipProps}
           icon={<ExternalLinkAltIcon />}
+          isClicked={activeButton === 'share'}
         ></ResponseActionButton>
       )}
       {listen && (
         <ResponseActionButton
           ariaLabel={listen.ariaLabel ?? 'Listen'}
-          onClick={listen.onClick}
+          clickedAriaLabel={listen.ariaLabel ?? 'Listening'}
+          onClick={(e) => handleClick(e, 'listen', listen.onClick)}
           className={listen.className}
           isDisabled={listen.isDisabled}
           tooltipContent={listen.tooltipContent ?? 'Listen'}
+          clickedTooltipContent={listen.clickedTooltipContent ?? 'Listening'}
           tooltipProps={listen.tooltipProps}
           icon={<VolumeUpIcon />}
+          isClicked={activeButton === 'listen'}
         ></ResponseActionButton>
       )}
       {Object.keys(additionalActions).map((action) => (
         <ResponseActionButton
           key={action}
           ariaLabel={additionalActions[action]?.ariaLabel}
-          onClick={additionalActions[action]?.onClick}
+          clickedAriaLabel={additionalActions[action]?.clickedAriaLabel}
+          onClick={(e) => handleClick(e, action, additionalActions[action]?.onClick)}
           className={additionalActions[action]?.className}
           isDisabled={additionalActions[action]?.isDisabled}
           tooltipContent={additionalActions[action]?.tooltipContent}
           tooltipProps={additionalActions[action]?.tooltipProps}
+          clickedTooltipContent={additionalActions[action]?.clickedTooltipContent}
           icon={additionalActions[action]?.icon}
+          isClicked={activeButton === action}
         />
       ))}
     </div>

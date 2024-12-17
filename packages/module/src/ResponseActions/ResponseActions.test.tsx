@@ -4,27 +4,32 @@ import '@testing-library/jest-dom';
 import ResponseActions from './ResponseActions';
 import userEvent from '@testing-library/user-event';
 import { DownloadIcon, InfoCircleIcon, RedoIcon } from '@patternfly/react-icons';
+import Message from '../Message';
 
 const ALL_ACTIONS = [
-  { type: 'positive', label: 'Good response' },
-  { type: 'negative', label: 'Bad response' },
-  { type: 'copy', label: 'Copy' },
-  { type: 'share', label: 'Share' },
-  { type: 'listen', label: 'Listen' }
+  { type: 'positive', label: 'Good response', clickedLabel: 'Response recorded' },
+  { type: 'negative', label: 'Bad response', clickedLabel: 'Response recorded' },
+  { type: 'copy', label: 'Copy', clickedLabel: 'Copied' },
+  { type: 'share', label: 'Share', clickedLabel: 'Shared' },
+  { type: 'listen', label: 'Listen', clickedLabel: 'Listening' }
 ];
 
 const CUSTOM_ACTIONS = [
   {
     regenerate: {
       ariaLabel: 'Regenerate',
+      clickedAriaLabel: 'Regenerated',
       onClick: jest.fn(),
       tooltipContent: 'Regenerate',
+      clickedTooltipContent: 'Regenerated',
       icon: <RedoIcon />
     },
     download: {
       ariaLabel: 'Download',
+      clickedAriaLabel: 'Downloaded',
       onClick: jest.fn(),
       tooltipContent: 'Download',
+      clickedTooltipContent: 'Downloaded',
       icon: <DownloadIcon />
     },
     info: {
@@ -37,6 +42,81 @@ const CUSTOM_ACTIONS = [
 ];
 
 describe('ResponseActions', () => {
+  afterEach(() => {
+    jest.clearAllMocks();
+  });
+  it('should handle click within group of buttons correctly', async () => {
+    render(
+      <ResponseActions
+        actions={{
+          positive: { onClick: jest.fn() },
+          negative: { onClick: jest.fn() },
+          copy: { onClick: jest.fn() },
+          share: { onClick: jest.fn() },
+          listen: { onClick: jest.fn() }
+        }}
+      />
+    );
+    const goodBtn = screen.getByRole('button', { name: 'Good response' });
+    const badBtn = screen.getByRole('button', { name: 'Bad response' });
+    const copyBtn = screen.getByRole('button', { name: 'Copy' });
+    const shareBtn = screen.getByRole('button', { name: 'Share' });
+    const listenBtn = screen.getByRole('button', { name: 'Listen' });
+    const buttons = [goodBtn, badBtn, copyBtn, shareBtn, listenBtn];
+    buttons.forEach((button) => {
+      expect(button).toBeTruthy();
+    });
+    await userEvent.click(goodBtn);
+    expect(screen.getByRole('button', { name: 'Response recorded' })).toHaveClass(
+      'pf-chatbot__button--response-action-clicked'
+    );
+    let unclickedButtons = buttons.filter((button) => button !== goodBtn);
+    unclickedButtons.forEach((button) => {
+      expect(button).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+    });
+    await userEvent.click(badBtn);
+    expect(screen.getByRole('button', { name: 'Response recorded' })).toHaveClass(
+      'pf-chatbot__button--response-action-clicked'
+    );
+    unclickedButtons = buttons.filter((button) => button !== badBtn);
+    unclickedButtons.forEach((button) => {
+      expect(button).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+    });
+  });
+  it('should handle click outside of group of buttons correctly', async () => {
+    // using message just so we have something outside the group that's rendered
+    render(
+      <Message
+        name="Bot"
+        role="bot"
+        avatar=""
+        content="Example with all prebuilt actions"
+        actions={{
+          positive: {},
+          negative: {}
+        }}
+      />
+    );
+    const goodBtn = screen.getByRole('button', { name: 'Good response' });
+    const badBtn = screen.getByRole('button', { name: 'Bad response' });
+    expect(goodBtn).toBeTruthy();
+    expect(badBtn).toBeTruthy();
+
+    await userEvent.click(goodBtn);
+    expect(screen.getByRole('button', { name: 'Response recorded' })).toHaveClass(
+      'pf-chatbot__button--response-action-clicked'
+    );
+    expect(badBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+
+    await userEvent.click(badBtn);
+    expect(screen.getByRole('button', { name: 'Response recorded' })).toHaveClass(
+      'pf-chatbot__button--response-action-clicked'
+    );
+    expect(goodBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+    await userEvent.click(screen.getByText('Example with all prebuilt actions'));
+    expect(goodBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+    expect(badBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
+  });
   it('should render buttons correctly', () => {
     ALL_ACTIONS.forEach(({ type, label }) => {
       render(<ResponseActions actions={{ [type]: { onClick: jest.fn() } }} />);
@@ -50,6 +130,24 @@ describe('ResponseActions', () => {
       render(<ResponseActions actions={{ [type]: { onClick: spy } }} />);
       await userEvent.click(screen.getByRole('button', { name: label }));
       expect(spy).toHaveBeenCalledTimes(1);
+    });
+  });
+
+  it('should swap clicked and non-clicked aria labels on click', async () => {
+    ALL_ACTIONS.forEach(async ({ type, label, clickedLabel }) => {
+      render(<ResponseActions actions={{ [type]: { onClick: jest.fn() } }} />);
+      expect(screen.getByRole('button', { name: label })).toBeTruthy();
+      await userEvent.click(screen.getByRole('button', { name: label }));
+      expect(screen.getByRole('button', { name: clickedLabel })).toBeTruthy();
+    });
+  });
+
+  it('should swap clicked and non-clicked tooltips on click', async () => {
+    ALL_ACTIONS.forEach(async ({ type, label, clickedLabel }) => {
+      render(<ResponseActions actions={{ [type]: { onClick: jest.fn() } }} />);
+      expect(screen.getByRole('button', { name: label })).toBeTruthy();
+      await userEvent.click(screen.getByRole('button', { name: label }));
+      expect(screen.getByRole('tooltip', { name: clickedLabel })).toBeTruthy();
     });
   });
 
