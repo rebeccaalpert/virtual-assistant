@@ -357,6 +357,14 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 
 ```
 
+### Drawer with active conversation
+
+If you're showing a conversation that is already active, you can set the `activeItemId` prop on your `<ChatbotConversationHistoryNav>` to apply an active visual state.
+
+```js file="./ChatbotHeaderDrawerWithSelection.tsx"
+
+```
+
 ### Modal
 
 Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and accepts components typically used in a modal. It is primarily used and tested in the context of the attachment modals, but you can customize this modal to adapt it to other use cases as needed. The modal will overlay the ChatBot in default and docked modes, and will behave more like a traditional PatternFly modal in fullscreen and embedded modes.
