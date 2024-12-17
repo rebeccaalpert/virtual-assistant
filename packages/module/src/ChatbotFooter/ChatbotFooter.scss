@@ -33,7 +33,8 @@
       }
     }
     .pf-chatbot__footer-container {
-      width: 60rem;
+      width: 90%;
+      max-width: 60rem;
       padding: var(--pf-t--global--spacer--sm) 0;
     }
   }
