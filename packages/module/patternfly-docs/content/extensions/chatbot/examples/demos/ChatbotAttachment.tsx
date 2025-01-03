@@ -36,18 +36,26 @@ interface ModalData {
 }
 
 export const BasicDemo: React.FunctionComponent = () => {
-  const onAttachmentClose = (attachmentId: string) => {
-    const index = messages.findIndex((message) => message.attachmentId === attachmentId);
+  const onAttachmentClose = (event, name, id) => {
     const updatedMessages: MessageProps[] = [];
-    if (index >= 0) {
-      messages.forEach((message) => updatedMessages.push(message));
-      delete updatedMessages[index].attachmentName;
-      delete updatedMessages[index].attachmentId;
-      delete updatedMessages[index].onAttachmentClick;
-      delete updatedMessages[index].onAttachmentClose;
-      setMessages(updatedMessages);
-    }
+    messages.map((message) => {
+      if (message.attachments) {
+        const filteredAttachments = message.attachments.filter((attachment) => attachment.id !== id);
+        message.attachments = filteredAttachments;
+        updatedMessages.push(message);
+      } else {
+        updatedMessages.push(message);
+      }
+    });
+    setMessages(updatedMessages);
   };
+
+  const onAttachmentClick = () => {
+    setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
+    setIsEditModalOpen(false);
+    setIsPreviewModalOpen(true);
+  };
+
   const initialMessages: MessageProps[] = [
     {
       role: 'user',
@@ -55,14 +63,7 @@ export const BasicDemo: React.FunctionComponent = () => {
       name: 'User',
       avatar: userAvatar,
       avatarProps: { isBordered: true },
-      attachmentName: 'auth-operator.yml',
-      attachmentId: '1',
-      onAttachmentClose,
-      onAttachmentClick: () => {
-        setCurrentModalData({ fileName: 'auth-operator.yml', code: 'test' });
-        setIsEditModalOpen(false);
-        setIsPreviewModalOpen(true);
-      }
+      attachments: [{ name: 'auth-operator.yml', id: '1', onClick: onAttachmentClick, onClose: onAttachmentClose }]
     },
     {
       role: 'bot',
