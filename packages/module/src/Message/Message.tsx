@@ -156,7 +156,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
                   p: TextMessage,
                   code: ({ children }) => <CodeBlockMessage {...codeBlockProps}>{children}</CodeBlockMessage>,
                   ul: UnorderedListMessage,
-                  ol: OrderedListMessage,
+                  ol: (props) => <OrderedListMessage {...props} />,
                   li: ListItemMessage
                 }}
                 remarkPlugins={[remarkGfm]}

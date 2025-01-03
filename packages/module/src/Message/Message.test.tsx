@@ -53,6 +53,22 @@ spec:
 
 const INLINE_CODE = `Here is an inline code - \`() => void\``;
 
+const ORDERED_LIST_WITH_CODE = `
+1. Item 1
+2. Item 2
+
+\`\`\`yaml
+- name: Hello World Playbook
+  hosts: localhost
+  tasks:
+    - name: Print Hello World
+      ansible.builtin.debug:
+        msg: "Hello, World!"
+\`\`\`
+
+3. Item 3
+`;
+
 const checkListItemsRendered = () => {
   const items = ['Item 1', 'Item 2', 'Item 3'];
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
@@ -343,6 +359,12 @@ describe('Message', () => {
     render(<Message avatar="./img" role="user" name="User" content={ORDERED_LIST} />);
     expect(screen.getByText('Here is an ordered list:')).toBeTruthy();
     checkListItemsRendered();
+  });
+  it('should render ordered lists correctly if there is interstitial content', () => {
+    render(<Message avatar="./img" role="user" name="User" content={ORDERED_LIST_WITH_CODE} />);
+    checkListItemsRendered();
+    const list = screen.getAllByRole('list')[1];
+    expect(list).toHaveAttribute('start', '3');
   });
   it('should render inline code', () => {
     render(<Message avatar="./img" role="user" name="User" content={INLINE_CODE} />);
