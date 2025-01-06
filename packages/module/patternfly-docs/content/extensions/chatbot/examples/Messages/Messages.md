@@ -119,7 +119,9 @@ The API for a source requires a link at minimum, but we strongly recommend provi
 
 ### Messages with quick start tiles
 
-[Quick start](/extensions/quick-starts/) tiles can be added to messages via the `quickStarts` prop. The quick start tile displayed below the message is based on the one included in the [PatternFly quick starts extension](https://github.com/patternfly/patternfly-quickstarts). It has slightly more limited functionality. For example, it does not track the state of the extension. However, it allows the user to pass in an additional `onSelectQuickStart` prop so that the name of the quick start can be captured on click. This can be used to trigger other behavior in your application, such as launching that quick start, in your main UI.
+[Quick start](/extensions/quick-starts/) tiles can be added to messages via the `quickStarts` prop. Users can initiate the quick start from a link within the message tile.
+
+The quick start tile displayed below the message is based on the tile included in the [PatternFly quick starts extension](https://github.com/patternfly/patternfly-quickstarts), but with slightly more limited functionality. For example, it does not track the state of the extension. However, it supports an additional `onSelectQuickStart` prop, so that the name of the quick start can be captured on click. This can be used to trigger other behavior in your application, such as launching that quick start in your main UI.
 
 ```js file="./MessageWithQuickStart.tsx"
 
