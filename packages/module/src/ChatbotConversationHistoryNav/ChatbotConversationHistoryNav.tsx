@@ -21,7 +21,8 @@ import {
   MenuGroup,
   MenuItem,
   MenuContent,
-  MenuItemProps
+  MenuItemProps,
+  MenuProps
 } from '@patternfly/react-core';
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
@@ -79,6 +80,8 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   reverseButtonOrder?: boolean;
   /** Custom test id for the drawer actions */
   drawerActionsTestId?: string;
+  /** Additional props applied to menu  */
+  menuProps?: MenuProps;
 }
 
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
@@ -97,6 +100,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   displayMode,
   reverseButtonOrder = false,
   drawerActionsTestId = 'chatbot-nav-drawer-actions',
+  menuProps,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -163,7 +167,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   // - Consumers should pass an array to <Chatbot> of the list of conversations
   // - Groups could be optional, but items need to be ordered by date
   const menuContent = (
-    <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId}>
+    <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId} {...menuProps}>
       <MenuContent>{buildMenu()}</MenuContent>
     </Menu>
   );

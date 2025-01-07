@@ -371,6 +371,14 @@ If you're showing a conversation that is already active, you can set the `active
 
 ```
 
+### Drawer with simple menu
+
+The drawer can also be used to display a list of basic menu items.
+
+```js file="./ChatbotHeaderDrawerNavigation.tsx"
+
+```
+
 ### Terms of use
 
 Based on the [PatternFly modal](/components/modal), this modal adapts to the ChatBot display mode and is meant to display terms and conditions for using a ChatBot in your project. The image in the header can be toggled on or off depending on whether the `image` and `altText` props are provided.
