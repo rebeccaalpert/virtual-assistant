@@ -87,17 +87,6 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
     }
   };
 
-  /* eslint-disable indent */
-  const getHeight = (displayMode: ChatbotDisplayMode) => {
-    switch (displayMode) {
-      case ChatbotDisplayMode.docked:
-        return '100vh';
-      default:
-        return '45vh';
-    }
-  };
-  /* eslint-enable indent */
-
   const modal = (
     <ChatbotModal
       isOpen={isModalOpen}
@@ -114,7 +103,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
           <StackItem className="pf-chatbot__code-modal-file-details">
             <FileDetails fileName={fileName} />
           </StackItem>
-          <StackItem>
+          <StackItem className="pf-chatbot__code-modal-body">
             <CodeEditor
               isDarkTheme
               isLineNumbersVisible={isLineNumbersVisible}
@@ -126,7 +115,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
               onEditorDidMount={onEditorDidMount}
               onCodeChange={onCodeChange}
               className={codeEditorClassName}
-              height={getHeight(displayMode)}
+              isFullHeight
               options={{
                 glyphMargin: false,
                 folding: false

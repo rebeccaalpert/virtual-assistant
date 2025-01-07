@@ -74,3 +74,11 @@
     }
   }
 }
+
+.pf-chatbot__code-modal-body {
+  flex: 1;
+}
+
+.pf-chatbot__code-modal--fullscreen {
+  height: inherit; // override shared modal so code editor works in full screen
+}
