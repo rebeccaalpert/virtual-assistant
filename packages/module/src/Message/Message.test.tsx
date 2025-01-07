@@ -3,6 +3,8 @@ import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Message from './Message';
 import userEvent from '@testing-library/user-event';
+import { monitorSampleAppQuickStart } from './QuickStarts/monitor-sampleapp-quickstart';
+import { monitorSampleAppQuickStartWithImage } from './QuickStarts/monitor-sampleapp-quickstart-with-image';
 
 const ALL_ACTIONS = [
   { label: /Good response/i },
@@ -436,5 +438,57 @@ describe('Message', () => {
     expect(screen.getByRole('img')).toBeTruthy();
     expect(screen.getByRole('img')).toHaveClass('test');
     expect(screen.getByRole('img')).toHaveClass('pf-chatbot__message-avatar');
+  });
+  it('should handle QuickStart tile correctly', () => {
+    render(
+      <Message
+        avatar="./img"
+        role="user"
+        name="User"
+        content="Hi"
+        quickStarts={{
+          quickStart: monitorSampleAppQuickStart,
+          onSelectQuickStart: (id) => alert(id)
+        }}
+      />
+    );
+    expect(screen.getByRole('button', { name: 'Monitoring your sample application' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: '1 Prerequisite' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Show prerequisites' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Start' })).toBeTruthy();
+  });
+  it('should handle click on QuickStart tile correctly', async () => {
+    const spy = jest.fn();
+    render(
+      <Message
+        avatar="./img"
+        role="user"
+        name="User"
+        content="Hi"
+        quickStarts={{
+          quickStart: monitorSampleAppQuickStart,
+          onSelectQuickStart: (id) => spy(id)
+        }}
+      />
+    );
+    await userEvent.click(screen.getByRole('button', { name: 'Monitoring your sample application' }));
+    expect(spy).toHaveBeenCalledTimes(1);
+    expect(spy).toHaveBeenCalledWith(monitorSampleAppQuickStart.metadata.name);
+  });
+  it('should handle QuickStart tile with image correctly', async () => {
+    const spy = jest.fn();
+    render(
+      <Message
+        avatar="./img"
+        role="user"
+        name="User"
+        content="Hi"
+        quickStarts={{
+          quickStart: monitorSampleAppQuickStartWithImage,
+          onSelectQuickStart: (id) => spy(id)
+        }}
+      />
+    );
+    expect(screen.getAllByRole('img')[1]).toHaveAttribute('src', 'test.png');
   });
 });
