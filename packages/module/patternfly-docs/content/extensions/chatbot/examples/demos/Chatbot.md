@@ -103,3 +103,11 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 ```js file="./EmbeddedChatbot.tsx" isFullscreen
 
 ```
+
+### Comparing ChatBots
+
+To let users compare how different ChatBots respond to the same prompt, you can add multiple ChatBots within the same window. The following demo illustrates a comparison view pattern that allows users to toggle between different conversations in a single ChatBot window.
+
+```js file="./EmbeddedComparisonChatbot.tsx" isFullscreen
+
+```
