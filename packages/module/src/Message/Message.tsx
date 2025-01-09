@@ -6,16 +6,7 @@ import React from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import {
-  Avatar,
-  AvatarProps,
-  Label,
-  LabelGroup,
-  LabelGroupProps,
-  LabelProps,
-  Timestamp,
-  Truncate
-} from '@patternfly/react-core';
+import { Avatar, AvatarProps, Label, LabelGroupProps, Timestamp, Truncate } from '@patternfly/react-core';
 import MessageLoading from './MessageLoading';
 import CodeBlockMessage from './CodeBlockMessage/CodeBlockMessage';
 import TextMessage from './TextMessage/TextMessage';
@@ -27,12 +18,8 @@ import UnorderedListMessage from './ListMessage/UnorderedListMessage';
 import OrderedListMessage from './ListMessage/OrderedListMessage';
 import QuickStartTile from './QuickStarts/QuickStartTile';
 import { QuickStart, QuickstartAction } from './QuickStarts/types';
+import QuickResponse from './QuickResponse/QuickResponse';
 
-export interface QuickResponse extends Omit<LabelProps, 'children'> {
-  content: string;
-  id: string;
-  onClick: () => void;
-}
 export interface MessageAttachment {
   /** Name of file attached to the message */
   name: string;
@@ -135,6 +122,7 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -194,16 +182,10 @@ export const Message: React.FunctionComponent<MessageProps> = ({
             )}
             {!isLoading && actions && <ResponseActions actions={actions} />}
             {!isLoading && quickResponses && (
-              <LabelGroup
-                className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}
-                {...quickResponseContainerProps}
-              >
-                {quickResponses.map(({ id, onClick, content, ...props }: QuickResponse) => (
-                  <Label variant="outline" color="blue" key={id} onClick={onClick} {...props}>
-                    {content}
-                  </Label>
-                ))}
-              </LabelGroup>
+              <QuickResponse
+                quickResponses={quickResponses}
+                quickResponseContainerProps={quickResponseContainerProps}
+              />
             )}
           </div>
           {attachments && (

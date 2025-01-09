@@ -1,0 +1,50 @@
+import React from 'react';
+import { Label, LabelGroup, LabelGroupProps, LabelProps } from '@patternfly/react-core';
+import { CheckIcon } from '@patternfly/react-icons';
+
+export interface QuickResponse extends Omit<LabelProps, 'children'> {
+  content: string;
+  id: string;
+  onClick: () => void;
+}
+
+export interface QuickResponseProps {
+  /** Props for quick responses */
+  quickResponses: QuickResponse[];
+  /** Props for quick responses container */
+  quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+}
+
+export const QuickResponse: React.FunctionComponent<QuickResponseProps> = ({
+  quickResponses,
+  quickResponseContainerProps = { numLabels: 5 }
+}: QuickResponseProps) => {
+  const [selectedQuickResponse, setSelectedQuickResponse] = React.useState<string>();
+
+  const handleQuickResponseClick = (id: string, onClick?: () => void) => {
+    setSelectedQuickResponse(id);
+    onClick && onClick();
+  };
+  return (
+    <LabelGroup
+      className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}
+      {...quickResponseContainerProps}
+    >
+      {quickResponses.map(({ id, onClick, content, className, ...props }: QuickResponse) => (
+        <Label
+          variant={id === selectedQuickResponse ? undefined : 'outline'}
+          icon={id === selectedQuickResponse ? <CheckIcon /> : undefined}
+          color="blue"
+          key={id}
+          onClick={() => handleQuickResponseClick(id, onClick)}
+          className={`${id === selectedQuickResponse ? 'pf-chatbot__message-quick-response--selected' : ''} ${className ? className : ''}`}
+          {...props}
+        >
+          {content}
+        </Label>
+      ))}
+    </LabelGroup>
+  );
+};
+
+export default QuickResponse;
