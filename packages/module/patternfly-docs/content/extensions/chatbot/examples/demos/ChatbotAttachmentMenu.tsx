@@ -259,7 +259,7 @@ export const AttachmentMenuDemo: React.FunctionComponent = () => {
                   onAttachMenuToggleClick: onToggleClick
                 }}
               />
-              <ChatbotFootnote label="Lightspeed uses AI. Check for mistakes." />
+              <ChatbotFootnote label="ChatBot uses AI. Check for mistakes." />
             </ChatbotFooter>
           </>
         </FileDropZone>

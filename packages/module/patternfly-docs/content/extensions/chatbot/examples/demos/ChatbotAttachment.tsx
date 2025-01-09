@@ -244,7 +244,7 @@ export const BasicDemo: React.FunctionComponent = () => {
               </div>
             )}
             <MessageBar onSendMessage={handleSend} hasAttachButton handleAttach={handleAttach} />
-            <ChatbotFootnote label="Lightspeed uses AI. Check for mistakes." />
+            <ChatbotFootnote label="ChatBot uses AI. Check for mistakes." />
           </ChatbotFooter>
         </FileDropZone>
       </Chatbot>

@@ -11,7 +11,7 @@ describe('ChatbotConversationHistoryNav', () => {
   const initialConversations: Conversation[] = [
     {
       id: '1',
-      text: 'Lightspeed documentation'
+      text: 'ChatBot documentation'
     }
   ];
 
@@ -25,7 +25,7 @@ describe('ChatbotConversationHistoryNav', () => {
         conversations={initialConversations}
       />
     );
-    expect(screen.queryByText('Lightspeed documentation')).toBeInTheDocument();
+    expect(screen.queryByText('ChatBot documentation')).toBeInTheDocument();
   });
 
   it('should display the conversations for grouped conversations', () => {
@@ -120,7 +120,7 @@ describe('ChatbotConversationHistoryNav', () => {
     });
 
     waitFor(() => {
-      expect(screen.queryByText('Lightspeed documentation')).not.toBeInTheDocument();
+      expect(screen.queryByText('ChatBot documentation')).not.toBeInTheDocument();
     });
   });
 });
