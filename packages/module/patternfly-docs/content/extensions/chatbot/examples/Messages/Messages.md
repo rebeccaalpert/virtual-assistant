@@ -99,7 +99,7 @@ You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is 
 
 ### Messages with quick responses
 
-You can offer convenient, clickable responses to messages in the form of quick actions. Quick actions are [PatternFly labels](/components/label/) in a label group, configured to display up to 5 visible labels.
+You can offer convenient, clickable responses to messages in the form of quick actions. Quick actions are [PatternFly labels](/components/label/) in a label group, configured to display up to 5 visible labels. Only 1 response can be selected at a time.
 
 To add quick actions, pass `quickResponses` to `<Message>`. This can be overridden by passing additional `<LabelGroup>` props to `quickResponseContainerProps`, or additional `<Label>` props to `quickResponses`.
 
