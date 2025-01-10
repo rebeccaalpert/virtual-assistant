@@ -9,9 +9,7 @@ import {
   PageSidebarBody,
   PageSidebar,
   MastheadToggle,
-  PageToggleButton,
-  ToggleGroup,
-  ToggleGroupItem
+  PageToggleButton
 } from '@patternfly/react-core';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
@@ -21,6 +19,7 @@ import MessageBar from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/chatbot/dist/dynamic/MessageBox';
 import Message, { MessageProps } from '@patternfly/chatbot/dist/dynamic/Message';
 import ChatbotHeader, { ChatbotHeaderMain } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
+import Compare from '@patternfly/chatbot/dist/dynamic/Compare';
 import { BarsIcon } from '@patternfly/react-icons';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
@@ -113,7 +112,7 @@ export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled
 
   return (
     <Chatbot displayMode={displayMode}>
-      <ChatbotHeader className="compare-header">
+      <ChatbotHeader>
         <ChatbotHeaderMain>{name}</ChatbotHeaderMain>
       </ChatbotHeader>
       <ChatbotContent>
@@ -132,39 +131,8 @@ export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled
 export const EmbeddedComparisonChatbotDemo: React.FunctionComponent = () => {
   const [input, setInput] = React.useState<string>();
   const [hasNewInput, setHasNewInput] = React.useState(false);
-  const [isSelected, setIsSelected] = React.useState('toggle-group-chatbot-1');
-  const [showFirstChatbot, setShowFirstChatbot] = React.useState(true);
-  const [showSecondChatbot, setShowSecondChatbot] = React.useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
   const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
-
-  React.useEffect(() => {
-    // we want to show the first if we switch to the mobile toggle view
-    // and reset/switch back to normal otherwise
-    const updateChatbotVisibility = () => {
-      if (window.innerWidth >= 901) {
-        setShowFirstChatbot(true);
-        setShowSecondChatbot(true);
-      } else {
-        setShowFirstChatbot(true);
-        setShowSecondChatbot(false);
-        setIsSelected('toggle-group-chatbot-1');
-      }
-    };
-    window.addEventListener('resize', updateChatbotVisibility);
-
-    return () => {
-      window.removeEventListener('resize', updateChatbotVisibility);
-    };
-  }, []);
-
-  // this only happens on mobile
-  const handleChildToggleClick = (event) => {
-    const id = event.currentTarget.id;
-    setIsSelected(id);
-    setShowSecondChatbot(!showSecondChatbot);
-    setShowFirstChatbot(!showFirstChatbot);
-  };
 
   const handleSend = (value: string) => {
     setInput(value);
@@ -204,46 +172,26 @@ export const EmbeddedComparisonChatbotDemo: React.FunctionComponent = () => {
   return (
     <Page masthead={masthead} sidebar={sidebar} isContentFilled>
       <div className="pf-chatbot__compare-container">
-        <div className="pf-chatbot__compare-mobile-controls">
-          <ToggleGroup aria-label="Select which chatbot to display">
-            <ToggleGroupItem
-              className="pf-chatbot__compare-toggle"
-              text="ChatBot 1"
-              buttonId="toggle-group-chatbot-1"
-              isSelected={isSelected === 'toggle-group-chatbot-1'}
-              onChange={handleChildToggleClick}
-            />
-            <ToggleGroupItem
-              className="pf-chatbot__compare-toggle"
-              text="ChatBot 2"
-              buttonId="toggle-group-chatbot-2"
-              isSelected={isSelected === 'toggle-group-chatbot-2'}
-              onChange={handleChildToggleClick}
-            />
-          </ToggleGroup>
-        </div>
-        <div className="pf-chatbot__compare">
-          <div
-            className={`pf-chatbot__compare-item ${!showFirstChatbot ? 'pf-chatbot__compare-item-hidden' : undefined}`}
-          >
+        <Compare
+          firstChild={
             <CompareChild
               input={input}
               hasNewInput={hasNewInput}
               name="ChatBot 1"
               setIsSendButtonDisabled={setIsSendButtonDisabled}
             />
-          </div>
-          <div
-            className={`pf-chatbot__compare-item ${!showSecondChatbot ? 'pf-chatbot__compare-item-hidden' : undefined}`}
-          >
+          }
+          secondChild={
             <CompareChild
               input={input}
               hasNewInput={hasNewInput}
               name="ChatBot 2"
               setIsSendButtonDisabled={setIsSendButtonDisabled}
             />
-          </div>
-        </div>
+          }
+          firstChildDisplayName="ChatBot 1"
+          secondChildDisplayName="ChatBot 2"
+        />
         <ChatbotFooter>
           <MessageBar
             onSendMessage={handleSend}

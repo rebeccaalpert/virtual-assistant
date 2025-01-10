@@ -21,7 +21,8 @@ propComponents:
     'ChatbotFootnote',
     'MessageBox',
     'Message',
-    'MessageBarWithAttachMenuProps'
+    'MessageBarWithAttachMenuProps',
+    'CompareProps'
   ]
 sortValue: 2
 ---
@@ -34,6 +35,7 @@ import ChatbotFooter, { ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic
 import MessageBar from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import MessageBox from '@patternfly/chatbot/dist/dynamic/MessageBox';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
+import Compare from '@patternfly/chatbot/dist/dynamic/Compare';
 import ChatbotConversationHistoryNav from '@patternfly/chatbot/dist/dynamic/ChatbotConversationHistoryNav';
 
 import ChatbotHeader, {
@@ -107,6 +109,19 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 ### Comparing ChatBots
 
 To let users compare how different ChatBots respond to the same prompt, you can add multiple ChatBots within the same window. The following demo illustrates a comparison view pattern that allows users to toggle between different conversations in a single ChatBot window.
+<br /><br />
+Your code structure should look like this:
+
+```noLive
+<Page ... >
+  <div className="pf-chatbot__compare-container">
+    <Compare ... />
+    <ChatbotFooter ... >
+      <MessageBar ... />
+    </ChatbotFooter>
+  </div>
+</Page>
+```
 
 ```js file="./EmbeddedComparisonChatbot.tsx" isFullscreen
 
