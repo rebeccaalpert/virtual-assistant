@@ -371,6 +371,16 @@ If you're showing a conversation that is already active, you can set the `active
 
 ```
 
+### Resizable drawer
+
+By default, the drawer is fixed width. We apply a focus trap and a default size of 384px to the drawer. The drawer can also accept additional props from PatternFly to make it resizable, or even other sizes. Making the drawer resizable can be helpful for embedded ChatBots on tablet-sized devices or smaller browser windows, where screen real estate is at a premium. (By default, PatternFly drawers are open to their full width on mobile.)
+
+In this example, the drawer can be resized up the max size of the parent and down to 200px wide. Further customization is possible. For more information on what props you can pass, see the [PatternFly Drawer DrawerPanelContent props](/components/drawer/#drawerpanelcontent).
+
+```js file="./ChatbotHeaderDrawerResizable.tsx"
+
+```
+
 ### Drawer with simple menu
 
 The drawer can also be used to display a list of basic menu items.
