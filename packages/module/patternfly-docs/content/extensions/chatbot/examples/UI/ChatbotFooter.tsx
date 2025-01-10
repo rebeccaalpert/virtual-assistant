@@ -8,7 +8,7 @@ export const ChatbotFooterExample: React.FunctionComponent = () => {
   return (
     <ChatbotFooter>
       <MessageBar onSendMessage={handleSend} hasMicrophoneButton hasAttachButton />
-      <ChatbotFootnote label="Lightspeed uses AI. Check for mistakes." />
+      <ChatbotFootnote label="ChatBot uses AI. Check for mistakes." />
     </ChatbotFooter>
   );
 };
