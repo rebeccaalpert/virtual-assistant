@@ -14,14 +14,17 @@ propComponents:
   [
     'AttachMenu',
     'AttachmentEdit',
-    'FileDetails',
-    'FileDetailsLabel',
+    'FileDetailsProps',
+    'FileDetailsLabelProps',
     'FileDropZone',
     'PreviewAttachment',
     'Message',
     'PreviewAttachment',
     'ActionProps',
-    'SourcesCardProps'
+    'SourcesCardProps',
+    'UserFeedbackProps',
+    'UserFeedbackCompleteProps',
+    'QuickResponseProps'
   ]
 sortValue: 3
 ---
@@ -94,6 +97,32 @@ Beyond the standard message actions (good response, bad response, copy, share, o
 You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is clicked. If either of these props are omitted, their values will default to the `ariaLabel` or `tooltipContent` supplied.
 
 ```js file="./MessageWithCustomResponseActions.tsx"
+
+```
+
+### Message feedback response
+
+When a user selects a positive or negative [message action](#message-actions), you can choose to display a feedback card under the message. These cards can be displayed to gather additional feedback and acknowledge a response. The card will be focused on load by default, but this can be customized by setting the `focusOnLoad` prop to false. This prop is set to false in many of these examples so that focus is unaffected, but you will want to leave this on in a standard context.
+
+Cards can be closed manually via the close button or be configured to time out (see [below](/patternfly-ai/chatbot/messages#message-feedback-response-with-timeouts)). These examples demonstrate the full feedback flow we recommend (namely, submitting additional feedback and seeing the thank you card), just the feedback card, the feedback card without a text input, the feedback card without a close button, just the thank-you card, and the thank-you card without a close button. Additional props are available for further customization.
+
+The full feedback flow example also demonstrates how to handle focus appropriately for accessibility. The card will be focused when it appears in the DOM. When the card closes, place the focus back on the launching button. You can also add `aria-expanded` and `aria-controls` attributes to the feedback buttons to provide additional context on what the button controls.
+
+It is also important to announce when new content appears onscreen for accessibility purposes. If you set `isLiveRegion` to true on `<Message>`, it will make appropriate announcements for you when the feedback card appears.
+
+```js file="./MessageWithFeedback.tsx"
+
+```
+
+### Message feedback response with timeouts
+
+Both feedback cards can also be configured to time out. While the card is based on the [PatternFly Card component](/components/card/), the timeout behavior and API are based on the [PatternFly Alert component](/components/alert/). The messages can be configured with different timeout durations via the `timeout` prop (default is 8000 ms).
+
+If a user is hovering over the card or focused on it, it will not dismiss right away. The default is 3000 ms. and it can be customized by setting the `timeoutAnimation` prop. You can also set an `onTimeout` callback and optional `onMouseEnter` and `onMouseLeave` callbacks.
+
+It is important to announce when new content appears onscreen for accessibility purposes. If you set `isLiveRegion` to true on `<Message>`, it will make appropriate announcements for you when the feedback card appears.
+
+```js file="./MessageWithFeedbackTimeout.tsx"
 
 ```
 

@@ -19,6 +19,8 @@ import OrderedListMessage from './ListMessage/OrderedListMessage';
 import QuickStartTile from './QuickStarts/QuickStartTile';
 import { QuickStart, QuickstartAction } from './QuickStarts/types';
 import QuickResponse from './QuickResponse/QuickResponse';
+import UserFeedback, { UserFeedbackProps } from './UserFeedback/UserFeedback';
+import UserFeedbackComplete, { UserFeedbackCompleteProps } from './UserFeedback/UserFeedbackComplete';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -74,6 +76,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   quickResponses?: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Props for user feedback card */
+  userFeedbackForm?: Omit<UserFeedbackProps, 'ref'>;
+  /** Props for user feedback response */
+  userFeedbackComplete?: Omit<UserFeedbackCompleteProps, 'ref'>;
   /** Whether avatar is round */
   hasRoundAvatar?: boolean;
   /** Any additional props applied to the avatar, for additional customization  */
@@ -91,9 +97,13 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
     onClick?: () => void;
     action?: QuickstartAction;
   };
+  /** Turns the container into a live region so that changes to content within the Message, such as appending a feedback card, are reliably announced to assistive technology. */
+  isLiveRegion?: boolean;
+  /** Ref applied to message  */
+  innerRef?: React.Ref<HTMLDivElement>;
 }
 
-export const Message: React.FunctionComponent<MessageProps> = ({
+export const MessageBase: React.FunctionComponent<MessageProps> = ({
   role,
   content,
   name,
@@ -111,6 +121,10 @@ export const Message: React.FunctionComponent<MessageProps> = ({
   hasRoundAvatar = true,
   avatarProps,
   quickStarts,
+  userFeedbackForm,
+  userFeedbackComplete,
+  isLiveRegion,
+  innerRef,
   ...props
 }: MessageProps) => {
   let avatarClassName;
@@ -127,6 +141,9 @@ export const Message: React.FunctionComponent<MessageProps> = ({
     <section
       aria-label={`Message from ${role} - ${dateString}`}
       className={`pf-chatbot__message pf-chatbot__message--${role}`}
+      aria-live={isLiveRegion ? 'polite' : undefined}
+      aria-atomic={isLiveRegion ? false : undefined}
+      ref={innerRef}
       {...props}
     >
       {/* We are using an empty alt tag intentionally in order to reduce noise on screen readers */}
@@ -181,6 +198,8 @@ export const Message: React.FunctionComponent<MessageProps> = ({
               />
             )}
             {!isLoading && actions && <ResponseActions actions={actions} />}
+            {userFeedbackForm && <UserFeedback {...userFeedbackForm} />}
+            {userFeedbackComplete && <UserFeedbackComplete {...userFeedbackComplete} />}
             {!isLoading && quickResponses && (
               <QuickResponse
                 quickResponses={quickResponses}
@@ -211,5 +230,9 @@ export const Message: React.FunctionComponent<MessageProps> = ({
     </section>
   );
 };
+
+const Message = React.forwardRef((props: MessageProps, ref: React.Ref<HTMLDivElement>) => (
+  <MessageBase innerRef={ref} {...props} />
+));
 
 export default Message;
