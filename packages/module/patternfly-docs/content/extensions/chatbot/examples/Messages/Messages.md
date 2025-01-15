@@ -102,9 +102,16 @@ You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is 
 
 ### Message feedback response
 
-When a user selects a positive or negative [message action](#message-actions), you can choose to display a feedback card under the message. These cards can be displayed to gather additional feedback and acknowledge a response. The card will be focused on load by default, but this can be customized by setting the `focusOnLoad` prop to false. This prop is set to false in many of these examples so that focus is unaffected, but you will want to leave this on in a standard context.
+When a user selects a positive or negative [message action](#message-actions), you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button or be [configured to time out automatically](/patternfly-ai/chatbot/messages#message-feedback-response-with-timeouts). 
 
-Cards can be closed manually via the close button or be configured to time out (see [below](/patternfly-ai/chatbot/messages#message-feedback-response-with-timeouts)). These examples demonstrate the full feedback flow we recommend (namely, submitting additional feedback and seeing the thank you card), just the feedback card, the feedback card without a text input, the feedback card without a close button, just the thank-you card, and the thank-you card without a close button. Additional props are available for further customization.
+The message feedback card will immediately receive focus by default, but you remove this behavior by passing `focusOnLoad: false` to the `<Message>` (as shown in the following examples). For better usability, you should generally keep the default focus behavior.
+
+The following examples demonstrate:
+- A full feedback flow, which accepts written feedback submission and displays the thank you card. 
+- A basic card.
+- A basic card without text input.
+- A card without a close button.
+- Thank-you cards, with and without a close button.
 
 The full feedback flow example also demonstrates how to handle focus appropriately for accessibility. The card will be focused when it appears in the DOM. When the card closes, place the focus back on the launching button. You can also add `aria-expanded` and `aria-controls` attributes to the feedback buttons to provide additional context on what the button controls.
 
