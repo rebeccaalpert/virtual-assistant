@@ -116,11 +116,11 @@ It is also important to announce when new content appears onscreen for accessibi
 
 ### Message feedback response with timeouts
 
-Both feedback cards can also be configured to time out. While the card is based on the [PatternFly Card component](/components/card/), the timeout behavior and API are based on the [PatternFly Alert component](/components/alert/). The messages can be configured with different timeout durations via the `timeout` prop (default is 8000 ms).
+The feedback card and thank you message can be configured to time out and automatically close after a period of time. The default time out period is 8000 ms, but it can be customized via `timeout`.
 
-If a user is hovering over the card or focused on it, it will not dismiss right away. The default is 3000 ms. and it can be customized by setting the `timeoutAnimation` prop. You can also set an `onTimeout` callback and optional `onMouseEnter` and `onMouseLeave` callbacks.
+The card will not dismiss within the default time if a user is hovering over it or if it has keyboard focus. Instead, it will dismiss after they remove focus, via `timeoutAnimation`, which is 3000 ms by default. You can adjust this duration and set an `onTimeout` callback, as well as optional `onMouseEnter` and `onMouseLeave` callbacks.
 
-It is important to announce when new content appears onscreen for accessibility purposes. If you set `isLiveRegion` to true on `<Message>`, it will make appropriate announcements for you when the feedback card appears.
+For accessibility purposes, be sure to announce when new content appears onscreen. If you set `isLiveRegion` to `true` for a `<Message>`, it will make appropriate announcements for you when the feedback card appears.
 
 ```js file="./MessageWithFeedbackTimeout.tsx"
 
