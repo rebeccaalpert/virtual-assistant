@@ -100,7 +100,7 @@ You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is 
 
 ```
 
-### Message feedback response
+### Message feedback
 
 When a user selects a positive or negative [message action](#message-actions), you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button or be [configured to time out automatically](/patternfly-ai/chatbot/messages#message-feedback-response-with-timeouts). 
 
