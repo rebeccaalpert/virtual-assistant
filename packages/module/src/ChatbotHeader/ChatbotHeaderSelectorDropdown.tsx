@@ -23,12 +23,12 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
   children,
   onSelect,
   tooltipProps,
-  tooltipContent = 'Chatbot selector',
+  tooltipContent = 'Select model',
   menuToggleAriaLabel,
   ...props
 }: ChatbotHeaderSelectorDropdownProps) => {
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = React.useState(false);
-  const [defaultAriaLabel, setDefaultAriaLabel] = React.useState('Chatbot selector');
+  const [defaultAriaLabel, setDefaultAriaLabel] = React.useState('Select model');
 
   const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
     <Tooltip className="pf-chatbot__tooltip" content={tooltipContent} position="bottom" {...tooltipProps}>
@@ -50,7 +50,7 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
       isOpen={isOptionsMenuOpen}
       onSelect={(e, value) => {
         onSelect && onSelect(e, value);
-        setDefaultAriaLabel(`Chatbot selector: ${value}`);
+        setDefaultAriaLabel(`Select model: ${value}`);
         setIsOptionsMenuOpen(false);
       }}
       onOpenChange={(isOpen) => setIsOptionsMenuOpen(isOpen)}
