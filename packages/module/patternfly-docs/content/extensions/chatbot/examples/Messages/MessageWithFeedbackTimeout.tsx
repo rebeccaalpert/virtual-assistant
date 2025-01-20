@@ -9,36 +9,11 @@ export const MessageWithFeedbackTimeoutExample: React.FunctionComponent = () => 
   return (
     <>
       <Button variant="secondary" onClick={() => setHasFeedback(true)}>
-        Show feedback cards
+        Show card
       </Button>
       <Button variant="secondary" onClick={() => setHasFeedback(false)}>
-        Remove all feedback cards
+        Remove card
       </Button>
-      <Message
-        name="Bot"
-        role="bot"
-        avatar={patternflyAvatar}
-        content="Bot message with feedback form that times out"
-        userFeedbackForm={
-          /* eslint-disable indent */
-          hasFeedback
-            ? {
-                quickResponses: [
-                  { id: '1', content: 'Correct' },
-                  { id: '2', content: 'Easy to understand' },
-                  { id: '3', content: 'Complete' }
-                ],
-                onSubmit: (quickResponse, additionalFeedback) =>
-                  alert(`Selected ${quickResponse} and received the additional feedback: ${additionalFeedback}`),
-                hasTextArea: true,
-                timeout: true
-              }
-            : undefined
-          /* eslint-enable indent */
-        }
-        isLiveRegion
-      />
-      ,
       <Message
         name="Bot"
         role="bot"

@@ -46,26 +46,6 @@ export interface UserFeedbackProps extends Omit<CardProps, 'onSubmit'>, OUIAProp
   submitWord?: string;
   /** Label for English word "optional" */
   optionalWord?: string;
-  /** Function to be executed on timeout. Relevant when the timeout prop is set. */
-  onTimeout?: () => void;
-  /** If set to true, the timeout is 8000 milliseconds. If a number is provided, card will
-   * be dismissed after that amount of time in milliseconds.
-   */
-  timeout?: number | boolean;
-  /** If the user hovers over the card and `timeout` expires, this is how long to wait
-   * before finally dismissing the alert.
-   */
-  timeoutAnimation?: number;
-  /** Callback for when mouse hovers over card */
-  onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  /** Callback for when mouse stops hovering over card */
-  onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => void;
-  /** Value to overwrite the randomly generated data-ouia-component-id.*/
-  ouiaId?: number | string;
-  /** Set the value of data-ouia-safe. Only set to true when the component is in a static state, i.e. no animations are occurring. At all other times, this value must be false. */
-  ouiaSafe?: boolean;
-  /** Flag to indicate if the card is in a live region. */
-  isLiveRegion?: boolean;
   /** Uniquely identifies the card. */
   id?: string;
   /** The heading level to use, default is h1 */
@@ -88,14 +68,6 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
   onClose,
   closeButtonAriaLabel = 'Close',
   optionalWord = 'optional',
-  timeout = false,
-  timeoutAnimation = 3000,
-  onTimeout,
-  onMouseEnter,
-  onMouseLeave,
-  ouiaId,
-  ouiaSafe,
-  isLiveRegion = false,
   id,
   headingLevel: HeadingLevel = 'h1',
   focusOnLoad = true,
@@ -103,13 +75,7 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
 }: UserFeedbackProps) => {
   const [selectedResponse, setSelectedResponse] = React.useState<string>();
   const [value, setValue] = React.useState('');
-  const [timedOut, setTimedOut] = React.useState(false);
-  const [timedOutAnimation, setTimedOutAnimation] = React.useState(true);
-  const [isMouseOver, setIsMouseOver] = React.useState<boolean | undefined>();
-  const [containsFocus, setContainsFocus] = React.useState<boolean | undefined>();
-  const dismissed = timedOut && timedOutAnimation && !isMouseOver && !containsFocus;
   const divRef = React.useRef<HTMLDivElement>(null);
-  const ouiaProps = useOUIAProps('User Feedback', ouiaId, ouiaSafe);
 
   React.useEffect(() => {
     if (focusOnLoad) {
@@ -117,70 +83,9 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
     }
   }, []);
 
-  React.useEffect(() => {
-    const calculatedTimeout = timeout === true ? 8000 : Number(timeout);
-    if (calculatedTimeout > 0) {
-      const timer = setTimeout(() => setTimedOut(true), calculatedTimeout);
-      return () => clearTimeout(timer);
-    }
-  }, [timeout]);
-
-  React.useEffect(() => {
-    const onDocumentFocus = () => {
-      if (divRef.current) {
-        if (divRef.current.contains(document.activeElement)) {
-          setContainsFocus(true);
-          setTimedOutAnimation(false);
-        } else if (containsFocus) {
-          setContainsFocus(false);
-        }
-      }
-    };
-    document.addEventListener('focus', onDocumentFocus, true);
-    return () => document.removeEventListener('focus', onDocumentFocus, true);
-  }, [containsFocus]);
-
-  React.useEffect(() => {
-    if (containsFocus === false || isMouseOver === false) {
-      const timer = setTimeout(() => setTimedOutAnimation(true), timeoutAnimation);
-      return () => clearTimeout(timer);
-    }
-  }, [containsFocus, isMouseOver, timeoutAnimation]);
-
-  React.useEffect(() => {
-    dismissed && onTimeout && onTimeout();
-  }, [dismissed, onTimeout]);
-
-  if (dismissed) {
-    return null;
-  }
-
-  const myOnMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => {
-    setIsMouseOver(true);
-    setTimedOutAnimation(false);
-    onMouseEnter && onMouseEnter(ev);
-  };
-
-  const myOnMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => {
-    setIsMouseOver(false);
-    onMouseLeave && onMouseLeave(ev);
-  };
-
   return (
     /* card does not have ref forwarding; hence wrapper div */
-    <div
-      ref={divRef}
-      onMouseEnter={myOnMouseEnter}
-      onMouseLeave={myOnMouseLeave}
-      {...(isLiveRegion && {
-        'aria-live': 'polite',
-        'aria-atomic': 'false'
-      })}
-      id={id}
-      tabIndex={0}
-      aria-label={title}
-      {...ouiaProps}
-    >
+    <div ref={divRef} id={id} tabIndex={0} aria-label={title}>
       <Card className={`pf-chatbot__feedback-card ${className ? className : ''}`} {...props}>
         <CardHeader
           actions={
