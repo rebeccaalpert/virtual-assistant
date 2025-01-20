@@ -51,7 +51,7 @@ To provide users with enough context, sources should have descriptive titles and
 
 #### Quick start tiles
 
-A ChatBot can share a link to a [quick start](/extensions/quick-starts) that will help users complete a given task. Users can either select **Start** or the tile itself to initiate the linked quick start.
+A ChatBot can share a link to a [quick start](/extensions/quick-starts) that will help users complete a given task. Users can either select **Start** or the tile's title to initiate the linked quick start.
 
 <div class="ws-docs-content-img">
 ![Bot message that links a quick start tile.](./img/chatbot-quickstarts-tile.svg)
