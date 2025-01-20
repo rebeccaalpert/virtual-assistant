@@ -47,6 +47,20 @@ import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 
 ## Demos
 
+### Message feedback
+
+When a user selects a positive or negative message action, you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button and the thank-you card can be configured to time out automatically.
+
+The following example demonstrates a full feedback flow, which accepts written feedback submission and displays a thank you card.
+
+It also demonstrates how to handle focus appropriately for accessibility. The card will be focused when it appears in the DOM. When the card closes, place the focus back on the launching button. You can also add `aria-expanded` and `aria-controls` attributes to the feedback buttons to provide additional context on what the button controls.
+
+It is also important to announce when new content appears onscreen for accessibility purposes. `isLiveRegion` is set to true by default on `<Message>` so it will make appropriate announcements for you when the feedback card appears.
+
+```js file="./Feedback.tsx"
+
+```
+
 ### Attach via upload button in message bar
 
 This demo displays unique attachment features, including:

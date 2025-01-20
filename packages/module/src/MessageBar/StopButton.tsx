@@ -32,6 +32,8 @@ export const StopButton: React.FunctionComponent<StopButtonProps> = ({
     exitDelay={tooltipProps?.exitDelay || 0}
     distance={tooltipProps?.distance || 8}
     animationDuration={tooltipProps?.animationDuration || 0}
+    // prevents VO announcements of both aria label and tooltip
+    aria="none"
     {...tooltipProps}
   >
     <Button

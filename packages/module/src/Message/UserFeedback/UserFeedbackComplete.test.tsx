@@ -6,47 +6,52 @@ import UserFeedbackComplete from './UserFeedbackComplete';
 
 describe('UserFeedbackComplete', () => {
   it('should render correctly', () => {
-    render(<UserFeedbackComplete />);
+    render(<UserFeedbackComplete timestamp="12/12/12" />);
     expect(screen.getByText('Thank you')).toBeTruthy();
     screen.getByText(/You have successfully sent your feedback!/i);
     screen.getByText(/Thank you for responding./i);
     expect(screen.queryByRole('button', { name: /Close/i })).toBeFalsy();
   });
   it('should render different title correctly', () => {
-    render(<UserFeedbackComplete title="Thanks!" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" title="Thanks!" />);
     expect(screen.getByText('Thanks!')).toBeTruthy();
     screen.getByText(/You have successfully sent your feedback!/i);
     screen.getByText(/Thank you for responding./i);
   });
-  it('should render different body correctly', () => {
-    render(<UserFeedbackComplete body="Feedback received!" />);
+  it('should render different string body correctly', () => {
+    render(<UserFeedbackComplete timestamp="12/12/12" body="Feedback received!" />);
+    expect(screen.getByText('Thank you')).toBeTruthy();
+    screen.getByText(/Feedback received!/i);
+  });
+  it('should render different node body correctly', () => {
+    render(<UserFeedbackComplete timestamp="12/12/12" body={<div>Feedback received!</div>} />);
     expect(screen.getByText('Thank you')).toBeTruthy();
     screen.getByText(/Feedback received!/i);
   });
   it('should handle onClose correctly', async () => {
     const spy = jest.fn();
-    render(<UserFeedbackComplete onClose={spy} />);
-    const closeButton = screen.getByRole('button', { name: 'Close' });
+    render(<UserFeedbackComplete timestamp="12/12/12" onClose={spy} />);
+    const closeButton = screen.getByRole('button', { name: 'Close feedback for message received at 12/12/12' });
     expect(closeButton).toBeTruthy();
     await userEvent.click(closeButton);
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should be able to change close button aria label', () => {
     const spy = jest.fn();
-    render(<UserFeedbackComplete onClose={spy} closeButtonAriaLabel="Ima button" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" onClose={spy} closeButtonAriaLabel="Ima button" />);
     expect(screen.getByRole('button', { name: /Ima button/i })).toBeTruthy();
   });
   it('should handle className', async () => {
-    render(<UserFeedbackComplete className="test" data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" className="test" data-testid="card" />);
     expect(screen.getByTestId('card')).toHaveClass('test');
   });
   it('should apply id', async () => {
-    render(<UserFeedbackComplete id="test" data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" id="test" data-testid="card" />);
     expect(screen.getByTestId('card').parentElement).toHaveAttribute('id', 'test');
   });
   it('renders with no timeout by default', () => {
     jest.useFakeTimers();
-    render(<UserFeedbackComplete />);
+    render(<UserFeedbackComplete timestamp="12/12/12" />);
     act(() => {
       jest.advanceTimersByTime(8000);
     });
@@ -55,7 +60,7 @@ describe('UserFeedbackComplete', () => {
   });
   it('should handle timeout correctly after 8000ms when timeout = true', async () => {
     jest.useFakeTimers();
-    render(<UserFeedbackComplete timeout />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout />);
     act(() => {
       jest.advanceTimersByTime(7999);
     });
@@ -68,7 +73,7 @@ describe('UserFeedbackComplete', () => {
   });
   it('should handle timeout correctly when timeout = numeric value', async () => {
     jest.useFakeTimers();
-    render(<UserFeedbackComplete timeout={300} />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout={300} />);
     act(() => {
       jest.advanceTimersByTime(299);
     });
@@ -84,7 +89,7 @@ describe('UserFeedbackComplete', () => {
       advanceTimers: (delay) => jest.advanceTimersByTime(delay)
     });
     jest.useFakeTimers();
-    render(<UserFeedbackComplete timeout data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />);
     expect(screen.getByText('Thank you')).toBeTruthy();
     await user.click(screen.getByTestId('card'));
     act(() => {
@@ -98,7 +103,7 @@ describe('UserFeedbackComplete', () => {
       advanceTimers: (delay) => jest.advanceTimersByTime(delay)
     });
     jest.useFakeTimers();
-    render(<UserFeedbackComplete timeout data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />);
     const card = screen.getByTestId('card');
     await user.hover(card);
     act(() => {
@@ -115,7 +120,7 @@ describe('UserFeedbackComplete', () => {
     render(
       <div>
         <input />
-        <UserFeedbackComplete timeout data-testid="card" />
+        <UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />
       </div>
     );
     const card = screen.getByTestId('card');
@@ -139,7 +144,7 @@ describe('UserFeedbackComplete', () => {
     render(
       <div>
         <input />
-        <UserFeedbackComplete timeout data-testid="card" />
+        <UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />
       </div>
     );
     const card = screen.getByTestId('card');
@@ -163,7 +168,7 @@ describe('UserFeedbackComplete', () => {
     render(
       <div>
         <input />
-        <UserFeedbackComplete timeout data-testid="card" timeoutAnimation={1000} />
+        <UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" timeoutAnimation={1000} />
       </div>
     );
     const card = screen.getByTestId('card');
@@ -181,7 +186,7 @@ describe('UserFeedbackComplete', () => {
   it('does not call the onTimeout callback before the timeout period has expired', () => {
     const spy = jest.fn();
     jest.useFakeTimers();
-    render(<UserFeedbackComplete timeout data-testid="card" onTimeout={spy} />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" onTimeout={spy} />);
     act(() => {
       jest.advanceTimersByTime(7999);
     });
@@ -191,7 +196,7 @@ describe('UserFeedbackComplete', () => {
   it('calls the onTimeout callback after the timeout period has expired', () => {
     jest.useFakeTimers();
     const spy = jest.fn();
-    render(<UserFeedbackComplete timeout data-testid="card" onTimeout={spy} />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" onTimeout={spy} />);
     act(() => {
       jest.advanceTimersByTime(8000);
     });
@@ -200,14 +205,14 @@ describe('UserFeedbackComplete', () => {
   });
 
   it('renders without aria-live and aria-atomic attributes by default', () => {
-    render(<UserFeedbackComplete timeout data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />);
     const card = screen.getByTestId('card').parentElement;
     expect(card).not.toHaveAttribute('aria-live');
     expect(card).not.toHaveAttribute('aria-atomic');
   });
 
   it('has an aria-live value of polite and aria-atomic value of false when isLiveRegion = true', () => {
-    render(<UserFeedbackComplete timeout data-testid="card" isLiveRegion />);
+    render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" isLiveRegion />);
     const card = screen.getByTestId('card').parentElement;
     expect(card).toHaveAttribute('aria-live', 'polite');
     expect(card).toHaveAttribute('aria-atomic', 'false');
@@ -218,7 +223,7 @@ describe('UserFeedbackComplete', () => {
     render(
       <div>
         <input />
-        <UserFeedbackComplete data-testid="card" onMouseEnter={spy} />
+        <UserFeedbackComplete timestamp="12/12/12" data-testid="card" onMouseEnter={spy} />
       </div>
     );
     const card = screen.getByTestId('card');
@@ -226,13 +231,13 @@ describe('UserFeedbackComplete', () => {
     await user.hover(card);
     expect(spy).toHaveBeenCalledTimes(1);
   });
-  it('calls onMouseExit appropriately', async () => {
+  it('calls onMouseLeave appropriately', async () => {
     const spy = jest.fn();
     const user = userEvent.setup();
     render(
       <div>
         <input />
-        <UserFeedbackComplete data-testid="card" onMouseLeave={spy} />
+        <UserFeedbackComplete timestamp="12/12/12" data-testid="card" onMouseLeave={spy} />
       </div>
     );
     const card = screen.getByTestId('card');
@@ -242,11 +247,11 @@ describe('UserFeedbackComplete', () => {
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should focus on load by default', () => {
-    render(<UserFeedbackComplete data-testid="card" />);
+    render(<UserFeedbackComplete timestamp="12/12/12" data-testid="card" />);
     expect(screen.getByTestId('card').parentElement).toHaveFocus();
   });
   it('should not focus on load if focusOnLoad = false', () => {
-    render(<UserFeedbackComplete data-testid="card" focusOnLoad={false} />);
+    render(<UserFeedbackComplete timestamp="12/12/12" data-testid="card" focusOnLoad={false} />);
     expect(screen.getByTestId('card').parentElement).not.toHaveFocus();
   });
 });

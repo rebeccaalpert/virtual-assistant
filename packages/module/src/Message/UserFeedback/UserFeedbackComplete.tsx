@@ -42,6 +42,8 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
   id?: string;
   /** Whether to focus card on load */
   focusOnLoad?: boolean;
+  /** Timestamp passed in by Message for more context in aria announcements */
+  timestamp?: string;
 }
 
 const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> = ({
@@ -50,11 +52,12 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
   body = `You have successfully sent your feedback! 
   
   Thank you for responding.`,
+  timestamp,
   timeout = false,
   timeoutAnimation = 3000,
   onTimeout,
   onClose,
-  closeButtonAriaLabel = 'Close',
+  closeButtonAriaLabel = `Close feedback for message received at ${timestamp}`,
   onMouseEnter,
   onMouseLeave,
   ouiaId,
@@ -145,7 +148,13 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
       <Card className={`pf-chatbot__feedback-card ${className ? className : ''}`} {...props}>
         <CardHeader
           actions={
-            onClose ? { actions: <CloseButton onClose={onClose} ariaLabel={closeButtonAriaLabel} /> } : undefined
+            /* eslint-disable indent */
+            onClose
+              ? {
+                  actions: <CloseButton onClose={onClose} ariaLabel={closeButtonAriaLabel} />
+                }
+              : undefined
+            /* eslint-enable indent */
           }
         ></CardHeader>
         <div className="pf-chatbot__feedback-complete-body">

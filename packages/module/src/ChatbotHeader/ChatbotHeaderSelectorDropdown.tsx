@@ -31,7 +31,14 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
   const [defaultAriaLabel, setDefaultAriaLabel] = React.useState('Chatbot selector');
 
   const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
-    <Tooltip className="pf-chatbot__tooltip" content={tooltipContent} position="bottom" {...tooltipProps}>
+    <Tooltip
+      className="pf-chatbot__tooltip"
+      content={tooltipContent}
+      position="bottom"
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+      {...tooltipProps}
+    >
       <MenuToggle
         variant="secondary"
         aria-label={menuToggleAriaLabel ?? defaultAriaLabel}

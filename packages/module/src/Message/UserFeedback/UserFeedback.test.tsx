@@ -1,5 +1,5 @@
 import React from 'react';
-import { act, render, screen } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import userEvent from '@testing-library/user-event';
 import UserFeedback from './UserFeedback';
@@ -12,38 +12,81 @@ const MOCK_RESPONSES = [
 
 describe('UserFeedback', () => {
   it('should render correctly', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} />);
+    render(<UserFeedback onClose={jest.fn} onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} timestamp="12/12/12" />);
     expect(screen.getByRole('heading', { name: /Why did you choose this rating?/i })).toBeTruthy();
-    screen.getByText(/optional/i);
-    screen.getByRole('button', { name: /Correct/i });
-    screen.getByRole('button', { name: /Easy to understand/i });
-    screen.getByRole('button', { name: /Complete/i });
-    screen.getByRole('button', { name: /Submit/i });
-    expect(screen.queryByRole('button', { name: /Close/i })).toBeFalsy();
-    expect(screen.queryByRole('textbox', { name: /Provide additional feedback/i })).toBeFalsy();
+    expect(screen.getByRole('list', { name: 'Quick feedback for message received at 12/12/12' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Correct/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Easy to understand/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Complete/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Submit/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Close feedback for message received at 12/12/12' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Cancel/i })).toBeTruthy();
+    expect(screen.queryByRole('textbox', { name: /Provide optional additional feedback/i })).toBeFalsy();
   });
   it('should render different title correctly', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} title="Thanks! Why?" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        title="Thanks! Why?"
+      />
+    );
     expect(screen.getByText('Thanks! Why?')).toBeTruthy();
   });
   it('should render different submit button text correctly', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} submitWord="Give feedback" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        submitWord="Give feedback"
+      />
+    );
     expect(screen.getByRole('button', { name: /Give feedback/i })).toBeTruthy();
   });
   it('should render text area correctly', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} hasTextArea />);
-    expect(screen.getByRole('textbox', { name: /Provide additional feedback/i })).toBeTruthy();
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        hasTextArea
+      />
+    );
+    expect(screen.getByRole('textbox', { name: /Provide optional additional feedback/i })).toBeTruthy();
+  });
+  it('should call onTextAreaChange correctly', async () => {
+    const spy = jest.fn();
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        hasTextArea
+        onTextAreaChange={spy}
+      />
+    );
+    const textbox = screen.getByRole('textbox', { name: /Provide optional additional feedback/i });
+    await userEvent.type(textbox, 'test');
+    expect(spy).toHaveBeenCalledTimes(4);
   });
   it('should render different placeholder correctly', () => {
     render(
       <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
         onSubmit={jest.fn}
         quickResponses={MOCK_RESPONSES}
         hasTextArea
         textAreaPlaceholder="Provide any other information"
       />
     );
-    expect(screen.getByRole('textbox', { name: /Provide additional feedback/i })).toHaveAttribute(
+    expect(screen.getByRole('textbox', { name: /Provide optional additional feedback/i })).toHaveAttribute(
       'placeholder',
       'Provide any other information'
     );
@@ -51,6 +94,8 @@ describe('UserFeedback', () => {
   it('should render different text area label correctly', () => {
     render(
       <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
         onSubmit={jest.fn}
         quickResponses={MOCK_RESPONSES}
         hasTextArea
@@ -59,10 +104,10 @@ describe('UserFeedback', () => {
     );
     expect(screen.getByRole('textbox', { name: /Provide more details/i })).toBeTruthy();
   });
-  it('should handle onClose correctly', async () => {
+  it('should handle onClose correctly when close button is clicked', async () => {
     const spy = jest.fn();
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} onClose={spy} />);
-    const closeButton = screen.getByRole('button', { name: 'Close' });
+    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} onClose={spy} timestamp="12/12/12" />);
+    const closeButton = screen.getByRole('button', { name: 'Close feedback for message received at 12/12/12' });
     expect(closeButton).toBeTruthy();
     await userEvent.click(closeButton);
     expect(spy).toHaveBeenCalledTimes(1);
@@ -71,6 +116,7 @@ describe('UserFeedback', () => {
     const spy = jest.fn();
     render(
       <UserFeedback
+        timestamp="12/12/12"
         onSubmit={jest.fn}
         quickResponses={MOCK_RESPONSES}
         onClose={spy}
@@ -79,24 +125,62 @@ describe('UserFeedback', () => {
     );
     expect(screen.getByRole('button', { name: /Ima button/i })).toBeTruthy();
   });
+  it('should handle onClose correctly when cancel button is clicked', async () => {
+    const spy = jest.fn();
+    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} onClose={spy} timestamp="12/12/12" />);
+    const cancelButton = screen.getByRole('button', { name: 'Cancel' });
+    expect(cancelButton).toBeTruthy();
+    await userEvent.click(cancelButton);
+    expect(spy).toHaveBeenCalledTimes(1);
+  });
+  it('should change cancel word correctly', () => {
+    render(
+      <UserFeedback
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        onClose={jest.fn}
+        cancelWord="Exit"
+        timestamp="12/12/12"
+      />
+    );
+    expect(screen.getByRole('button', { name: 'Exit' })).toBeTruthy();
+  });
   it('should handle className', async () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} className="test" data-testid="card" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        className="test"
+        data-testid="card"
+      />
+    );
     expect(screen.getByTestId('card')).toHaveClass('test');
   });
   it('should apply id', async () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} id="test" data-testid="card" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        id="test"
+        data-testid="card"
+      />
+    );
     expect(screen.getByTestId('card').parentElement).toHaveAttribute('id', 'test');
   });
   it('should handle submit correctly when nothing is selected', async () => {
     const spy = jest.fn();
-    render(<UserFeedback onSubmit={spy} quickResponses={MOCK_RESPONSES} />);
+    render(<UserFeedback timestamp="12/12/12" onClose={jest.fn} onSubmit={spy} quickResponses={MOCK_RESPONSES} />);
     await userEvent.click(screen.getByRole('button', { name: /Submit/i }));
     expect(spy).toHaveBeenCalledTimes(1);
     expect(spy).toHaveBeenCalledWith(undefined, '');
   });
   it('should handle submit correctly when item is selected', async () => {
     const spy = jest.fn();
-    render(<UserFeedback onSubmit={spy} quickResponses={MOCK_RESPONSES} />);
+    render(<UserFeedback timestamp="12/12/12" onClose={jest.fn} onSubmit={spy} quickResponses={MOCK_RESPONSES} />);
     await userEvent.click(screen.getByRole('button', { name: /Complete/i }));
     await userEvent.click(screen.getByRole('button', { name: /Submit/i }));
     expect(spy).toHaveBeenCalledTimes(1);
@@ -104,9 +188,11 @@ describe('UserFeedback', () => {
   });
   it('should handle submit correctly when there is just text input', async () => {
     const spy = jest.fn();
-    render(<UserFeedback onSubmit={spy} quickResponses={MOCK_RESPONSES} hasTextArea />);
+    render(
+      <UserFeedback timestamp="12/12/12" onClose={jest.fn} onSubmit={spy} quickResponses={MOCK_RESPONSES} hasTextArea />
+    );
     await userEvent.type(
-      screen.getByRole('textbox', { name: /Provide additional feedback/i }),
+      screen.getByRole('textbox', { name: /Provide optional additional feedback/i }),
       'What a great experience!'
     );
     await userEvent.click(screen.getByRole('button', { name: /Submit/i }));
@@ -115,10 +201,12 @@ describe('UserFeedback', () => {
   });
   it('should handle submit correctly when item is selected and there is text input', async () => {
     const spy = jest.fn();
-    render(<UserFeedback onSubmit={spy} quickResponses={MOCK_RESPONSES} hasTextArea />);
+    render(
+      <UserFeedback timestamp="12/12/12" onClose={jest.fn} onSubmit={spy} quickResponses={MOCK_RESPONSES} hasTextArea />
+    );
     await userEvent.click(screen.getByRole('button', { name: /Complete/i }));
     await userEvent.type(
-      screen.getByRole('textbox', { name: /Provide additional feedback/i }),
+      screen.getByRole('textbox', { name: /Provide optional additional feedback/i }),
       'What a great experience!'
     );
     await userEvent.click(screen.getByRole('button', { name: /Submit/i }));
@@ -126,19 +214,44 @@ describe('UserFeedback', () => {
     expect(spy).toHaveBeenCalledWith('3', 'What a great experience!');
   });
   it('should default title heading level to h1', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} />);
+    render(<UserFeedback timestamp="12/12/12" onClose={jest.fn} onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} />);
     expect(screen.getByRole('heading', { level: 1, name: /Why did you choose this rating?/i })).toBeTruthy();
   });
   it('should be able to change title heading level', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} headingLevel="h6" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        headingLevel="h6"
+      />
+    );
     expect(screen.getByRole('heading', { level: 6, name: /Why did you choose this rating?/i })).toBeTruthy();
   });
   it('should focus on load by default', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} data-testid="card" />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        data-testid="card"
+      />
+    );
     expect(screen.getByTestId('card').parentElement).toHaveFocus();
   });
   it('should not focus on load if focusOnLoad = false', () => {
-    render(<UserFeedback onSubmit={jest.fn} quickResponses={MOCK_RESPONSES} data-testid="card" focusOnLoad={false} />);
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        data-testid="card"
+        focusOnLoad={false}
+      />
+    );
     expect(screen.getByTestId('card').parentElement).not.toHaveFocus();
   });
 });

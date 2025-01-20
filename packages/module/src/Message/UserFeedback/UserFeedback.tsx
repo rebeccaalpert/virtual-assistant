@@ -12,11 +12,9 @@ import {
   CardHeader,
   CardProps,
   Form,
-  Label,
   LabelGroupProps,
   OUIAProps,
-  TextArea,
-  useOUIAProps
+  TextArea
 } from '@patternfly/react-core';
 import QuickResponse from '../QuickResponse/QuickResponse';
 import CloseButton from './CloseButton';
@@ -39,38 +37,41 @@ export interface UserFeedbackProps extends Omit<CardProps, 'onSubmit'>, OUIAProp
   /** Callback function for when form is submitted */
   onSubmit: (selectedResponse?: string, additionalFeedback?: string) => void;
   /** Callback function for when close button is clicked */
-  onClose?: () => void;
+  onClose: () => void;
   /** Aria label for close button */
   closeButtonAriaLabel?: string;
-  /** Label for the English word "Submit". */
+  /** Label for the English word "Submit." */
   submitWord?: string;
-  /** Label for English word "optional" */
-  optionalWord?: string;
+  /** Label for the English word "Cancel." */
+  cancelWord?: string;
   /** Uniquely identifies the card. */
   id?: string;
   /** The heading level to use, default is h1 */
   headingLevel?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6';
   /** Whether to focus card on load */
   focusOnLoad?: boolean;
+  /** Timestamp passed in by Message for more context in aria announcements */
+  timestamp?: string;
 }
 
 const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
   className,
+  timestamp,
   title = 'Why did you choose this rating?',
   hasTextArea,
-  textAreaAriaLabel = 'Provide additional feedback',
-  textAreaPlaceholder = 'Provide additional feedback',
+  textAreaAriaLabel = `Provide optional additional feedback for message received at ${timestamp}`,
+  textAreaPlaceholder = 'Provide optional additional feedback',
   onTextAreaChange,
   submitWord = 'Submit',
   quickResponses,
-  quickResponseContainerProps,
+  quickResponseContainerProps = { 'aria-label': `Quick feedback for message received at ${timestamp}` },
   onSubmit,
   onClose,
-  closeButtonAriaLabel = 'Close',
-  optionalWord = 'optional',
+  closeButtonAriaLabel = `Close feedback for message received at ${timestamp}`,
   id,
   headingLevel: HeadingLevel = 'h1',
   focusOnLoad = true,
+  cancelWord = 'Cancel',
   ...props
 }: UserFeedbackProps) => {
   const [selectedResponse, setSelectedResponse] = React.useState<string>();
@@ -88,13 +89,11 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
     <div ref={divRef} id={id} tabIndex={0} aria-label={title}>
       <Card className={`pf-chatbot__feedback-card ${className ? className : ''}`} {...props}>
         <CardHeader
-          actions={
-            onClose ? { actions: <CloseButton onClose={onClose} ariaLabel={closeButtonAriaLabel} /> } : undefined
-          }
+          actions={{
+            actions: <CloseButton onClose={onClose} ariaLabel={closeButtonAriaLabel} />
+          }}
         >
-          <HeadingLevel className="pf-chatbot__feedback-card-title">
-            {title} <Label className="pf-chatbot__feedback-card-optional">{optionalWord}</Label>
-          </HeadingLevel>
+          <HeadingLevel className="pf-chatbot__feedback-card-title">{title}</HeadingLevel>
         </CardHeader>
         <CardBody>
           <Form className="pf-chatbot__feedback-card-form">
@@ -119,6 +118,9 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
             )}
             <ActionGroup>
               <Button onClick={() => onSubmit(selectedResponse, value)}>{submitWord}</Button>
+              <Button variant="link" onClick={onClose}>
+                {cancelWord}
+              </Button>
             </ActionGroup>
           </Form>
         </CardBody>

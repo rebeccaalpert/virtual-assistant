@@ -123,7 +123,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   quickStarts,
   userFeedbackForm,
   userFeedbackComplete,
-  isLiveRegion,
+  isLiveRegion = true,
   innerRef,
   ...props
 }: MessageProps) => {
@@ -136,7 +136,6 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -198,8 +197,8 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
               />
             )}
             {!isLoading && actions && <ResponseActions actions={actions} />}
-            {userFeedbackForm && <UserFeedback {...userFeedbackForm} />}
-            {userFeedbackComplete && <UserFeedbackComplete {...userFeedbackComplete} />}
+            {userFeedbackForm && <UserFeedback {...userFeedbackForm} timestamp={dateString} />}
+            {userFeedbackComplete && <UserFeedbackComplete {...userFeedbackComplete} timestamp={dateString} />}
             {!isLoading && quickResponses && (
               <QuickResponse
                 quickResponses={quickResponses}

@@ -102,21 +102,17 @@ You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is 
 
 ### Message feedback
 
-When a user selects a positive or negative [message action](#message-actions), you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button or be [configured to time out automatically](/patternfly-ai/chatbot/messages#message-feedback-with-timeouts).
+When a user selects a positive or negative [message action](#message-actions), you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button and the thank-you card can be [configured to time out automatically](/patternfly-ai/chatbot/messages#message-feedback-with-timeouts).
 <br /><br />
-The message feedback card will immediately receive focus by default, but you remove this behavior by passing `focusOnLoad: false` to the `<Message>` (as shown in the following examples). For better usability, you should generally keep the default focus behavior.
+You can see a demo of the full feedback flow [in the demos section](/patternfly-ai/chatbot/messages/demo#message-feedback).
+<br /><br />
+The message feedback cards will immediately receive focus by default, but you can remove this behavior by passing `focusOnLoad: false` to the `<Message>` (as shown in the following examples). For better usability, you should generally keep the default focus behavior.
 <br /><br />
 The following examples demonstrate:
 
-- A full feedback flow, which accepts written feedback submission and displays the thank you card.
 - A basic card.
 - A basic card without text input.
-- A card without a close button.
 - Thank-you cards, with and without a close button.
-
-The full feedback flow example also demonstrates how to handle focus appropriately for accessibility. The card will be focused when it appears in the DOM. When the card closes, place the focus back on the launching button. You can also add `aria-expanded` and `aria-controls` attributes to the feedback buttons to provide additional context on what the button controls.
-<br /><br />
-It is also important to announce when new content appears onscreen for accessibility purposes. If you set `isLiveRegion` to true on `<Message>`, it will make appropriate announcements for you when the feedback card appears.
 
 ```js file="./MessageWithFeedback.tsx"
 
@@ -124,11 +120,11 @@ It is also important to announce when new content appears onscreen for accessibi
 
 ### Message feedback with timeouts
 
-The feedback card and thank you message can be configured to time out and automatically close after a period of time. The default time out period is 8000 ms, but it can be customized via `timeout`.
+The feedback thank you message can be configured to time out and automatically close after a period of time. The default time out period is 8000 ms, but it can be customized via `timeout`.
 <br /><br />
 The card will not dismiss within the default time if a user is hovering over it or if it has keyboard focus. Instead, it will dismiss after they remove focus, via `timeoutAnimation`, which is 3000 ms by default. You can adjust this duration and set an `onTimeout` callback, as well as optional `onMouseEnter` and `onMouseLeave` callbacks.
 <br /><br />
-For accessibility purposes, be sure to announce when new content appears onscreen. If you set `isLiveRegion` to `true` for a `<Message>`, it will make appropriate announcements for you when the feedback card appears.
+For accessibility purposes, be sure to announce when new content appears onscreen. `isLiveRegion` is set to true by default on `<Message>` so it will make appropriate announcements for you when the thank-you card appears.
 
 ```js file="./MessageWithFeedbackTimeout.tsx"
 

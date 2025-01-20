@@ -30,6 +30,10 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   icon?: React.ReactNode;
   /** Ref for response action button */
   ref?: React.Ref<HTMLButtonElement>;
+  /** Whether content launched by button, such as the feedback form, is expanded */
+  'aria-expanded'?: boolean;
+  /** Id for content controlled by the button, such as the feedback form */
+  'aria-controls'?: string;
 }
 
 export interface ResponseActionProps {
@@ -85,6 +89,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<OutlinedThumbsUpIcon />}
           isClicked={activeButton === 'positive'}
           ref={positive.ref}
+          aria-expanded={positive['aria-expanded']}
+          aria-controls={positive['aria-controls']}
         ></ResponseActionButton>
       )}
       {negative && (
@@ -100,6 +106,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<OutlinedThumbsDownIcon />}
           isClicked={activeButton === 'negative'}
           ref={negative.ref}
+          aria-expanded={negative['aria-expanded']}
+          aria-controls={negative['aria-controls']}
         ></ResponseActionButton>
       )}
       {copy && (
@@ -115,6 +123,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<OutlinedCopyIcon />}
           isClicked={activeButton === 'copy'}
           ref={copy.ref}
+          aria-expanded={copy['aria-expanded']}
+          aria-controls={copy['aria-controls']}
         ></ResponseActionButton>
       )}
       {share && (
@@ -130,6 +140,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<ExternalLinkAltIcon />}
           isClicked={activeButton === 'share'}
           ref={share.ref}
+          aria-expanded={share['aria-expanded']}
+          aria-controls={share['aria-controls']}
         ></ResponseActionButton>
       )}
       {listen && (
@@ -145,6 +157,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={<VolumeUpIcon />}
           isClicked={activeButton === 'listen'}
           ref={listen.ref}
+          aria-expanded={listen['aria-expanded']}
+          aria-controls={listen['aria-controls']}
         ></ResponseActionButton>
       )}
       {Object.keys(additionalActions).map((action) => (
@@ -161,6 +175,8 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
           icon={additionalActions[action]?.icon}
           isClicked={activeButton === action}
           ref={additionalActions[action]?.ref}
+          aria-expanded={additionalActions[action]?.['aria-expanded']}
+          aria-controls={additionalActions[action]?.['aria-controls']}
         />
       ))}
     </div>
