@@ -15,8 +15,22 @@
     color: var(--pf-t--global--icon--color--inverse);
   }
 
-  &:hover,
-  &:focus {
+  &:hover {
     background-color: var(--pf-t--global--color--brand--hover);
+  }
+
+  &:focus {
+    background-color: var(--pf-t--global--color--brand--clicked);
+
+    .pf-v6-c-button__icon {
+      color: var(--pf-t--global--icon--color--inverse);
+    }
+
+    &:hover,
+    &:focus {
+      .pf-v6-c-button__icon {
+        color: var(--pf-t--global--icon--color--inverse);
+      }
+    }
   }
 }
