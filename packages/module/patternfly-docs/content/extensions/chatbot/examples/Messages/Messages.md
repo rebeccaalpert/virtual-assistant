@@ -55,11 +55,7 @@ The `content` prop of the `<Message>` component is passed to a `<Markdown>` comp
 
 Messages from the ChatBot will be marked with an "AI" label to clearly communicate the use of AI to users. The ChatBot can display different `content` types, including plain text, code, or a loading animation (via `isLoading`).
 
-<br />
-
 By default, a date and timestamp is displayed with each message. We recommend using the `timestamp` prop in real ChatBots, since it will allow you to set persistent dates and times on messages, even if the messages re-render. You can update `timestamp` with a different [date and time format](/ux-writing/numerics) as needed.
-
-<br />
 
 You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`.
 
@@ -103,11 +99,11 @@ You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is 
 ### Message feedback
 
 When a user selects a positive or negative [message action](#message-actions), you can display a message feedback card that acknowledges their response and provides space for additional written feedback. These cards can be manually dismissed via the close button and the thank-you card can be [configured to time out automatically](/patternfly-ai/chatbot/messages#message-feedback-with-timeouts).
-<br /><br />
+
 You can see a demo of the full feedback flow [in the demos section](/patternfly-ai/chatbot/messages/demo#message-feedback).
-<br /><br />
+
 The message feedback cards will immediately receive focus by default, but you can remove this behavior by passing `focusOnLoad: false` to the `<Message>` (as shown in the following examples). For better usability, you should generally keep the default focus behavior.
-<br /><br />
+
 The following examples demonstrate:
 
 - A basic card.
@@ -121,9 +117,9 @@ The following examples demonstrate:
 ### Message feedback with timeouts
 
 The feedback thank you message can be configured to time out and automatically close after a period of time. The default time out period is 8000 ms, but it can be customized via `timeout`.
-<br /><br />
+
 The card will not dismiss within the default time if a user is hovering over it or if it has keyboard focus. Instead, it will dismiss after they remove focus, via `timeoutAnimation`, which is 3000 ms by default. You can adjust this duration and set an `onTimeout` callback, as well as optional `onMouseEnter` and `onMouseLeave` callbacks.
-<br /><br />
+
 For accessibility purposes, be sure to announce when new content appears onscreen. `isLiveRegion` is set to true by default on `<Message>` so it will make appropriate announcements for you when the thank-you card appears.
 
 ```js file="./MessageWithFeedbackTimeout.tsx"
