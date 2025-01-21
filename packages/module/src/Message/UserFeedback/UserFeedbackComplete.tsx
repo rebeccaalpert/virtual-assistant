@@ -48,10 +48,8 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
 
 const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> = ({
   className,
-  title = 'Thank you',
-  body = `You have successfully sent your feedback! 
-  
-  Thank you for responding.`,
+  title = 'Feedback submitted',
+  body = "We've received your response. Thank you for sharing your feedback!",
   timestamp,
   timeout = false,
   timeoutAnimation = 3000,

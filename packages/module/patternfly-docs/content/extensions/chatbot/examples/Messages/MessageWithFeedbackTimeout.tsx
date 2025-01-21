@@ -18,8 +18,8 @@ export const MessageWithFeedbackTimeoutExample: React.FunctionComponent = () => 
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Bot message with completion message that times out"
-        userFeedbackComplete={hasFeedback ? { timeout: true } : undefined}
+        content="This completion message times out after you click **Show card**:"
+        userFeedbackComplete={hasFeedback ? { timeout: true, onTimeout: () => setHasFeedback(false) } : undefined}
         isLiveRegion
       />
     </>

@@ -7,26 +7,24 @@ import UserFeedbackComplete from './UserFeedbackComplete';
 describe('UserFeedbackComplete', () => {
   it('should render correctly', () => {
     render(<UserFeedbackComplete timestamp="12/12/12" />);
-    expect(screen.getByText('Thank you')).toBeTruthy();
-    screen.getByText(/You have successfully sent your feedback!/i);
-    screen.getByText(/Thank you for responding./i);
+    expect(screen.getByText('Feedback submitted')).toBeTruthy();
+    screen.getByText(/We've received your response. Thank you for sharing your feedback!/i);
     expect(screen.queryByRole('button', { name: /Close/i })).toBeFalsy();
   });
   it('should render different title correctly', () => {
     render(<UserFeedbackComplete timestamp="12/12/12" title="Thanks!" />);
     expect(screen.getByText('Thanks!')).toBeTruthy();
-    screen.getByText(/You have successfully sent your feedback!/i);
-    screen.getByText(/Thank you for responding./i);
+    screen.getByText(/We've received your response. Thank you for sharing your feedback!/i);
   });
   it('should render different string body correctly', () => {
-    render(<UserFeedbackComplete timestamp="12/12/12" body="Feedback received!" />);
-    expect(screen.getByText('Thank you')).toBeTruthy();
-    screen.getByText(/Feedback received!/i);
+    render(<UserFeedbackComplete timestamp="12/12/12" body="Thanks!" />);
+    expect(screen.getByText('Feedback submitted')).toBeTruthy();
+    expect(screen.getByText('Thanks!')).toBeTruthy();
   });
   it('should render different node body correctly', () => {
-    render(<UserFeedbackComplete timestamp="12/12/12" body={<div>Feedback received!</div>} />);
-    expect(screen.getByText('Thank you')).toBeTruthy();
-    screen.getByText(/Feedback received!/i);
+    render(<UserFeedbackComplete timestamp="12/12/12" body={<div>Thanks!</div>} />);
+    expect(screen.getByText('Feedback submitted')).toBeTruthy();
+    expect(screen.getByText('Thanks!')).toBeTruthy();
   });
   it('should handle onClose correctly', async () => {
     const spy = jest.fn();
@@ -55,7 +53,7 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(8000);
     });
-    expect(screen.getByText('Thank you')).toBeVisible();
+    expect(screen.getByText('Feedback submitted')).toBeVisible();
     jest.useRealTimers();
   });
   it('should handle timeout correctly after 8000ms when timeout = true', async () => {
@@ -64,11 +62,11 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(7999);
     });
-    expect(screen.getByText('Thank you')).toBeVisible();
+    expect(screen.getByText('Feedback submitted')).toBeVisible();
     act(() => {
       jest.advanceTimersByTime(1);
     });
-    expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
+    expect(screen.queryByText('Feedback submitted')).not.toBeInTheDocument();
     jest.useRealTimers();
   });
   it('should handle timeout correctly when timeout = numeric value', async () => {
@@ -77,11 +75,11 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(299);
     });
-    expect(screen.getByText('Thank you')).toBeVisible();
+    expect(screen.getByText('Feedback submitted')).toBeVisible();
     act(() => {
       jest.advanceTimersByTime(1);
     });
-    expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
+    expect(screen.queryByText('Feedback submitted')).not.toBeInTheDocument();
     jest.useRealTimers();
   });
   it('does not get removed on timeout if the user is focused on the card', async () => {
@@ -90,12 +88,12 @@ describe('UserFeedbackComplete', () => {
     });
     jest.useFakeTimers();
     render(<UserFeedbackComplete timestamp="12/12/12" timeout data-testid="card" />);
-    expect(screen.getByText('Thank you')).toBeTruthy();
+    expect(screen.getByText('Feedback submitted')).toBeTruthy();
     await user.click(screen.getByTestId('card'));
     act(() => {
       jest.advanceTimersByTime(8000);
     });
-    expect(screen.getByText('Thank you')).toBeTruthy();
+    expect(screen.getByText('Feedback submitted')).toBeTruthy();
     jest.useRealTimers();
   });
   it('does not remove the card on timeout if the user is hovered over it', async () => {
@@ -132,7 +130,7 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(3000);
     });
-    expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
+    expect(screen.queryByText('Feedback submitted')).not.toBeInTheDocument();
     jest.useRealTimers();
   });
 
@@ -156,7 +154,7 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(3000);
     });
-    expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
+    expect(screen.queryByText('Feedback submitted')).not.toBeInTheDocument();
     jest.useRealTimers();
   });
 
@@ -180,7 +178,7 @@ describe('UserFeedbackComplete', () => {
     act(() => {
       jest.advanceTimersByTime(1000);
     });
-    expect(screen.queryByText('Thank you')).not.toBeInTheDocument();
+    expect(screen.queryByText('Feedback submitted')).not.toBeInTheDocument();
     jest.useRealTimers();
   });
   it('does not call the onTimeout callback before the timeout period has expired', () => {

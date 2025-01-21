@@ -36,7 +36,7 @@ export const MessageWithFeedbackExample: React.FunctionComponent = () => {
       name="Bot"
       role="bot"
       avatar={patternflyAvatar}
-      content="Bot message with user feedback flow; click on a message action to launch the feedback flow. Click submit to see the thank you message."
+      content="Bot message with user feedback flow; click on a message action to launch the feedback flow. Click submit to see the thank-you message."
       actions={{
         positive: {
           onClick: () => {
@@ -66,9 +66,9 @@ export const MessageWithFeedbackExample: React.FunctionComponent = () => {
           ? /* eslint-disable indent */
             {
               quickResponses: [
-                { id: '1', content: 'Correct' },
+                { id: '1', content: 'Helpful information' },
                 { id: '2', content: 'Easy to understand' },
-                { id: '3', content: 'Complete' }
+                { id: '3', content: 'Resolved my issue' }
               ],
               onSubmit: (quickResponse, additionalFeedback) => {
                 alert(`Selected ${quickResponse} and received the additional feedback: ${additionalFeedback}`);
