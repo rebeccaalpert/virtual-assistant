@@ -21,18 +21,18 @@
 
   // Active state (while recording voice)
   &--active {
-    background-color: var(--pf-t--color--blue--50);
+    background-color: var(--pf-t--global--color--brand--clicked);
     animation: motionMicButton var(--pf-t--chatbot--timing-function) calc(var(--pf-t--global--motion--duration--md) * 8)
       infinite;
 
     .pf-v6-c-button__icon {
-      color: var(--pf-t--color--white);
+      color: var(--pf-t--global--icon--color--inverse);
     }
 
     &:hover,
     &:focus {
       .pf-v6-c-button__icon {
-        color: var(--pf-t--color--white);
+        color: var(--pf-t--global--icon--color--inverse);
       }
     }
   }
@@ -40,7 +40,7 @@
 
 @keyframes motionMicButton {
   0% {
-    box-shadow: 0 0 0 0 rgba(0, 102, 204, 1);
+    box-shadow: 0 0 0 0 rgba(0, 77, 153, 1);
   }
   100% {
     box-shadow: 0 0 0 16px rgba(0, 102, 204, 0);
