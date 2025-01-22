@@ -134,6 +134,13 @@
     flex-direction: column;
     height: 70vh;
   }
+
+  // Resizable drawer spacing is different - needs manual adjustment for gaps between buttons, inputs, etc.
+  .pf-v6-c-drawer__panel.pf-m-resizable {
+    .pf-v6-c-drawer__panel-main {
+      row-gap: var(--pf-v6-c-drawer__panel--RowGap);
+    }
+  }
 }
 
 // ============================================================================
