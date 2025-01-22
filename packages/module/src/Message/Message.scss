@@ -65,7 +65,7 @@
     .pf-v6-c-label {
       --pf-v6-c-label--m-outline--BorderColor: var(--pf-t--chatbot-message--meta--label--color);
       --pf-v6-c-label--FontSize: var(--pf-t--global--font--size--xs);
-      font-weight: 500;
+      font-weight: var(--pf-t--global--font--weight--body--bold);
 
       .pf-v6-c-label__content {
         --pf-v6-c-label--Color: var(--pf-t--chatbot-message--meta--label--color);

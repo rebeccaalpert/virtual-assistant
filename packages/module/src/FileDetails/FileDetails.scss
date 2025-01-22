@@ -2,7 +2,7 @@
   color: var(--pf-t--global--text--color--subtle);
   display: flex; // this is needed for when FileDetailsLabel is clickable
   font-size: var(--pf-t--global--icon--size--font--xs);
-  font-weight: 500;
+  font-weight: var(--pf-t--global--font--weight--body--bold);
 }
 
 .pf-chatbot__code-icon {
