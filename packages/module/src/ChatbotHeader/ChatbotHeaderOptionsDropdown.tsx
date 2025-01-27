@@ -33,7 +33,14 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = React.useState(false);
 
   const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
-    <Tooltip className="pf-chatbot__tooltip" content="Chatbot options" position="bottom" {...tooltipProps}>
+    <Tooltip
+      className="pf-chatbot__tooltip"
+      content="Chatbot options"
+      position="bottom"
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+      {...tooltipProps}
+    >
       <MenuToggle
         className="pf-chatbot__button--toggle-options"
         variant="plain"

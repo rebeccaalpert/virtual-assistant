@@ -65,7 +65,12 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   const icon = isChatbotVisible ? <AngleDownIcon data-testid={openIconTestId} /> : closedIcon;
 
   return (
-    <Tooltip content={tooltipLabel} {...tooltipProps}>
+    <Tooltip
+      content={tooltipLabel}
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+      {...tooltipProps}
+    >
       <Button
         className={`pf-chatbot__button ${isChatbotVisible ? 'pf-chatbot__button--active' : ''} ${isRound ? 'pf-chatbot__button--round' : ''} ${className ? className : ''}`}
         variant="plain"
