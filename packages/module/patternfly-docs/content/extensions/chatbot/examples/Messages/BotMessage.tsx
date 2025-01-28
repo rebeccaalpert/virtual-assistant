@@ -28,6 +28,8 @@ export const BotMessageExample: React.FunctionComponent = () => {
         return inlineCode;
       case 'link':
         return link;
+      case 'table':
+        return table;
       default:
         return;
     }
@@ -125,6 +127,15 @@ _Italic text, formatted with single underscores_
 
   const inlineCode = `Here is an inline code - \`() => void\``;
 
+  const table = `
+
+ | Version | Release Date |
+ |-|-|
+ | Version 2.5 | Cell 2 |
+ | Version 2.4 | Cell 4 |
+
+ `;
+
   return (
     <>
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`Text-based message from a bot named "Bot"`} />
@@ -215,6 +226,13 @@ _Italic text, formatted with single underscores_
             name="bot-message-type"
             label="More complex list"
             id="more-complex-list"
+          />
+          <Radio
+            isChecked={variant === 'table'}
+            onChange={() => setVariant('table')}
+            name="bot-message-type"
+            label="Table"
+            id="table"
           />
         </FormGroup>
       </Form>

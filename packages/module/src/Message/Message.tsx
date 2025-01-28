@@ -29,6 +29,12 @@ import { QuickStart, QuickstartAction } from './QuickStarts/types';
 import QuickResponse from './QuickResponse/QuickResponse';
 import UserFeedback, { UserFeedbackProps } from './UserFeedback/UserFeedback';
 import UserFeedbackComplete, { UserFeedbackCompleteProps } from './UserFeedback/UserFeedbackComplete';
+import TableMessage from './TableMessage/TableMessage';
+import TrMessage from './TableMessage/TrMessage';
+import TdMessage from './TableMessage/TdMessage';
+import TbodyMessage from './TableMessage/TbodyMessage';
+import TheadMessage from './TableMessage/TheadMessage';
+import ThMessage from './TableMessage/ThMessage';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -109,6 +115,10 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   isLiveRegion?: boolean;
   /** Ref applied to message  */
   innerRef?: React.Ref<HTMLDivElement>;
+  tableProps?: {
+    'aria-label'?: string;
+    className?: string;
+  };
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
@@ -133,6 +143,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   userFeedbackComplete,
   isLiveRegion = true,
   innerRef,
+  tableProps,
   ...props
 }: MessageProps) => {
   let avatarClassName;
@@ -187,16 +198,27 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                       {children}
                     </CodeBlockMessage>
                   ),
-                  ul: UnorderedListMessage,
-                  ol: (props) => <OrderedListMessage {...props} />,
-                  li: ListItemMessage,
                   h1: (props) => <TextMessage component={ContentVariants.h1} {...props} />,
                   h2: (props) => <TextMessage component={ContentVariants.h2} {...props} />,
                   h3: (props) => <TextMessage component={ContentVariants.h3} {...props} />,
                   h4: (props) => <TextMessage component={ContentVariants.h4} {...props} />,
                   h5: (props) => <TextMessage component={ContentVariants.h5} {...props} />,
                   h6: (props) => <TextMessage component={ContentVariants.h6} {...props} />,
-                  blockquote: (props) => <TextMessage component={ContentVariants.blockquote} {...props} />
+                  blockquote: (props) => <TextMessage component={ContentVariants.blockquote} {...props} />,
+                  ul: (props) => <UnorderedListMessage {...props} />,
+                  ol: (props) => <OrderedListMessage {...props} />,
+                  li: (props) => <ListItemMessage {...props} />,
+                  table: (props) => <TableMessage {...props} {...tableProps} />,
+                  tbody: (props) => <TbodyMessage {...props} />,
+                  thead: (props) => <TheadMessage {...props} />,
+                  tr: (props) => <TrMessage {...props} />,
+                  td: (props) => {
+                    // Conflicts with Td type
+                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                    const { width, ...rest } = props;
+                    return <TdMessage {...rest} />;
+                  },
+                  th: (props) => <ThMessage {...props} />
                 }}
                 remarkPlugins={[remarkGfm]}
               >

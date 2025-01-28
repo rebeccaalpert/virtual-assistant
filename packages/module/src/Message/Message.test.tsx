@@ -88,6 +88,55 @@ const HEADING = `
 const BLOCK_QUOTES = `> Blockquotes can also be nested...
 >> ...by using additional greater-than signs (>) right next to each other...
 > > > ...or with spaces between each sign.`;
+const TABLE = `
+
+ | Column 1 | Column 2 |
+ |-|-|
+ | Cell 1 | Cell 2 |
+ | Cell 3 | Cell 4 |
+
+ `;
+
+const ONE_COLUMN_TABLE = `
+
+ | Column 1 |
+ |-|
+ | Cell 1 | 
+ | Cell 2 |
+
+ `;
+
+const ONE_CELL_TABLE = `
+
+ | Column 1 |
+ |-|
+ | Cell 1 | 
+
+ `;
+
+const HEADERLESS_TABLE = `
+
+ | |
+ |-|
+ | Cell 1 | 
+
+ `;
+
+const CHILDLESS_TABLE = `
+
+ | Column 1 |
+ |-|
+ | | 
+
+ `;
+
+const EMPTY_TABLE = `
+
+ | |
+ |-|
+ | | 
+
+ `;
 
 const checkListItemsRendered = () => {
   const items = ['Item 1', 'Item 2', 'Item 3'];
@@ -527,5 +576,79 @@ describe('Message', () => {
     expect(screen.getByRole('heading', { name: /h4 Heading/i })).toBeTruthy();
     expect(screen.getByRole('heading', { name: /h5 Heading/i })).toBeTruthy();
     expect(screen.getByRole('heading', { name: /h6 Heading/i })).toBeTruthy();
+  });
+  it('should render table correctly', () => {
+    render(<Message avatar="./img" role="user" name="User" content={TABLE} />);
+    expect(screen.getByRole('row', { name: /Column 1 Column 2/i })).toBeTruthy();
+    expect(screen.getByRole('row', { name: /Cell 1 Cell 2/i })).toBeTruthy();
+    expect(screen.getByRole('row', { name: /Cell 3 Cell 4/i })).toBeTruthy();
+    expect(screen.getByRole('columnheader', { name: /Column 1/i })).toBeTruthy();
+    expect(screen.getByRole('columnheader', { name: /Column 2/i })).toBeTruthy();
+    expect(screen.getByRole('cell', { name: /Cell 1/i })).toBeTruthy();
+    expect(screen.getByRole('cell', { name: /Cell 2/i })).toBeTruthy();
+    expect(screen.getByRole('cell', { name: /Cell 3/i })).toBeTruthy();
+    expect(screen.getByRole('cell', { name: /Cell 4/i })).toBeTruthy();
+  });
+  it('should render table data labels correctly for mobile breakpoint', () => {
+    render(<Message avatar="./img" role="user" name="User" content={TABLE} />);
+    expect(screen.getByRole('row', { name: /Cell 1 Cell 2/i })).toHaveAttribute('extraHeaders', 'Column 1,Column 2');
+    expect(screen.getByRole('row', { name: /Cell 3 Cell 4/i })).toHaveAttribute('extraHeaders', 'Column 1,Column 2');
+    expect(screen.getByRole('cell', { name: /Cell 1/i })).toHaveAttribute('data-label', 'Column 1');
+    expect(screen.getByRole('cell', { name: /Cell 2/i })).toHaveAttribute('data-label', 'Column 2');
+    expect(screen.getByRole('cell', { name: /Cell 3/i })).toHaveAttribute('data-label', 'Column 1');
+    expect(screen.getByRole('cell', { name: /Cell 4/i })).toHaveAttribute('data-label', 'Column 2');
+  });
+  it('should render table data labels correctly for mobile breakpoint for one column table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={ONE_COLUMN_TABLE} />);
+    expect(screen.getByRole('row', { name: /Cell 1/i })).toHaveAttribute('extraHeaders', 'Column 1');
+    expect(screen.getByRole('row', { name: /Cell 2/i })).toHaveAttribute('extraHeaders', 'Column 1');
+    expect(screen.getByRole('cell', { name: /Cell 1/i })).toHaveAttribute('data-label', 'Column 1');
+    expect(screen.getByRole('cell', { name: /Cell 2/i })).toHaveAttribute('data-label', 'Column 1');
+  });
+  it('should render table data labels correctly for mobile breakpoint for one cell table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={ONE_CELL_TABLE} />);
+    expect(screen.getByRole('row', { name: /Cell 1/i })).toHaveAttribute('extraHeaders', 'Column 1');
+    expect(screen.getByRole('cell', { name: /Cell 1/i })).toHaveAttribute('data-label', 'Column 1');
+  });
+  it('should render table data labels correctly for mobile breakpoint for headerless', () => {
+    render(<Message avatar="./img" role="user" name="User" content={HEADERLESS_TABLE} />);
+    expect(screen.getByRole('row', { name: /Cell 1/i })).toHaveAttribute('extraHeaders', '');
+    expect(screen.getByRole('cell', { name: /Cell 1/i })).not.toHaveAttribute('data-label');
+  });
+  it('should render table data labels correctly for mobile breakpoint for childless', () => {
+    render(<Message avatar="./img" role="user" name="User" content={CHILDLESS_TABLE} />);
+    expect(screen.getByRole('cell')).not.toHaveAttribute('extraHeaders', 'Column 1');
+  });
+  it('should render table data labels correctly for mobile breakpoint for empty', () => {
+    render(<Message avatar="./img" role="user" name="User" content={EMPTY_TABLE} />);
+    expect(screen.getByRole('cell')).not.toHaveAttribute('extraHeaders', '');
+  });
+  it('should render table aria label correctly for long table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing Column 1 and Column 2/i })).toBeTruthy();
+  });
+  it('should render table aria label correctly for one column table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={ONE_COLUMN_TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing Column 1/i })).toBeTruthy();
+  });
+  it('should render table aria label correctly for one cell table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={ONE_CELL_TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing Column 1/i })).toBeTruthy();
+  });
+  it('should render table aria label correctly for headerless table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={HEADERLESS_TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing some data/i })).toBeTruthy();
+  });
+  it('should render table aria label correctly for empty table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={EMPTY_TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing some data/i })).toBeTruthy();
+  });
+  it('should render table aria label correctly for childless table', () => {
+    render(<Message avatar="./img" role="user" name="User" content={CHILDLESS_TABLE} />);
+    expect(screen.getByRole('grid', { name: /Table describing Column 1/i })).toBeTruthy();
+  });
+  it('should render custom table aria label correctly', () => {
+    render(<Message avatar="./img" role="user" name="User" content={TABLE} tableProps={{ 'aria-label': 'Test' }} />);
+    expect(screen.getByRole('grid', { name: /Test/i })).toBeTruthy();
   });
 });
