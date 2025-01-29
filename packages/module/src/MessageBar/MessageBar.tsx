@@ -109,6 +109,35 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     }
   };
 
+  // Needed because handleInput function relies on innerText in order to preserve markdown spacing
+  // This means we also receive HTML styles, unfortunately
+  // onPaste is a workaround so we don't display pasted HTML styles
+  const onPaste = (event) => {
+    event.preventDefault();
+    console.log(event);
+    console.log(event.clipboardData.getData('text'));
+    let rawText = event.clipboardData.getData('text');
+    //const regex = /<(?!(\/\s*)?(b|i|em|strong|u)[>,\s])([^>])*>/g;
+    const regex = /<style="*"?('')/g;
+    rawText = rawText.replace(regex, '');
+    const sanitizedText = DOMPurify.sanitize(rawText);
+    setShowPlaceholder(false);
+    setMessage(sanitizedText);
+    onChange && onChange(event, sanitizedText);
+
+    // this inserts the new text and adjusts the cursor to be in the correct spot
+    const selection = document.getSelection();
+    if (!selection) {
+      return;
+    }
+    const range = selection.getRangeAt(0);
+    range.deleteContents();
+    range.insertNode(new Text(sanitizedText));
+    range.collapse(); // resets selection
+    selection.removeAllRanges(); // moves carat after inserted text
+    selection.addRange(range); // shows the carat
+  };
+
   // Handle sending message
   const handleSend = React.useCallback(() => {
     setMessage((m) => {
@@ -227,6 +256,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           aria-label={placeholder}
           ref={textareaRef}
           onKeyDown={handleKeyDown}
+          onPaste={onPaste}
           {...props}
         />
       </div>
