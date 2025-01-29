@@ -34,6 +34,7 @@
   .pf-chatbot__message-text {
     background-color: var(--pf-t--global--color--brand--default);
     color: var(--pf-t--global--text--color--on-brand--default);
+    --pf-v6-c-content--Color: var(--pf-t--global--text--color--on-brand--default);
     padding: var(--pf-t--global--spacer--sm);
 
     .pf-v6-c-content,

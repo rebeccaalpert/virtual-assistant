@@ -2,7 +2,7 @@ import React from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import userAvatar from './user_avatar.svg';
-import { FormGroup, Radio } from '@patternfly/react-core';
+import { Form, FormGroup, Radio } from '@patternfly/react-core';
 
 export const UserMessageExample: React.FunctionComponent = () => {
   const [variant, setVariant] = React.useState('code');
@@ -80,20 +80,20 @@ export default MessageLoading;
 `;
 
   const emphasis = `
-**This is bold text**
+**Bold text, formatted with double asterisks**
 
-__This is bold text__
+__Bold text, formatted with double underscores
 
-*This is italic text*
+*Italic text, formatted with single asterisks*
 
-_This is italic text_
+_Italic text, formatted with single underscores_
 
 ~~Strikethrough~~
 `;
 
   const blockQuotes = `> Blockquotes can also be nested...
->> ...by using additional greater-than signs right next to each other...
-> > > ...or with spaces between arrows.`;
+>> ...by using additional greater-than signs (>) right next to each other...
+> > > ...or with spaces between each sign.`;
 
   const orderedList = `
   Here is an ordered list:
@@ -141,71 +141,73 @@ _This is italic text_
         avatar={userAvatar}
         avatarProps={{ isBordered: true }}
       />
-      <FormGroup role="radiogroup" isInline fieldId="user-message-type" label="Message type">
-        <Radio
-          isChecked={variant === 'code'}
-          onChange={() => setVariant('code')}
-          name="user-message-type"
-          label="Code"
-          id="user-code"
-        />
-        <Radio
-          isChecked={variant === 'inlineCode'}
-          onChange={() => setVariant('inlineCode')}
-          name="user-message-type"
-          label="Inline code"
-          id="user-inline-code"
-        />
-        <Radio
-          isChecked={variant === 'heading'}
-          onChange={() => setVariant('heading')}
-          name="user-message-type"
-          label="Heading"
-          id="user-heading"
-        />
-        <Radio
-          isChecked={variant === 'blockQuotes'}
-          onChange={() => setVariant('blockQuotes')}
-          name="user-message-type"
-          label="Block quote"
-          id="user-block-quotes"
-        />
-        <Radio
-          isChecked={variant === 'emphasis'}
-          onChange={() => setVariant('emphasis')}
-          name="user-message-type"
-          label="Emphasis"
-          id="user-emphasis"
-        />
-        <Radio
-          isChecked={variant === 'link'}
-          onChange={() => setVariant('link')}
-          name="user-message-type"
-          label="Link"
-          id="user-link"
-        />
-        <Radio
-          isChecked={variant === 'unorderedList'}
-          onChange={() => setVariant('unorderedList')}
-          name="user-message-type"
-          label="Unordered list"
-          id="user-unordered-list"
-        />
-        <Radio
-          isChecked={variant === 'orderedList'}
-          onChange={() => setVariant('orderedList')}
-          name="user-message-type"
-          label="Ordered list"
-          id="user-ordered-list"
-        />
-        <Radio
-          isChecked={variant === 'moreComplexList'}
-          onChange={() => setVariant('moreComplexList')}
-          name="user-message-type"
-          label="More complex list"
-          id="user-more-complex-list"
-        />
-      </FormGroup>
+      <Form>
+        <FormGroup role="radiogroup" isInline fieldId="user-message-type" label="Message content type">
+          <Radio
+            isChecked={variant === 'code'}
+            onChange={() => setVariant('code')}
+            name="user-message-type"
+            label="Code"
+            id="user-code"
+          />
+          <Radio
+            isChecked={variant === 'inlineCode'}
+            onChange={() => setVariant('inlineCode')}
+            name="user-message-type"
+            label="Inline code"
+            id="user-inline-code"
+          />
+          <Radio
+            isChecked={variant === 'heading'}
+            onChange={() => setVariant('heading')}
+            name="user-message-type"
+            label="Heading"
+            id="user-heading"
+          />
+          <Radio
+            isChecked={variant === 'blockQuotes'}
+            onChange={() => setVariant('blockQuotes')}
+            name="user-message-type"
+            label="Block quote"
+            id="user-block-quotes"
+          />
+          <Radio
+            isChecked={variant === 'emphasis'}
+            onChange={() => setVariant('emphasis')}
+            name="user-message-type"
+            label="Emphasis"
+            id="user-emphasis"
+          />
+          <Radio
+            isChecked={variant === 'link'}
+            onChange={() => setVariant('link')}
+            name="user-message-type"
+            label="Link"
+            id="user-link"
+          />
+          <Radio
+            isChecked={variant === 'unorderedList'}
+            onChange={() => setVariant('unorderedList')}
+            name="user-message-type"
+            label="Unordered list"
+            id="user-unordered-list"
+          />
+          <Radio
+            isChecked={variant === 'orderedList'}
+            onChange={() => setVariant('orderedList')}
+            name="user-message-type"
+            label="Ordered list"
+            id="user-ordered-list"
+          />
+          <Radio
+            isChecked={variant === 'moreComplexList'}
+            onChange={() => setVariant('moreComplexList')}
+            name="user-message-type"
+            label="More complex list"
+            id="user-more-complex-list"
+          />
+        </FormGroup>
+      </Form>
       <Message name="User" role="user" content={renderContent()} avatar={userAvatar} />
     </>
   );
