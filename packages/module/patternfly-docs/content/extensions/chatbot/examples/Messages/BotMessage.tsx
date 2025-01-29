@@ -82,7 +82,7 @@ export default MessageLoading;
   const emphasis = `
 **Bold text, formatted with double asterisks**
 
-__Bold text, formatted with double underscores
+__Bold text, formatted with double underscores__
 
 *Italic text, formatted with single asterisks*
 
