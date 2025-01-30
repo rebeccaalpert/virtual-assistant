@@ -2,15 +2,18 @@ import React from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import userAvatar from './user_avatar.svg';
-import { Badge, Button, Card, CardBody, CardFooter, CardTitle } from '@patternfly/react-core';
+import { Alert, Badge, Button, Card, CardBody, CardFooter, CardTitle } from '@patternfly/react-core';
 
 const UserActionEndContent = () => {
   // eslint-disable-next-line no-console
   const onClick = () => console.log('custom button click');
   return (
-    <Button variant="primary" ouiaId="Primary" onClick={onClick}>
-      End content button
-    </Button>
+    <React.Fragment>
+      <Button variant="secondary" ouiaId="Secondary" onClick={onClick}>
+        End content button
+      </Button>
+      <Alert variant="danger" title="Danger alert title" ouiaId="DangerAlert" />
+    </React.Fragment>
   );
 };
 
