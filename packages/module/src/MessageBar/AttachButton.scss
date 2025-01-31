@@ -8,13 +8,13 @@
   height: 3rem;
 
   .pf-v6-c-button__icon {
-    color: var(--pf-t--chatbot--icon--fill);
+    color: var(--pf-t--global--icon--color--subtle);
   }
 
   // Interactive states
   &:hover {
     .pf-v6-c-button__icon {
-      color: var(--pf-t--chatbot--icon--fill--hover);
+      color: var(--pf-t--global--icon--color--regular);
     }
   }
 

@@ -8,31 +8,31 @@
   height: 3rem;
 
   .pf-v6-c-button__icon {
-    color: var(--pf-t--chatbot--icon--fill);
+    color: var(--pf-t--global--icon--color--subtle);
   }
 
   // Interactive states
   &:hover,
   &:focus {
     .pf-v6-c-button__icon {
-      color: var(--pf-t--chatbot--icon--fill--hover);
+      color: var(--pf-t--global--icon--color--regular);
     }
   }
 
   // Active state (while recording voice)
   &--active {
     background-color: var(--pf-t--global--color--brand--clicked);
-    animation: motionMicButton var(--pf-t--chatbot--timing-function) calc(var(--pf-t--global--motion--duration--md) * 8)
-      infinite;
+    animation: motionMicButton var(--pf-t--global--motion--timing-function--accelerate)
+      calc(var(--pf-t--global--motion--duration--md) * 8) infinite;
 
     .pf-v6-c-button__icon {
-      color: var(--pf-t--global--icon--color--inverse);
+      color: var(--pf-t--global--icon--color--on-brand--default);
     }
 
     &:hover,
     &:focus {
       .pf-v6-c-button__icon {
-        color: var(--pf-t--global--icon--color--inverse);
+        color: var(--pf-t--global--icon--color--on-brand--default);
       }
     }
   }
