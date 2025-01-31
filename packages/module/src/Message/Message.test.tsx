@@ -395,13 +395,17 @@ describe('Message', () => {
     render(<Message avatar="./img" role="user" name="User" content={CODE_MESSAGE} />);
     expect(screen.getByText('Here is some YAML code:')).toBeTruthy();
     expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
-    expect(screen.getByText(/apiVersion: helm.openshift.io\/v1beta1/i)).toBeTruthy();
+    expect(screen.getByText(/yaml/)).toBeTruthy();
+    expect(screen.getByText(/apiVersion:/i)).toBeTruthy();
+    expect(screen.getByText(/helm.openshift.io\/v1beta1/i)).toBeTruthy();
     expect(screen.getByText(/metadata:/i)).toBeTruthy();
-    expect(screen.getByText(/name: azure-sample-repo0oooo00ooo/i)).toBeTruthy();
+    expect(screen.getByText(/name:/i)).toBeTruthy();
+    expect(screen.getByText(/azure-sample-repo0oooo00ooo/i)).toBeTruthy();
     expect(screen.getByText(/spec/i)).toBeTruthy();
     expect(screen.getByText(/connectionConfig:/i)).toBeTruthy();
+    expect(screen.getByText(/url:/i)).toBeTruthy();
     expect(
-      screen.getByText(/url: https:\/\/raw.githubusercontent.com\/Azure-Samples\/helm-charts\/master\/docs/i)
+      screen.getByText(/https:\/\/raw.githubusercontent.com\/Azure-Samples\/helm-charts\/master\/docs/i)
     ).toBeTruthy();
   });
   it('can click copy code button', async () => {

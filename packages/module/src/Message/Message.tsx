@@ -182,7 +182,11 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
               <Markdown
                 components={{
                   p: (props) => <TextMessage component={ContentVariants.p} {...props} />,
-                  code: ({ children }) => <CodeBlockMessage {...codeBlockProps}>{children}</CodeBlockMessage>,
+                  code: ({ children, ...props }) => (
+                    <CodeBlockMessage {...props} {...codeBlockProps}>
+                      {children}
+                    </CodeBlockMessage>
+                  ),
                   ul: UnorderedListMessage,
                   ol: (props) => <OrderedListMessage {...props} />,
                   li: ListItemMessage,
