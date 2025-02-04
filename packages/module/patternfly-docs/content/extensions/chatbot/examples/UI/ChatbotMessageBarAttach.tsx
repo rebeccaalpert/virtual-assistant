@@ -126,7 +126,7 @@ export const ChatbotMessageBarDefaultAttachExample: React.FunctionComponent = ()
   return (
     <>
       {/* this is required for react-dropzone to work in Safari and Firefox */}
-      <input {...getInputProps()} />
+      <input {...getInputProps()} hidden />
       <MessageBar
         onSendMessage={handleSend}
         attachMenuProps={{
