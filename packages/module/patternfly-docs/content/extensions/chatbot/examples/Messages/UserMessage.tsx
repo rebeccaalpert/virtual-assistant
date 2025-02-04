@@ -28,6 +28,8 @@ export const UserMessageExample: React.FunctionComponent = () => {
         return moreComplexList;
       case 'link':
         return link;
+      case 'table':
+        return table;
       default:
         return;
     }
@@ -125,6 +127,15 @@ _Italic text, formatted with single underscores_
 
   const inlineCode = `Here is an inline code - \`() => void\``;
 
+  const table = `
+
+ | Version | GA date | Full support end date | Maintenance support end date | User role 
+ |-|-|-|-|-|
+ | 2.5 | September 30, 2024 | September 30, 2025| September 30, 2025 | Administrator |
+ | 2.5 | June 27, 2023 | June 30, 2024 | June 30, 2024 | Editor |
+ 
+ `;
+
   return (
     <>
       <Message
@@ -205,6 +216,13 @@ _Italic text, formatted with single underscores_
             name="user-message-type"
             label="More complex list"
             id="user-more-complex-list"
+          />
+          <Radio
+            isChecked={variant === 'table'}
+            onChange={() => setVariant('table')}
+            name="user-message-type"
+            label="Table"
+            id="user-table"
           />
         </FormGroup>
       </Form>

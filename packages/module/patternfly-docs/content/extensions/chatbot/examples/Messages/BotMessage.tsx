@@ -129,11 +129,11 @@ _Italic text, formatted with single underscores_
 
   const table = `
 
- | Version | Release Date |
- |-|-|
- | Version 2.5 | Cell 2 |
- | Version 2.4 | Cell 4 |
-
+ | Version | GA date | Full support end date | Maintenance support end date | User role 
+ |-|-|-|-|-|
+ | 2.5 | September 30, 2024 | September 30, 2025| September 30, 2025 | Administrator |
+ | 2.5 | June 27, 2023 | June 30, 2024 | June 30, 2024 | Editor |
+ 
  `;
 
   return (
