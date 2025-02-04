@@ -17,7 +17,7 @@ import "./images.css"
 1. **Container:** The window that contains the entire ChatBot experience and all of its components.
 1. **Header:** A persistent region at the top of the ChatBot window that contains navigation, branding, and actions.
 1. **Navigation:** A menu that contains navigational options, including access to the conversation history.
-1. **Options menu:** Contains display options (more details in the [ChatBot variations section](#variations)) and other settings (more details in the [ChatBOt settings and preferences section](#chatbot-settings-and-preferences)).
+1. **Options menu:** A menu that contains settings that are relevant to your product. This typically includes display options (more details in the [ChatBot variations section](#variations)) and other general settings (more details in the [ChatBot settings and preferences section](#chatbot-settings-and-preferences)).
 1. **Messages:** Elements of the conversation between a ChatBot and user. More details can be found in the [message guidelines](#messages).
 1. **Attachments:** Details about files that a user has uploaded to the ChatBot.
 1. **Footer:** A persistent region at the bottom of the ChatBot window that contains the message bar and the footnote.
