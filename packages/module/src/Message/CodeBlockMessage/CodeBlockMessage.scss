@@ -40,11 +40,11 @@
     }
 
     .pf-chatbot__button--copy.pf-v6-c-button {
-      color: var(--pf-t--color--white);
+      color: var(--pf-t--color--white); // same in light + dark theme
 
       &:hover,
       &:focus {
-        color: var(--pf-t--color--white);
+        color: var(--pf-t--color--white); // same in light + dark theme
       }
     }
   }
@@ -77,6 +77,6 @@
 }
 
 .pf-chatbot__message-inline-code {
-  background-color: var(--pf-t--chatbot--code--background);
+  background-color: var(--pf-t--global--background--color--tertiary--default);
   font-size: var(--pf-t--global--font--size--body--default);
 }
