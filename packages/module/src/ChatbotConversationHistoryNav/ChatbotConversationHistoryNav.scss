@@ -26,7 +26,7 @@
   }
   .pf-chatbot__menu-item-header > .pf-v6-c-menu__group-title {
     color: var(--pf-t--global--text--color--subtle);
-    font-weight: 500;
+    font-weight: var(--pf-t--global--font--weight--body--bold);
     font-size: var(--pf-t--global--icon--size--font--sm);
     --pf-v6-c-menu__group-title--PaddingInlineStart: var(--pf-t--global--spacer--sm);
     --pf-v6-c-menu__group-title--PaddingInlineEnd: var(--pf-t--global--spacer--sm);
@@ -133,6 +133,13 @@
     display: flex;
     flex-direction: column;
     height: 70vh;
+  }
+
+  // Resizable drawer spacing is different - needs manual adjustment for gaps between buttons, inputs, etc.
+  .pf-v6-c-drawer__panel.pf-m-resizable {
+    .pf-v6-c-drawer__panel-main {
+      row-gap: var(--pf-v6-c-drawer__panel--RowGap);
+    }
   }
 }
 

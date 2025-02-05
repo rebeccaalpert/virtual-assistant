@@ -22,9 +22,11 @@ export interface ResponseActionButtonProps {
   tooltipProps?: TooltipProps;
   /** Whether button is in clicked state */
   isClicked?: boolean;
+  /** Ref applied to button  */
+  innerRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonProps> = ({
+export const ResponseActionButtonBase: React.FunctionComponent<ResponseActionButtonProps> = ({
   ariaLabel,
   clickedAriaLabel = ariaLabel,
   className,
@@ -34,7 +36,9 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
   tooltipContent,
   clickedTooltipContent = tooltipContent,
   tooltipProps,
-  isClicked = false
+  isClicked = false,
+  innerRef,
+  ...props
 }) => {
   const generateAriaLabel = () => {
     if (ariaLabel) {
@@ -53,6 +57,8 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
       exitDelay={tooltipProps?.exitDelay || 0}
       distance={tooltipProps?.distance || 8}
       animationDuration={tooltipProps?.animationDuration || 0}
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
       {...tooltipProps}
     >
       <Button
@@ -67,9 +73,15 @@ export const ResponseActionButton: React.FunctionComponent<ResponseActionButtonP
         isDisabled={isDisabled}
         onClick={onClick}
         size="sm"
+        ref={innerRef}
+        {...props}
       ></Button>
     </Tooltip>
   );
 };
+
+const ResponseActionButton = React.forwardRef((props: ResponseActionButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+  <ResponseActionButtonBase innerRef={ref} {...props} />
+));
 
 export default ResponseActionButton;

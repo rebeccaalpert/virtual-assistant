@@ -10,6 +10,7 @@
 @import './ChatbotToggle/ChatbotToggle';
 @import './ChatbotWelcomePrompt/ChatbotWelcomePrompt';
 @import './CodeModal/CodeModal';
+@import './Compare/Compare';
 @import './FileDetails/FileDetails';
 @import './FileDetailsLabel/FileDetailsLabel';
 @import './FileDropZone/FileDropZone';
@@ -20,6 +21,7 @@
 @import './Message/MessageLoading';
 @import './Message/QuickStarts/QuickStartTile';
 @import './Message/QuickResponse/QuickResponse';
+@import './Message/UserFeedback/UserFeedback';
 @import './MessageBar/MessageBar';
 @import './MessageBox/MessageBox';
 @import './MessageBox/JumpButton';
@@ -48,8 +50,6 @@
 
   --pf-t--chatbot-toggle--background--hover: var(--pf-t--color--gray--70);
 
-  --pf-t--chatbot--timing-function: cubic-bezier(0.77, 0, 0.175, 1);
-
   --pf-t--chatbot--blue-icon--background--color--hover: rgba(
     146,
     197,
@@ -67,8 +67,6 @@
   --pf-t--chatbot--background: var(--pf-t--global--background--color--secondary--default);
   --pf-t--chatbot--border: var(--pf-t--global--border--color--default);
 
-  --pf-t--chatbot--icon--fill: var(--pf-t--global--icon--color--subtle);
-  --pf-t--chatbot--icon--fill--hover: var(--pf-t--global--icon--color--regular);
   --pf-t--chatbot--icon--fill--active: var(--pf-t--global--text--color--regular);
 
   --pf-t--chatbot--blue-icon--fill: var(--pf-t--global--color--brand--default);

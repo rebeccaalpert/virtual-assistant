@@ -38,7 +38,7 @@
     border: none;
     --pf-v6-c-code-editor__tab--BorderStartEndRadius: 0;
     border-start-start-radius: var(--pf-t--global--border--radius--small);
-    --pf-t--global--font--weight--body--default: 500;
+    --pf-t--global--font--weight--body--default: var(--pf-t--global--font--weight--body--bold);
   }
   .pf-v6-c-code-editor__tab-icon {
     display: none;

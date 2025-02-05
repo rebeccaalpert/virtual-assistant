@@ -102,11 +102,9 @@ The "embedded" display mode is meant to be used within a [PatternFly page](/comp
 ### Content and message box
 
 The `<ChatbotContent>` component is the container that is placed within the `<Chatbot>`, between the [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) and [`<ChatbotFooter>`.](/patternfly-ai/chatbot/ui#footer)
-<br />
-<br />
+
 `<ChatbotContent>` usually contains a `<ChatbotMessageBox>` for displaying messages.
-<br />
-<br />
+
 Your code structure should look like this:
 
 ```noLive
@@ -144,8 +142,7 @@ To provide users with a more specific direction, you can also include optional w
 ### Skip to content
 
 To provide page context, we recommend using a "Skip to chatbot" button. This allows you to skip past other content on the page, directly to the ChatBot content, using a [PatternFly skip to content component](/components/skip-to-content). To display this button, you must tab into the main window.
-<br />
-<br />
+
 When using default or docked modes, we recommend putting focus on the toggle if the ChatBot is closed, and the ChatBot when it is open. For fullscreen and embedded, we recommend putting the focus on the first focusable item in the ChatBot, such as a menu toggle. This can be seen in our more fully-featured demos for the [default, embedded, and fullscreen ChatBot](/patternfly-ai/chatbot/overview/demo#basic-chatbot) and the [embedded ChatBot](/patternfly-ai/chatbot/overview/demo#embedded-chatbot).
 
 ```js file="./SkipToContent.tsx" isFullscreen
@@ -368,6 +365,16 @@ Actions can be added to conversations with `menuItems`. Optionally, you can also
 If you're showing a conversation that is already active, you can set the `activeItemId` prop on your `<ChatbotConversationHistoryNav>` to apply an active visual state.
 
 ```js file="./ChatbotHeaderDrawerWithSelection.tsx"
+
+```
+
+### Resizable drawer
+
+By default, the conversation history drawer has a fixed width (384px) and a focus trap. To provide users with more flexibility as they navigate their conversation history, or to better support embedded ChatBots on tablet-sized devices or smaller browser windows, you can instead make the drawer resizable. By default, even resizable drawers will still open to their full width on mobile devices.
+
+In this example, the drawer can be resized up to the max size of the parent and resized down to 200px wide. To customize this behavior further (including width, style, and focus behavior) use PatternFly [`<Drawer>` props](/components/drawer#props), [`<DrawerPanelContent>` props](/components/drawer/#drawerpanelcontent), or any other drawer subcomponents.
+
+```js file="./ChatbotHeaderDrawerResizable.tsx"
 
 ```
 

@@ -16,7 +16,7 @@
   }
   .pf-v6-c-button.pf-m-primary.pf-m-block,
   .pf-v6-c-button.pf-m-link.pf-m-block {
-    --pf-v6-c-button--FontWeight: 500;
+    --pf-v6-c-button--FontWeight: var(--pf-t--global--font--weight--body--bold);
   }
   .pf-v6-c-modal-box__footer {
     padding-block-start: var(--pf-t--global--spacer--xl);
