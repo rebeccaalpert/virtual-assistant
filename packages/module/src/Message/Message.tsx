@@ -35,6 +35,7 @@ import TdMessage from './TableMessage/TdMessage';
 import TbodyMessage from './TableMessage/TbodyMessage';
 import TheadMessage from './TableMessage/TheadMessage';
 import ThMessage from './TableMessage/ThMessage';
+import { TableProps } from '@patternfly/react-table';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -115,10 +116,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   isLiveRegion?: boolean;
   /** Ref applied to message  */
   innerRef?: React.Ref<HTMLDivElement>;
-  tableProps?: {
-    'aria-label'?: string;
-    className?: string;
-  };
+  tableProps?: TableProps;
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
