@@ -46,7 +46,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   return (
     <>
       {/* this is required for react-dropzone to work in Safari and Firefox */}
-      <input data-testid={inputTestId} {...getInputProps()} />
+      <input data-testid={inputTestId} {...getInputProps()} hidden />
       <Tooltip
         id="pf-chatbot__tooltip--attach"
         content={tooltipContent}

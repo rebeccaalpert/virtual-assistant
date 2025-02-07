@@ -209,7 +209,7 @@ export const AttachmentMenuDemo: React.FunctionComponent = () => {
   return (
     <>
       {/* this is required for react-dropzone to work in Safari and Firefox */}
-      <input {...getInputProps()} />
+      <input {...getInputProps()} hidden />
       <ChatbotToggle
         tooltipLabel="Chatbot"
         isChatbotVisible={chatbotVisible}
