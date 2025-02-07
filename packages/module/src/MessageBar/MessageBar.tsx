@@ -111,17 +111,14 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
 
   // Handle sending message
   const handleSend = React.useCallback(() => {
-    setMessage((m) => {
-      onSendMessage(m);
-      setMessage('');
-      if (textareaRef.current) {
-        textareaRef.current.innerText = '';
-        setShowPlaceholder(true);
-        textareaRef.current.blur();
-      }
-      return '';
-    });
-  }, [onSendMessage]);
+    onSendMessage(message);
+    if (textareaRef.current) {
+      textareaRef.current.innerText = '';
+      setShowPlaceholder(true);
+      textareaRef.current.blur();
+    }
+    setMessage('');
+  }, [onSendMessage, message]);
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
@@ -132,7 +129,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         }
       }
     },
-    [handleSend]
+    [handleSend, isSendButtonDisabled, handleStopButton]
   );
 
   const handleAttachMenuToggle = () => {
