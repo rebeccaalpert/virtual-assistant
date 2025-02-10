@@ -231,8 +231,7 @@ export const BasicDemo: React.FunctionComponent = () => {
                   {error}
                 </ChatbotAlert>
               )}
-              <ChatbotWelcomePrompt title="Hi, ChatBot User!"
-                    description="How can I help you today?" />
+              <ChatbotWelcomePrompt title="Hi, ChatBot User!" description="How can I help you today?" />
               {messages.map((message) => (
                 <Message key={message.name} {...message} />
               ))}

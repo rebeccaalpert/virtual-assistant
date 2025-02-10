@@ -113,7 +113,9 @@ describe('ResponseActions', () => {
       'pf-chatbot__button--response-action-clicked'
     );
     expect(goodBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
-    await userEvent.click(screen.getByText('I updated your account with those settings. You\'re ready to set up your first dashboard!'));
+    await userEvent.click(
+      screen.getByText("I updated your account with those settings. You're ready to set up your first dashboard!")
+    );
     expect(goodBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
     expect(badBtn).not.toHaveClass('pf-chatbot__button--response-action-clicked');
   });

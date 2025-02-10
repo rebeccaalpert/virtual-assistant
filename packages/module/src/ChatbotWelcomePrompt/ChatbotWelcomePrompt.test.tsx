@@ -7,15 +7,13 @@ import userEvent from '@testing-library/user-event';
 describe('ChatbotWelcomePrompt', () => {
   it('should render welcome prompt', () => {
     const { container } = render(
-      <ChatbotWelcomePrompt title="Hi, ChatBot User!"
-      description="How can I help you today?" />
+      <ChatbotWelcomePrompt title="Hi, ChatBot User!" description="How can I help you today?" />
     );
     expect(container).toMatchSnapshot();
   });
 
   it('should render correctly', () => {
-    render(<ChatbotWelcomePrompt title="Hi, ChatBot User!"
-      description="How can I help you today?" />);
+    render(<ChatbotWelcomePrompt title="Hi, ChatBot User!" description="How can I help you today?" />);
     expect(screen.getByText('Hi, ChatBot User!')).toBeTruthy();
     expect(screen.getByText('How can I help you today?')).toBeTruthy();
   });
@@ -33,8 +31,10 @@ describe('ChatbotWelcomePrompt', () => {
     render(
       <ChatbotWelcomePrompt
         title="Hi, ChatBot User!"
-                    description="How can I help you today?"
-        prompts={[{ title: 'Set up account', message: 'Choose the necessary settings and preferences for your account.' }]}
+        description="How can I help you today?"
+        prompts={[
+          { title: 'Set up account', message: 'Choose the necessary settings and preferences for your account.' }
+        ]}
       />
     );
     expect(screen.getByText('Choose the necessary settings and preferences for your account.')).toBeTruthy();
@@ -45,7 +45,13 @@ describe('ChatbotWelcomePrompt', () => {
       <ChatbotWelcomePrompt
         title="Hi, ChatBot User!"
         description="How can I help you today?"
-        prompts={[{ title: 'Set up account', message: 'Choose the necessary settings and preferences for your account.', onClick: spy }]}
+        prompts={[
+          {
+            title: 'Set up account',
+            message: 'Choose the necessary settings and preferences for your account.',
+            onClick: spy
+          }
+        ]}
       />
     );
     await userEvent.click(screen.getByRole('button', { name: /Set up account/i }));
