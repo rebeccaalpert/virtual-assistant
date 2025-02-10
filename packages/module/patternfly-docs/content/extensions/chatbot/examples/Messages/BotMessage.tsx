@@ -127,7 +127,12 @@ _Italic text, formatted with single underscores_
 
   return (
     <>
-      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`This is a text-based message from a bot named "Bot."`} />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content={`This is a text-based message from a bot named "Bot."`}
+      />
       <Message
         name="Bot"
         role="bot"

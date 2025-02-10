@@ -1,7 +1,7 @@
 import React from 'react';
 
 import ChatbotWelcomePrompt from '@patternfly/chatbot/dist/dynamic/ChatbotWelcomePrompt';
-import Checkbox from '@patternfly/react-core';
+import { Checkbox } from '@patternfly/react-core';
 
 export const ChatbotWelcomePromptExample: React.FunctionComponent = () => {
   const [showWelcomePrompts, setShowWelcomePrompts] = React.useState(true);
@@ -30,7 +30,7 @@ export const ChatbotWelcomePromptExample: React.FunctionComponent = () => {
       />
       <ChatbotWelcomePrompt
         title="Hi, ChatBot User!"
-                    description="How can I help you today?"
+        description="How can I help you today?"
         {...(showWelcomePrompts && { prompts: welcomePrompts })}
       />
     </>
