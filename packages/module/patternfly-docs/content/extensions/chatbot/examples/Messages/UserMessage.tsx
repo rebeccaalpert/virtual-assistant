@@ -226,7 +226,15 @@ _Italic text, formatted with single underscores_
           />
         </FormGroup>
       </Form>
-      <Message name="User" role="user" content={renderContent()} avatar={userAvatar} />
+      <Message
+        name="User"
+        role="user"
+        content={renderContent()}
+        avatar={userAvatar}
+        tableProps={
+          variant === 'table' ? { 'aria-label': 'App information and user roles for user messages' } : undefined
+        }
+      />
     </>
   );
 };

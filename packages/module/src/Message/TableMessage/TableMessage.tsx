@@ -60,23 +60,17 @@ const TableMessage = ({ children, ...props }: TableProps & ExtraProps) => {
       return child;
     });
 
-  const generateAriaLabel = (arr: (string | undefined)[]) => {
-    const labels = arr.filter((item) => typeof item !== 'undefined');
-    if (labels.length === 0) {
-      return 'Table describing some data';
-    }
-    if (labels.length === 1) {
-      return `Table describing ${labels[0]}`;
-    }
-    const firstValues = labels.slice(0, labels.length - 1);
-    const lastValue = labels[labels.length - 1];
-    return `Table describing ${firstValues.join(', ') + ' and ' + lastValue}`;
-  };
+  if (!props['aria-label']) {
+    // eslint-disable-next-line no-console
+    console.warn(
+      'For accessibility reasons an aria-label should be specified for the Table via the <Message /> tableProps prop'
+    );
+  }
 
   return (
     // gridBreakPoint is so we show mobile-styled-PF table
     <Table
-      aria-label={props['aria-label'] ?? generateAriaLabel(headerTextValues)}
+      aria-label={props['aria-label']}
       gridBreakPoint="grid"
       className={`pf-chatbot__message-table ${className ? className : ''}`}
       {...rest}

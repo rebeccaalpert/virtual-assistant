@@ -116,7 +116,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   isLiveRegion?: boolean;
   /** Ref applied to message  */
   innerRef?: React.Ref<HTMLDivElement>;
-  tableProps?: TableProps;
+  /** Props for table message. It is important to include a detailed aria-label that describes the purpose of the table. */
+  tableProps?: Required<Pick<TableProps, 'aria-label'>> & TableProps;
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({

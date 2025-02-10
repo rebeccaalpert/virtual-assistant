@@ -236,7 +236,15 @@ _Italic text, formatted with single underscores_
           />
         </FormGroup>
       </Form>
-      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={renderContent()} />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content={renderContent()}
+        tableProps={
+          variant === 'table' ? { 'aria-label': 'App information and user roles for bot messages' } : undefined
+        }
+      />
     </>
   );
 };
