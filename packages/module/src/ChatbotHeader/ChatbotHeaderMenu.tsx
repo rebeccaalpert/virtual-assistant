@@ -27,7 +27,13 @@ const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = (
   tooltipContent = 'Menu'
 }: ChatbotHeaderMenuProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
-    <Tooltip content={tooltipContent} position="bottom" {...tooltipProps}>
+    <Tooltip
+      content={tooltipContent}
+      position="bottom"
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+      {...tooltipProps}
+    >
       <Button
         className="pf-chatbot__button--toggle-menu"
         variant="plain"

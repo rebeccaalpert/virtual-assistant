@@ -46,7 +46,7 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   return (
     <>
       {/* this is required for react-dropzone to work in Safari and Firefox */}
-      <input data-testid={inputTestId} {...getInputProps()} />
+      <input data-testid={inputTestId} {...getInputProps()} hidden />
       <Tooltip
         id="pf-chatbot__tooltip--attach"
         content={tooltipContent}
@@ -55,6 +55,8 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
         exitDelay={tooltipProps?.exitDelay || 0}
         distance={tooltipProps?.distance || 8}
         animationDuration={tooltipProps?.animationDuration || 0}
+        // prevents VO announcements of both aria label and tooltip
+        aria="none"
         {...tooltipProps}
       >
         <Button

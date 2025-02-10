@@ -76,9 +76,6 @@
   .pf-chatbot__header {
     background-color: var(--pf-t--chatbot--background);
   }
-  .pf-chatbot__header__divider {
-    display: none;
-  }
 }
 
 // ============================================================================
@@ -95,7 +92,7 @@
   .pf-v6-c-button__icon,
   .pf-v6-c-menu-toggle__icon,
   .pf-v6-c-icon__content {
-    color: var(--pf-t--chatbot--icon--fill);
+    color: var(--pf-t--global--icon--color--subtle);
   }
 
   .pf-v6-c-button__icon,
@@ -111,7 +108,7 @@
     .pf-v6-c-button__icon,
     .pf-v6-c-menu-toggle__icon,
     .pf-v6-c-icon__content {
-      color: var(--pf-t--chatbot--icon--fill--hover);
+      color: var(--pf-t--global--icon--color--regular);
     }
   }
 }

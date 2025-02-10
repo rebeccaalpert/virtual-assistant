@@ -44,11 +44,6 @@
 // Chatbot Display Mode - Docked
 // ============================================================================
 .pf-chatbot--docked {
-  .pf-chatbot__footer {
-    .pf-v6-c-divider {
-      display: none;
-    }
-  }
   .pf-chatbot__footer-container {
     padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--lg);
   }

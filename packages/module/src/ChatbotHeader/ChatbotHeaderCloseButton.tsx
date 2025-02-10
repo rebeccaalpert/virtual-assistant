@@ -27,7 +27,13 @@ const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseBu
   tooltipContent = 'Close'
 }: ChatbotHeaderCloseButtonProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
-    <Tooltip content={tooltipContent} position="bottom" {...tooltipProps}>
+    <Tooltip
+      content={tooltipContent}
+      position="bottom"
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+      {...tooltipProps}
+    >
       <Button
         className="pf-chatbot__button--toggle-menu"
         variant="plain"

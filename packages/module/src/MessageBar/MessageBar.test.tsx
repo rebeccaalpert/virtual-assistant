@@ -1,11 +1,11 @@
-import React from 'react';
-import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
-import userEvent from '@testing-library/user-event';
-import { MessageBar } from './MessageBar';
+import React from 'react';
 import { DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
-import SourceDetailsMenuItem from '../SourceDetailsMenuItem';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon } from '@patternfly/react-icons';
+import { render, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
+import SourceDetailsMenuItem from '../SourceDetailsMenuItem';
+import { MessageBar } from './MessageBar';
 
 const ATTACH_MENU_ITEMS = [
   <DropdownList key="list-1">

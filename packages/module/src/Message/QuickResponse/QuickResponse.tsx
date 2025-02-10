@@ -5,7 +5,7 @@ import { CheckIcon } from '@patternfly/react-icons';
 export interface QuickResponse extends Omit<LabelProps, 'children'> {
   content: string;
   id: string;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 export interface QuickResponseProps {
@@ -13,17 +13,21 @@ export interface QuickResponseProps {
   quickResponses: QuickResponse[];
   /** Props for quick responses container */
   quickResponseContainerProps?: Omit<LabelGroupProps, 'ref'>;
+  /** Callback when a response is clicked; used in feedback cards */
+  onSelect?: (id: string) => void;
 }
 
 export const QuickResponse: React.FunctionComponent<QuickResponseProps> = ({
   quickResponses,
-  quickResponseContainerProps = { numLabels: 5 }
+  quickResponseContainerProps = { numLabels: 5 },
+  onSelect
 }: QuickResponseProps) => {
   const [selectedQuickResponse, setSelectedQuickResponse] = React.useState<string>();
 
   const handleQuickResponseClick = (id: string, onClick?: () => void) => {
     setSelectedQuickResponse(id);
     onClick && onClick();
+    onSelect && onSelect(id);
   };
   return (
     <LabelGroup

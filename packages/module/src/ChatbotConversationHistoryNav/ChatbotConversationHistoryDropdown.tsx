@@ -28,7 +28,13 @@ export const ChatbotConversationHistoryDropdown: React.FunctionComponent<Chatbot
   const [isOpen, setIsOpen] = React.useState(false);
 
   const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
-    <Tooltip className="pf-chatbot__tooltip" content={label ?? 'Conversation options'} position="bottom">
+    <Tooltip
+      className="pf-chatbot__tooltip"
+      content={label ?? 'Conversation options'}
+      position="bottom"
+      // prevents VO announcements of both aria label and tooltip
+      aria="none"
+    >
       <MenuToggle
         className="pf-chatbot__history-actions"
         variant="plain"
