@@ -28,6 +28,8 @@ export const BotMessageExample: React.FunctionComponent = () => {
         return inlineCode;
       case 'link':
         return link;
+      case 'table':
+        return table;
       default:
         return;
     }
@@ -125,6 +127,15 @@ _Italic text, formatted with single underscores_
 
   const inlineCode = `Here is an inline code - \`() => void\``;
 
+  const table = `To customize your table, you can use [PatternFly TableProps](/components/table#table)
+
+ | Version | GA date | User role 
+ |-|-|-|
+ | 2.5 | September 30, 2024 | Administrator |
+ | 2.5 | June 27, 2023 | Editor |
+ | 3.0 | April 1, 2025 | Administrator
+ `;
+
   return (
     <>
       <Message name="Bot" role="bot" avatar={patternflyAvatar} content={`Text-based message from a bot named "Bot"`} />
@@ -216,9 +227,24 @@ _Italic text, formatted with single underscores_
             label="More complex list"
             id="more-complex-list"
           />
+          <Radio
+            isChecked={variant === 'table'}
+            onChange={() => setVariant('table')}
+            name="bot-message-type"
+            label="Table"
+            id="table"
+          />
         </FormGroup>
       </Form>
-      <Message name="Bot" role="bot" avatar={patternflyAvatar} content={renderContent()} />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content={renderContent()}
+        tableProps={
+          variant === 'table' ? { 'aria-label': 'App information and user roles for bot messages' } : undefined
+        }
+      />
     </>
   );
 };

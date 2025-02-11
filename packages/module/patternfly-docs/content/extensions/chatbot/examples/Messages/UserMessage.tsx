@@ -28,6 +28,8 @@ export const UserMessageExample: React.FunctionComponent = () => {
         return moreComplexList;
       case 'link':
         return link;
+      case 'table':
+        return table;
       default:
         return;
     }
@@ -125,6 +127,15 @@ _Italic text, formatted with single underscores_
 
   const inlineCode = `Here is an inline code - \`() => void\``;
 
+  const table = `To customize your table, you can use [PatternFly TableProps](/components/table#table)
+
+ | Version | GA date | User role 
+ |-|-|-|
+ | 2.5 | September 30, 2024 | Administrator |
+ | 2.5 | June 27, 2023 | Editor |
+ | 3.0 | April 1, 2025 | Administrator
+ `;
+
   return (
     <>
       <Message
@@ -206,9 +217,24 @@ _Italic text, formatted with single underscores_
             label="More complex list"
             id="user-more-complex-list"
           />
+          <Radio
+            isChecked={variant === 'table'}
+            onChange={() => setVariant('table')}
+            name="user-message-type"
+            label="Table"
+            id="user-table"
+          />
         </FormGroup>
       </Form>
-      <Message name="User" role="user" content={renderContent()} avatar={userAvatar} />
+      <Message
+        name="User"
+        role="user"
+        content={renderContent()}
+        avatar={userAvatar}
+        tableProps={
+          variant === 'table' ? { 'aria-label': 'App information and user roles for user messages' } : undefined
+        }
+      />
     </>
   );
 };

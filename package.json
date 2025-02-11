@@ -90,6 +90,7 @@
     "puppeteer-cluster": "^0.24.0"
   },
   "dependencies": {
+    "@patternfly/react-table": "^6.1.0",
     "dompurify": "^3.2.0",
     "react-dropzone": "^14.2.3"
   },
