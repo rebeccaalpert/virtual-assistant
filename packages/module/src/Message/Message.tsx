@@ -41,13 +41,11 @@ export interface MessageAttachment {
 
 export interface MessageExtraContent {
   /** Content to display before the main content */
-  beforeMainContent?: ReactNode;
-
+  beforeMainContent?: React.ReactNode;
   /** Content to display after the main content */
-  afterMainContent?: ReactNode;
-
+  afterMainContent?: React.ReactNode;
   /** Content to display at the end */
-  endContent?: ReactNode;
+  endContent?: React.ReactNode;
 }
 
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
@@ -57,7 +55,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   role: 'user' | 'bot';
   /** Message content */
   content?: string;
-  /** Extra Message content */
+  /** @beta To enable fast turnarounds on demos, this prop allows for injection of custom React components into the Message component. The goal of the ChatBot PatternFly extension is to reduce duplication of front-end code. We seek to provide a range of customizable components for use in ChatBot messages. If you are past the demo stage, please add a feature request. As a beta feature, this may be discontinued at any time. */
   extraContent?: MessageExtraContent;
   /** Name of the user */
   name?: string;
