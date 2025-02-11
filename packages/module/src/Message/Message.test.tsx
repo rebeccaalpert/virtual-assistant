@@ -138,6 +138,8 @@ const EMPTY_TABLE = `
 
  `;
 
+const IMAGE = `![Multi-colored wavy lines on a black background](https://cdn.dribbble.com/userupload/10651749/file/original-8a07b8e39d9e8bf002358c66fce1223e.gif)`;
+
 const checkListItemsRendered = () => {
   const items = ['Item 1', 'Item 2', 'Item 3'];
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
@@ -740,5 +742,9 @@ describe('Message', () => {
     expect(screen.getByTestId('before-main-content')).toContainHTML('<strong>Bold before content</strong>');
     expect(screen.getByTestId('after-main-content')).toContainHTML('<strong>Bold after content</strong>');
     expect(screen.getByTestId('end-main-content')).toContainHTML('<strong>Bold end content</strong>');
+  });
+  it('should handle image correctly', () => {
+    render(<Message avatar="./img" role="user" name="User" content={IMAGE} />);
+    expect(screen.getByRole('img', { name: /Multi-colored wavy lines on a black background/i })).toBeTruthy();
   });
 });
