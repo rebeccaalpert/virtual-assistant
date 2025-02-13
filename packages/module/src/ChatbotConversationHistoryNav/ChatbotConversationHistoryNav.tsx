@@ -35,6 +35,8 @@ import {
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 import ConversationHistoryDropdown from './ChatbotConversationHistoryDropdown';
+import LoadingState from './LoadingState';
+import HistoryEmptyState, { HistoryEmptyStateProps } from './EmptyState';
 
 export interface Conversation {
   /** Conversation id */
@@ -103,6 +105,10 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   drawerCloseButtonProps?: DrawerCloseButtonProps;
   /** Additional props appleid to drawer panel body */
   drawerPanelBodyProps?: DrawerPanelBodyProps;
+  /** Whether to show drawer loading state */
+  isLoading?: boolean;
+  /** Content to show in error state. Error state will appear once content is passed in. */
+  errorState?: HistoryEmptyStateProps;
 }
 
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
@@ -129,6 +135,8 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   drawerActionsProps,
   drawerCloseButtonProps,
   drawerPanelBodyProps,
+  isLoading,
+  errorState,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -194,11 +202,37 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   // Menu Content
   // - Consumers should pass an array to <Chatbot> of the list of conversations
   // - Groups could be optional, but items need to be ordered by date
-  const menuContent = (
-    <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId} {...menuProps}>
-      <MenuContent>{buildMenu()}</MenuContent>
-    </Menu>
-  );
+  const renderMenuContent = () => {
+    if (errorState) {
+      return <HistoryEmptyState {...errorState} />;
+    }
+    return (
+      <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId} {...menuProps}>
+        <MenuContent>{buildMenu()}</MenuContent>
+      </Menu>
+    );
+  };
+
+  const renderDrawerContent = () => {
+    if (isLoading) {
+      return <LoadingState />;
+    }
+
+    return (
+      <>
+        {handleTextInputChange && (
+          <div className="pf-chatbot__input">
+            <SearchInput
+              aria-label={searchInputAriaLabel}
+              onChange={(_event, value) => handleTextInputChange(value)}
+              placeholder={searchInputPlaceholder}
+            />
+          </div>
+        )}
+        <DrawerPanelBody {...drawerPanelBodyProps}>{renderMenuContent()}</DrawerPanelBody>
+      </>
+    );
+  };
 
   const panelContent = (
     <DrawerPanelContent focusTrap={{ enabled: true }} defaultSize="384px" {...drawerPanelContentProps}>
@@ -212,16 +246,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
           {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
         </DrawerActions>
       </DrawerHead>
-      {handleTextInputChange && (
-        <div className="pf-chatbot__input">
-          <SearchInput
-            aria-label={searchInputAriaLabel}
-            onChange={(_event, value) => handleTextInputChange(value)}
-            placeholder={searchInputPlaceholder}
-          />
-        </div>
-      )}
-      <DrawerPanelBody {...drawerPanelBodyProps}>{menuContent}</DrawerPanelBody>
+      {renderDrawerContent()}
     </DrawerPanelContent>
   );
 
