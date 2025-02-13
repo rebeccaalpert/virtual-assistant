@@ -189,3 +189,17 @@
     }
   }
 }
+
+.pf-chatbot__history-loading {
+  display: flex;
+  padding: var(--pf-t--global--spacer--lg);
+  flex-direction: column;
+  gap: var(--pf-t--global--spacer--lg);
+}
+
+.pf-chatbot__history-loading-block {
+  display: flex;
+  flex-direction: column;
+  gap: var(--pf-t--global--spacer--sm);
+  align-self: stretch;
+}
