@@ -29,7 +29,8 @@ import {
   DrawerHeadProps,
   DrawerActionsProps,
   DrawerCloseButtonProps,
-  DrawerPanelBodyProps
+  DrawerPanelBodyProps,
+  Skeleton
 } from '@patternfly/react-core';
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
@@ -103,6 +104,8 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   drawerCloseButtonProps?: DrawerCloseButtonProps;
   /** Additional props appleid to drawer panel body */
   drawerPanelBodyProps?: DrawerPanelBodyProps;
+  /** Whether to show drawer loading state */
+  isLoading?: boolean;
 }
 
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
@@ -129,6 +132,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   drawerActionsProps,
   drawerCloseButtonProps,
   drawerPanelBodyProps,
+  isLoading,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -200,6 +204,27 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
     </Menu>
   );
 
+  const renderDrawerContent = () => {
+    if (isLoading) {
+      return <Skeleton />;
+    }
+
+    return (
+      <>
+        {handleTextInputChange && (
+          <div className="pf-chatbot__input">
+            <SearchInput
+              aria-label={searchInputAriaLabel}
+              onChange={(_event, value) => handleTextInputChange(value)}
+              placeholder={searchInputPlaceholder}
+            />
+          </div>
+        )}
+        <DrawerPanelBody {...drawerPanelBodyProps}>{menuContent}</DrawerPanelBody>
+      </>
+    );
+  };
+
   const panelContent = (
     <DrawerPanelContent focusTrap={{ enabled: true }} defaultSize="384px" {...drawerPanelContentProps}>
       <DrawerHead {...drawerHeadProps}>
@@ -212,16 +237,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
           {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
         </DrawerActions>
       </DrawerHead>
-      {handleTextInputChange && (
-        <div className="pf-chatbot__input">
-          <SearchInput
-            aria-label={searchInputAriaLabel}
-            onChange={(_event, value) => handleTextInputChange(value)}
-            placeholder={searchInputPlaceholder}
-          />
-        </div>
-      )}
-      <DrawerPanelBody {...drawerPanelBodyProps}>{menuContent}</DrawerPanelBody>
+      {renderDrawerContent()}
     </DrawerPanelContent>
   );
 

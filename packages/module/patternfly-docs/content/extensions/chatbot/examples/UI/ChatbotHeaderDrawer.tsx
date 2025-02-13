@@ -37,6 +37,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
+  const [isLoading, setIsLoading] = React.useState(false);
   const displayMode = ChatbotDisplayMode.embedded;
 
   const findMatchingItems = (targetValue: string) => {
@@ -74,6 +75,13 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         id="drawer-actions-visible"
         name="drawer-actions-visible"
       ></Checkbox>
+      <Checkbox
+        label="Show loading state"
+        isChecked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+        id="drawer-is-loading"
+        name="drawer-is-loading"
+      ></Checkbox>
       <ChatbotConversationHistoryNav
         displayMode={displayMode}
         onDrawerToggle={() => setIsOpen(!isOpen)}
@@ -96,6 +104,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
           setConversations(newConversations);
         }}
         drawerContent={<div>Drawer content</div>}
+        isLoading={isLoading}
       />
     </>
   );
