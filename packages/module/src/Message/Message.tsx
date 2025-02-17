@@ -39,6 +39,9 @@ import { TableProps } from '@patternfly/react-table';
 import ImageMessage from './ImageMessage/ImageMessage';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import { PluggableList } from 'react-markdown/lib';
+import rehypeExternalLinks from 'rehype-external-links';
+import ButtonMessage from './LinkMessage/LinkMessage';
+import rehypeSanitize from 'rehype-sanitize';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -136,6 +139,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   tableProps?: Required<Pick<TableProps, 'aria-label'>> & TableProps;
   /** Additional rehype plugins passed from the consumer */
   additionalRehypePlugins?: PluggableList;
+  /** Whether to open links in message in new tab. */
+  openLinkInNewTab?: boolean;
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
@@ -163,6 +168,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   innerRef,
   tableProps,
   additionalRehypePlugins = [],
+  openLinkInNewTab = true,
   ...props
 }: MessageProps) => {
   const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
@@ -176,7 +182,14 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
 
-  const rehypePlugins = [rehypeUnwrapImages, ...(additionalRehypePlugins ?? [])];
+  const rehypePlugins: PluggableList = [rehypeUnwrapImages];
+  if (openLinkInNewTab) {
+    rehypePlugins.concat([rehypeExternalLinks, { target: '_blank' }, rehypeSanitize]);
+  }
+  if (additionalRehypePlugins) {
+    // should be able to supply a custom sanitization schema this way if needed and apply any other plugins
+    rehypePlugins.concat(additionalRehypePlugins);
+  }
 
   return (
     <section
@@ -244,7 +257,8 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                       return <TdMessage {...rest} />;
                     },
                     th: (props) => <ThMessage {...props} />,
-                    img: (props) => <ImageMessage {...props} />
+                    img: (props) => <ImageMessage {...props} />,
+                    a: (props) => <ButtonMessage {...props} />
                   }}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={rehypePlugins}
