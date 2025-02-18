@@ -106,6 +106,27 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 
 ```
 
+### Drawer ChatBot
+
+This demo displays a ChatBot in a drawer. This demo includes:
+
+1. A [PatternFly page](/components/page) with a sidebar, "Skip to chatbot" button, and masthead. To display the "Skip to chatbot" button you must tab into the main window.
+2. A [`<Chatbot>`](/patternfly-ai/chatbot/ui#container) container.
+3. A [`<ChatbotHeader>`](/patternfly-ai/chatbot/ui#header) with all built sub-components laid out, including a `<ChatbotHeaderTitle>`
+4. [`<ChatbotContent>` and `<MessageBox>`](/patternfly-ai/chatbot/ui#content-and-message-box) with:
+   - A `<ChatbotWelcomePrompt>`
+   - An initial [user `<Message>`](/patternfly-ai/chatbot/messages#user-messages) and an initial bot message with [message actions.](/patternfly-ai/chatbot/messages/#message-actions)
+   - Logic for enabling auto-scrolling to the most recent message whenever a new message is sent or received using a `scrollToBottomRef`
+5. A [`<ChatbotFooter>`](/patternfly-ai/chatbot/ui#footer) with a [`<ChatbotFootNote>`](/patternfly-ai/chatbot/ui#footnote-with-popover) and a `<MessageBar>` that contains the abilities of:
+   - [Speech to text.](/patternfly-ai/chatbot/ui#message-bar-with-speech-recognition-and-file-attachment)
+   - Sending a message to the ChatBot.
+   - Receiving a response from a backend AI tool with a loading message state.
+6. A [`<ChatbotConversationHistoryNav>`](/patternfly-ai/chatbot/ui#navigation) that can be toggled by the `<ChatbotHeaderMenu`> in the `<ChatbotHeader>`.
+
+```js file="./ChatbotInDrawer.tsx" isFullscreen
+
+```
+
 ### Comparing ChatBots
 
 To let users compare how different ChatBots respond to the same prompt, you can add multiple ChatBots within the same window. The following demo illustrates a comparison view pattern that allows users to toggle between different conversations in a single ChatBot window.
