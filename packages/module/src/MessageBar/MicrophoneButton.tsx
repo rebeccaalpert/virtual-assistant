@@ -19,7 +19,7 @@ export interface MicrophoneButtonProps extends ButtonProps {
   /** Callback to update the message value once speech recognition is complete */
   onSpeechRecognition: React.Dispatch<React.SetStateAction<string>>;
   /** Props to control the PF Tooltip component */
-  tooltipProps?: TooltipProps;
+  tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Use microphone" and "Stop listening" used in the tooltip */
   tooltipContent?: { active?: string; inactive?: string };
   /** Locale code for language speech recognition is conducted in. This should be in the format 'en-US', a.k.a. the ISO 639-1 code, a dash, and the ISO_3166-1 code. */
