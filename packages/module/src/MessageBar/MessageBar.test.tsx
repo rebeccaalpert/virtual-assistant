@@ -315,4 +315,12 @@ describe('Message bar', () => {
     );
     await userEvent.click(screen.getByRole('button', { name: 'Test' }));
   });
+  it('can be controlled', () => {
+    render(<MessageBar onSendMessage={jest.fn} value="test" />);
+    expect(screen.getByRole('button', { name: 'Attach button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
+    expect(screen.getByRole('textbox', { name: /Send a message.../i })).toBeTruthy();
+    expect(screen.getByRole('textbox', { name: /Send a message.../i })).toHaveValue('test');
+  });
 });
