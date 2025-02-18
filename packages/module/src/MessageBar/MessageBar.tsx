@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps, DropEvent, TextArea } from '@patternfly/react-core';
+import { ButtonProps, DropEvent, TextArea, TextAreaProps } from '@patternfly/react-core';
 
 // Import Chatbot components
 import SendButton from './SendButton';
@@ -30,9 +30,9 @@ export interface MessageBarWithAttachMenuProps {
   onAttachMenuOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface MessageBarProps {
+export interface MessageBarProps extends TextAreaProps {
   /** Callback to get the value of input message by user */
-  onSendMessage: (message: string) => void;
+  onSendMessage: (message: string | number) => void;
   /** Class Name for the MessageBar component */
   className?: string;
   /** Flag to always to show the send button. By default send button is shown when there is a message in the input field */
@@ -63,7 +63,7 @@ export interface MessageBarProps {
     };
   };
   /** A callback for when the text area value changes. */
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
   /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
   displayMode?: ChatbotDisplayMode;
 }
@@ -82,11 +82,12 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   buttonProps,
   onChange,
   displayMode,
+  value,
   ...props
 }: MessageBarProps) => {
   // Text Input
   // --------------------------------------------------------------------------
-  const [message, setMessage] = React.useState<string>('');
+  const [message, setMessage] = React.useState<string | number>(value ?? '');
   const [isListeningMessage, setIsListeningMessage] = React.useState<boolean>(false);
   const [hasSentMessage, setHasSentMessage] = React.useState(false);
   const textareaRef = React.useRef<HTMLTextAreaElement>(null);
