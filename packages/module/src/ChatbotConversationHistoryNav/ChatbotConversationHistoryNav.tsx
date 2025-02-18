@@ -29,7 +29,8 @@ import {
   DrawerHeadProps,
   DrawerActionsProps,
   DrawerCloseButtonProps,
-  DrawerPanelBodyProps
+  DrawerPanelBodyProps,
+  SkeletonProps
 } from '@patternfly/react-core';
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
@@ -108,7 +109,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Whether to show drawer loading state */
   isLoading?: boolean;
   /** Additional props for loading state */
-  loadingState?: { 'aria-label': string };
+  loadingState?: SkeletonProps;
   /** Content to show in error state. Error state will appear once content is passed in. */
   errorState?: HistoryEmptyStateProps;
 }

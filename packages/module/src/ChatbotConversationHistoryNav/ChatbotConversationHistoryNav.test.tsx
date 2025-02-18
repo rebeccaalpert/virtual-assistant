@@ -277,7 +277,7 @@ describe('ChatbotConversationHistoryNav', () => {
         isLoading
       />
     );
-    expect(screen.getByRole('dialog', { name: /Loading/i })).toBeTruthy();
+    expect(screen.getByRole('dialog', { name: /Loading chatbot conversation history/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
   });
 
@@ -292,7 +292,7 @@ describe('ChatbotConversationHistoryNav', () => {
         handleTextInputChange={jest.fn()}
         conversations={initialConversations}
         isLoading
-        loadingState={{ 'aria-label': 'I am a test' }}
+        loadingState={{ screenreaderText: 'I am a test' }}
       />
     );
     expect(screen.getByRole('dialog', { name: /I am a test/i })).toBeTruthy();

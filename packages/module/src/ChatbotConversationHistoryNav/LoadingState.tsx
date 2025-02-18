@@ -1,37 +1,36 @@
-import { Skeleton } from '@patternfly/react-core';
+import { Skeleton, SkeletonProps } from '@patternfly/react-core';
 import React from 'react';
 
-export interface LoadingStateProps {
-  'aria-label'?: string;
-}
-export const LoadingState: React.FunctionComponent<LoadingStateProps> = ({
-  'aria-label': ariaLabel
-}: LoadingStateProps) => (
+export const LoadingState: React.FunctionComponent<SkeletonProps> = ({ screenreaderText, ...rest }: SkeletonProps) => (
   <div className="pf-chatbot__history-loading">
     <div className="pf-chatbot__history-loading-block">
-      <Skeleton screenreaderText={ariaLabel ?? 'Loading'} fontSize="3xl" />
+      <Skeleton
+        screenreaderText={screenreaderText ?? 'Loading chatbot conversation history'}
+        fontSize="3xl"
+        {...rest}
+      />
     </div>
     <div className="pf-chatbot__history-loading-block">
-      <Skeleton fontSize="sm" width="70%" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
+      <Skeleton fontSize="sm" width="70%" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
     </div>
     <div className="pf-chatbot__history-loading-block">
-      <Skeleton fontSize="sm" width="70%" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
+      <Skeleton fontSize="sm" width="70%" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
     </div>
     <div className="pf-chatbot__history-loading-block">
-      <Skeleton fontSize="sm" width="70%" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
-      <Skeleton fontSize="3xl" />
+      <Skeleton fontSize="sm" width="70%" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
     </div>
     <div className="pf-chatbot__history-loading-block">
-      <Skeleton fontSize="sm" width="70%" />
-      <Skeleton fontSize="3xl" />
+      <Skeleton fontSize="sm" width="70%" {...rest} />
+      <Skeleton fontSize="3xl" {...rest} />
     </div>
   </div>
 );
