@@ -10,7 +10,7 @@ import React from 'react';
 
 export interface HistoryEmptyStateProps extends EmptyStateProps {
   onClick?: () => void;
-  bodyText?: string;
+  bodyText?: string | React.ReactNode;
   buttonText?: string;
   buttonIcon?: React.ReactNode;
   hasButton?: boolean;

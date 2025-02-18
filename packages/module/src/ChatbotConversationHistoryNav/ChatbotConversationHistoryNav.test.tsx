@@ -7,23 +7,31 @@ import ChatbotConversationHistoryNav, { Conversation } from './ChatbotConversati
 import { EmptyStateStatus, Spinner } from '@patternfly/react-core';
 
 const ERROR = {
-  bodyText:
-    'Something went wrong while loading your chat history. Please check your connection and try again or refresh this page.',
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
   buttonText: 'Reload',
   buttonIcon: <Spinner size="sm" />,
   hasButton: true,
-  titleText: 'Failed to load',
+  titleText: 'Could not load chat history',
   status: EmptyStateStatus.danger,
   onClick: () => alert('Clicked Reload')
 };
 
 const ERROR_WITHOUT_BUTTON = {
-  bodyText:
-    'Something went wrong while loading your chat history. Please check your connection and try again or refresh this page.',
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
   buttonText: 'Reload',
   buttonIcon: <Spinner size="sm" />,
   hasButton: false,
-  titleText: 'Failed to load',
+  titleText: 'Could not load chat history',
   status: EmptyStateStatus.danger,
   onClick: () => alert('Clicked Reload')
 };
@@ -305,13 +313,13 @@ describe('ChatbotConversationHistoryNav', () => {
     );
     expect(
       screen.getByRole('dialog', {
-        name: /Failed to load Something went wrong while loading your chat history. Please check your connection and try again or refresh this page. Loading... Reload/i
+        name: /Could not load chat history To try again, check your connection and reload this page. If the issue persists, contact the support team . Loading... Reload/i
       })
     ).toBeTruthy();
     expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /Loading... Reload/i })).toBeTruthy();
     expect(screen.getByRole('textbox', { name: /Filter menu items/i })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: /Failed to load/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /Could not load chat history/i })).toBeTruthy();
   });
 
   it('should accept errorState without button', () => {
@@ -329,13 +337,13 @@ describe('ChatbotConversationHistoryNav', () => {
     );
     expect(
       screen.getByRole('dialog', {
-        name: /Failed to load Something went wrong while loading your chat history. Please check your connection and try again or refresh this page./i
+        name: /Could not load chat history To try again, check your connection and reload this page. If the issue persists, contact the support team ./i
       })
     ).toBeTruthy();
     expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
     expect(screen.queryByRole('button', { name: /Loading... Reload/i })).toBeFalsy();
     expect(screen.getByRole('textbox', { name: /Filter menu items/i })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: /Failed to load/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /Could not load chat history/i })).toBeTruthy();
   });
 
   it('should show loading state over error state if both are supplied', () => {

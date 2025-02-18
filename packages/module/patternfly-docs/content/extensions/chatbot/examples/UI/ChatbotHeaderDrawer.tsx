@@ -32,12 +32,16 @@ const initialConversations: { [key: string]: Conversation[] } = {
 };
 
 const ERROR = {
-  bodyText:
-    'Something went wrong while loading your chat history. Please check your connection and try again or refresh this page.',
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
   buttonText: 'Reload',
   buttonIcon: <Spinner size="sm" />,
   hasButton: true,
-  titleText: 'Failed to load',
+  titleText: 'Could not load chat history',
   status: EmptyStateStatus.danger,
   onClick: () => alert('Clicked Reload')
 };
