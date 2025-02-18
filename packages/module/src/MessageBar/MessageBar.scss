@@ -68,13 +68,13 @@
   .pf-v6-c-form-control__textarea:focus-visible {
     outline: none;
   }
-  textarea {
+  .pf-v6-c-form-control > textarea {
     outline-offset: 0px;
     --pf-v6-c-form-control--PaddingBlockStart: 0;
     --pf-v6-c-form-control--PaddingBlockEnd: 0;
     --pf-v6-c-form-control--BorderRadius: 0;
   }
-  textarea:focus-visible {
+  .pf-v6-c-form-control > textarea:focus-visible {
     outline: none;
   }
 }
