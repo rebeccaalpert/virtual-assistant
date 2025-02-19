@@ -19,6 +19,7 @@ propComponents:
     'FileDropZone',
     'PreviewAttachment',
     'Message',
+    'MessageExtraContent',
     'PreviewAttachment',
     'ActionProps',
     'SourcesCardProps',
@@ -162,6 +163,16 @@ The quick start tile displayed below the message is based on the tile included i
 Messages from users have a different background color to differentiate them from bot messages. You can also display a custom avatar that is uploaded by the user. You can further customize the avatar by applying an additional class or passing [PatternFly avatar props](/components/avatar) to the `<Message>` component via `avatarProps`.
 
 ```js file="./UserMessage.tsx"
+
+```
+
+### Custom message content
+
+**Caution:** Take care when using this feature. It can cause you to stray from accessibility and design best practice standards. If you frequently need add the same component via custom message content, reach out to the PatternFly team. If there's a consistent need for a certain component, we can look into adding native support for additional features.
+
+You can add custom content to specific parts of a `<Message>` via the `extraContent` prop, including additional components (like timestamps, badges, or custom elements). This prop allows you to create dynamic and reusable elements for various use cases, without changing the default message layout.
+
+```js file="./UserMessageWithExtraContent.tsx"
 
 ```
 
