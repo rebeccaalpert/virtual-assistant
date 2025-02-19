@@ -36,6 +36,8 @@ import TbodyMessage from './TableMessage/TbodyMessage';
 import TheadMessage from './TableMessage/TheadMessage';
 import ThMessage from './TableMessage/ThMessage';
 import { TableProps } from '@patternfly/react-table';
+import ImageMessage from './ImageMessage/ImageMessage';
+import rehypeUnwrapImages from 'rehype-unwrap-images';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -234,9 +236,11 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                       const { width, ...rest } = props;
                       return <TdMessage {...rest} />;
                     },
-                    th: (props) => <ThMessage {...props} />
+                    th: (props) => <ThMessage {...props} />,
+                    img: (props) => <ImageMessage {...props} />
                   }}
                   remarkPlugins={[remarkGfm]}
+                  rehypePlugins={[rehypeUnwrapImages]}
                 >
                   {content}
                 </Markdown>
