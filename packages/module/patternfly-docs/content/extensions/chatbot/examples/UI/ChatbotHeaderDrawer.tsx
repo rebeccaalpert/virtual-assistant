@@ -3,7 +3,7 @@ import { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
 } from '@patternfly/chatbot/dist/dynamic/ChatbotConversationHistoryNav';
-import { Checkbox } from '@patternfly/react-core';
+import { Checkbox, EmptyStateStatus, Spinner } from '@patternfly/react-core';
 
 const initialConversations: { [key: string]: Conversation[] } = {
   Today: [{ id: '1', text: 'Red Hat products and services' }],
@@ -31,12 +31,29 @@ const initialConversations: { [key: string]: Conversation[] } = {
   ]
 };
 
+const ERROR = {
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
+  buttonText: 'Reload',
+  buttonIcon: <Spinner size="sm" />,
+  hasButton: true,
+  titleText: 'Could not load chat history',
+  status: EmptyStateStatus.danger,
+  onClick: () => alert('Clicked Reload')
+};
+
 export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
   const [isOpen, setIsOpen] = React.useState(true);
   const [isButtonOrderReversed, setIsButtonOrderReversed] = React.useState(false);
   const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
+  const [isLoading, setIsLoading] = React.useState(false);
+  const [hasError, setHasError] = React.useState(false);
   const displayMode = ChatbotDisplayMode.embedded;
 
   const findMatchingItems = (targetValue: string) => {
@@ -74,6 +91,20 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
         id="drawer-actions-visible"
         name="drawer-actions-visible"
       ></Checkbox>
+      <Checkbox
+        label="Show loading state"
+        isChecked={isLoading}
+        onChange={() => setIsLoading(!isLoading)}
+        id="drawer-is-loading"
+        name="drawer-is-loading"
+      ></Checkbox>
+      <Checkbox
+        label="Show error state"
+        isChecked={hasError}
+        onChange={() => setHasError(!hasError)}
+        id="drawer-has-error"
+        name="drawer-has-error"
+      ></Checkbox>
       <ChatbotConversationHistoryNav
         displayMode={displayMode}
         onDrawerToggle={() => setIsOpen(!isOpen)}
@@ -96,6 +127,8 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
           setConversations(newConversations);
         }}
         drawerContent={<div>Drawer content</div>}
+        isLoading={isLoading}
+        errorState={hasError ? ERROR : undefined}
       />
     </>
   );

@@ -29,12 +29,15 @@ import {
   DrawerHeadProps,
   DrawerActionsProps,
   DrawerCloseButtonProps,
-  DrawerPanelBodyProps
+  DrawerPanelBodyProps,
+  SkeletonProps
 } from '@patternfly/react-core';
 
 import { OutlinedCommentAltIcon } from '@patternfly/react-icons';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 import ConversationHistoryDropdown from './ChatbotConversationHistoryDropdown';
+import LoadingState from './LoadingState';
+import HistoryEmptyState, { HistoryEmptyStateProps } from './EmptyState';
 
 export interface Conversation {
   /** Conversation id */
@@ -103,6 +106,12 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   drawerCloseButtonProps?: DrawerCloseButtonProps;
   /** Additional props appleid to drawer panel body */
   drawerPanelBodyProps?: DrawerPanelBodyProps;
+  /** Whether to show drawer loading state */
+  isLoading?: boolean;
+  /** Additional props for loading state */
+  loadingState?: SkeletonProps;
+  /** Content to show in error state. Error state will appear once content is passed in. */
+  errorState?: HistoryEmptyStateProps;
 }
 
 export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
@@ -129,6 +138,9 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   drawerActionsProps,
   drawerCloseButtonProps,
   drawerPanelBodyProps,
+  isLoading,
+  loadingState,
+  errorState,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
   const drawerRef = React.useRef<HTMLDivElement>(null);
@@ -194,24 +206,19 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   // Menu Content
   // - Consumers should pass an array to <Chatbot> of the list of conversations
   // - Groups could be optional, but items need to be ordered by date
-  const menuContent = (
-    <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId} {...menuProps}>
-      <MenuContent>{buildMenu()}</MenuContent>
-    </Menu>
-  );
+  const renderMenuContent = () => {
+    if (errorState) {
+      return <HistoryEmptyState {...errorState} />;
+    }
+    return (
+      <Menu isPlain onSelect={onSelectActiveItem} activeItemId={activeItemId} {...menuProps}>
+        <MenuContent>{buildMenu()}</MenuContent>
+      </Menu>
+    );
+  };
 
-  const panelContent = (
-    <DrawerPanelContent focusTrap={{ enabled: true }} defaultSize="384px" {...drawerPanelContentProps}>
-      <DrawerHead {...drawerHeadProps}>
-        <DrawerActions
-          data-testid={drawerActionsTestId}
-          className={reverseButtonOrder ? 'pf-v6-c-drawer__actions--reversed' : ''}
-          {...drawerActionsProps}
-        >
-          <DrawerCloseButton onClick={onDrawerToggle} {...drawerCloseButtonProps} />
-          {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
-        </DrawerActions>
-      </DrawerHead>
+  const renderDrawerContent = () => (
+    <>
       {handleTextInputChange && (
         <div className="pf-chatbot__input">
           <SearchInput
@@ -221,9 +228,37 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
           />
         </div>
       )}
-      <DrawerPanelBody {...drawerPanelBodyProps}>{menuContent}</DrawerPanelBody>
-    </DrawerPanelContent>
+      <DrawerPanelBody {...drawerPanelBodyProps}>{renderMenuContent()}</DrawerPanelBody>
+    </>
   );
+
+  const renderPanelContent = () => {
+    const drawer = (
+      <>
+        <DrawerHead {...drawerHeadProps}>
+          <DrawerActions
+            data-testid={drawerActionsTestId}
+            className={reverseButtonOrder ? 'pf-v6-c-drawer__actions--reversed' : ''}
+            {...drawerActionsProps}
+          >
+            <DrawerCloseButton onClick={onDrawerToggle} {...drawerCloseButtonProps} />
+            {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
+          </DrawerActions>
+        </DrawerHead>
+        {isLoading ? <LoadingState {...loadingState} /> : renderDrawerContent()}
+      </>
+    );
+    return (
+      <DrawerPanelContent
+        aria-live="polite"
+        focusTrap={{ enabled: true }}
+        defaultSize="384px"
+        {...drawerPanelContentProps}
+      >
+        {drawer}
+      </DrawerPanelContent>
+    );
+  };
 
   // An onKeyDown property must be passed to the Drawer component to handle closing
   // the drawer panel and deactivating the focus trap via the Escape key.
@@ -246,7 +281,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       isInline={displayMode === ChatbotDisplayMode.fullscreen || displayMode === ChatbotDisplayMode.embedded}
       {...props}
     >
-      <DrawerContent panelContent={panelContent} {...drawerContentProps}>
+      <DrawerContent panelContent={renderPanelContent()} {...drawerContentProps}>
         <DrawerContentBody {...drawerContentBodyProps}>
           <>
             <div

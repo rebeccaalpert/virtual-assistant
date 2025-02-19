@@ -4,6 +4,37 @@ import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 import ChatbotConversationHistoryNav, { Conversation } from './ChatbotConversationHistoryNav';
+import { EmptyStateStatus, Spinner } from '@patternfly/react-core';
+
+const ERROR = {
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
+  buttonText: 'Reload',
+  buttonIcon: <Spinner size="sm" />,
+  hasButton: true,
+  titleText: 'Could not load chat history',
+  status: EmptyStateStatus.danger,
+  onClick: () => alert('Clicked Reload')
+};
+
+const ERROR_WITHOUT_BUTTON = {
+  bodyText: (
+    <>
+      To try again, check your connection and reload this page. If the issue persists,{' '}
+      <a href="">contact the support team</a>.
+    </>
+  ),
+  buttonText: 'Reload',
+  buttonIcon: <Spinner size="sm" />,
+  hasButton: false,
+  titleText: 'Could not load chat history',
+  status: EmptyStateStatus.danger,
+  onClick: () => alert('Clicked Reload')
+};
 
 describe('ChatbotConversationHistoryNav', () => {
   const onDrawerToggle = jest.fn();
@@ -231,5 +262,104 @@ describe('ChatbotConversationHistoryNav', () => {
     );
     const element = container.querySelector('.test');
     expect(element).toBeInTheDocument();
+  });
+
+  it('should show loading state if triggered', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        isLoading
+      />
+    );
+    expect(screen.getByRole('dialog', { name: /Loading chatbot conversation history/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
+  });
+
+  it('should pass alternative aria label to loading state', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        isLoading
+        loadingState={{ screenreaderText: 'I am a test' }}
+      />
+    );
+    expect(screen.getByRole('dialog', { name: /I am a test/i })).toBeTruthy();
+  });
+
+  it('should accept errorState', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        errorState={ERROR}
+      />
+    );
+    expect(
+      screen.getByRole('dialog', {
+        name: /Could not load chat history To try again, check your connection and reload this page. If the issue persists, contact the support team . Loading... Reload/i
+      })
+    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Loading... Reload/i })).toBeTruthy();
+    expect(screen.getByRole('textbox', { name: /Filter menu items/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /Could not load chat history/i })).toBeTruthy();
+  });
+
+  it('should accept errorState without button', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        errorState={ERROR_WITHOUT_BUTTON}
+      />
+    );
+    expect(
+      screen.getByRole('dialog', {
+        name: /Could not load chat history To try again, check your connection and reload this page. If the issue persists, contact the support team ./i
+      })
+    ).toBeTruthy();
+    expect(screen.getByRole('button', { name: /Close drawer panel/i })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: /Loading... Reload/i })).toBeFalsy();
+    expect(screen.getByRole('textbox', { name: /Filter menu items/i })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: /Could not load chat history/i })).toBeTruthy();
+  });
+
+  it('should show loading state over error state if both are supplied', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        isLoading
+        errorState={ERROR}
+      />
+    );
+    expect(screen.getByRole('dialog', { name: /Loading/i })).toBeTruthy();
   });
 });
