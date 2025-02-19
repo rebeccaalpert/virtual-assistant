@@ -1,7 +1,6 @@
 import React from 'react';
 
 import {
-  Bullseye,
   Brand,
   DropdownList,
   DropdownItem,
@@ -38,9 +37,8 @@ import ChatbotHeader, {
   ChatbotHeaderActions,
   ChatbotHeaderSelectorDropdown
 } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
-
-import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
-import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
+import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
+import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
 import { BarsIcon } from '@patternfly/react-icons';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
@@ -300,13 +298,12 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
     return filteredConversations;
   };
 
-  const horizontalLogo = (
-    <Bullseye>
-      <Brand className="show-light" src={PFHorizontalLogoColor} alt="PatternFly" />
-      <Brand className="show-dark" src={PFHorizontalLogoReverse} alt="PatternFly" />
-    </Bullseye>
+  const iconLogo = (
+    <>
+      <Brand className="show-light" src={PFIconLogoColor} alt="PatternFly" />
+      <Brand className="show-dark" src={PFIconLogoReverse} alt="PatternFly" />
+    </>
   );
-
   const masthead = (
     <Masthead>
       <MastheadMain>
@@ -387,7 +384,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
                   aria-expanded={isDrawerOpen}
                   onMenuToggle={() => setIsDrawerOpen(!isDrawerOpen)}
                 />
-                <ChatbotHeaderTitle>{horizontalLogo}</ChatbotHeaderTitle>
+                <ChatbotHeaderTitle>{iconLogo}</ChatbotHeaderTitle>
               </ChatbotHeaderMain>
               <ChatbotHeaderActions>
                 <ChatbotHeaderSelectorDropdown value={selectedModel} onSelect={onSelectModel}>

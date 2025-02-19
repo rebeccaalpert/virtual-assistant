@@ -25,7 +25,6 @@
 // ============================================================================
 @media screen and (min-width: 64rem) {
   .pf-chatbot--embedded,
-  .pf-chatbot--drawer,
   .pf-chatbot--fullscreen {
     .pf-chatbot__footer {
       align-items: center;
@@ -45,6 +44,15 @@
 // Chatbot Display Mode - Docked
 // ============================================================================
 .pf-chatbot--docked {
+  .pf-chatbot__footer-container {
+    padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--lg);
+  }
+}
+
+// ============================================================================
+// Chatbot Display Mode - Drawer
+// ============================================================================
+.pf-chatbot--drawer {
   .pf-chatbot__footer-container {
     padding: var(--pf-t--global--spacer--sm) var(--pf-t--global--spacer--lg);
   }
