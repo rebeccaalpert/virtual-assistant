@@ -1,5 +1,5 @@
 import React from 'react';
-import { ButtonProps, DropEvent, TextArea, TextAreaProps } from '@patternfly/react-core';
+import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
 // Import Chatbot components
 import SendButton from './SendButton';
@@ -53,13 +53,19 @@ export interface MessageBarProps extends TextAreaProps {
   isSendButtonDisabled?: boolean;
   /** Prop to allow passage of additional props to buttons */
   buttonProps?: {
-    attach?: { tooltipContent?: string; props?: ButtonProps; inputTestId?: string };
-    stop?: { tooltipContent?: string; props?: ButtonProps };
-    send?: { tooltipContent?: string; props?: ButtonProps };
+    attach?: {
+      tooltipContent?: string;
+      props?: ButtonProps;
+      inputTestId?: string;
+      tooltipProps?: Omit<TooltipProps, 'content'>;
+    };
+    stop?: { tooltipContent?: string; props?: ButtonProps; tooltipProps?: Omit<TooltipProps, 'content'> };
+    send?: { tooltipContent?: string; props?: ButtonProps; tooltipProps?: Omit<TooltipProps, 'content'> };
     microphone?: {
       tooltipContent?: { active?: string; inactive?: string };
       language?: string;
       props?: ButtonProps;
+      tooltipProps?: Omit<TooltipProps, 'content'>;
     };
   };
   /** A callback for when the text area value changes. */
