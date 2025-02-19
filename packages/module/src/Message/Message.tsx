@@ -2,7 +2,7 @@
 // Chatbot Main - Message
 // ============================================================================
 
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
@@ -56,6 +56,17 @@ export interface MessageAttachment {
   spinnerTestId?: string;
 }
 
+export interface MessageExtraContent {
+  /** Content to display before the main content */
+  beforeMainContent?: ReactNode;
+
+  /** Content to display after the main content */
+  afterMainContent?: ReactNode;
+
+  /** Content to display at the end */
+  endContent?: ReactNode;
+}
+
 export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
   id?: string;
@@ -63,6 +74,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   role: 'user' | 'bot';
   /** Message content */
   content?: string;
+  /** Extra Message content */
+  extraContent?: MessageExtraContent;
   /** Name of the user */
   name?: string;
   /** Avatar src for the user */
@@ -123,6 +136,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
   role,
   content,
+  extraContent,
   name,
   avatar,
   timestamp,
@@ -145,6 +159,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   tableProps,
   ...props
 }: MessageProps) => {
+  const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
   let avatarClassName;
   if (avatarProps && 'className' in avatarProps) {
     const { className, ...rest } = avatarProps;
@@ -189,40 +204,44 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
             {isLoading ? (
               <MessageLoading loadingWord={loadingWord} />
             ) : (
-              <Markdown
-                components={{
-                  p: (props) => <TextMessage component={ContentVariants.p} {...props} />,
-                  code: ({ children, ...props }) => (
-                    <CodeBlockMessage {...props} {...codeBlockProps}>
-                      {children}
-                    </CodeBlockMessage>
-                  ),
-                  h1: (props) => <TextMessage component={ContentVariants.h1} {...props} />,
-                  h2: (props) => <TextMessage component={ContentVariants.h2} {...props} />,
-                  h3: (props) => <TextMessage component={ContentVariants.h3} {...props} />,
-                  h4: (props) => <TextMessage component={ContentVariants.h4} {...props} />,
-                  h5: (props) => <TextMessage component={ContentVariants.h5} {...props} />,
-                  h6: (props) => <TextMessage component={ContentVariants.h6} {...props} />,
-                  blockquote: (props) => <TextMessage component={ContentVariants.blockquote} {...props} />,
-                  ul: (props) => <UnorderedListMessage {...props} />,
-                  ol: (props) => <OrderedListMessage {...props} />,
-                  li: (props) => <ListItemMessage {...props} />,
-                  table: (props) => <TableMessage {...props} {...tableProps} />,
-                  tbody: (props) => <TbodyMessage {...props} />,
-                  thead: (props) => <TheadMessage {...props} />,
-                  tr: (props) => <TrMessage {...props} />,
-                  td: (props) => {
-                    // Conflicts with Td type
-                    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-                    const { width, ...rest } = props;
-                    return <TdMessage {...rest} />;
-                  },
-                  th: (props) => <ThMessage {...props} />
-                }}
-                remarkPlugins={[remarkGfm]}
-              >
-                {content}
-              </Markdown>
+              <>
+                {beforeMainContent && <>{beforeMainContent}</>}
+                <Markdown
+                  components={{
+                    p: (props) => <TextMessage component={ContentVariants.p} {...props} />,
+                    code: ({ children, ...props }) => (
+                      <CodeBlockMessage {...props} {...codeBlockProps}>
+                        {children}
+                      </CodeBlockMessage>
+                    ),
+                    h1: (props) => <TextMessage component={ContentVariants.h1} {...props} />,
+                    h2: (props) => <TextMessage component={ContentVariants.h2} {...props} />,
+                    h3: (props) => <TextMessage component={ContentVariants.h3} {...props} />,
+                    h4: (props) => <TextMessage component={ContentVariants.h4} {...props} />,
+                    h5: (props) => <TextMessage component={ContentVariants.h5} {...props} />,
+                    h6: (props) => <TextMessage component={ContentVariants.h6} {...props} />,
+                    blockquote: (props) => <TextMessage component={ContentVariants.blockquote} {...props} />,
+                    ul: (props) => <UnorderedListMessage {...props} />,
+                    ol: (props) => <OrderedListMessage {...props} />,
+                    li: (props) => <ListItemMessage {...props} />,
+                    table: (props) => <TableMessage {...props} {...tableProps} />,
+                    tbody: (props) => <TbodyMessage {...props} />,
+                    thead: (props) => <TheadMessage {...props} />,
+                    tr: (props) => <TrMessage {...props} />,
+                    td: (props) => {
+                      // Conflicts with Td type
+                      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+                      const { width, ...rest } = props;
+                      return <TdMessage {...rest} />;
+                    },
+                    th: (props) => <ThMessage {...props} />
+                  }}
+                  remarkPlugins={[remarkGfm]}
+                >
+                  {content}
+                </Markdown>
+                {afterMainContent && <>{afterMainContent}</>}
+              </>
             )}
             {!isLoading && sources && <SourcesCard {...sources} />}
             {quickStarts && quickStarts.quickStart && (
@@ -264,6 +283,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
               ))}
             </div>
           )}
+          {!isLoading && endContent && <>{endContent}</>}
         </div>
       </div>
     </section>
