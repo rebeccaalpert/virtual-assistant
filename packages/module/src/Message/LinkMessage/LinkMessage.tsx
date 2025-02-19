@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 // ============================================================================
-// Chatbot Main - Message - Content - Button
+// Chatbot Main - Message - Content - Link
 // ============================================================================
 
 import React from 'react';
@@ -8,7 +7,7 @@ import { ExtraProps } from 'react-markdown';
 import { Button, ButtonProps } from '@patternfly/react-core';
 import { ExternalLinkSquareAltIcon } from '@patternfly/react-icons';
 
-const ButtonMessage = ({ children, ...props }: JSX.IntrinsicElements['a'] & ExtraProps) => {
+const LinkMessage = ({ children, ...props }: JSX.IntrinsicElements['a'] & ExtraProps) => {
   if (props.target === '_blank') {
     return (
       <Button
@@ -31,4 +30,4 @@ const ButtonMessage = ({ children, ...props }: JSX.IntrinsicElements['a'] & Extr
   );
 };
 
-export default ButtonMessage;
+export default LinkMessage;

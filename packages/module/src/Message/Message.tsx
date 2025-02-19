@@ -39,8 +39,8 @@ import { TableProps } from '@patternfly/react-table';
 import ImageMessage from './ImageMessage/ImageMessage';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
 import rehypeExternalLinks from 'rehype-external-links';
-import ButtonMessage from './LinkMessage/LinkMessage';
 import rehypeSanitize from 'rehype-sanitize';
+import LinkMessage from './LinkMessage/LinkMessage';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -248,7 +248,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                     },
                     th: (props) => <ThMessage {...props} />,
                     img: (props) => <ImageMessage {...props} />,
-                    a: (props) => <ButtonMessage {...props} />
+                    a: (props) => <LinkMessage {...props} />
                   }}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={[rehypeUnwrapImages, ...rehypePlugins]}

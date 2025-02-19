@@ -22,7 +22,7 @@
   border-radius: var(--pf-t--global--border--radius--small);
 
   .pf-v6-c-button.pf-m-link {
-    font-size: var(--pf-t--chatbot--font-size);
+    font-size: var(--pf-t--global--font--size--md);
   }
 
   .pf-v6-c-content,
@@ -30,7 +30,7 @@
   .pf-v6-c-content--blockquote,
   p,
   a {
-    --pf-v6-c-content--FontSize: var(--pf-t--chatbot--font-size);
+    --pf-v6-c-content--FontSize: var(--pf-t--global--font--size--md);
   }
 
   code {
