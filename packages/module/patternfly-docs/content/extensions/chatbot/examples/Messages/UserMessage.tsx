@@ -2,7 +2,7 @@ import React from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import userAvatar from './user_avatar.svg';
-import { Form, FormGroup, Radio } from '@patternfly/react-core';
+import { AlertActionLink, Form, FormGroup, Radio } from '@patternfly/react-core';
 
 export const UserMessageExample: React.FunctionComponent = () => {
   const [variant, setVariant] = React.useState('code');
@@ -140,6 +140,21 @@ _Italic text, formatted with single underscores_
 
   const image = `![Multi-colored wavy lines on a black background](https://cdn.dribbble.com/userupload/10651749/file/original-8a07b8e39d9e8bf002358c66fce1223e.gif)`;
 
+  const error = {
+    title: 'Could not load chat',
+    children: 'Wait a few minutes and check your network settings. If the issue persists: ',
+    actionLinks: (
+      <React.Fragment>
+        <AlertActionLink component="a" href="#">
+          Start a new chat
+        </AlertActionLink>
+        <AlertActionLink component="a" href="#">
+          Contact support
+        </AlertActionLink>
+      </React.Fragment>
+    )
+  };
+
   return (
     <>
       <Message
@@ -235,6 +250,13 @@ _Italic text, formatted with single underscores_
             label="Image"
             id="user-image"
           />
+          <Radio
+            isChecked={variant === 'error'}
+            onChange={() => setVariant('error')}
+            name="user-message-error"
+            label="Error"
+            id="error"
+          />
         </FormGroup>
       </Form>
       <Message
@@ -245,6 +267,7 @@ _Italic text, formatted with single underscores_
         tableProps={
           variant === 'table' ? { 'aria-label': 'App information and user roles for user messages' } : undefined
         }
+        error={variant === 'error' ? error : undefined}
       />
     </>
   );

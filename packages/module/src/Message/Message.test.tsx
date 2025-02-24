@@ -6,6 +6,7 @@ import userEvent from '@testing-library/user-event';
 import { monitorSampleAppQuickStart } from './QuickStarts/monitor-sampleapp-quickstart';
 import { monitorSampleAppQuickStartWithImage } from './QuickStarts/monitor-sampleapp-quickstart-with-image';
 import rehypeExternalLinks from '../__mocks__/rehype-external-links';
+import { AlertActionLink } from '@patternfly/react-core';
 
 const ALL_ACTIONS = [
   { label: /Good response/i },
@@ -141,6 +142,20 @@ const EMPTY_TABLE = `
 
 const IMAGE = `![Multi-colored wavy lines on a black background](https://cdn.dribbble.com/userupload/10651749/file/original-8a07b8e39d9e8bf002358c66fce1223e.gif)`;
 
+const ERROR = {
+  title: 'Could not load chat',
+  children: 'Wait a few minutes and check your network settings. If the issue persists: ',
+  actionLinks: (
+    <React.Fragment>
+      <AlertActionLink component="a" href="#">
+        Start a new chat
+      </AlertActionLink>
+      <AlertActionLink component="a" href="#">
+        Contact support
+      </AlertActionLink>
+    </React.Fragment>
+  )
+};
 const checkListItemsRendered = () => {
   const items = ['Item 1', 'Item 2', 'Item 3'];
   expect(screen.getAllByRole('listitem')).toHaveLength(3);
@@ -768,5 +783,22 @@ describe('Message', () => {
     );
     // we are mocking rehype libraries, so we can't test target _blank addition on links directly with RTL
     expect(rehypeExternalLinks).not.toHaveBeenCalled();
+  });
+  it('should handle error correctly', () => {
+    render(<Message avatar="./img" role="user" name="User" error={ERROR} />);
+    expect(screen.getByRole('heading', { name: /Could not load chat/i })).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Start a new chat/i })).toBeTruthy();
+    expect(screen.getByRole('link', { name: /Contact support/i })).toBeTruthy();
+    expect(screen.getByText('Wait a few minutes and check your network settings. If the issue persists:')).toBeTruthy();
+  });
+  it('should handle error correctly when loading', () => {
+    render(<Message avatar="./img" role="user" name="User" error={ERROR} isLoading />);
+    expect(screen.queryByRole('heading', { name: /Could not load chat/i })).toBeFalsy();
+    expect(screen.getByText('Loading message')).toBeTruthy();
+  });
+  it('should handle error correctly when these is content', () => {
+    render(<Message avatar="./img" role="user" name="User" error={ERROR} content="Test" />);
+    expect(screen.getByRole('heading', { name: /Could not load chat/i })).toBeTruthy();
+    expect(screen.queryByText('Test')).toBeFalsy();
   });
 });
