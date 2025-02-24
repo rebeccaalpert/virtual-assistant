@@ -1,3 +1,3 @@
-export default function rehypeExternalLinks() {
-  return;
-}
+const rehypeExternalLinks = jest.fn((children) => children);
+
+export default rehypeExternalLinks;

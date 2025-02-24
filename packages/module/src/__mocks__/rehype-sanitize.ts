@@ -1,3 +1,3 @@
-export default function rehypeSanitize() {
-  return;
-}
+const rehypeSanitize = jest.fn(() => null);
+
+export default rehypeSanitize;

@@ -1,3 +1,3 @@
-const RehypeUnwrapImages = () => null;
+const rehypeUnwrapImages = jest.fn(() => null);
 
-export default RehypeUnwrapImages;
+export default rehypeUnwrapImages;

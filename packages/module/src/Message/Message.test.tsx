@@ -5,6 +5,7 @@ import Message from './Message';
 import userEvent from '@testing-library/user-event';
 import { monitorSampleAppQuickStart } from './QuickStarts/monitor-sampleapp-quickstart';
 import { monitorSampleAppQuickStartWithImage } from './QuickStarts/monitor-sampleapp-quickstart-with-image';
+import rehypeExternalLinks from '../__mocks__/rehype-external-links';
 
 const ALL_ACTIONS = [
   { label: /Good response/i },
@@ -150,6 +151,9 @@ const checkListItemsRendered = () => {
 };
 
 describe('Message', () => {
+  beforeEach(() => {
+    jest.clearAllMocks();
+  });
   it('should render user messages correctly', () => {
     render(<Message avatar="./img" role="user" name="User" content="Hi" />);
     expect(screen.getByText('User')).toBeTruthy();
@@ -746,5 +750,23 @@ describe('Message', () => {
   it('should handle image correctly', () => {
     render(<Message avatar="./img" role="user" name="User" content={IMAGE} />);
     expect(screen.getByRole('img', { name: /Multi-colored wavy lines on a black background/i })).toBeTruthy();
+  });
+  it('should handle external links correctly', () => {
+    render(<Message avatar="./img" role="user" name="User" content={`[PatternFly](https://www.patternfly.org/)`} />);
+    // we are mocking rehype libraries, so we can't test target _blank addition on links directly with RTL
+    expect(rehypeExternalLinks).toHaveBeenCalledTimes(1);
+  });
+  it('should handle external links correctly', () => {
+    render(
+      <Message
+        avatar="./img"
+        role="user"
+        name="User"
+        content={`[PatternFly](https://www.patternfly.org/)`}
+        openLinkInNewTab={false}
+      />
+    );
+    // we are mocking rehype libraries, so we can't test target _blank addition on links directly with RTL
+    expect(rehypeExternalLinks).not.toHaveBeenCalled();
   });
 });
