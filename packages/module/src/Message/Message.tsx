@@ -38,9 +38,9 @@ import ThMessage from './TableMessage/ThMessage';
 import { TableProps } from '@patternfly/react-table';
 import ImageMessage from './ImageMessage/ImageMessage';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
-import { PluggableList } from 'react-markdown/lib';
 import rehypeExternalLinks from 'rehype-external-links';
 import rehypeSanitize from 'rehype-sanitize';
+import { PluggableList } from 'react-markdown/lib';
 import LinkMessage from './LinkMessage/LinkMessage';
 
 export interface MessageAttachment {
@@ -167,11 +167,18 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   isLiveRegion = true,
   innerRef,
   tableProps,
-  additionalRehypePlugins = [],
   openLinkInNewTab = true,
+  additionalRehypePlugins = [],
   ...props
 }: MessageProps) => {
   const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
+  let rehypePlugins: PluggableList = [rehypeUnwrapImages];
+  if (openLinkInNewTab) {
+    rehypePlugins = rehypePlugins.concat([[rehypeExternalLinks, { target: '_blank' }, rehypeSanitize]]);
+  }
+  if (additionalRehypePlugins) {
+    rehypePlugins.push(...additionalRehypePlugins);
+  }
   let avatarClassName;
   if (avatarProps && 'className' in avatarProps) {
     const { className, ...rest } = avatarProps;
@@ -181,16 +188,6 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
-  const rehypePlugins: PluggableList = [rehypeUnwrapImages];
-  if (openLinkInNewTab) {
-    rehypePlugins.concat([rehypeExternalLinks, { target: '_blank' }, rehypeSanitize]);
-  }
-  if (additionalRehypePlugins) {
-    // should be able to supply a custom sanitization schema this way if needed and apply any other plugins
-    rehypePlugins.concat(additionalRehypePlugins);
-  }
-
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -258,7 +255,11 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                     },
                     th: (props) => <ThMessage {...props} />,
                     img: (props) => <ImageMessage {...props} />,
-                    a: (props) => <LinkMessage {...props} />
+                    a: (props) => (
+                      <LinkMessage href={props.href} rel={props.rel} target={props.target}>
+                        {props.children}
+                      </LinkMessage>
+                    )
                   }}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={rehypePlugins}

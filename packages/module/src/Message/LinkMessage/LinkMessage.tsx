@@ -3,20 +3,21 @@
 // ============================================================================
 
 import React from 'react';
-import { ExtraProps } from 'react-markdown';
 import { Button, ButtonProps } from '@patternfly/react-core';
 import { ExternalLinkSquareAltIcon } from '@patternfly/react-icons';
 
-const LinkMessage = ({ children, ...props }: JSX.IntrinsicElements['a'] & ExtraProps) => {
-  if (props.target === '_blank') {
+const LinkMessage = ({ children, target, href, ...props }: ButtonProps) => {
+  if (target === '_blank') {
     return (
       <Button
         component="a"
         variant="link"
+        href={href}
         icon={<ExternalLinkSquareAltIcon />}
         iconPosition="end"
         isInline
-        {...(props as ButtonProps)}
+        target={target}
+        {...props}
       >
         {children}
       </Button>
@@ -24,7 +25,7 @@ const LinkMessage = ({ children, ...props }: JSX.IntrinsicElements['a'] & ExtraP
   }
 
   return (
-    <Button isInline component="a" variant="link" {...(props as ButtonProps)}>
+    <Button isInline component="a" href={href} variant="link" {...props}>
       {children}
     </Button>
   );
