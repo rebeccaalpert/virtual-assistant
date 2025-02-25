@@ -108,7 +108,7 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 
 ### Inline drawer ChatBot
 
-This demo displays a ChatBot in a drawer. This demo includes:
+This demo displays a ChatBot in a static, inline drawer. This demo includes:
 
 1. An empty [PatternFly page](/components/page) with a sidebar and masthead.
 2. A [basic ChatBot](#basic-chatbot), placed beside the page content. It does not overlay the page content, cannot be minimized, and does not allow you to change the display mode by default.
