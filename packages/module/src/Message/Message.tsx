@@ -38,7 +38,10 @@ import ThMessage from './TableMessage/ThMessage';
 import { TableProps } from '@patternfly/react-table';
 import ImageMessage from './ImageMessage/ImageMessage';
 import rehypeUnwrapImages from 'rehype-unwrap-images';
+import rehypeExternalLinks from 'rehype-external-links';
+import rehypeSanitize from 'rehype-sanitize';
 import { PluggableList } from 'react-markdown/lib';
+import LinkMessage from './LinkMessage/LinkMessage';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -136,6 +139,8 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   tableProps?: Required<Pick<TableProps, 'aria-label'>> & TableProps;
   /** Additional rehype plugins passed from the consumer */
   additionalRehypePlugins?: PluggableList;
+  /** Whether to open links in message in new tab. */
+  openLinkInNewTab?: boolean;
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
@@ -162,10 +167,18 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   isLiveRegion = true,
   innerRef,
   tableProps,
+  openLinkInNewTab = true,
   additionalRehypePlugins = [],
   ...props
 }: MessageProps) => {
   const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
+  let rehypePlugins: PluggableList = [rehypeUnwrapImages];
+  if (openLinkInNewTab) {
+    rehypePlugins = rehypePlugins.concat([[rehypeExternalLinks, { target: '_blank' }, rehypeSanitize]]);
+  }
+  if (additionalRehypePlugins) {
+    rehypePlugins.push(...additionalRehypePlugins);
+  }
   let avatarClassName;
   if (avatarProps && 'className' in avatarProps) {
     const { className, ...rest } = avatarProps;
@@ -175,9 +188,6 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-
-  const rehypePlugins = [rehypeUnwrapImages, ...(additionalRehypePlugins ?? [])];
-
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -244,7 +254,12 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                       return <TdMessage {...rest} />;
                     },
                     th: (props) => <ThMessage {...props} />,
-                    img: (props) => <ImageMessage {...props} />
+                    img: (props) => <ImageMessage {...props} />,
+                    a: (props) => (
+                      <LinkMessage href={props.href} rel={props.rel} target={props.target}>
+                        {props.children}
+                      </LinkMessage>
+                    )
                   }}
                   remarkPlugins={[remarkGfm]}
                   rehypePlugins={rehypePlugins}
