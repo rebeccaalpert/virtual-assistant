@@ -106,7 +106,7 @@ This demo displays an embedded ChatBot. Embedded ChatBots are meant to be placed
 
 ```
 
-### Drawer ChatBot
+### Inline drawer ChatBot
 
 This demo displays a ChatBot in a drawer. This demo includes:
 
