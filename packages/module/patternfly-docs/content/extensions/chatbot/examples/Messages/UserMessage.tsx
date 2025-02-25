@@ -255,7 +255,7 @@ _Italic text, formatted with single underscores_
             onChange={() => setVariant('error')}
             name="user-message-error"
             label="Error"
-            id="error"
+            id="user-error"
           />
         </FormGroup>
       </Form>
