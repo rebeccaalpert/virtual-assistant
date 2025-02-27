@@ -50,9 +50,9 @@
 }
 
 .pf-chatbot__message-textarea {
-  --pf-v6-c-form-control--before--BorderStyle: none;
-  --pf-v6-c-form-control--after--BorderStyle: none;
-  resize: none;
+  --pf-v6-c-form-control--before--BorderStyle: none !important;
+  --pf-v6-c-form-control--after--BorderStyle: none !important;
+  resize: none !important;
   background-color: transparent;
   font-size: var(--pf-t--global--font--size--md);
   line-height: 1.5rem;
