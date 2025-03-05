@@ -10,7 +10,7 @@ import "./images.css"
 
 ## Elements 
 
-<div class="ws-docs-content-img" >
+<div class="ws-docs-content-img">
 ![Main elements of a ChatBot.](./img/chatbot-elements.svg)
 </div>
 
@@ -37,7 +37,7 @@ import "./images.css"
 1. **Timestamp:** The relative or absolute time that a message was sent.
 1. **Label:** Labels ChatBot messages as "AI."
 1. **Quick responses:** Programmable, clickable actions that allow users to quickly answer questions from the ChatBot.
-1. **Response actions:** Actions that allow users to interact with a bot message. these typically include providing feedback, copying, sharing, or reading aloud, but [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) are also supported.
+1. **Message actions:** Actions that allow users to interact with a bot message. These typically include providing feedback, copying, sharing, or reading aloud, but [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) are also supported. More details for the feedback actions can be found in the (message feedback)[#message-feedback] section.
 
 #### Source tiles
 
@@ -56,6 +56,54 @@ A ChatBot can share a link to a [quick start](/extensions/quick-starts) that wil
 <div class="ws-docs-content-img">
 ![Bot message that links a quick start tile.](./img/chatbot-quickstarts-tile.svg)
 </div>
+
+### Message actions 
+
+To allow users to interact with bots messages, utilize message actions. Refer to [the message actions React example](/patternfly-ai/chatbot/messages#message-actions) for an interactive visual.
+
+The following actions can be used for some of the most common interactions:
+
+<div class="ws-docs-content-img">
+![.](./img/message-responses.svg)
+</div>
+
+1. **Rate (good response):** Applies a positive rating to the message.
+1. **Rate (bad response):** Applies a negative rating to the message.
+1. **Copy:** Copies the message content to the clipboard.
+1. **Share:** 
+1. **Listen:** Reads the message content out loud.
+
+You can also use [custom message actions](/patternfly-ai/chatbot/messages#custom-message-actions) as needed for your particular use case. When using custom actions, be sure to add a tooltip that describes the effect that the action will have. For more information, view [our tooltips guidelines](/ux-writing/tooltips). 
+
+#### Message feedback
+
+A commonly used message response action is rating, which allows users to give feedback on the quality or helpfulness of a bot message. These actions include a thumbs-up icon, for a positive rating, and a thumbs-down icon, for a negative one:
+
+<div class="ws-docs-content-img">
+![.](./img/message-feedback.svg)
+</div>
+
+When users select either of these icons, you should present them with either:
+
+1. A thank-you card that confirms a user's response was received. Even if you don't use a feedback form, you should still display the thank-you card, so that users can be confident their rating went through.
+<br />
+<br />
+    <div class="ws-docs-content-img" style="width:75%">
+    ![.](./img/thank-you-card.svg)
+    </div>
+1. A feedback form that collects more details.
+<br />
+<br />
+    <div class="ws-docs-content-img" style="width:75%">
+    ![.](./img/feedback-form.svg)
+    </div>
+
+    1. **Close button:** Closes the feedback form. The original feedback response should still be collected.
+    1. **Quick responses:** Options for users to provide more context around their rating. Customize these to make the most sense for your product. You can present positive and negative options based on the response type originally selected.
+    1. **Text area (optional):** Allows users to provide additional written detail if they'd like.
+    1. **Submit button:** Submits the feedback form and triggers the   thank-you card.
+
+
 
 ### Message bar
 
@@ -158,6 +206,14 @@ By clicking into the navigation menu, users can search through previous conversa
 <div class="ws-docs-content-img">
 ![Conversation history with an options menu opened on a previous conversation.](./img/conversation-history.svg)
 </div>
+
+When the conversation history is still loading, display skeleton items:
+
+[image]
+
+If there's an error loading the conversation history, display an error screen with steps for resolving the error:
+
+[image]
 
 ### ChatBot settings and preferences
 
