@@ -53,13 +53,13 @@
   --pf-v6-c-form-control--before--BorderStyle: none !important;
   --pf-v6-c-form-control--after--BorderStyle: none !important;
   resize: none !important;
-  background-color: transparent;
-  font-size: var(--pf-t--global--font--size--md);
-  line-height: 1.5rem;
+  background-color: transparent !important;
+  font-size: var(--pf-t--global--font--size--md) !important;
+  line-height: 1.5rem !important;
   max-height: 12rem;
-  overflow-y: auto;
+  overflow-y: auto !important;
   outline: none;
-  overflow-wrap: break-word;
+  overflow-wrap: break-word !important;
   word-wrap: break-word;
   height: 100%;
   width: 100%;
@@ -73,6 +73,7 @@
     --pf-v6-c-form-control--PaddingBlockStart: 0;
     --pf-v6-c-form-control--PaddingBlockEnd: 0;
     --pf-v6-c-form-control--BorderRadius: 0;
+    border-radius: calc(var(--pf-t--global--border--radius--medium) * 2) !important;
   }
   textarea:focus-visible {
     outline: none;

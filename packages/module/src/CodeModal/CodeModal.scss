@@ -1,12 +1,12 @@
 .pf-chatbot__code-modal {
   .pf-v6-c-code-editor {
-    --pf-v6-c-code-editor__main--BackgroundColor: #1f1f1f;
+    --pf-v6-c-code-editor__main--BackgroundColor: #1f1f1f !important;
     --pf-v6-c-code-editor__main--BorderEndStartRadius: 0;
     --pf-v6-c-code-editor__main--BorderEndEndRadius: 0;
     --pf-v6-c-code-editor__tab--BorderStartEndRadius: var(--pf-t--global--border--radius--small);
   }
   .pf-v6-c-code-editor__header {
-    background: #1f1f1f;
+    background: #1f1f1f !important;
     /** this is for the attachment editor header */
     border-start-start-radius: var(--pf-t--global--border--radius--small);
     border-start-end-radius: var(--pf-t--global--border--radius--small);
@@ -24,7 +24,9 @@
   .pf-v6-c-code-editor__header-content {
     --pf-v6-c-code-editor__header-content--BackgroundColor: #1f1f1f;
     --pf-v6-c-code-editor__header-content--m-plain--BackgroundColor: #1f1f1f;
-    --pf-v6-c-code-editor__header-content--BorderStartStartRadius: var(--pf-t--global--border--radius--small);
+    --pf-v6-c-code-editor__header-content--BorderStartStartRadius: var(
+      --pf-t--global--border--radius--small
+    ) !important;
     --pf-v6-c-code-editor__header-content--PaddingInlineEnd: 0;
     justify-content: flex-end;
   }
@@ -80,5 +82,5 @@
 }
 
 .pf-chatbot__code-modal--fullscreen {
-  height: inherit; // override shared modal so code editor works in full screen
+  height: inherit !important; // override shared modal so code editor works in full screen
 }

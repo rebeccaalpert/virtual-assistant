@@ -31,7 +31,7 @@ export const QuickResponse: React.FunctionComponent<QuickResponseProps> = ({
   };
   return (
     <LabelGroup
-      className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className}`}
+      className={`pf-chatbot__message-quick-response ${quickResponseContainerProps?.className ? quickResponseContainerProps?.className : ''}`}
       {...quickResponseContainerProps}
     >
       {quickResponses.map(({ id, onClick, content, className, ...props }: QuickResponse) => (

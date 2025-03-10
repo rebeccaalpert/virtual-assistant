@@ -1,7 +1,7 @@
 .pf-chatbot__message-table {
   border-radius: var(--pf-t--global--border--radius--small);
-  --pf-v6-c-table--BackgroundColor: var(--pf-t--global--background--color--tertiary--default);
-  --pf-v6-c-table--BorderColor: var(--pf-t--global--border--color--default);
+  --pf-v6-c-table--BackgroundColor: var(--pf-t--global--background--color--tertiary--default) !important;
+  --pf-v6-c-table--BorderColor: var(--pf-t--global--border--color--default) !important;
   padding: 0 var(--pf-t--global--spacer--lg) 0 var(--pf-t--global--spacer--lg);
 
   &.pf-m-grid.pf-v6-c-table tbody:where(.pf-v6-c-table__tbody):first-of-type {
