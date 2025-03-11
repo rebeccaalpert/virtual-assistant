@@ -73,7 +73,6 @@
     --pf-v6-c-form-control--PaddingBlockStart: 0;
     --pf-v6-c-form-control--PaddingBlockEnd: 0;
     --pf-v6-c-form-control--BorderRadius: 0;
-    border-radius: calc(var(--pf-t--global--border--radius--medium) * 2) !important;
   }
   textarea:focus-visible {
     outline: none;

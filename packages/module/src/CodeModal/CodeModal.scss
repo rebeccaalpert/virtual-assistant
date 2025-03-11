@@ -1,9 +1,10 @@
 .pf-chatbot__code-modal {
   .pf-v6-c-code-editor {
-    --pf-v6-c-code-editor__main--BackgroundColor: #1f1f1f !important;
+    --pf-v6-c-code-editor__main--BackgroundColor: #1f1f1f;
     --pf-v6-c-code-editor__main--BorderEndStartRadius: 0;
     --pf-v6-c-code-editor__main--BorderEndEndRadius: 0;
     --pf-v6-c-code-editor__tab--BorderStartEndRadius: var(--pf-t--global--border--radius--small);
+    --pf-v6-c-code-editor--m-read-only__main--BackgroundColor: #1f1f1f;
   }
   .pf-v6-c-code-editor__header {
     background: #1f1f1f !important;
