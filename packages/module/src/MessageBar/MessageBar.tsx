@@ -141,7 +141,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     return lines > 2;
   };
 
-  const setAutoWidth = (field: HTMLTextAreaElement) => {
+  const setAutoWidth = React.useCallback((field: HTMLTextAreaElement) => {
     const parent = field.parentElement;
     if (parent) {
       const grandparent = parent.parentElement;
@@ -149,7 +149,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         grandparent.style.setProperty('flex-basis', `100%`);
       }
     }
-  };
+  }, []);
 
   const handleNewLine = (field: HTMLTextAreaElement) => {
     const parent = field.parentElement;
@@ -188,7 +188,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     return () => {
       window.removeEventListener('resize', resetHeight);
     };
-  }, []);
+  }, [setAutoWidth]);
 
   React.useEffect(() => {
     const field = textareaRef.current;
@@ -200,7 +200,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         setAutoWidth(field);
       }
     }
-  }, [displayMode, message]);
+  }, [displayMode, message, setAutoWidth]);
 
   React.useEffect(() => {
     const field = textareaRef.current;
@@ -210,33 +210,37 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     }
   }, [hasSentMessage]);
 
-  const handleChange = React.useCallback((event) => {
-    onChange && onChange(event, event.target.value);
-    if (textareaRef.current) {
-      if (event.target.value === '') {
-        setInitialLineHeight(textareaRef.current);
-      } else {
-        setAutoHeight(textareaRef.current);
+  const handleChange = React.useCallback(
+    (event) => {
+      onChange && onChange(event, event.target.value);
+      if (textareaRef.current) {
+        if (event.target.value === '') {
+          setInitialLineHeight(textareaRef.current);
+        } else {
+          setAutoHeight(textareaRef.current);
+        }
       }
-    }
-    setMessage(event.target.value);
-  }, []);
+      setMessage(event.target.value);
+    },
+    [onChange]
+  );
 
   // Handle sending message
-  const handleSend = React.useCallback(() => {
-    setMessage((m) => {
-      onSendMessage(m);
+  const handleSend = React.useCallback(
+    (newMessage: string | number) => {
+      onSendMessage(newMessage);
       setHasSentMessage(true);
-      return '';
-    });
-  }, [onSendMessage]);
+      setMessage('');
+    },
+    [onSendMessage]
+  );
 
   const handleKeyDown = React.useCallback(
     (event: React.KeyboardEvent) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         if (!isSendButtonDisabled && !hasStopButton) {
-          handleSend();
+          handleSend(message);
         }
       }
       if (event.key === 'Enter' && event.shiftKey) {
@@ -245,7 +249,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         }
       }
     },
-    [handleSend, isSendButtonDisabled, handleStopButton]
+    [isSendButtonDisabled, hasStopButton, handleSend, message]
   );
 
   const handleAttachMenuToggle = () => {
@@ -301,7 +305,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
         {(alwayShowSendButton || message) && (
           <SendButton
             value={message}
-            onClick={handleSend}
+            onClick={() => handleSend(message)}
             isDisabled={isSendButtonDisabled}
             tooltipContent={buttonProps?.send?.tooltipContent}
             {...buttonProps?.send?.props}
