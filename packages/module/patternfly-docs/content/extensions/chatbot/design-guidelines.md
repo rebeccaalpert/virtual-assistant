@@ -296,7 +296,7 @@ There are a few display modes that users can choose when interacting with a Chat
 ![ChatBot in overlay mode.](./img/overlay.svg)
 </div>
 
-2. **Docked:** Anchors the ChatBot to the side of the page, on top of the page content. When docked, the ChatBot window is persistent, and cannot be toggled. To minimize the ChatBot, users will need to return to overlay mode. 
+2. **Docked:** Anchors the ChatBot to the side of the page, on top of the page content. 
 
 <div class="ws-docs-content-img">
 ![ChatBot in docked mode.](./img/docked.svg)
@@ -314,7 +314,7 @@ There are a few display modes that users can choose when interacting with a Chat
 ![ChatBot in full-screen mode.](./img/fullscreen.svg)
 </div>
 
-5. **Inline drawer**: Places the ChatBot to the side of the page, inline with the page content.
+5. **Inline drawer**: A ChatBot that can fit and perform within a drawer. This drawer can look different for each product, but will often be placed to the side of the page, inline with the page content.
 
 <div class="ws-docs-content-img">
 ![ChatBot in drawer mode.](./img/drawer.svg)
@@ -322,7 +322,7 @@ There are a few display modes that users can choose when interacting with a Chat
 
 ### Layouts
 
-ChatBot supports a side-by-side [comparison layout](/patternfly-ai/chatbot/overview/demo#comparing-chatbots), which allows users to compare 2 chats at once. This lets users understand how different models could respond to the same prompt, you can add multiple ChatBots within the same window. 
+ChatBot supports a side-by-side [comparison layout](/patternfly-ai/chatbot/overview/demo#comparing-chatbots), which allows users to compare 2 chats at once. This can be helpful to let users understand how different models respond to the same prompt.
 
 <div class="ws-docs-content-img">
 ![2 ChatBots in comparison mode.](./img/comparison.svg)
