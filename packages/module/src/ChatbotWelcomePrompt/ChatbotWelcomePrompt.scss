@@ -29,6 +29,8 @@
 
   .pf-chatbot__prompt-suggestions > * {
     flex: 1;
+    overflow: visible;
+    height: 100%;
   }
 }
 
