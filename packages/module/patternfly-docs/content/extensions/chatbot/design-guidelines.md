@@ -77,7 +77,7 @@ Selecting the quick start title, or the "Start" link can be configured to launch
 
 ### Message actions 
 
-To allow users to interact with bots messages, utilize message actions. Refer to [the message actions React example](/patternfly-ai/chatbot/messages#message-actions) for an interactive visual.
+To allow users to interact with bot messages, utilize message actions. Refer to [the message actions React example](/patternfly-ai/chatbot/messages#message-actions) for an interactive visual.
 
 The following actions can be used for some of the most common interactions:
 
