@@ -28,7 +28,13 @@ export interface SourcesCardProps extends CardProps {
   /** Accessible label for the pagination component. */
   paginationAriaLabel?: string;
   /** Content rendered inside the paginated card */
-  sources: { title?: string; link: string; body?: React.ReactNode | string; isExternal?: boolean }[];
+  sources: {
+    title?: string;
+    link: string;
+    body?: React.ReactNode | string;
+    isExternal?: boolean;
+    hasShowMore?: boolean;
+  }[];
   /** Label for the English word "source" */
   sourceWord?: string;
   /** Plural for sourceWord */
@@ -43,6 +49,10 @@ export interface SourcesCardProps extends CardProps {
   onPreviousClick?: (event: React.SyntheticEvent<HTMLButtonElement>, page: number) => void;
   /** Function called when page is changed. */
   onSetPage?: (event: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => void;
+  /** Label for English words "show more" */
+  showMoreWords?: string;
+  /** Label for English words "show less" */
+  showLessWords?: string;
 }
 
 const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
@@ -58,11 +68,15 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   onNextClick,
   onPreviousClick,
   onSetPage,
+  showMoreWords = 'show more',
+  showLessWords = 'show less',
   ...props
 }: SourcesCardProps) => {
   const [page, setPage] = React.useState(1);
+  const [showMore, setShowMore] = React.useState(false);
 
   const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
+    setShowMore(false);
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
   };
@@ -93,10 +107,25 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
           </Button>
         </CardTitle>
         {sources[page - 1].body && (
-          <CardBody
-            className={`pf-chatbot__sources-card-body ${sources.length === 1 && 'pf-chatbot__sources-card-no-footer'}`}
-          >
-            {sources[page - 1].body}
+          <CardBody className={`pf-chatbot__sources-card-body`}>
+            <div
+              className={`${!sources[page - 1].hasShowMore || !showMore ? 'pf-chatbot__sources-card-body-text' : ''}`}
+            >
+              {sources[page - 1].body}
+            </div>
+            <div>
+              {sources[page - 1].hasShowMore && (
+                <Button
+                  // prevents extra VO announcements of button text - parent Message has aria-live
+                  aria-live="off"
+                  isInline
+                  variant="link"
+                  onClick={() => setShowMore(!showMore)}
+                >
+                  {showMore ? showLessWords : showMoreWords}
+                </Button>
+              )}
+            </div>
           </CardBody>
         )}
         {sources.length > 1 && (
