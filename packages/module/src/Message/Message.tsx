@@ -171,7 +171,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   openLinkInNewTab?: boolean;
   /** Optional inline error message that can be displayed in the message */
   error?: AlertProps;
-  chartCode?: React.ReactNode;
+  charts?: React.ReactNode[];
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
@@ -201,7 +201,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   openLinkInNewTab = true,
   additionalRehypePlugins = [],
   error,
-  chartCode,
+  charts,
   ...props
 }: MessageProps) => {
   const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
@@ -221,13 +221,13 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
-  const ChartMessage = ({ chartCode, children, ...props }) => {
+  const ChartMessage = ({ charts, children, ...props }) => {
     console.log(props);
     console.log(children);
     console.log('chart');
-    console.log(chartCode);
-    if (chartCode) {
-      return chartCode;
+    console.log(charts);
+    if (charts) {
+      return charts[parseInt(children)];
     }
     /*return (
       <JsxParser
@@ -260,8 +260,6 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
       />
     );*/
   };
-
-  console.log(chartCode);
 
   return (
     <section
@@ -310,9 +308,9 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                         console.log(props);
                         console.log(className);
                         if (className === 'language-chart') {
-                          console.log(children);
+                          console.log('chart language accepted');
                           return (
-                            <ChartMessage chartCode={chartCode} {...props}>
+                            <ChartMessage charts={charts} {...props}>
                               {children}
                             </ChartMessage>
                           );
