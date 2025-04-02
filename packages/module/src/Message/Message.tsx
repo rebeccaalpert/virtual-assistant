@@ -44,6 +44,32 @@ import rehypeSanitize from 'rehype-sanitize';
 import { PluggableList } from 'react-markdown/lib';
 import LinkMessage from './LinkMessage/LinkMessage';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
+import JsxParser from 'react-jsx-parser';
+import {
+  Chart,
+  ChartArea,
+  ChartBullet,
+  ChartContainer,
+  ChartVoronoiContainer,
+  ChartTooltip,
+  ChartAxis,
+  ChartGroup,
+  ChartBar,
+  ChartCursorContainer,
+  ChartCursorTooltip,
+  ChartThreshold,
+  ChartStack,
+  ChartScatter,
+  ChartPoint,
+  ChartDonut,
+  ChartDonutUtilization,
+  ChartLabel,
+  ChartLegend,
+  ChartLegendTooltip,
+  ChartLine,
+  ChartPie,
+  ChartProps
+} from '@patternfly/react-charts';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -145,6 +171,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   openLinkInNewTab?: boolean;
   /** Optional inline error message that can be displayed in the message */
   error?: AlertProps;
+  chartCode?: React.ReactNode;
 }
 
 export const MessageBase: React.FunctionComponent<MessageProps> = ({
@@ -174,6 +201,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   openLinkInNewTab = true,
   additionalRehypePlugins = [],
   error,
+  chartCode,
   ...props
 }: MessageProps) => {
   const { beforeMainContent, afterMainContent, endContent } = extraContent || {};
@@ -193,6 +221,48 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   // Keep timestamps consistent between Timestamp component and aria-label
   const date = new Date();
   const dateString = timestamp ?? `${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+  const ChartMessage = ({ chartCode, children, ...props }) => {
+    console.log(props);
+    console.log(children);
+    console.log('chart');
+    console.log(chartCode);
+    if (chartCode) {
+      return chartCode;
+    }
+    /*return (
+      <JsxParser
+        bindings={{}}
+        components={{
+          Chart,
+          ChartArea,
+          ChartBullet,
+          ChartContainer,
+          //ChartCursorContainer,
+          //ChartCursorTooltip,
+          ChartThreshold,
+          ChartStack,
+          ChartScatter,
+          ChartPoint,
+          ChartDonut,
+          ChartDonutUtilization,
+          ChartLabel,
+          ChartLegend,
+          //ChartLegendTooltip,
+          ChartLine,
+          ChartPie,
+          ChartTooltip,
+          ChartBar,
+          ChartGroup,
+          //ChartVoronoiContainer,
+          ChartAxis
+        }}
+        jsx={children}
+      />
+    );*/
+  };
+
+  console.log(chartCode);
+
   return (
     <section
       aria-label={`Message from ${role} - ${dateString}`}
@@ -236,11 +306,23 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                   <Markdown
                     components={{
                       p: (props) => <TextMessage component={ContentVariants.p} {...props} />,
-                      code: ({ children, ...props }) => (
-                        <CodeBlockMessage {...props} {...codeBlockProps}>
-                          {children}
-                        </CodeBlockMessage>
-                      ),
+                      code: ({ children, className, ...props }) => {
+                        console.log(props);
+                        console.log(className);
+                        if (className === 'language-chart') {
+                          console.log(children);
+                          return (
+                            <ChartMessage chartCode={chartCode} {...props}>
+                              {children}
+                            </ChartMessage>
+                          );
+                        }
+                        return (
+                          <CodeBlockMessage {...props} {...codeBlockProps}>
+                            {children}
+                          </CodeBlockMessage>
+                        );
+                      },
                       h1: (props) => <TextMessage component={ContentVariants.h1} {...props} />,
                       h2: (props) => <TextMessage component={ContentVariants.h2} {...props} />,
                       h3: (props) => <TextMessage component={ContentVariants.h3} {...props} />,
