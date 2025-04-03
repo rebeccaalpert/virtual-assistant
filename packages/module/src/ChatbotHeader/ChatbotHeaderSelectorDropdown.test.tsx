@@ -2,6 +2,7 @@ import React from 'react';
 import { DropdownItem } from '@patternfly/react-core';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ChatbotHeaderSelectorDropdown } from './ChatbotHeaderSelectorDropdown';
+import '@testing-library/jest-dom';
 
 describe('ChatbotHeaderSelectorDropdown', () => {
   const dropdownItems = (
@@ -39,5 +40,14 @@ describe('ChatbotHeaderSelectorDropdown', () => {
 
       expect(onSelect).toHaveBeenCalled();
     });
+  });
+
+  it('should handle isCompact', () => {
+    render(
+      <ChatbotHeaderSelectorDropdown value="Option 1" isCompact>
+        {dropdownItems}
+      </ChatbotHeaderSelectorDropdown>
+    );
+    expect(screen.getByRole('button', { name: /Select model/i })).toHaveClass('pf-m-compact');
   });
 });

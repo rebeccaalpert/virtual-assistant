@@ -141,7 +141,24 @@
 // ============================================================================
 // Information density styles
 // ============================================================================
+.pf-chatbot.pf-m-compact {
+  .pf-chatbot__header {
+    gap: var(--pf-t--global--spacer--sm);
+    padding: var(--pf-t--global--spacer--sm);
+  }
+
+  .pf-chatbot__header .pf-chatbot__title img {
+    max-height: 24px;
+    vertical-align: middle;
+  }
+}
+
+.pf-v6-c-menu-toggle.pf-chatbot__button--toggle-options.pf-m-compact,
 .pf-chatbot__button--toggle-menu.pf-m-compact {
   width: 2rem;
   height: 2rem;
+}
+
+.pf-chatbot__header .pf-chatbot__actions .pf-v6-c-menu-toggle.pf-m-secondary.pf-m-compact {
+  width: initial;
 }

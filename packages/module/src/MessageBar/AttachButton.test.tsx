@@ -50,4 +50,8 @@ describe('Attach button', () => {
     expect(input.files).toHaveLength(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should handle isCompact', () => {
+    render(<AttachButton isCompact data-testid="button" />);
+    expect(screen.getByTestId('button')).toHaveClass('pf-m-compact');
+  });
 });
