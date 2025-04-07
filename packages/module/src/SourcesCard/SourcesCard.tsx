@@ -12,6 +12,8 @@ import {
   CardFooter,
   CardProps,
   CardTitle,
+  ExpandableSection,
+  ExpandableSectionVariant,
   Icon,
   pluralize,
   Truncate
@@ -23,7 +25,7 @@ export interface SourcesCardProps extends CardProps {
   className?: string;
   /** Flag indicating if the pagination is disabled. */
   isDisabled?: boolean;
-  /** Label for the English word "of". */
+  /** @deprecated ofWord has been deprecated. Label for the English word "of." */
   ofWord?: string;
   /** Accessible label for the pagination component. */
   paginationAriaLabel?: string;
@@ -58,7 +60,6 @@ export interface SourcesCardProps extends CardProps {
 const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   className,
   isDisabled,
-  ofWord = 'of',
   paginationAriaLabel = 'Pagination',
   sources,
   sourceWord = 'source',
@@ -73,10 +74,13 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   ...props
 }: SourcesCardProps) => {
   const [page, setPage] = React.useState(1);
-  const [showMore, setShowMore] = React.useState(false);
+  const [isExpanded, setIsExpanded] = React.useState(false);
+
+  const onToggle = (_event: React.MouseEvent, isExpanded: boolean) => {
+    setIsExpanded(isExpanded);
+  };
 
   const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
-    setShowMore(false);
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
   };
@@ -108,24 +112,22 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
         </CardTitle>
         {sources[page - 1].body && (
           <CardBody className={`pf-chatbot__sources-card-body`}>
-            <div
-              className={`${!sources[page - 1].hasShowMore || !showMore ? 'pf-chatbot__sources-card-body-text' : ''}`}
-            >
-              {sources[page - 1].body}
-            </div>
-            <div>
-              {sources[page - 1].hasShowMore && (
-                <Button
-                  // prevents extra VO announcements of button text - parent Message has aria-live
-                  aria-live="off"
-                  isInline
-                  variant="link"
-                  onClick={() => setShowMore(!showMore)}
+            {sources[page - 1].hasShowMore ? (
+              // prevents extra VO announcements of button text - parent Message has aria-live
+              <div aria-live="off">
+                <ExpandableSection
+                  variant={ExpandableSectionVariant.truncate}
+                  toggleText={isExpanded ? showLessWords : showMoreWords}
+                  onToggle={onToggle}
+                  isExpanded={isExpanded}
+                  truncateMaxLines={2}
                 >
-                  {showMore ? showLessWords : showMoreWords}
-                </Button>
-              )}
-            </div>
+                  {sources[page - 1].body}
+                </ExpandableSection>
+              </div>
+            ) : (
+              <div className="pf-chatbot__sources-card-body-text">{sources[page - 1].body}</div>
+            )}
           </CardBody>
         )}
         {sources.length > 1 && (
@@ -158,6 +160,9 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                     </svg>
                   </Icon>
                 </Button>
+                <span aria-hidden="true">
+                  {page}/{sources.length}
+                </span>
                 <Button
                   variant={ButtonVariant.plain}
                   isDisabled={isDisabled || page === sources.length}
@@ -185,10 +190,6 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
                   </Icon>
                 </Button>
               </nav>
-
-              <span aria-hidden="true">
-                {page} {ofWord} {sources.length}
-              </span>
             </div>
           </CardFooter>
         )}

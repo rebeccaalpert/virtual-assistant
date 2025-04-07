@@ -11,7 +11,7 @@ describe('SourcesCard', () => {
     expect(screen.getByText('Source 1')).toBeTruthy();
     // no buttons or navigation when there is only 1 source
     expect(screen.queryByRole('button')).toBeFalsy();
-    expect(screen.queryByText('1 of 1')).toBeFalsy();
+    expect(screen.queryByText('1/1')).toBeFalsy();
   });
 
   it('should render card correctly if one source with a title is passed in', () => {
@@ -48,7 +48,7 @@ describe('SourcesCard', () => {
     );
     expect(screen.getByText('2 sources')).toBeTruthy();
     expect(screen.getByText('How to make an apple pie')).toBeTruthy();
-    expect(screen.getByText('1 of 2')).toBeTruthy();
+    expect(screen.getByText('1/2')).toBeTruthy();
     screen.getByRole('button', { name: /Go to previous page/i });
     screen.getByRole('button', { name: /Go to next page/i });
   });
@@ -63,12 +63,12 @@ describe('SourcesCard', () => {
       />
     );
     expect(screen.getByText('How to make an apple pie')).toBeTruthy();
-    expect(screen.getByText('1 of 2')).toBeTruthy();
+    expect(screen.getByText('1/2')).toBeTruthy();
     expect(screen.getByRole('button', { name: /Go to previous page/i })).toBeDisabled();
     await userEvent.click(screen.getByRole('button', { name: /Go to next page/i }));
     expect(screen.queryByText('How to make an apple pie')).toBeFalsy();
     expect(screen.getByText('How to make cookies')).toBeTruthy();
-    expect(screen.getByText('2 of 2')).toBeTruthy();
+    expect(screen.getByText('2/2')).toBeTruthy();
     expect(screen.getByRole('button', { name: /Go to previous page/i })).toBeEnabled();
     expect(screen.getByRole('button', { name: /Go to next page/i })).toBeDisabled();
   });
@@ -99,19 +99,6 @@ describe('SourcesCard', () => {
     );
     expect(screen.getByRole('button', { name: /Go to previous page/i })).toBeDisabled();
     expect(screen.getByRole('button', { name: /Go to next page/i })).toBeDisabled();
-  });
-
-  it('should change ofWord appropriately', () => {
-    render(
-      <SourcesCard
-        sources={[
-          { title: 'How to make an apple pie', link: '' },
-          { title: 'How to make cookies', link: '' }
-        ]}
-        ofWord={'de'}
-      />
-    );
-    expect(screen.getByText('1 de 2')).toBeTruthy();
   });
 
   it('should render navigation aria label appropriately', () => {
@@ -254,8 +241,6 @@ describe('SourcesCard', () => {
         ]}
       />
     );
-    expect(screen.getByRole('button', { name: /Show more/i }));
-    await userEvent.click(screen.getByRole('button', { name: /Show more/i }));
-    expect(screen.getByRole('button', { name: /Show less/i }));
+    expect(screen.getByRole('region')).toHaveAttribute('class', 'pf-v6-c-expandable-section__content');
   });
 });
