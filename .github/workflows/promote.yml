@@ -20,7 +20,7 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
       - uses: actions/checkout@v4
       - name: Build for promotion
-        run: corepack enable && yarn install --frozen-lockfile && yarn build
+        run: npm install --frozen-lockfile && npm run build
       - name: GitHub Tag Name example
         run: |
           echo "Tag name from GITHUB_REF_NAME: $GITHUB_REF_NAME"
