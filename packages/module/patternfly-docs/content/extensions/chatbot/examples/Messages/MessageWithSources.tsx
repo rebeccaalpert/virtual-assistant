@@ -14,7 +14,7 @@ export const MessageWithSourcesExample: React.FunctionComponent = () => {
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example with sources"
+        content="This example has a body description that's within the recommended limit of 2 lines:"
         sources={{
           sources: [
             {
@@ -43,7 +43,36 @@ export const MessageWithSourcesExample: React.FunctionComponent = () => {
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example with very long sources"
+        content="This example has a body description that's longer than the recommended limit of 2 lines, with a link to load the rest of the description:"
+        sources={{
+          sources: [
+            {
+              title: 'Getting started with Red Hat OpenShift',
+              link: '#',
+              body: 'Red Hat OpenShift on IBM Cloud is a managed offering to create your own cluster of compute hosts where you can deploy and manage containerized apps on IBM Cloud.',
+              hasShowMore: true
+            },
+            {
+              title: 'Azure Red Hat OpenShift documentation',
+              link: '#',
+              body: 'Microsoft Azure Red Hat OpenShift allows you to deploy a production ready Red Hat OpenShift cluster in Azure.',
+              hasShowMore: true
+            },
+            {
+              title: 'OKD Documentation: Home',
+              link: '#',
+              body: 'OKD is a distribution of Kubernetes optimized for continuous application development and multi-tenant deployment. OKD also serves as the upstream code base upon.',
+              hasShowMore: true
+            }
+          ],
+          onSetPage
+        }}
+      />
+      <Message
+        name="Bot"
+        role="bot"
+        avatar={patternflyAvatar}
+        content="This example has a truncated title:"
         sources={{
           sources: [
             {
@@ -66,7 +95,7 @@ export const MessageWithSourcesExample: React.FunctionComponent = () => {
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example with only 1 source"
+        content="This example only includes 1 source:"
         sources={{
           sources: [
             {
@@ -83,7 +112,7 @@ export const MessageWithSourcesExample: React.FunctionComponent = () => {
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example with sources that include a title and link"
+        content="This example has a title and no body description:"
         sources={{
           sources: [
             { title: 'Getting started with Red Hat OpenShift', link: '#', isExternal: true },
@@ -105,7 +134,7 @@ export const MessageWithSourcesExample: React.FunctionComponent = () => {
         name="Bot"
         role="bot"
         avatar={patternflyAvatar}
-        content="Example with link-only sources (not recommended)"
+        content="This example displays the source as a link, without a title (not recommended)"
         sources={{
           sources: [
             {
