@@ -233,4 +233,17 @@ describe('UserFeedback', () => {
     );
     expect(screen.getByTestId('card').parentElement).not.toHaveFocus();
   });
+  it('should handle isCompact', () => {
+    render(
+      <UserFeedback
+        timestamp="12/12/12"
+        onClose={jest.fn}
+        onSubmit={jest.fn}
+        quickResponses={MOCK_RESPONSES}
+        data-testid="card"
+        isCompact
+      />
+    );
+    expect(screen.getByTestId('card')).toHaveClass('pf-m-compact');
+  });
 });
