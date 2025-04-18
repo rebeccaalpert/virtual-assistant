@@ -16,6 +16,8 @@ import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '
 import { useDropzone } from 'react-dropzone';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
+import '@patternfly/react-core/dist/styles/base.css';
+import '@patternfly/chatbot/dist/css/main.css';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
