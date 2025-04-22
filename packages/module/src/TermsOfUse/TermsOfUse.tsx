@@ -70,7 +70,7 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
       ouiaId={ouiaId}
       aria-labelledby="terms-of-use-title"
       aria-describedby="terms-of-use-modal"
-      className={`pf-chatbot__terms-of-use-modal pf-chatbot__terms-of-use-modal--${displayMode} ${isCompact ? 'pf-chatbot__terms-of-use--compact' : ''} ${className ? className : ''}`}
+      className={`pf-chatbot__terms-of-use-modal pf-chatbot__terms-of-use-modal--${displayMode} ${isCompact ? 'pf-m-compact' : ''} ${className ? className : ''}`}
       displayMode={displayMode}
       {...props}
     >
