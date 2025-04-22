@@ -431,6 +431,6 @@ describe('ChatbotConversationHistoryNav', () => {
         data-testid="drawer"
       />
     );
-    expect(screen.getByTestId('drawer')).toHaveClass('pf-chatbot__history-compact');
+    expect(screen.getByTestId('drawer')).toHaveClass('pf-m-compact');
   });
 });

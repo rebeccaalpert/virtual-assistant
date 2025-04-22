@@ -290,7 +290,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
 
   return (
     <Drawer
-      className={`pf-chatbot__history ${isCompact ? 'pf-chatbot__history-compact' : ''}`}
+      className={`pf-chatbot__history ${isCompact ? 'pf-m-compact' : ''}`}
       isExpanded={isDrawerOpen}
       onExpand={onExpand}
       position="start"
