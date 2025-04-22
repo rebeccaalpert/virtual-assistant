@@ -252,4 +252,8 @@ describe('UserFeedbackComplete', () => {
     render(<UserFeedbackComplete timestamp="12/12/12" data-testid="card" focusOnLoad={false} />);
     expect(screen.getByTestId('card').parentElement).not.toHaveFocus();
   });
+  it('should handle isCompact', () => {
+    render(<UserFeedbackComplete timestamp="12/12/12" data-testid="card" isCompact />);
+    expect(screen.getByTestId('card')).toHaveClass('pf-m-compact');
+  });
 });

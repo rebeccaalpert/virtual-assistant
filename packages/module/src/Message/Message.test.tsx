@@ -334,6 +334,27 @@ describe('Message', () => {
     await userEvent.click(quickResponse);
     expect(spy).toHaveBeenCalledTimes(1);
   });
+  it('should be able to handle isCompact', async () => {
+    render(
+      <Message
+        avatar="./img"
+        role="bot"
+        name="Bot"
+        content="Hi"
+        quickResponses={[
+          {
+            id: '1',
+            content: 'Yes',
+            onClick: jest.fn(),
+            className: 'test'
+          }
+        ]}
+        isCompact
+      />
+    );
+    const parent = screen.getByRole('button', { name: /Yes/i }).parentNode;
+    expect(parent).toHaveClass('pf-m-compact');
+  });
   it('should be able to show more than 1 quick response', async () => {
     const spy = jest.fn();
     render(
