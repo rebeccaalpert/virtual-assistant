@@ -125,3 +125,10 @@
     border-radius: var(--pf-t--global--border--radius--sharp);
   }
 }
+
+// ============================================================================
+// Information density styles
+// ============================================================================
+.pf-chatbot.pf-m-compact {
+  font-size: var(--pf-t--global--font--size--sm);
+}

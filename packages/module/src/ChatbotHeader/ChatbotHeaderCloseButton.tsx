@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import { CloseIcon } from '@patternfly/react-icons';
 
-export interface ChatbotHeaderCloseButtonProps {
+export interface ChatbotHeaderCloseButtonProps extends ButtonProps {
   /** Callback function for when button is clicked */
   onClick: () => void;
   /** Custom classname for the header component */
@@ -16,6 +16,8 @@ export interface ChatbotHeaderCloseButtonProps {
   innerRef?: React.Ref<HTMLButtonElement>;
   /** Content used in tooltip */
   tooltipContent?: string;
+  /** Sets button to compact styling. */
+  isCompact?: boolean;
 }
 
 const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseButtonProps> = ({
@@ -24,9 +26,11 @@ const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseBu
   tooltipProps,
   menuAriaLabel = 'Close',
   innerRef,
-  tooltipContent = 'Close'
+  tooltipContent = 'Close',
+  isCompact,
+  ...props
 }: ChatbotHeaderCloseButtonProps) => (
-  <div className={`pf-chatbot__menu ${className}`}>
+  <div className={`pf-chatbot__menu${className ? ` ${className}` : ''}`}>
     <Tooltip
       content={tooltipContent}
       position="bottom"
@@ -35,16 +39,18 @@ const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseBu
       {...tooltipProps}
     >
       <Button
-        className="pf-chatbot__button--toggle-menu"
+        className={`pf-chatbot__button--toggle-menu ${isCompact ? 'pf-m-compact' : ''}`}
         variant="plain"
         onClick={onClick}
         aria-label={menuAriaLabel}
         ref={innerRef}
         icon={
-          <Icon size="xl" isInline>
+          <Icon size={isCompact ? 'lg' : 'xl'} isInline>
             <CloseIcon />
           </Icon>
         }
+        size={isCompact ? 'sm' : undefined}
+        {...props}
       />
     </Tooltip>
   </div>

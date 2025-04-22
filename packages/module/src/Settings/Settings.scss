@@ -32,3 +32,14 @@
   font-weight: var(--pf-t--global--font--weight--body--bold);
   text-align: center;
 }
+
+.pf-chatbot__settings-form-container.pf-m-compact {
+  .pf-chatbot__settings-form-row {
+    padding: var(--pf-t--global--spacer--md);
+    font-size: var(--pf-t--global--font--size--body--md);
+  }
+}
+
+.pf-chatbot__header.pf-m-compact {
+  padding-inline-start: var(--pf-t--global--spacer--md);
+}
