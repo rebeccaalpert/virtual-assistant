@@ -268,7 +268,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
       <Chatbot isCompact isVisible={chatbotVisible} displayMode={displayMode}>
         {areSettingsOpen ? (
           <>
-            <ChatbotHeader className="pf-chatbot__compact-settings-header">
+            <ChatbotHeader className="pf-m-compact">
               <ChatbotHeaderMain>
                 <ChatbotHeaderTitle>
                   <Title headingLevel="h1" size="2xl">

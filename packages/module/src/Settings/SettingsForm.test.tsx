@@ -40,6 +40,6 @@ describe('SettingsForm', () => {
       }
     ];
     render(<SettingsForm data-testid="settings-form" fields={fields} isCompact />);
-    expect(screen.getByTestId('settings-form')).toHaveClass('pf-chatbot__settings-form-container--compact');
+    expect(screen.getByTestId('settings-form')).toHaveClass('pf-m-compact');
   });
 });

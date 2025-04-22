@@ -47,7 +47,7 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
 
   return (
     <motion.div
-      className={`pf-chatbot pf-chatbot--${displayMode} ${!isVisible ? 'pf-chatbot--hidden' : ''}  ${isCompact ? 'pf-chatbot--small' : ''} ${className ?? ''}`}
+      className={`pf-chatbot pf-chatbot--${displayMode} ${!isVisible ? 'pf-chatbot--hidden' : ''}  ${isCompact ? 'pf-m-compact' : ''} ${className ?? ''}`}
       variants={motionChatbot}
       initial="hidden"
       animate={isVisible ? 'visible' : 'hidden'}

@@ -16,7 +16,7 @@ export const SettingsForm: React.FunctionComponent<SettingsFormProps> = ({
   ...props
 }) => (
   <div
-    className={`pf-chatbot__settings-form-container ${isCompact ? 'pf-chatbot__settings-form-container--compact' : ''} ${className ? ` ${className}` : ''}`}
+    className={`pf-chatbot__settings-form-container ${isCompact ? 'pf-m-compact' : ''} ${className ? ` ${className}` : ''}`}
     {...props}
   >
     <form className="pf-chatbot__settings-form">

@@ -39,7 +39,7 @@ const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseBu
       {...tooltipProps}
     >
       <Button
-        className={`pf-chatbot__button--toggle-menu ${isCompact ? 'pf-chatbot__close-button--compact' : ''}`}
+        className={`pf-chatbot__button--toggle-menu ${isCompact ? 'pf-m-compact' : ''}`}
         variant="plain"
         onClick={onClick}
         aria-label={menuAriaLabel}
