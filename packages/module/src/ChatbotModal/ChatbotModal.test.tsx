@@ -54,6 +54,6 @@ describe('ChatbotModal', () => {
         </ModalBody>
       </ChatbotModal>
     );
-    expect(screen.getByTestId('modal')).toHaveClass('pf-chatbot__chatbot-modal-compact');
+    expect(screen.getByTestId('modal')).toHaveClass('pf-m-compact');
   });
 });

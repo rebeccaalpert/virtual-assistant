@@ -89,7 +89,10 @@
   position: absolute;
 }
 
-.pf-chatbot__chatbot-modal-compact {
+// ============================================================================
+// Compact
+// ============================================================================
+.pf-chatbot__chatbot-modal.pf-m-compact {
   .pf-v6-c-modal-box__header {
     padding-block-end: 0;
   }

@@ -88,7 +88,7 @@
   height: inherit !important; // override shared modal so code editor works in full screen
 }
 
-.pf-chatbot__code-modal.pf-chatbot__code-modal-compact {
+.pf-chatbot__code-modal.pf-m-compact {
   .pf-chatbot__code-modal-body {
     gap: var(--pf-t--global--spacer--md);
   }

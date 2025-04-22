@@ -97,7 +97,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
       ouiaId="CodeModal"
       aria-labelledby="code-modal-title"
       aria-describedby="code-modal"
-      className={`pf-chatbot__code-modal ${isCompact ? 'pf-chatbot__code-modal-compact' : ''} pf-chatbot__code-modal--${displayMode}`}
+      className={`pf-chatbot__code-modal ${isCompact ? 'pf-m-compact' : ''} pf-chatbot__code-modal--${displayMode}`}
       displayMode={displayMode}
       isCompact={isCompact}
     >

@@ -19,6 +19,6 @@ describe('ChatbotModal', () => {
         secondaryActionBtn="Cancel"
       ></CodeModal>
     );
-    expect(screen.getByRole('dialog')).toHaveClass('pf-chatbot__chatbot-modal-compact');
+    expect(screen.getByRole('dialog')).toHaveClass('pf-m-compact');
   });
 });

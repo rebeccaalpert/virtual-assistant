@@ -30,7 +30,7 @@ export const ChatbotModal: React.FunctionComponent<ChatbotModalProps> = ({
       ouiaId="ChatbotModal"
       aria-labelledby="chatbot-modal-title"
       aria-describedby="chatbot-modal"
-      className={`pf-chatbot__chatbot-modal pf-chatbot__chatbot-modal--${displayMode} ${isCompact ? 'pf-chatbot__chatbot-modal-compact' : ''} ${className}`}
+      className={`pf-chatbot__chatbot-modal pf-chatbot__chatbot-modal--${displayMode} ${isCompact ? 'pf-m-compact' : ''} ${className}`}
       backdropClassName="pf-chatbot__chatbot-modal-backdrop"
       {...props}
     >
