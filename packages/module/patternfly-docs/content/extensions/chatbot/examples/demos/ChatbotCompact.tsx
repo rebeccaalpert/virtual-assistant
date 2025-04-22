@@ -372,6 +372,7 @@ export const ChatbotDemo: React.FunctionComponent = () => {
             const newConversations: { [key: string]: Conversation[] } = findMatchingItems(value);
             setConversations(newConversations);
           }}
+          isCompact
           drawerContent={
             <>
               <ChatbotHeader>
