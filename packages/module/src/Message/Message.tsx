@@ -339,7 +339,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
           <div className="pf-chatbot__message-and-actions">
             {renderMessage()}
             {afterMainContent && <>{afterMainContent}</>}
-            {!isLoading && sources && <SourcesCard {...sources} />}
+            {!isLoading && sources && <SourcesCard {...sources} isCompact={isCompact} />}
             {quickStarts && quickStarts.quickStart && (
               <QuickStartTile
                 quickStart={quickStarts.quickStart}
@@ -349,6 +349,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
                 prerequisiteWord={quickStarts.prerequisiteWord}
                 prerequisiteWordPlural={quickStarts.prerequisiteWordPlural}
                 quickStartButtonAriaLabel={quickStarts.quickStartButtonAriaLabel}
+                isCompact={isCompact}
               />
             )}
             {!isLoading && actions && <ResponseActions actions={actions} />}
