@@ -415,4 +415,22 @@ describe('ChatbotConversationHistoryNav', () => {
       })
     ).toBeTruthy();
   });
+
+  it('should handle isCompact', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        reverseButtonOrder={false}
+        handleTextInputChange={jest.fn()}
+        conversations={initialConversations}
+        noResultsState={NO_RESULTS}
+        isCompact
+        data-testid="drawer"
+      />
+    );
+    expect(screen.getByTestId('drawer')).toHaveClass('pf-m-compact');
+  });
 });
