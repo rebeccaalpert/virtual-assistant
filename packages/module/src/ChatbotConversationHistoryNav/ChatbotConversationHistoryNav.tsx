@@ -259,7 +259,11 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
             {...drawerActionsProps}
           >
             <DrawerCloseButton onClick={onDrawerToggle} {...drawerCloseButtonProps} />
-            {onNewChat && <Button onClick={onNewChat}>{newChatButtonText}</Button>}
+            {onNewChat && (
+              <Button size={isCompact ? 'sm' : undefined} onClick={onNewChat}>
+                {newChatButtonText}
+              </Button>
+            )}
           </DrawerActions>
         </DrawerHead>
         {isLoading ? <LoadingState {...loadingState} /> : renderDrawerContent()}
