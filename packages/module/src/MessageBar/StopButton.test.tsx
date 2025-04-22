@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { StopButton } from './StopButton';
 import { TooltipProps } from '@patternfly/react-core';
 
-const renderStop = (props?: { [key: string]: string | Omit<TooltipProps, 'content'> }) => {
+const renderStop = (props?: { [key: string]: string | boolean | Omit<TooltipProps, 'content'> }) => {
   const spy = jest.fn();
   render(<StopButton onClick={spy} {...props} />);
 };
@@ -38,5 +38,9 @@ describe('Stop button', () => {
     renderStop({ tooltipProps: { id: 'test' } });
     await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
     expect(screen.getByRole('tooltip', { name: 'Stop' })).toHaveAttribute('id', 'test');
+  });
+  it('should handle isCompact', () => {
+    renderStop({ 'data-testid': 'button', isCompact: true });
+    expect(screen.getByTestId('button')).toHaveClass('pf-m-compact');
   });
 });

@@ -69,4 +69,17 @@ describe('ChatbotWelcomePrompt', () => {
     const element = screen.getByTestId('welcome-prompt');
     expect(element).toHaveClass('test');
   });
+
+  it('should handle isCompact', () => {
+    render(
+      <ChatbotWelcomePrompt
+        title="Hi, ChatBot User!"
+        description="How can I help you today?"
+        className="test"
+        testId="welcome-prompt"
+        isCompact
+      />
+    );
+    expect(screen.getByTestId('welcome-prompt')).toHaveClass('pf-m-compact');
+  });
 });

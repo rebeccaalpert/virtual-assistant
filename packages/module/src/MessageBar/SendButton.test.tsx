@@ -5,7 +5,7 @@ import userEvent from '@testing-library/user-event';
 import { SendButton } from './SendButton';
 import { TooltipProps } from '@patternfly/react-core';
 
-const renderSend = (props?: { [key: string]: string | Omit<TooltipProps, 'content'> }) => {
+const renderSend = (props?: { [key: string]: string | boolean | Omit<TooltipProps, 'content'> }) => {
   const spy = jest.fn();
   render(<SendButton onClick={spy} {...props} />);
 };
@@ -39,5 +39,9 @@ describe('Send button', () => {
     renderSend({ tooltipProps: { id: 'test' } });
     await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
     expect(screen.getByRole('tooltip', { name: 'Send' })).toHaveAttribute('id', 'test');
+  });
+  it('should handle isCompact', () => {
+    renderSend({ 'data-testid': 'button', isCompact: true });
+    expect(screen.getByTestId('button')).toHaveClass('pf-m-compact');
   });
 });

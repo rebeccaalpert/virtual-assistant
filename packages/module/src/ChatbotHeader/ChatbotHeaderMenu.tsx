@@ -1,9 +1,9 @@
 import React from 'react';
 
-import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon';
 
-export interface ChatbotHeaderMenuProps {
+export interface ChatbotHeaderMenuProps extends ButtonProps {
   /** Callback function to attach to menu toggle on top right of chatbot header. */
   onMenuToggle: () => void;
   /** Custom classname for the header component */
@@ -16,6 +16,7 @@ export interface ChatbotHeaderMenuProps {
   innerRef?: React.Ref<HTMLButtonElement>;
   /** Content used in tooltip */
   tooltipContent?: string;
+  isCompact?: boolean;
 }
 
 const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
@@ -24,7 +25,9 @@ const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = (
   tooltipProps,
   menuAriaLabel = 'Toggle menu',
   innerRef,
-  tooltipContent = 'Menu'
+  tooltipContent = 'Menu',
+  isCompact,
+  ...props
 }: ChatbotHeaderMenuProps) => (
   <div className={`pf-chatbot__menu ${className}`}>
     <Tooltip
@@ -35,16 +38,18 @@ const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = (
       {...tooltipProps}
     >
       <Button
-        className="pf-chatbot__button--toggle-menu"
+        className={`pf-chatbot__button--toggle-menu ${isCompact ? 'pf-m-compact' : ''}`}
         variant="plain"
         onClick={onMenuToggle}
         aria-label={menuAriaLabel}
         ref={innerRef}
         icon={
-          <Icon size="xl" isInline>
+          <Icon size={isCompact ? 'lg' : 'xl'} isInline>
             <BarsIcon />
           </Icon>
         }
+        size={isCompact ? 'sm' : undefined}
+        {...props}
       />
     </Tooltip>
   </div>

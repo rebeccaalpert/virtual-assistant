@@ -28,4 +28,13 @@ describe('Chatbot', () => {
     render(<Chatbot isVisible={false}>Chatbot Content</Chatbot>);
     expect(screen.queryByLabelText('Chatbot')).toBeFalsy();
   });
+
+  it('should handle isCompact', () => {
+    render(
+      <Chatbot data-testid="chatbot" isVisible={true} isCompact>
+        Chatbot Content
+      </Chatbot>
+    );
+    expect(screen.getByTestId('chatbot')).toHaveClass('pf-m-compact');
+  });
 });

@@ -17,6 +17,7 @@ export interface SendButtonProps extends ButtonProps {
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Send" used in the tooltip */
   tooltipContent?: string;
+  isCompact?: boolean;
 }
 
 export const SendButton: React.FunctionComponent<SendButtonProps> = ({
@@ -24,6 +25,7 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   onClick,
   tooltipProps,
   tooltipContent = 'Send',
+  isCompact,
   ...props
 }: SendButtonProps) => (
   <Tooltip
@@ -40,14 +42,15 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
   >
     <Button
       variant="plain"
-      className={`pf-chatbot__button--send ${className ?? ''}`}
+      className={`pf-chatbot__button--send ${isCompact ? 'pf-m-compact' : ''} ${className ?? ''}`}
       aria-label={props['aria-label'] || 'Send button'}
       onClick={onClick}
       icon={
-        <Icon iconSize="xl" isInline>
+        <Icon iconSize={isCompact ? 'lg' : 'xl'} isInline>
           <PaperPlaneIcon />
         </Icon>
       }
+      size={isCompact ? 'sm' : undefined}
       {...props}
     />
   </Tooltip>
