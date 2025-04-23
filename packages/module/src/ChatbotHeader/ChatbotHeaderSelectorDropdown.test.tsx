@@ -1,4 +1,3 @@
-import React from 'react';
 import { DropdownItem } from '@patternfly/react-core';
 import { act, fireEvent, render, screen, waitFor } from '@testing-library/react';
 import { ChatbotHeaderSelectorDropdown } from './ChatbotHeaderSelectorDropdown';

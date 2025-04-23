@@ -1,4 +1,5 @@
-import React from 'react';
+import type { Ref, FunctionComponent } from 'react';
+import { forwardRef } from 'react';
 
 import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import { CloseIcon } from '@patternfly/react-icons';
@@ -13,14 +14,14 @@ export interface ChatbotHeaderCloseButtonProps extends ButtonProps {
   /** Aria label for menu */
   menuAriaLabel?: string;
   /** Ref applied to menu */
-  innerRef?: React.Ref<HTMLButtonElement>;
+  innerRef?: Ref<HTMLButtonElement>;
   /** Content used in tooltip */
   tooltipContent?: string;
   /** Sets button to compact styling. */
   isCompact?: boolean;
 }
 
-const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseButtonProps> = ({
+const ChatbotHeaderCloseButtonBase: FunctionComponent<ChatbotHeaderCloseButtonProps> = ({
   className,
   onClick,
   tooltipProps,
@@ -56,8 +57,8 @@ const ChatbotHeaderCloseButtonBase: React.FunctionComponent<ChatbotHeaderCloseBu
   </div>
 );
 
-export const ChatbotHeaderCloseButton = React.forwardRef(
-  (props: ChatbotHeaderCloseButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+export const ChatbotHeaderCloseButton = forwardRef(
+  (props: ChatbotHeaderCloseButtonProps, ref: Ref<HTMLButtonElement>) => (
     <ChatbotHeaderCloseButtonBase innerRef={ref} {...props} />
   )
 );

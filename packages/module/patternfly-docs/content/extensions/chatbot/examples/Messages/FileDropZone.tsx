@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent, useState } from 'react';
 import FileDropZone from '@patternfly/chatbot/dist/dynamic/FileDropZone';
 import { DropEvent } from '@patternfly/react-core';
 
@@ -9,9 +9,9 @@ interface readFile {
   loadError?: DOMException;
 }
 
-export const DropzoneExample: React.FunctionComponent = () => {
-  const [currentFiles, setCurrentFiles] = React.useState<File[]>([]);
-  const [readFileData, setReadFileData] = React.useState<readFile[]>([]);
+export const DropzoneExample: FunctionComponent = () => {
+  const [currentFiles, setCurrentFiles] = useState<File[]>([]);
+  const [readFileData, setReadFileData] = useState<readFile[]>([]);
 
   // remove files from both state arrays based on their name
   const removeFiles = (namesOfFilesToRemove: string[]) => {

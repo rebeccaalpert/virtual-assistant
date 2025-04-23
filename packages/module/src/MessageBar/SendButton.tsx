@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Send
 // ============================================================================
-import React from 'react';
+import type { MouseEvent, FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
@@ -10,7 +10,7 @@ import { PaperPlaneIcon } from '@patternfly/react-icons/dist/esm/icons/paper-pla
 
 export interface SendButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
-  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Class Name for SendButton */
   className?: string;
   /** Props to control the PF Tooltip component */
@@ -20,7 +20,7 @@ export interface SendButtonProps extends ButtonProps {
   isCompact?: boolean;
 }
 
-export const SendButton: React.FunctionComponent<SendButtonProps> = ({
+export const SendButton: FunctionComponent<SendButtonProps> = ({
   className,
   onClick,
   tooltipProps,

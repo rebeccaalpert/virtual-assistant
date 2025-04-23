@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Attach
 // ============================================================================
-import React from 'react';
+import type { MouseEvent, Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, DropEvent, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
@@ -10,7 +12,7 @@ import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-
 
 export interface AttachButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
-  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Callback function for AttachButton when an attachment is made */
   onAttachAccepted?: (data: File[], event: DropEvent) => void;
   /** Class name for AttachButton */
@@ -20,7 +22,7 @@ export interface AttachButtonProps extends ButtonProps {
   /** Props to control the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Ref applied to AttachButton and used in tooltip */
-  innerRef?: React.Ref<any>;
+  innerRef?: Ref<any>;
   /** English text "Attach" used in the tooltip */
   tooltipContent?: string;
   /** Test id applied to input */
@@ -28,7 +30,7 @@ export interface AttachButtonProps extends ButtonProps {
   isCompact?: boolean;
 }
 
-const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
+const AttachButtonBase: FunctionComponent<AttachButtonProps> = ({
   onAttachAccepted,
   onClick,
   isDisabled,
@@ -81,6 +83,6 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   );
 };
 
-export const AttachButton = React.forwardRef((props: AttachButtonProps, ref: React.Ref<any>) => (
+export const AttachButton = forwardRef((props: AttachButtonProps, ref: Ref<any>) => (
   <AttachButtonBase innerRef={ref} {...props} />
 ));

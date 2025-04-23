@@ -2,7 +2,9 @@
 // Chatbot Footer - Footnote
 // ============================================================================
 
-import React from 'react';
+import type { HTMLProps, FunctionComponent } from 'react';
+
+import { useState } from 'react';
 
 // Import Patternfly components
 import { Button, Content, ContentVariants, Flex, PopoverProps } from '@patternfly/react-core';
@@ -14,7 +16,7 @@ import { ExternalLinkAltIcon } from '@patternfly/react-icons/dist/esm/icons/exte
 // Import Chatbot components
 import ChatbotPopover from '../ChatbotPopover/ChatbotPopover';
 
-export interface ChatbotFootnoteProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotFootnoteProps extends Omit<HTMLProps<HTMLDivElement>, 'popover'> {
   /** Label to show for the footnote */
   label: string;
   /** Config for the popover which opens up when footnote is clicked */
@@ -58,14 +60,14 @@ export interface ChatbotFootnotePopoverLink {
   url: string;
 }
 
-export const ChatbotFootnote: React.FunctionComponent<ChatbotFootnoteProps> = ({
+export const ChatbotFootnote: FunctionComponent<ChatbotFootnoteProps> = ({
   label,
   popover,
   className,
   ...props
 }: ChatbotFootnoteProps) => {
   // Popover visibility state
-  const [isVisible, setIsVisible] = React.useState<boolean>(false);
+  const [isVisible, setIsVisible] = useState<boolean>(false);
 
   // Define popover body content
   const popoverBodyContent = (

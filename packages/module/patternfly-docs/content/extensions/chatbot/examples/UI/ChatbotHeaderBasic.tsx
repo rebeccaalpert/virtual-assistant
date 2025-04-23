@@ -1,4 +1,5 @@
-import React from 'react';
+import { FunctionComponent, MouseEvent } from 'react';
+import { useState } from 'react';
 import {
   Brand,
   Bullseye,
@@ -27,19 +28,16 @@ import OpenDrawerRightIcon from '@patternfly/react-icons/dist/esm/icons/open-dra
 import PFHorizontalLogoColor from './PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from './PF-HorizontalLogo-Reverse.svg';
 
-export const BasicDemo: React.FunctionComponent = () => {
-  const [selectedModel, setSelectedModel] = React.useState('Granite Code 7B');
-  const [showAll, setShowAll] = React.useState<boolean>(true);
-  const [showMenu, setShowMenu] = React.useState<boolean>(true);
-  const [showLogo, setShowLogo] = React.useState<boolean>(false);
-  const [showCenteredLogo, setShowCenteredLogo] = React.useState<boolean>(true);
-  const [showSelectorDropdown, setShowSelectorDropdown] = React.useState<boolean>(true);
-  const [showOptionsDropdown, setShowOptionsDropdown] = React.useState<boolean>(true);
+export const BasicDemo: FunctionComponent = () => {
+  const [selectedModel, setSelectedModel] = useState('Granite Code 7B');
+  const [showAll, setShowAll] = useState<boolean>(true);
+  const [showMenu, setShowMenu] = useState<boolean>(true);
+  const [showLogo, setShowLogo] = useState<boolean>(false);
+  const [showCenteredLogo, setShowCenteredLogo] = useState<boolean>(true);
+  const [showSelectorDropdown, setShowSelectorDropdown] = useState<boolean>(true);
+  const [showOptionsDropdown, setShowOptionsDropdown] = useState<boolean>(true);
 
-  const onSelectModel = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
-    value: string | number | undefined
-  ) => {
+  const onSelectModel = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelectedModel(value as string);
   };
 

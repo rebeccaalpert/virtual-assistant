@@ -1,4 +1,5 @@
-import React from 'react';
+import type { Ref, FunctionComponent } from 'react';
+import { forwardRef } from 'react';
 
 import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import BarsIcon from '@patternfly/react-icons/dist/esm/icons/bars-icon';
@@ -13,13 +14,13 @@ export interface ChatbotHeaderMenuProps extends ButtonProps {
   /** Aria label for menu */
   menuAriaLabel?: string;
   /** Ref applied to menu */
-  innerRef?: React.Ref<HTMLButtonElement>;
+  innerRef?: Ref<HTMLButtonElement>;
   /** Content used in tooltip */
   tooltipContent?: string;
   isCompact?: boolean;
 }
 
-const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = ({
+const ChatbotHeaderMenuBase: FunctionComponent<ChatbotHeaderMenuProps> = ({
   className,
   onMenuToggle,
   tooltipProps,
@@ -55,8 +56,6 @@ const ChatbotHeaderMenuBase: React.FunctionComponent<ChatbotHeaderMenuProps> = (
   </div>
 );
 
-export const ChatbotHeaderMenu = React.forwardRef(
-  (props: ChatbotHeaderMenuProps, ref: React.Ref<HTMLButtonElement>) => (
-    <ChatbotHeaderMenuBase innerRef={ref} {...props} />
-  )
-);
+export const ChatbotHeaderMenu = forwardRef((props: ChatbotHeaderMenuProps, ref: Ref<HTMLButtonElement>) => (
+  <ChatbotHeaderMenuBase innerRef={ref} {...props} />
+));

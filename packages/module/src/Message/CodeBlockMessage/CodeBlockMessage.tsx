@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Message - Content - Code Block
 // ============================================================================
-import React from 'react';
+import { useState, useRef, useId, useCallback, useEffect } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { obsidian } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 // Import PatternFly components
@@ -16,22 +16,22 @@ const CodeBlockMessage = ({
   className,
   'aria-label': ariaLabel,
   ...props
-}: JSX.IntrinsicElements['code'] & ExtraProps) => {
-  const [copied, setCopied] = React.useState(false);
+}: Omit<JSX.IntrinsicElements['code'], 'ref'> & ExtraProps) => {
+  const [copied, setCopied] = useState(false);
 
-  const buttonRef = React.useRef();
-  const tooltipID = React.useId();
+  const buttonRef = useRef(undefined);
+  const tooltipID = useId();
 
   const language = /language-(\w+)/.exec(className || '')?.[1];
 
   // Handle clicking copy button
-  const handleCopy = React.useCallback((event, text) => {
+  const handleCopy = useCallback((event, text) => {
     navigator.clipboard.writeText(text.toString());
     setCopied(true);
   }, []);
 
   // Reset copied state
-  React.useEffect(() => {
+  useEffect(() => {
     if (copied) {
       const timer = setTimeout(() => {
         setCopied(false);

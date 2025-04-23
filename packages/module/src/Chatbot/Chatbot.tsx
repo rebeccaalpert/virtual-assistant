@@ -1,12 +1,14 @@
 // ============================================================================
 // Chatbot
 // ============================================================================
-import React from 'react';
+import type { ReactNode, Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
 export interface ChatbotProps {
   /** Content to be displayed in the chatbot */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Display Mode for the Chatbot */
   displayMode?: ChatbotDisplayMode;
   /** Visibility flag for the chatbot */
@@ -14,7 +16,7 @@ export interface ChatbotProps {
   /** Custom classname for the Chatbot component */
   className?: string;
   /** Ref applied to chatbot  */
-  innerRef?: React.Ref<HTMLDivElement>;
+  innerRef?: Ref<HTMLDivElement>;
   /** Custom aria label applied to focusable container */
   ariaLabel?: string;
   /** Density of information within the ChatBot */
@@ -29,7 +31,7 @@ export enum ChatbotDisplayMode {
   drawer = 'drawer'
 }
 
-const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
+const ChatbotBase: FunctionComponent<ChatbotProps> = ({
   children,
   displayMode = ChatbotDisplayMode.default,
   isVisible = true,
@@ -69,7 +71,7 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
   );
 };
 
-const Chatbot = React.forwardRef((props: ChatbotProps, ref: React.Ref<HTMLDivElement>) => (
+const Chatbot = forwardRef((props: ChatbotProps, ref: Ref<HTMLDivElement>) => (
   <ChatbotBase innerRef={ref} {...props} />
 ));
 

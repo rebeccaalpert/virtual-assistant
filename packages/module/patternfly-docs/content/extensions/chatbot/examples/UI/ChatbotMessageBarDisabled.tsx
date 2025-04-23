@@ -1,9 +1,9 @@
-import React from 'react';
+import { useState, FunctionComponent } from 'react';
 import { MessageBar } from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import { Checkbox } from '@patternfly/react-core';
 
-export const ChatbotMessageBarDisabledExample: React.FunctionComponent = () => {
-  const [isDisabled, setIsDisabled] = React.useState(false);
+export const ChatbotMessageBarDisabledExample: FunctionComponent = () => {
+  const [isDisabled, setIsDisabled] = useState(false);
   const handleSend = (message) => alert(message);
 
   return (

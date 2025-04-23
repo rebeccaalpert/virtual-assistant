@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Messages - Close Button
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps } from '@patternfly/react-core';
@@ -14,7 +14,7 @@ export interface CloseButtonProps extends ButtonProps {
   ariaLabel?: string;
 }
 
-const CloseButton: React.FunctionComponent<CloseButtonProps> = ({ onClose, ariaLabel }: CloseButtonProps) => (
+const CloseButton: FunctionComponent<CloseButtonProps> = ({ onClose, ariaLabel }: CloseButtonProps) => (
   <Button variant="plain" onClick={onClose} icon={<CloseIcon />} aria-label={ariaLabel} />
 );
 

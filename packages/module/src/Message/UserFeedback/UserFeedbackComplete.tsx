@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Main - Messages - Feedback Complete Card
 // ============================================================================
-import React from 'react';
+import type { ReactNode, MouseEvent, FunctionComponent } from 'react';
+
+import { useState, useRef, useEffect } from 'react';
 
 // Import PatternFly components
 import { Card, CardBody, CardHeader, CardProps, CardTitle, OUIAProps, useOUIAProps } from '@patternfly/react-core';
@@ -13,7 +15,7 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
   /** Substitute for the English phrase "Thank you". */
   title?: string;
   /** Substitute for the English phrase "You have successfully sent your feedback! Thank you for responding." */
-  body?: string | React.ReactNode;
+  body?: string | ReactNode;
   /** Callback function for when close button is clicked */
   onClose?: () => void;
   /** Aria label for close button */
@@ -29,9 +31,9 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
    */
   timeoutAnimation?: number;
   /** Callback for when mouse hovers over card */
-  onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onMouseEnter?: (e: MouseEvent<HTMLDivElement>) => void;
   /** Callback for when mouse stops hovering over card */
-  onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => void;
+  onMouseLeave?: (e: MouseEvent<HTMLDivElement>) => void;
   /** Value to overwrite the randomly generated data-ouia-component-id.*/
   ouiaId?: number | string;
   /** Set the value of data-ouia-safe. Only set to true when the component is in a static state, i.e. no animations are occurring. At all other times, this value must be false. */
@@ -46,7 +48,7 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
   timestamp?: string;
 }
 
-const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> = ({
+const UserFeedbackComplete: FunctionComponent<UserFeedbackCompleteProps> = ({
   className,
   title = 'Feedback submitted',
   body = "We've received your response. Thank you for sharing your feedback!",
@@ -66,21 +68,21 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
   isCompact,
   ...props
 }: UserFeedbackCompleteProps) => {
-  const [timedOut, setTimedOut] = React.useState(false);
-  const [timedOutAnimation, setTimedOutAnimation] = React.useState(true);
-  const [isMouseOver, setIsMouseOver] = React.useState<boolean | undefined>();
-  const [containsFocus, setContainsFocus] = React.useState<boolean | undefined>();
+  const [timedOut, setTimedOut] = useState(false);
+  const [timedOutAnimation, setTimedOutAnimation] = useState(true);
+  const [isMouseOver, setIsMouseOver] = useState<boolean | undefined>();
+  const [containsFocus, setContainsFocus] = useState<boolean | undefined>();
   const dismissed = timedOut && timedOutAnimation && !isMouseOver && !containsFocus;
-  const divRef = React.useRef<HTMLDivElement>(null);
+  const divRef = useRef<HTMLDivElement>(null);
   const ouiaProps = useOUIAProps('User Feedback Complete', ouiaId, ouiaSafe);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (focusOnLoad) {
       divRef.current?.focus();
     }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const calculatedTimeout = timeout === true ? 8000 : Number(timeout);
     if (calculatedTimeout > 0) {
       const timer = setTimeout(() => setTimedOut(true), calculatedTimeout);
@@ -88,7 +90,7 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
     }
   }, [timeout]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const onDocumentFocus = () => {
       if (divRef.current) {
         if (divRef.current.contains(document.activeElement)) {
@@ -103,14 +105,14 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
     return () => document.removeEventListener('focus', onDocumentFocus, true);
   }, [containsFocus]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (containsFocus === false || isMouseOver === false) {
       const timer = setTimeout(() => setTimedOutAnimation(true), timeoutAnimation);
       return () => clearTimeout(timer);
     }
   }, [containsFocus, isMouseOver, timeoutAnimation]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     dismissed && onTimeout && onTimeout();
   }, [dismissed, onTimeout]);
 
@@ -118,13 +120,13 @@ const UserFeedbackComplete: React.FunctionComponent<UserFeedbackCompleteProps> =
     return null;
   }
 
-  const myOnMouseEnter = (ev: React.MouseEvent<HTMLDivElement>) => {
+  const myOnMouseEnter = (ev: MouseEvent<HTMLDivElement>) => {
     setIsMouseOver(true);
     setTimedOutAnimation(false);
     onMouseEnter && onMouseEnter(ev);
   };
 
-  const myOnMouseLeave = (ev: React.MouseEvent<HTMLDivElement>) => {
+  const myOnMouseLeave = (ev: MouseEvent<HTMLDivElement>) => {
     setIsMouseOver(false);
     onMouseLeave && onMouseLeave(ev);
   };

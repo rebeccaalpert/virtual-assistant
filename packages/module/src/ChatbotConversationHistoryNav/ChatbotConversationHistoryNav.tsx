@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import React from 'react';
+import type { ReactNode, MouseEvent, KeyboardEvent, TransitionEvent, FunctionComponent } from 'react';
+
+import { useRef, Fragment } from 'react';
 
 // Import PatternFly components
 import {
@@ -43,25 +45,25 @@ export interface Conversation {
   /** Conversation id */
   id: string;
   /** Conversation icon */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Flag for no icon */
   noIcon?: boolean;
   /** Conversation */
   text: string;
   /** Dropdown items rendered in conversation settings dropdown */
-  menuItems?: React.ReactNode;
+  menuItems?: ReactNode;
   /** Optional classname applied to conversation settings dropdown */
   menuClassName?: string;
   /** Tooltip content and aria-label applied to conversation settings dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: MouseEvent, value?: string | number) => void;
   /** Additional props passed to conversation menu item */
   additionalProps?: MenuItemProps;
 }
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Function called to toggle drawer */
-  onDrawerToggle: (event: React.KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void;
+  onDrawerToggle: (event: KeyboardEvent | MouseEvent | TransitionEvent) => void;
   /** Flag to indicate whether drawer is open */
   isDrawerOpen: boolean;
   /** Function called to close drawer */
@@ -69,7 +71,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /* itemId of the currently active item. */
   activeItemId?: string | number;
   /** Callback function for when an item is selected */
-  onSelectActiveItem?: (event?: React.MouseEvent, itemId?: string | number) => void;
+  onSelectActiveItem?: (event?: MouseEvent, itemId?: string | number) => void;
   /** Items shown in conversation history */
   conversations: Conversation[] | { [key: string]: Conversation[] };
   /** Text shown in blue button */
@@ -77,7 +79,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Callback function for when blue button is clicked. Omit to hide blue "new chat button" */
   onNewChat?: () => void;
   /** Content wrapped by conversation history nav */
-  drawerContent?: React.ReactNode;
+  drawerContent?: ReactNode;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
   /** Aria label for search input */
@@ -120,7 +122,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   isCompact?: boolean;
 }
 
-export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
+export const ChatbotConversationHistoryNav: FunctionComponent<ChatbotConversationHistoryNavProps> = ({
   onDrawerToggle,
   isDrawerOpen,
   setIsDrawerOpen,
@@ -152,7 +154,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   isCompact,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
-  const drawerRef = React.useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const onExpand = () => {
     drawerRef.current && drawerRef.current.focus();
@@ -190,7 +192,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       return (
         <MenuList>
           {conversations.map((conversation) => (
-            <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
+            <Fragment key={conversation.id}>{getNavItem(conversation)}</Fragment>
           ))}
         </MenuList>
       );
@@ -202,7 +204,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
             <MenuGroup className="pf-chatbot__menu-item-header" label={navGroup} key={navGroup}>
               <MenuList>
                 {conversations[navGroup].map((conversation) => (
-                  <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
+                  <Fragment key={conversation.id}>{getNavItem(conversation)}</Fragment>
                 ))}
               </MenuList>
             </MenuGroup>
@@ -283,7 +285,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
 
   // An onKeyDown property must be passed to the Drawer component to handle closing
   // the drawer panel and deactivating the focus trap via the Escape key.
-  const onEscape = (event: React.KeyboardEvent) => {
+  const onEscape = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       // prevents using escape key on menu buttons from closing the panel, but I'm not sure if this is allowed
       if (event.target instanceof HTMLInputElement && event.target.type !== 'button') {

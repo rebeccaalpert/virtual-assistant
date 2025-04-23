@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import { Alert, AlertActionCloseButton, AlertProps } from '@patternfly/react-core';
 
 export interface ChatbotAlert extends AlertProps {
@@ -6,7 +6,7 @@ export interface ChatbotAlert extends AlertProps {
   onClose?: () => void;
 }
 
-export const ChatbotAlert: React.FunctionComponent<ChatbotAlert> = ({
+export const ChatbotAlert: FunctionComponent<ChatbotAlert> = ({
   variant = 'info',
   title,
   children = '',

@@ -1,8 +1,8 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import { ChatbotFooter, ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic/ChatbotFooter';
 import { MessageBar } from '@patternfly/chatbot/dist/dynamic/MessageBar';
 
-export const ChatbotFooterExample: React.FunctionComponent = () => {
+export const ChatbotFooterExample: FunctionComponent = () => {
   const handleSend = (message) => alert(message);
 
   return (

@@ -1,7 +1,7 @@
 // ============================================================================
 // Preview Attachment - Chatbot Code Snippet Viewer
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
 import CodeModal from '../CodeModal';
 import { ChatbotDisplayMode } from '../Chatbot';
 
@@ -11,11 +11,11 @@ export interface PreviewAttachmentProps {
   /** Filename, including extension, of file shown in modal */
   fileName: string;
   /** Function called when edit button is clicked */
-  onEdit: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onEdit: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Function called when dismiss button is clicked */
-  onDismiss?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onDismiss?: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Function called when modal is toggled */
-  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -26,7 +26,7 @@ export interface PreviewAttachmentProps {
   isCompact?: boolean;
 }
 
-export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> = ({
+export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
   fileName,
   code,
   handleModalToggle,
@@ -37,12 +37,12 @@ export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> 
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: PreviewAttachmentProps) => {
-  const handleEdit = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleEdit = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onEdit(_event);
   };
 
-  const handleDismiss = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleDismiss = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onDismiss && onDismiss(_event);
   };

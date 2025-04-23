@@ -1,9 +1,8 @@
 // ============================================================================
 // Chatbot Main - Message
 // ============================================================================
-
-import React, { ReactNode } from 'react';
-
+import { forwardRef, ReactNode, useEffect, useState } from 'react';
+import type { FunctionComponent, HTMLProps, MouseEvent, Ref } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -54,9 +53,9 @@ export interface MessageAttachment {
   /** Unique identifier of file attached to the message */
   id?: string | number;
   /** Callback for when attachment label is clicked */
-  onClick?: (event: React.MouseEvent, name: string, id?: string | number) => void;
+  onClick?: (event: MouseEvent, name: string, id?: string | number) => void;
   /** Callback for when attachment label is closed */
-  onClose?: (event: React.MouseEvent, name: string, id?: string | number) => void;
+  onClose?: (event: MouseEvent, name: string, id?: string | number) => void;
   /** Whether file is loading */
   isLoading?: boolean;
   /** Aria label for attachment close button */
@@ -78,7 +77,7 @@ export interface MessageExtraContent {
   endContent?: ReactNode;
 }
 
-export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'role'> {
+export interface MessageProps extends Omit<HTMLProps<HTMLDivElement>, 'role'> {
   /** Unique id for message */
   id?: string;
   /** Role of the user sending the message */
@@ -139,7 +138,7 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   /** Turns the container into a live region so that changes to content within the Message, such as appending a feedback card, are reliably announced to assistive technology. */
   isLiveRegion?: boolean;
   /** Ref applied to message  */
-  innerRef?: React.Ref<HTMLDivElement>;
+  innerRef?: Ref<HTMLDivElement>;
   /** Props for table message. It is important to include a detailed aria-label that describes the purpose of the table. */
   tableProps?: Required<Pick<TableProps, 'aria-label'>> & TableProps;
   /** Additional rehype plugins passed from the consumer */
@@ -159,16 +158,16 @@ export interface MessageProps extends Omit<React.HTMLProps<HTMLDivElement>, 'rol
   /** Label for the English word "Cancel" used in edit mode. */
   cancelWord?: string;
   /** Callback function for when edit mode update button is clicked */
-  onEditUpdate?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onEditUpdate?: (event: MouseEvent) => void;
   /** Callback functionf or when edit cancel update button is clicked */
-  onEditCancel?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onEditCancel?: (event: MouseEvent) => void;
   /** Props for edit form */
   editFormProps?: FormProps;
   /** Sets message to compact styling. */
   isCompact?: boolean;
 }
 
-export const MessageBase: React.FunctionComponent<MessageProps> = ({
+export const MessageBase: FunctionComponent<MessageProps> = ({
   role,
   content,
   extraContent,
@@ -206,9 +205,9 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   isCompact,
   ...props
 }: MessageProps) => {
-  const [messageText, setMessageText] = React.useState(content);
+  const [messageText, setMessageText] = useState(content);
 
-  React.useEffect(() => {
+  useEffect(() => {
     setMessageText(content);
   }, [content]);
 
@@ -390,7 +389,7 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
   );
 };
 
-const Message = React.forwardRef((props: MessageProps, ref: React.Ref<HTMLDivElement>) => (
+const Message = forwardRef((props: MessageProps, ref: Ref<HTMLDivElement>) => (
   <MessageBase innerRef={ref} {...props} />
 ));
 

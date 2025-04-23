@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
+import { useState } from 'react';
 import { Label, LabelGroup, LabelGroupProps, LabelProps } from '@patternfly/react-core';
 import { CheckIcon } from '@patternfly/react-icons';
 
@@ -19,13 +20,13 @@ export interface QuickResponseProps {
   isCompact?: boolean;
 }
 
-export const QuickResponse: React.FunctionComponent<QuickResponseProps> = ({
+export const QuickResponse: FunctionComponent<QuickResponseProps> = ({
   quickResponses,
   quickResponseContainerProps = { numLabels: 5 },
   onSelect,
   isCompact
 }: QuickResponseProps) => {
-  const [selectedQuickResponse, setSelectedQuickResponse] = React.useState<string>();
+  const [selectedQuickResponse, setSelectedQuickResponse] = useState<string>();
 
   const handleQuickResponseClick = (id: string, onClick?: () => void) => {
     setSelectedQuickResponse(id);

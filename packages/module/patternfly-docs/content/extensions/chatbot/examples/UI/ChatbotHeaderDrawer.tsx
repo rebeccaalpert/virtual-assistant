@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, FunctionComponent } from 'react';
 import { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
@@ -59,17 +59,17 @@ const EMPTY_STATE = {
   icon: OutlinedCommentsIcon
 };
 
-export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  const [isButtonOrderReversed, setIsButtonOrderReversed] = React.useState(false);
-  const [isCompact, setIsCompact] = React.useState(false);
-  const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
+export const ChatbotHeaderTitleDemo: FunctionComponent = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [isButtonOrderReversed, setIsButtonOrderReversed] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
+  const [conversations, setConversations] = useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
-  const [isLoading, setIsLoading] = React.useState(false);
-  const [hasError, setHasError] = React.useState(false);
-  const [isEmpty, setIsEmpty] = React.useState(false);
-  const [hasNoResults, setHasNoResults] = React.useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [hasError, setHasError] = useState(false);
+  const [isEmpty, setIsEmpty] = useState(false);
+  const [hasNoResults, setHasNoResults] = useState(false);
   const displayMode = ChatbotDisplayMode.embedded;
 
   const findMatchingItems = (targetValue: string) => {

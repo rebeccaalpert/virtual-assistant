@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useRef, FunctionComponent } from 'react';
 
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
@@ -11,12 +11,12 @@ import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import { FormGroup, Radio } from '@patternfly/react-core';
 
-export const ChatbotWelcomeInteractionDemo: React.FunctionComponent = () => {
-  const [messages, setMessages] = React.useState<MessageProps[]>([]);
-  const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
-  const [announcement, setAnnouncement] = React.useState<string>();
-  const [position, setPosition] = React.useState<'top' | 'bottom'>('top');
-  const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
+export const ChatbotWelcomeInteractionDemo: FunctionComponent = () => {
+  const [messages, setMessages] = useState<MessageProps[]>([]);
+  const [isSendButtonDisabled, setIsSendButtonDisabled] = useState(false);
+  const [announcement, setAnnouncement] = useState<string>();
+  const [position, setPosition] = useState<'top' | 'bottom'>('top');
+  const scrollToBottomRef = useRef<HTMLDivElement>(null);
   const isVisible = true;
   const displayMode = ChatbotDisplayMode.default;
 

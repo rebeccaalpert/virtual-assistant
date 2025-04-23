@@ -1,13 +1,15 @@
 // ============================================================================
 // Chatbot Toggle
 // ============================================================================
-import React from 'react';
+import type { ReactNode, Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
 export interface ChatbotToggleProps extends ButtonProps {
   /** Contents of the tooltip applied to the toggle button */
-  tooltipLabel: React.ReactNode;
+  tooltipLabel: ReactNode;
   /** Props spread to the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Flag indicating visibility of the chatbot appended to the toggle */
@@ -19,7 +21,7 @@ export interface ChatbotToggleProps extends ButtonProps {
   /** An image displayed in the chatbot toggle when it is closed */
   closedToggleIcon?: () => JSX.Element;
   /** Ref applied to toggle */
-  innerRef?: React.Ref<HTMLButtonElement>;
+  innerRef?: Ref<HTMLButtonElement>;
   /** Whether toggle is a circle */
   isRound?: boolean;
   /** Class name applied to toggle */
@@ -47,7 +49,7 @@ const ChatIcon = () => (
   </svg>
 );
 
-const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
+const ChatbotToggleBase: FunctionComponent<ChatbotToggleProps> = ({
   tooltipLabel,
   isChatbotVisible,
   onToggleChatbot,
@@ -87,7 +89,7 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   );
 };
 
-const ChatbotToggle = React.forwardRef((props: ChatbotToggleProps, ref: React.Ref<any>) => (
+const ChatbotToggle = forwardRef((props: ChatbotToggleProps, ref: Ref<any>) => (
   <ChatbotToggleBase innerRef={ref} {...props} />
 ));
 

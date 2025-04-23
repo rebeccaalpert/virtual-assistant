@@ -1,18 +1,15 @@
-import React from 'react';
+import type { HTMLProps, ReactNode, FunctionComponent } from 'react';
 
 import { Divider } from '@patternfly/react-core';
 
-export interface ChatbotHeaderProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotHeaderProps extends HTMLProps<HTMLDivElement> {
   /** Content to be displayed in the chatbot header */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Custom classname for the header component */
   className?: string;
 }
 
-export const ChatbotHeader: React.FunctionComponent<ChatbotHeaderProps> = ({
-  className,
-  children
-}: ChatbotHeaderProps) => (
+export const ChatbotHeader: FunctionComponent<ChatbotHeaderProps> = ({ className, children }: ChatbotHeaderProps) => (
   <div className="pf-chatbot__header-container">
     <div className={`pf-chatbot__header${className ? ` ${className}` : ''}`}>{children}</div>
     <Divider className="pf-chatbot__header__divider" />

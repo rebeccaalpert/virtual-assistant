@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Microphone
 // ============================================================================
-import React from 'react';
+import type { SetStateAction, Dispatch, FunctionComponent } from 'react';
+
+import { useState, useCallback, useEffect } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
@@ -15,9 +17,9 @@ export interface MicrophoneButtonProps extends ButtonProps {
   /** Class name for MicrophoneButton */
   className?: string;
   /** Callback to update the value of isListening */
-  onIsListeningChange: React.Dispatch<React.SetStateAction<boolean>>;
+  onIsListeningChange: Dispatch<SetStateAction<boolean>>;
   /** Callback to update the message value once speech recognition is complete */
-  onSpeechRecognition: React.Dispatch<React.SetStateAction<string>>;
+  onSpeechRecognition: Dispatch<SetStateAction<string>>;
   /** Props to control the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Use microphone" and "Stop listening" used in the tooltip */
@@ -27,7 +29,7 @@ export interface MicrophoneButtonProps extends ButtonProps {
   isCompact?: boolean;
 }
 
-export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = ({
+export const MicrophoneButton: FunctionComponent<MicrophoneButtonProps> = ({
   isListening,
   onIsListeningChange,
   onSpeechRecognition,
@@ -40,10 +42,10 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
 }: MicrophoneButtonProps) => {
   // Microphone
   // --------------------------------------------------------------------------
-  const [speechRecognition, setSpeechRecognition] = React.useState<SpeechRecognition>();
+  const [speechRecognition, setSpeechRecognition] = useState<SpeechRecognition>();
 
   // Listen for speech
-  const startListening = React.useCallback(() => {
+  const startListening = useCallback(() => {
     if (speechRecognition) {
       speechRecognition.start();
       onIsListeningChange(true);
@@ -51,7 +53,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   }, [onIsListeningChange, speechRecognition]);
 
   // Stop listening for speech
-  const stopListening = React.useCallback(() => {
+  const stopListening = useCallback(() => {
     if (speechRecognition && isListening) {
       speechRecognition.stop();
       onIsListeningChange(false);
@@ -59,7 +61,7 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
   }, [isListening, onIsListeningChange, speechRecognition]);
 
   // Detect speech recognition browser support
-  React.useEffect(() => {
+  useEffect(() => {
     if ('SpeechRecognition' in window || 'webkitSpeechRecognition' in window) {
       // Initialize SpeechRecognition
       const recognition: SpeechRecognition = new (window.SpeechRecognition || window.webkitSpeechRecognition)();

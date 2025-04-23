@@ -1,4 +1,5 @@
-import React from 'react';
+import type { ChangeEvent, FunctionComponent, MouseEvent, ReactNode, KeyboardEvent } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
 // Import Chatbot components
@@ -15,13 +16,13 @@ export interface MessageBarWithAttachMenuProps {
   /** Callback to close attach menu */
   setIsAttachMenuOpen: (isOpen: boolean) => void;
   /** Items in menu */
-  attachMenuItems: React.ReactNode;
+  attachMenuItems: ReactNode;
   /** A callback for when the attachment menu toggle is clicked */
   onAttachMenuToggleClick: () => void;
   /** A callback for when the input value in the menu changes. */
   onAttachMenuInputChange: (value: string) => void;
   /** Function callback called when user selects item in menu. */
-  onAttachMenuSelect?: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
+  onAttachMenuSelect?: (event?: MouseEvent<Element>, value?: string | number) => void;
   /** Placeholder for search input */
   attachMenuInputPlaceholder?: string;
   /** Keys that trigger onOpenChange, defaults to tab and escape. It is highly recommended to include Escape in the array, while Tab may be omitted if the menu contains non-menu items that are focusable. */
@@ -48,7 +49,7 @@ export interface MessageBarProps extends TextAreaProps {
   /** Flag to enable the Stop button, used for streaming content */
   hasStopButton?: boolean;
   /** Callback function for when stop button is clicked */
-  handleStopButton?: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  handleStopButton?: (event: MouseEvent<HTMLButtonElement>) => void;
   /** Callback function for when attach button is used to upload a file */
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
@@ -73,13 +74,13 @@ export interface MessageBarProps extends TextAreaProps {
     };
   };
   /** A callback for when the text area value changes. */
-  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
+  onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
   /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
   displayMode?: ChatbotDisplayMode;
   isCompact?: boolean;
 }
 
-export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
+export const MessageBar: FunctionComponent<MessageBarProps> = ({
   onSendMessage,
   className,
   alwayShowSendButton,
@@ -101,11 +102,11 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
 }: MessageBarProps) => {
   // Text Input
   // --------------------------------------------------------------------------
-  const [message, setMessage] = React.useState<string | number>(value ?? '');
-  const [isListeningMessage, setIsListeningMessage] = React.useState<boolean>(false);
-  const [hasSentMessage, setHasSentMessage] = React.useState(false);
-  const textareaRef = React.useRef<HTMLTextAreaElement>(null);
-  const attachButtonRef = React.useRef<HTMLButtonElement>(null);
+  const [message, setMessage] = useState<string | number>(value ?? '');
+  const [isListeningMessage, setIsListeningMessage] = useState<boolean>(false);
+  const [hasSentMessage, setHasSentMessage] = useState(false);
+  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const attachButtonRef = useRef<HTMLButtonElement>(null);
 
   const topMargin = '1rem';
 
@@ -151,7 +152,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     return lines > 2;
   };
 
-  const setAutoWidth = React.useCallback((field: HTMLTextAreaElement) => {
+  const setAutoWidth = useCallback((field: HTMLTextAreaElement) => {
     const parent = field.parentElement;
     if (parent) {
       const grandparent = parent.parentElement;
@@ -169,7 +170,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     }
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const field = textareaRef.current;
     if (field) {
       if (field.value === '') {
@@ -200,19 +201,19 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     };
   }, [setAutoWidth]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const field = textareaRef.current;
     if (field) {
       if (field.value === '') {
-        setInitialLineHeight(textareaRef.current);
+        setInitialLineHeight(field);
       } else {
-        setAutoHeight(textareaRef.current);
+        setAutoHeight(field);
         setAutoWidth(field);
       }
     }
   }, [displayMode, message, setAutoWidth]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const field = textareaRef.current;
     if (field) {
       setInitialLineHeight(field);
@@ -220,7 +221,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     }
   }, [hasSentMessage]);
 
-  const handleChange = React.useCallback(
+  const handleChange = useCallback(
     (event) => {
       onChange && onChange(event, event.target.value);
       if (textareaRef.current) {
@@ -236,7 +237,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
   );
 
   // Handle sending message
-  const handleSend = React.useCallback(
+  const handleSend = useCallback(
     (newMessage: string | number) => {
       onSendMessage(newMessage);
       setHasSentMessage(true);
@@ -245,8 +246,8 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
     [onSendMessage]
   );
 
-  const handleKeyDown = React.useCallback(
-    (event: React.KeyboardEvent) => {
+  const handleKeyDown = useCallback(
+    (event: KeyboardEvent<HTMLTextAreaElement>) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         if (!isSendButtonDisabled && !hasStopButton) {
@@ -269,7 +270,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
 
   const handleSpeechRecognition = (message) => {
     setMessage(message);
-    onChange && onChange({} as React.ChangeEvent<HTMLTextAreaElement>, message);
+    onChange && onChange({} as ChangeEvent<HTMLTextAreaElement>, message);
   };
 
   const renderButtons = () => {

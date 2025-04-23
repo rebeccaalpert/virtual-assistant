@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Messages - Jump to Top
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, Tooltip, Icon } from '@patternfly/react-core';
@@ -18,7 +18,7 @@ export interface JumpButtonProps {
   isHidden?: boolean;
 }
 
-const JumpButton: React.FunctionComponent<JumpButtonProps> = ({ position, isHidden, onClick }: JumpButtonProps) =>
+const JumpButton: FunctionComponent<JumpButtonProps> = ({ position, isHidden, onClick }: JumpButtonProps) =>
   isHidden ? null : (
     <Tooltip id={`pf-chatbot__tooltip--jump-${position}`} content={`Back to ${position}`} position="top">
       <Button

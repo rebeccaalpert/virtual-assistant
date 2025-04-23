@@ -1,7 +1,8 @@
 // ============================================================================
 // Terms of Use Modal - Chatbot Modal Extension
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent, Ref } from 'react';
+import { forwardRef } from 'react';
 import { Button, Content, ModalBody, ModalFooter, ModalHeader, ModalProps } from '@patternfly/react-core';
 import { ChatbotDisplayMode } from '../Chatbot';
 import ChatbotModal from '../ChatbotModal/ChatbotModal';
@@ -10,15 +11,15 @@ export interface TermsOfUseProps extends ModalProps {
   /** Class applied to modal */
   className?: string;
   /** Action assigned to primary modal button */
-  onPrimaryAction?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onPrimaryAction?: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Action assigned to secondary modal button */
-  onSecondaryAction: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onSecondaryAction: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Name of primary modal button */
   primaryActionBtn?: string;
   /** Name of secondary modal button */
   secondaryActionBtn?: string;
   /** Function that handles modal toggle */
-  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -30,14 +31,14 @@ export interface TermsOfUseProps extends ModalProps {
   /** Alt text for optional image displayed in header */
   altText?: string;
   /** Ref applied to modal */
-  innerRef?: React.Ref<HTMLDivElement>;
+  innerRef?: Ref<HTMLDivElement>;
   /** OuiaID applied to modal */
   ouiaId?: string;
   /** Sets modal to compact styling. */
   isCompact?: boolean;
 }
 
-export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
+export const TermsOfUseBase: FunctionComponent<TermsOfUseProps> = ({
   handleModalToggle,
   isModalOpen,
   onPrimaryAction,
@@ -55,12 +56,12 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   isCompact,
   ...props
 }: TermsOfUseProps) => {
-  const handlePrimaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handlePrimaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onPrimaryAction && onPrimaryAction(_event);
   };
 
-  const handleSecondaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleSecondaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     onSecondaryAction(_event);
   };
 
@@ -115,7 +116,7 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   return modal;
 };
 
-const TermsOfUse = React.forwardRef((props: TermsOfUseProps, ref: React.Ref<HTMLDivElement>) => (
+const TermsOfUse = forwardRef((props: TermsOfUseProps, ref: Ref<HTMLDivElement>) => (
   <TermsOfUseBase innerRef={ref} {...props} />
 ));
 

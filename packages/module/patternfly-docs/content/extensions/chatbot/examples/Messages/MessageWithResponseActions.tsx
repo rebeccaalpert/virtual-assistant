@@ -1,9 +1,9 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 
-export const ResponseActionExample: React.FunctionComponent = () => (
+export const ResponseActionExample: FunctionComponent = () => (
   <Message
     name="Bot"
     role="bot"

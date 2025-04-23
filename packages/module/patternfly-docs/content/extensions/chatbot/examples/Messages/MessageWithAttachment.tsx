@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, FunctionComponent, MouseEvent } from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import PreviewAttachment from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
@@ -10,18 +10,18 @@ interface ModalData {
   fileName: string;
 }
 
-export const AttachmentMenuExample: React.FunctionComponent = () => {
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
-  const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
-  const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
+export const AttachmentMenuExample: FunctionComponent = () => {
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [currentModalData, setCurrentModalData] = useState<ModalData>();
 
-  const onClick = (event: React.MouseEvent, name: string) => {
+  const onClick = (event: MouseEvent, name: string) => {
     setCurrentModalData({ fileName: name, code: 'test' });
     setIsEditModalOpen(false);
     setIsPreviewModalOpen(true);
   };
 
-  const onClose = (event: React.MouseEvent, name: string, id: number | string | undefined) => {
+  const onClose = (event: MouseEvent, name: string, id: number | string | undefined) => {
     // eslint-disable-next-line no-console
     console.log(`Closed attachment with name: ${name} and id: ${id}`);
   };

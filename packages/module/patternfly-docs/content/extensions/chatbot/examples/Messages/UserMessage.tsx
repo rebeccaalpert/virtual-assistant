@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { Fragment, useState, CSSProperties, FunctionComponent, MouseEvent } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import userAvatar from './user_avatar.svg';
 import {
@@ -11,11 +10,11 @@ import {
   SelectOption
 } from '@patternfly/react-core';
 
-export const UserMessageExample: React.FunctionComponent = () => {
-  const [variant, setVariant] = React.useState<string>('Code');
-  const [isEditable, setIsEditable] = React.useState<boolean>(true);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [selected, setSelected] = React.useState<string>('Message content type');
+export const UserMessageExample: FunctionComponent = () => {
+  const [variant, setVariant] = useState<string>('Code');
+  const [isEditable, setIsEditable] = useState<boolean>(true);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string>('Message content type');
 
   /* eslint-disable indent */
   const renderContent = () => {
@@ -64,8 +63,6 @@ spec:
 Here is some JavaScript code:
 
 ~~~js
-import React from 'react';
-
 const MessageLoading = () => (
   <div className="pf-chatbot__message-loading">
     <span className="pf-chatbot__message-loading-dots">
@@ -154,18 +151,18 @@ _Italic text, formatted with single underscores_
     title: 'Could not load chat',
     children: 'Wait a few minutes and check your network settings. If the issue persists: ',
     actionLinks: (
-      <React.Fragment>
+      <Fragment>
         <AlertActionLink component="a" href="#">
           Start a new chat
         </AlertActionLink>
         <AlertActionLink component="a" href="#">
           Contact support
         </AlertActionLink>
-      </React.Fragment>
+      </Fragment>
     )
   };
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+  const onSelect = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setVariant(value);
     setSelected(value as string);
     setIsOpen(false);
@@ -175,7 +172,7 @@ _Italic text, formatted with single underscores_
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       className="pf-v6-u-mb-md"
       ref={toggleRef}
@@ -184,7 +181,7 @@ _Italic text, formatted with single underscores_
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

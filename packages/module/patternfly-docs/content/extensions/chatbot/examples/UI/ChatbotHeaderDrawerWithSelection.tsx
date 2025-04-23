@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent, useState } from 'react';
 import { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
@@ -22,10 +22,10 @@ const menuItems = [
   </DropdownList>
 ];
 
-export const ChatbotHeaderDrawerWithSelection: React.FunctionComponent = () => {
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(true);
-  const [currentSelection, setCurrentSelection] = React.useState('2');
-  const [isCompact, setIsCompact] = React.useState(false);
+export const ChatbotHeaderDrawerWithSelection: FunctionComponent = () => {
+  const [isDrawerOpen, setIsDrawerOpen] = useState(true);
+  const [currentSelection, setCurrentSelection] = useState('2');
+  const [isCompact, setIsCompact] = useState(false);
   const displayMode = ChatbotDisplayMode.embedded;
 
   const conversations: { [key: string]: Conversation[] } = {

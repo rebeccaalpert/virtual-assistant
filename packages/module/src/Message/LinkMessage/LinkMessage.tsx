@@ -2,7 +2,6 @@
 // Chatbot Main - Message - Content - Link
 // ============================================================================
 
-import React from 'react';
 import { Button, ButtonProps } from '@patternfly/react-core';
 import { ExternalLinkSquareAltIcon } from '@patternfly/react-icons';
 

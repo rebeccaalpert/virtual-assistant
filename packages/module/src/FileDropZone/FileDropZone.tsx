@@ -1,11 +1,12 @@
 import { DropEvent, MultipleFileUpload, MultipleFileUploadMain } from '@patternfly/react-core';
-import React from 'react';
+import type { ReactNode, FunctionComponent } from 'react';
+import { useState } from 'react';
 import { ChatbotDisplayMode } from '../Chatbot';
 import { UploadIcon } from '@patternfly/react-icons';
 
 export interface FileDropZoneProps {
   /** Content displayed when the drop zone is not currently in use */
-  children?: React.ReactNode;
+  children?: ReactNode;
   /** Custom classname for the outer dropzone component */
   className?: string;
   /** Informational text that shows below the title in the drop zone */
@@ -16,7 +17,7 @@ export interface FileDropZoneProps {
   displayMode?: ChatbotDisplayMode;
 }
 
-const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
+const FileDropZone: FunctionComponent<FileDropZoneProps> = ({
   children,
   className,
   infoText = 'Maximum file size is 25 MB',
@@ -24,7 +25,7 @@ const FileDropZone: React.FunctionComponent<FileDropZoneProps> = ({
   displayMode = ChatbotDisplayMode.default,
   ...props
 }: FileDropZoneProps) => {
-  const [showDropZone, setShowDropZone] = React.useState(false);
+  const [showDropZone, setShowDropZone] = useState(false);
 
   const renderDropZone = () => (
     <>

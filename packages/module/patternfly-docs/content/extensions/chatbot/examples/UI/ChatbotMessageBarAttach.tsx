@@ -1,13 +1,13 @@
-import React from 'react';
+import { useState, isValidElement, cloneElement, Children, FunctionComponent, ReactNode } from 'react';
 import { MessageBar } from '@patternfly/chatbot/dist/dynamic/MessageBar';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { Divider, DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
 
-export const ChatbotMessageBarDefaultAttachExample: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
+export const ChatbotMessageBarDefaultAttachExample: FunctionComponent = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [userFacingMenuItems, setUserFacingMenuItems] = useState<ReactNode>([]);
 
   const handleSend = (message) => alert(message);
   const { open, getInputProps } = useDropzone({
@@ -21,18 +21,18 @@ export const ChatbotMessageBarDefaultAttachExample: React.FunctionComponent = ()
     setUserFacingMenuItems(initialMenuItems.concat(uploadMenuItems));
   };
 
-  const findMatchingElements = (elements: React.ReactNode[], targetValue: string) => {
-    let matchingElements = [] as React.ReactNode[];
+  const findMatchingElements = (elements: ReactNode[], targetValue: string) => {
+    let matchingElements = [] as ReactNode[];
 
     elements.forEach((element) => {
-      if (React.isValidElement(element)) {
+      if (isValidElement(element)) {
         // Check if the element's value matches the targetValue
         if (element.props.value && element.props.value.toLowerCase().includes(targetValue.toLowerCase())) {
-          matchingElements.push(React.cloneElement(element, { key: element.props.value }));
+          matchingElements.push(cloneElement(element, { key: element.props.value }));
         }
 
         // Recursively check the element's children
-        const children = React.Children.toArray(element.props.children);
+        const children = Children.toArray(element.props.children);
         matchingElements = matchingElements.concat(findMatchingElements(children, targetValue));
       }
     });

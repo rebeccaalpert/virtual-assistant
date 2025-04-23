@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { useState, FormEvent, FunctionComponent, MouseEvent } from 'react';
 import SettingsForm from '@patternfly/chatbot/dist/dynamic/Settings';
 import {
   Button,
@@ -23,13 +22,13 @@ import ChatbotHeader, {
 } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
 import { CogIcon, ExpandIcon, OpenDrawerRightIcon, OutlinedWindowRestoreIcon } from '@patternfly/react-icons';
 
-export const CompactSettingsDemo: React.FunctionComponent = () => {
-  const [isChecked, setIsChecked] = React.useState<boolean>(true);
-  const [isThemeOpen, setIsThemeOpen] = React.useState(false);
-  const [isLanguageOpen, setIsLanguageOpen] = React.useState(false);
-  const [isVoiceOpen, setIsVoiceOpen] = React.useState(false);
-  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
-  const [areSettingsOpen, setAreSettingsOpen] = React.useState(true);
+export const CompactSettingsDemo: FunctionComponent = () => {
+  const [isChecked, setIsChecked] = useState<boolean>(true);
+  const [isThemeOpen, setIsThemeOpen] = useState(false);
+  const [isLanguageOpen, setIsLanguageOpen] = useState(false);
+  const [isVoiceOpen, setIsVoiceOpen] = useState(false);
+  const [displayMode, setDisplayMode] = useState(ChatbotDisplayMode.default);
+  const [areSettingsOpen, setAreSettingsOpen] = useState(true);
   const chatbotVisible = true;
 
   const onFocus = (id: string) => {
@@ -41,10 +40,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
     setIsThemeOpen(!isThemeOpen);
   };
 
-  const onThemeSelect = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
-    value: string | number | undefined
-  ) => {
+  const onThemeSelect = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     // eslint-disable-next-line no-console
     console.log('selected', value);
     onFocus('theme');
@@ -56,7 +52,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
   };
 
   const onLanguageSelect = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    _event: MouseEvent<Element, MouseEvent> | undefined,
     value: string | number | undefined
   ) => {
     // eslint-disable-next-line no-console
@@ -70,16 +66,13 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
     setIsVoiceOpen(!isVoiceOpen);
   };
 
-  const onVoiceSelect = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
-    value: string | number | undefined
-  ) => {
+  const onVoiceSelect = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     // eslint-disable-next-line no-console
     console.log('selected', value);
     setIsVoiceOpen(false);
   };
 
-  const handleChange = (_event: React.FormEvent<HTMLInputElement>, checked: boolean) => {
+  const handleChange = (_event: FormEvent<HTMLInputElement>, checked: boolean) => {
     setIsChecked(checked);
   };
 
@@ -91,7 +84,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
       shouldFocusToggleOnSelect
       shouldFocusFirstItemOnOpen
       shouldPreventScrollOnItemFocus
-      toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+      toggle={(toggleRef: Ref<MenuToggleElement>) => (
         // We want to add the id property here as well so the label is coupled
         // with t he button on screen readers.
         <MenuToggle size="sm" id="theme" ref={toggleRef} onClick={onThemeToggleClick} isExpanded={isThemeOpen}>
@@ -116,7 +109,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
       shouldFocusToggleOnSelect
       shouldFocusFirstItemOnOpen
       shouldPreventScrollOnItemFocus
-      toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+      toggle={(toggleRef: Ref<MenuToggleElement>) => (
         // We want to add the id property here as well so the label is coupled
         // with the button on screen readers.
         <MenuToggle size="sm" id="language" ref={toggleRef} onClick={onLanguageToggleClick} isExpanded={isLanguageOpen}>
@@ -140,7 +133,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
       shouldFocusToggleOnSelect
       shouldFocusFirstItemOnOpen
       shouldPreventScrollOnItemFocus
-      toggle={(toggleRef: React.Ref<MenuToggleElement>) => (
+      toggle={(toggleRef: Ref<MenuToggleElement>) => (
         // We want to add the id property here as well so the label is coupled
         // with the button on screen readers.
         <MenuToggle size="sm" id="voice" ref={toggleRef} onClick={onVoiceToggleClick} isExpanded={isVoiceOpen}>
@@ -210,7 +203,7 @@ export const CompactSettingsDemo: React.FunctionComponent = () => {
   ];
 
   const onSelectDropdownItem = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    _event: MouseEvent<Element, MouseEvent> | undefined,
     value: string | number | undefined
   ) => {
     if (value === 'Settings') {

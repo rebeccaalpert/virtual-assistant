@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, FunctionComponent, MouseEvent as ReactMouseEvent, Ref, CSSProperties } from 'react';
 import {
   Button,
   ModalBody,
@@ -14,17 +14,17 @@ import {
 import { ChatbotModal } from '@patternfly/chatbot/dist/dynamic/ChatbotModal';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 
-export const ChatbotModalExample: React.FunctionComponent = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<string>('Select display mode');
+export const ChatbotModalExample: FunctionComponent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [displayMode, setDisplayMode] = useState(ChatbotDisplayMode.default);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string>('Select display mode');
 
-  const handleModalToggle = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+  const onSelect = (_event: ReactMouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelected(value as string);
     setIsOpen(false);
     if (value === 'Default') {
@@ -45,7 +45,7 @@ export const ChatbotModalExample: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       ref={toggleRef}
       onClick={onToggleClick}
@@ -53,7 +53,7 @@ export const ChatbotModalExample: React.FunctionComponent = () => {
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

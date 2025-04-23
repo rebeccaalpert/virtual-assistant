@@ -2,7 +2,7 @@
 // Chatbot Main - Message - Content - Table
 // ============================================================================
 
-import React from 'react';
+import { Children, cloneElement } from 'react';
 import { ExtraProps } from 'react-markdown';
 import { Table, TableProps } from '@patternfly/react-table';
 
@@ -19,7 +19,7 @@ export interface TableNode {
   type: string;
 }
 
-const TableMessage = ({ children, ...props }: TableProps & ExtraProps) => {
+const TableMessage = ({ children, ...props }: Omit<TableProps, 'ref'> & ExtraProps) => {
   const { className, ...rest } = props;
 
   // This allows us to parse the nested data we get back from the 3rd party Markdown parser
@@ -53,9 +53,9 @@ const TableMessage = ({ children, ...props }: TableProps & ExtraProps) => {
   // This is somewhat opinionated and may break if 3rd party library changes
   // See Tr and Tbody for other usage
   const modifyChildren = (children) =>
-    React.Children.map(children, (child) => {
+    Children.map(children, (child) => {
       if (child && headerTextValues?.length > 0) {
-        return React.cloneElement(child, { extraHeaders: headerTextValues });
+        return cloneElement(child, { extraHeaders: headerTextValues });
       }
       return child;
     });

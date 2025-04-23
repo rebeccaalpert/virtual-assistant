@@ -1,4 +1,3 @@
-import React from 'react';
 import { Button } from '@patternfly/react-core';
 import { render, screen } from '@testing-library/react';
 import { SettingsForm } from './SettingsForm';

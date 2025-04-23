@@ -1,8 +1,8 @@
 // ============================================================================
 // Chatbot Main - Message Input
 // ============================================================================
-
-import React from 'react';
+import type { FormEvent, FunctionComponent, MouseEvent } from 'react';
+import { useState } from 'react';
 import { ActionGroup, Button, Form, FormProps, TextArea } from '@patternfly/react-core';
 
 export interface MessageInputProps extends FormProps {
@@ -13,14 +13,14 @@ export interface MessageInputProps extends FormProps {
   /** Label for the English word "Cancel" used in edit mode. */
   cancelWord?: string;
   /** Callback function for when edit mode update button is clicked */
-  onEditUpdate?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>, value: string) => void;
+  onEditUpdate?: (event: MouseEvent, value: string) => void;
   /** Callback functionf or when edit cancel update button is clicked */
-  onEditCancel?: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onEditCancel?: (event: MouseEvent) => void;
   /** Message text */
   content?: string;
 }
 
-const MessageInput: React.FunctionComponent<MessageInputProps> = ({
+const MessageInput: FunctionComponent<MessageInputProps> = ({
   editPlaceholder = 'Edit prompt message...',
   updateWord = 'Update',
   cancelWord = 'Cancel',
@@ -29,9 +29,9 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
   content,
   ...props
 }: MessageInputProps) => {
-  const [messageText, setMessageText] = React.useState(content ?? '');
+  const [messageText, setMessageText] = useState(content ?? '');
 
-  const onChange = (event: React.FormEvent<HTMLTextAreaElement>, value: string) => {
+  const onChange = (event: FormEvent<HTMLTextAreaElement>, value: string) => {
     setMessageText(value);
   };
 

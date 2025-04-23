@@ -1,11 +1,12 @@
-import React, { PropsWithChildren } from 'react';
+import type { MouseEvent, KeyboardEvent, ReactNode, PropsWithChildren } from 'react';
+import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core';
 
 interface CompareProps {
   /** First of two children to render */
-  firstChild: React.ReactNode;
+  firstChild: ReactNode;
   /** Second of two children to render */
-  secondChild: React.ReactNode;
+  secondChild: ReactNode;
   /** Display name for first child, used in mobile toggle */
   firstChildDisplayName: string;
   /** Display name for second child, used in mobile toggle */
@@ -13,7 +14,7 @@ interface CompareProps {
   /** Aria label for mobile toggle group */
   toggleGroupAriaLabel?: string;
   /** Callback for when mobile toggle is used */
-  onToggleClick?: (event: MouseEvent | React.MouseEvent<any, MouseEvent> | React.KeyboardEvent<Element>) => void;
+  onToggleClick?: (event: MouseEvent | MouseEvent<any, MouseEvent> | KeyboardEvent<Element>) => void;
 }
 
 export const Compare = ({
@@ -24,11 +25,11 @@ export const Compare = ({
   onToggleClick,
   toggleGroupAriaLabel = 'Select which chatbot to display'
 }: PropsWithChildren<CompareProps>) => {
-  const [isSelected, setIsSelected] = React.useState('toggle-group-chatbot-1');
-  const [showFirstChatbot, setShowFirstChatbot] = React.useState(true);
-  const [showSecondChatbot, setShowSecondChatbot] = React.useState(false);
+  const [isSelected, setIsSelected] = useState('toggle-group-chatbot-1');
+  const [showFirstChatbot, setShowFirstChatbot] = useState(true);
+  const [showSecondChatbot, setShowSecondChatbot] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // we want to show the first if we switch to the mobile toggle view
     // and reset/switch back to normal otherwise
     const updateChatbotVisibility = () => {
@@ -49,9 +50,7 @@ export const Compare = ({
   }, []);
 
   // this only happens on mobile
-  const handleChildToggleClick = (
-    event: MouseEvent | React.MouseEvent<any, MouseEvent> | React.KeyboardEvent<Element>
-  ) => {
+  const handleChildToggleClick = (event) => {
     const id = event.currentTarget.id;
     setIsSelected(id);
     setShowSecondChatbot(!showSecondChatbot);

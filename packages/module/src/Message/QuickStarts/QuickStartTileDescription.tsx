@@ -1,4 +1,5 @@
-import * as React from 'react';
+import type { FC } from 'react';
+import { useRef } from 'react';
 import { Button, Flex, pluralize, Popover } from '@patternfly/react-core';
 import InfoCircleIcon from '@patternfly/react-icons/dist/js/icons/info-circle-icon';
 
@@ -29,7 +30,7 @@ export function pluralizeWord(i: number, singular: string, plural?: string) {
   return `${i === 1 ? singular : plural}`;
 }
 
-const QuickStartTileDescription: React.FC<QuickStartTileDescriptionProps> = ({
+const QuickStartTileDescription: FC<QuickStartTileDescriptionProps> = ({
   description,
   prerequisites,
   prerequisiteWord = 'Prerequisite',
@@ -37,7 +38,7 @@ const QuickStartTileDescription: React.FC<QuickStartTileDescriptionProps> = ({
   quickStartButtonAriaLabel = 'Show prerequisites'
 }) => {
   const prereqs = prerequisites?.filter((p) => p);
-  const buttonRef = React.useRef<HTMLButtonElement>(null);
+  const buttonRef = useRef<HTMLButtonElement>(null);
   const pluralizedPrereq = pluralizeWord(prereqs?.length || 0, prerequisiteWord, prerequisiteWordPlural);
   return (
     <>

@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment } from 'react';
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Message from './Message';
@@ -146,14 +146,14 @@ const ERROR = {
   title: 'Could not load chat',
   children: 'Wait a few minutes and check your network settings. If the issue persists: ',
   actionLinks: (
-    <React.Fragment>
+    <Fragment>
       <AlertActionLink component="a" href="#">
         Start a new chat
       </AlertActionLink>
       <AlertActionLink component="a" href="#">
         Contact support
       </AlertActionLink>
-    </React.Fragment>
+    </Fragment>
   )
 };
 const checkListItemsRendered = () => {

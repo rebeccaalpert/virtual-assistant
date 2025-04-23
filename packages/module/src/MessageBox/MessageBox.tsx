@@ -1,20 +1,22 @@
 // ============================================================================
 // Chatbot Main - Messages
 // ============================================================================
-import React from 'react';
+import type { HTMLProps, ReactNode, Ref, FunctionComponent } from 'react';
+
+import { useState, useRef, useCallback, useEffect, forwardRef } from 'react';
 import JumpButton from './JumpButton';
 
-export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
+export interface MessageBoxProps extends HTMLProps<HTMLDivElement> {
   /** Content that can be announced, such as a new message, for screen readers */
   announcement?: string;
   /** Custom aria-label for scrollable portion of message box */
   ariaLabel?: string;
   /** Content to be displayed in the message box */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Custom classname for the MessageBox component */
   className?: string;
   /** Ref applied to message box */
-  innerRef?: React.Ref<HTMLDivElement>;
+  innerRef?: Ref<HTMLDivElement>;
   /** Modifier that controls how content in MessageBox is positioned within the container */
   position?: 'top' | 'bottom';
   /** Click handler for additional logic for when scroll to top jump button is clicked */
@@ -23,7 +25,7 @@ export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
   onScrollToBottomClick?: () => void;
 }
 
-const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
+const MessageBoxBase: FunctionComponent<MessageBoxProps> = ({
   announcement,
   ariaLabel = 'Scrollable message log',
   children,
@@ -34,10 +36,10 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   onScrollToBottomClick,
   ...props
 }: MessageBoxProps) => {
-  const [atTop, setAtTop] = React.useState(false);
-  const [atBottom, setAtBottom] = React.useState(true);
-  const [isOverflowing, setIsOverflowing] = React.useState(false);
-  const defaultRef = React.useRef<HTMLDivElement>(null);
+  const [atTop, setAtTop] = useState(false);
+  const [atBottom, setAtBottom] = useState(true);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const defaultRef = useRef<HTMLDivElement>(null);
   let messageBoxRef;
   if (innerRef) {
     messageBoxRef = innerRef;
@@ -46,7 +48,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   }
 
   // Configure handlers
-  const handleScroll = React.useCallback(() => {
+  const handleScroll = useCallback(() => {
     const element = messageBoxRef.current;
     if (element) {
       const { scrollTop, scrollHeight, clientHeight } = element;
@@ -55,7 +57,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
     }
   }, [messageBoxRef]);
 
-  const checkOverflow = React.useCallback(() => {
+  const checkOverflow = useCallback(() => {
     const element = messageBoxRef.current;
     if (element) {
       const { scrollHeight, clientHeight } = element;
@@ -63,7 +65,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
     }
   }, [messageBoxRef]);
 
-  const scrollToTop = React.useCallback(() => {
+  const scrollToTop = useCallback(() => {
     const element = messageBoxRef.current;
     if (element) {
       element.scrollTo({ top: 0, behavior: 'smooth' });
@@ -71,7 +73,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
     onScrollToTopClick && onScrollToTopClick();
   }, [messageBoxRef]);
 
-  const scrollToBottom = React.useCallback(() => {
+  const scrollToBottom = useCallback(() => {
     const element = messageBoxRef.current;
     if (element) {
       element.scrollTo({ top: element.scrollHeight, behavior: 'smooth' });
@@ -80,7 +82,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   }, [messageBoxRef]);
 
   // Detect scroll position
-  React.useEffect(() => {
+  useEffect(() => {
     const element = messageBoxRef.current;
     if (element) {
       // Listen for scroll events
@@ -117,7 +119,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   );
 };
 
-export const MessageBox = React.forwardRef((props: MessageBoxProps, ref: React.Ref<any>) => (
+export const MessageBox = forwardRef((props: MessageBoxProps, ref: Ref<any>) => (
   <MessageBoxBase innerRef={ref} {...props} />
 ));
 

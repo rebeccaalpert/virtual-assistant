@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent, MouseEvent, ReactNode, Ref } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ExternalLinkAltIcon,
   VolumeUpIcon,
@@ -15,7 +16,7 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   /** Aria-label for the button, shown when the button is clicked. */
   clickedAriaLabel?: string;
   /** On-click handler for the button */
-  onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
+  onClick?: ((event: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class name for the button */
   className?: string;
   /** Props to control if the attach button should be disabled */
@@ -27,9 +28,9 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** Icon for custom response action */
-  icon?: React.ReactNode;
+  icon?: ReactNode;
   /** Ref for response action button */
-  ref?: React.Ref<HTMLButtonElement>;
+  ref?: Ref<HTMLButtonElement>;
   /** Whether content launched by button, such as the feedback form, is expanded */
   'aria-expanded'?: boolean;
   /** Id for content controlled by the button, such as the feedback form */
@@ -50,12 +51,12 @@ export interface ResponseActionProps {
   };
 }
 
-export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
-  const [activeButton, setActiveButton] = React.useState<string>();
+export const ResponseActions: FunctionComponent<ResponseActionProps> = ({ actions }) => {
+  const [activeButton, setActiveButton] = useState<string>();
   const { positive, negative, copy, share, listen, ...additionalActions } = actions;
-  const responseActions = React.useRef<HTMLDivElement>(null);
+  const responseActions = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (responseActions.current && !responseActions.current.contains(e.target)) {
         setActiveButton(undefined);
@@ -69,9 +70,9 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
   }, []);
 
   const handleClick = (
-    e: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent,
+    e: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent,
     id: string,
-    onClick?: (event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void
+    onClick?: (event: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent) => void
   ) => {
     setActiveButton(id);
     onClick && onClick(e);

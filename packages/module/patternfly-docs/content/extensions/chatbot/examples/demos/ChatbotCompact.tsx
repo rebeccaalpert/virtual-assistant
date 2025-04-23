@@ -1,5 +1,4 @@
-import React from 'react';
-
+import { useEffect, useRef, useState, FunctionComponent, MouseEvent } from 'react';
 import { Bullseye, Brand, DropdownList, DropdownItem, DropdownGroup, SkipToContent } from '@patternfly/react-core';
 
 import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
@@ -76,8 +75,6 @@ spec:
 Here is some JavaScript code:
 
 ~~~js
-import React from 'react';
-
 const MessageLoading = () => (
   <div className="pf-chatbot__message-loading">
     <span className="pf-chatbot__message-loading-dots">
@@ -164,39 +161,36 @@ const initialConversations = {
   ]
 };
 
-export const ChatbotDemo: React.FunctionComponent = () => {
-  const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(true);
-  const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
-  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
-  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
-  const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
+export const ChatbotDemo: FunctionComponent = () => {
+  const [chatbotVisible, setChatbotVisible] = useState<boolean>(true);
+  const [displayMode, setDisplayMode] = useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
+  const [messages, setMessages] = useState<MessageProps[]>(initialMessages);
+  const [selectedModel, setSelectedModel] = useState('Granite 7B');
+  const [isSendButtonDisabled, setIsSendButtonDisabled] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [conversations, setConversations] = useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
-  const [announcement, setAnnouncement] = React.useState<string>();
-  const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
-  const toggleRef = React.useRef<HTMLButtonElement>(null);
-  const chatbotRef = React.useRef<HTMLDivElement>(null);
-  const historyRef = React.useRef<HTMLButtonElement>(null);
+  const [announcement, setAnnouncement] = useState<string>();
+  const scrollToBottomRef = useRef<HTMLDivElement>(null);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const chatbotRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLButtonElement>(null);
 
   // Auto-scrolls to the latest message
-  React.useEffect(() => {
+  useEffect(() => {
     // don't scroll the first load - in this demo, we know we start with two messages
     if (messages.length > 2) {
       scrollToBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
-  const onSelectModel = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
-    value: string | number | undefined
-  ) => {
+  const onSelectModel = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelectedModel(value as string);
   };
 
   const onSelectDisplayMode = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    _event: MouseEvent<Element, MouseEvent> | undefined,
     value: string | number | undefined
   ) => {
     setDisplayMode(value as ChatbotDisplayMode);

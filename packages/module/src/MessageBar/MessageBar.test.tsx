@@ -1,5 +1,4 @@
 import '@testing-library/jest-dom';
-import React from 'react';
 import { DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon } from '@patternfly/react-icons';
 import { render, screen } from '@testing-library/react';

@@ -58,6 +58,7 @@ import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import { getTrackingProviders } from "@patternfly/chatbot/dist/dynamic/tracking";
+import { useEffect,useCallback, useRef, useState, FunctionComponent, MouseEvent } from 'react';
 
 ### Basic ChatBot
 

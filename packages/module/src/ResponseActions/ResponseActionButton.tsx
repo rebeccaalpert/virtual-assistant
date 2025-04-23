@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent, MouseEvent, ReactNode, Ref } from 'react';
+import { forwardRef } from 'react';
 import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 
 export interface ResponseActionButtonProps extends ButtonProps {
@@ -7,9 +8,9 @@ export interface ResponseActionButtonProps extends ButtonProps {
   /** Aria-label for the button, shown when the button is clicked. Defaults to the value of ariaLabel or tooltipContent if not provided. */
   clickedAriaLabel?: string;
   /** Icon for the button */
-  icon: React.ReactNode;
+  icon: ReactNode;
   /** On-click handler for the button */
-  onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
+  onClick?: ((event: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class name for the button */
   className?: string;
   /** Props to control if the attach button should be disabled */
@@ -23,10 +24,10 @@ export interface ResponseActionButtonProps extends ButtonProps {
   /** Whether button is in clicked state */
   isClicked?: boolean;
   /** Ref applied to button  */
-  innerRef?: React.Ref<HTMLButtonElement>;
+  innerRef?: Ref<HTMLButtonElement>;
 }
 
-export const ResponseActionButtonBase: React.FunctionComponent<ResponseActionButtonProps> = ({
+export const ResponseActionButtonBase: FunctionComponent<ResponseActionButtonProps> = ({
   ariaLabel,
   clickedAriaLabel = ariaLabel,
   className,
@@ -80,7 +81,7 @@ export const ResponseActionButtonBase: React.FunctionComponent<ResponseActionBut
   );
 };
 
-const ResponseActionButton = React.forwardRef((props: ResponseActionButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+const ResponseActionButton = forwardRef((props: ResponseActionButtonProps, ref: Ref<HTMLButtonElement>) => (
   <ResponseActionButtonBase innerRef={ref} {...props} />
 ));
 

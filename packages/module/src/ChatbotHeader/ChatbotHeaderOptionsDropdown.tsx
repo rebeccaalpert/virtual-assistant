@@ -1,4 +1,5 @@
-import React from 'react';
+import type { ReactNode, FunctionComponent, Ref } from 'react';
+import { useState } from 'react';
 
 import {
   Tooltip,
@@ -13,7 +14,7 @@ import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon
 
 export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, 'toggle'> {
   /** Content to be displayed in the chatbot header */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Custom classname for the header component */
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
@@ -23,7 +24,7 @@ export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, '
   isCompact?: boolean;
 }
 
-export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeaderOptionsDropdownProps> = ({
+export const ChatbotHeaderOptionsDropdown: FunctionComponent<ChatbotHeaderOptionsDropdownProps> = ({
   className,
   children,
   onSelect,
@@ -32,9 +33,9 @@ export const ChatbotHeaderOptionsDropdown: React.FunctionComponent<ChatbotHeader
   isCompact,
   ...props
 }: ChatbotHeaderOptionsDropdownProps) => {
-  const [isOptionsMenuOpen, setIsOptionsMenuOpen] = React.useState(false);
+  const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <Tooltip
       className="pf-chatbot__tooltip"
       content="Chatbot options"

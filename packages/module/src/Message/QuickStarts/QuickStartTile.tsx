@@ -1,4 +1,4 @@
-import * as React from 'react';
+import type { FC, ReactNode } from 'react';
 import RocketIcon from '@patternfly/react-icons/dist/js/icons/rocket-icon';
 import OutlinedBookmarkIcon from '@patternfly/react-icons/dist/js/icons/outlined-bookmark-icon';
 import {
@@ -53,7 +53,7 @@ export interface QuickStartTileProps {
   isCompact?: boolean;
 }
 
-const QuickStartTile: React.FC<QuickStartTileProps> = ({
+const QuickStartTile: FC<QuickStartTileProps> = ({
   className,
   quickStart,
   onClick,
@@ -71,7 +71,7 @@ const QuickStartTile: React.FC<QuickStartTileProps> = ({
     spec: { icon, displayName, description, durationMinutes, prerequisites, link, type }
   } = quickStart;
 
-  let quickStartIcon: React.ReactNode;
+  let quickStartIcon: ReactNode;
   if (typeof icon === 'object') {
     quickStartIcon = <Icon size="2xl">{icon}</Icon>;
   } else {

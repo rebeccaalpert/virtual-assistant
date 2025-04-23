@@ -1,11 +1,11 @@
 // ============================================================================
 // Chatbot Layout - Chat - Welcome
 // ============================================================================
-import React from 'react';
+import type { HTMLProps, FunctionComponent } from 'react';
 
 import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody } from '@patternfly/react-core';
 
-export interface ChatbotWelcomePromptProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotWelcomePromptProps extends HTMLProps<HTMLDivElement> {
   /** Title for the welcome message*/
   title: string;
   /** Welcome message */
@@ -28,7 +28,7 @@ export interface WelcomePrompt {
   onClick?: () => void;
 }
 
-export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptProps> = ({
+export const ChatbotWelcomePrompt: FunctionComponent<ChatbotWelcomePromptProps> = ({
   title,
   description,
   prompts,

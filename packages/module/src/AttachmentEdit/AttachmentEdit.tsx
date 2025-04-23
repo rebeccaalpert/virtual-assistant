@@ -1,7 +1,7 @@
 // ============================================================================
 // Attachment Edit - Chatbot Code Snippet Editor
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
 import CodeModal from '../CodeModal';
 import { ChatbotDisplayMode } from '../Chatbot';
 
@@ -11,11 +11,11 @@ export interface AttachmentEditProps {
   /** Filename, including extension, of file shown in editor */
   fileName: string;
   /** Function that runs when cancel button is clicked  */
-  onCancel: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onCancel: (event: MouseEvent | KeyboardEvent) => void;
   /** Function that runs when save button is clicked; allows consumers to use the edited code string  */
-  onSave: (event: React.MouseEvent | MouseEvent | KeyboardEvent, code: string) => void;
+  onSave: (event: MouseEvent | KeyboardEvent, code: string) => void;
   /** Function that opens and closes modal */
-  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -26,7 +26,7 @@ export interface AttachmentEditProps {
   isCompact?: boolean;
 }
 
-export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
+export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
   fileName,
   code,
   handleModalToggle,
@@ -37,12 +37,12 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: AttachmentEditProps) => {
-  const handleSave = (_event: React.MouseEvent | MouseEvent | KeyboardEvent, code) => {
+  const handleSave = (_event: MouseEvent | KeyboardEvent, code) => {
     handleModalToggle(_event);
     onSave(_event, code);
   };
 
-  const handleCancel = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleCancel = (_event: MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onCancel(_event);
   };

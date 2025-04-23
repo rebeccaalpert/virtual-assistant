@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import FileDetails from '@patternfly/chatbot/dist/dynamic/FileDetails';
 
-export const FileDetailsExample: React.FunctionComponent = () => <FileDetails fileName="test.yml" />;
+export const FileDetailsExample: FunctionComponent = () => <FileDetails fileName="test.yml" />;

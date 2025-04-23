@@ -1,16 +1,16 @@
 // ============================================================================
 // Chatbot Main
 // ============================================================================
-import React from 'react';
+import type { HTMLProps, ReactNode, FunctionComponent } from 'react';
 
-export interface ChatbotContentProps extends React.HTMLProps<HTMLDivElement> {
+export interface ChatbotContentProps extends HTMLProps<HTMLDivElement> {
   /** Content to be displayed in the chatbot */
-  children: React.ReactNode;
+  children: ReactNode;
   /** Custom classname for the ChatbotContent component */
   className?: string;
 }
 
-export const ChatbotContent: React.FunctionComponent<ChatbotContentProps> = ({
+export const ChatbotContent: FunctionComponent<ChatbotContentProps> = ({
   children,
   className,
   ...props

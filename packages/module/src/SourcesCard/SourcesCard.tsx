@@ -1,8 +1,8 @@
 // ============================================================================
 // Chatbot Main - Messages - Sources Card
 // ============================================================================
-import React from 'react';
-
+import type { FunctionComponent, MouseEvent, ReactNode, SyntheticEvent } from 'react';
+import { useState } from 'react';
 // Import PatternFly components
 import {
   Button,
@@ -33,7 +33,7 @@ export interface SourcesCardProps extends CardProps {
   sources: {
     title?: string;
     link: string;
-    body?: React.ReactNode | string;
+    body?: ReactNode | string;
     isExternal?: boolean;
     hasShowMore?: boolean;
   }[];
@@ -46,18 +46,18 @@ export interface SourcesCardProps extends CardProps {
   /** Accessible label for the button which moves to the previous page. */
   toPreviousPageAriaLabel?: string;
   /** Function called when user clicks to navigate to next page. */
-  onNextClick?: (event: React.SyntheticEvent<HTMLButtonElement>, page: number) => void;
+  onNextClick?: (event: SyntheticEvent<HTMLButtonElement>, page: number) => void;
   /** Function called when user clicks to navigate to previous page. */
-  onPreviousClick?: (event: React.SyntheticEvent<HTMLButtonElement>, page: number) => void;
+  onPreviousClick?: (event: SyntheticEvent<HTMLButtonElement>, page: number) => void;
   /** Function called when page is changed. */
-  onSetPage?: (event: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => void;
+  onSetPage?: (event: MouseEvent | KeyboardEvent | MouseEvent, newPage: number) => void;
   /** Label for English words "show more" */
   showMoreWords?: string;
   /** Label for English words "show less" */
   showLessWords?: string;
 }
 
-const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
+const SourcesCard: FunctionComponent<SourcesCardProps> = ({
   className,
   isDisabled,
   paginationAriaLabel = 'Pagination',
@@ -74,14 +74,14 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   isCompact,
   ...props
 }: SourcesCardProps) => {
-  const [page, setPage] = React.useState(1);
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [page, setPage] = useState(1);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const onToggle = (_event: React.MouseEvent, isExpanded: boolean) => {
+  const onToggle = (_event: MouseEvent, isExpanded: boolean) => {
     setIsExpanded(isExpanded);
   };
 
-  const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
+  const handleNewPage = (_evt: MouseEvent | KeyboardEvent | MouseEvent, newPage: number) => {
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
   };

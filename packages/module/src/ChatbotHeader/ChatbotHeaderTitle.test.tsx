@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 import ChatbotHeaderTitle from './ChatbotHeaderTitle';

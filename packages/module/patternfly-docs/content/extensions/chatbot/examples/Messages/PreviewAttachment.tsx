@@ -1,12 +1,12 @@
-import React from 'react';
+import { useState, FunctionComponent, MouseEvent } from 'react';
 import { Button, Checkbox } from '@patternfly/react-core';
 import { PreviewAttachment } from '@patternfly/chatbot/dist/dynamic/PreviewAttachment';
 
-export const PreviewAttachmentExample: React.FunctionComponent = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(false);
-  const [isCompact, setIsCompact] = React.useState(false);
+export const PreviewAttachmentExample: FunctionComponent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isCompact, setIsCompact] = useState(false);
 
-  const handleModalToggle = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 
