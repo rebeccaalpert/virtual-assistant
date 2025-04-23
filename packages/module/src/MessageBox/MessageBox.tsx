@@ -25,7 +25,8 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   children,
   innerRef,
   className,
-  position = 'top'
+  position = 'top',
+  ...props
 }: MessageBoxProps) => {
   const [atTop, setAtTop] = React.useState(false);
   const [atBottom, setAtBottom] = React.useState(true);
@@ -96,6 +97,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
         aria-label={ariaLabel}
         className={`pf-chatbot__messagebox ${position === 'bottom' && 'pf-chatbot__messagebox--bottom'} ${className ?? ''}`}
         ref={innerRef ?? messageBoxRef}
+        {...props}
       >
         {children}
         <div className="pf-chatbot__messagebox-announcement" aria-live="polite">
