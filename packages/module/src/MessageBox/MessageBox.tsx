@@ -17,6 +17,10 @@ export interface MessageBoxProps extends React.HTMLProps<HTMLDivElement> {
   innerRef?: React.Ref<HTMLDivElement>;
   /** Modifier that controls how content in MessageBox is positioned within the container */
   position?: 'top' | 'bottom';
+  /** Click handler for additional logic for when scroll to top jump button is clicked */
+  onScrollToTopClick?: () => void;
+  /** Click handler for additional logic for when scroll to bottom jump button is clicked */
+  onScrollToBottomClick?: () => void;
 }
 
 const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
@@ -26,6 +30,8 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
   innerRef,
   className,
   position = 'top',
+  onScrollToTopClick,
+  onScrollToBottomClick,
   ...props
 }: MessageBoxProps) => {
   const [atTop, setAtTop] = React.useState(false);
@@ -62,6 +68,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
     if (element) {
       element.scrollTo({ top: 0, behavior: 'smooth' });
     }
+    onScrollToTopClick && onScrollToTopClick();
   }, [messageBoxRef]);
 
   const scrollToBottom = React.useCallback(() => {
@@ -69,6 +76,7 @@ const MessageBoxBase: React.FunctionComponent<MessageBoxProps> = ({
     if (element) {
       element.scrollTo({ top: element.scrollHeight, behavior: 'smooth' });
     }
+    onScrollToBottomClick && onScrollToBottomClick();
   }, [messageBoxRef]);
 
   // Detect scroll position
