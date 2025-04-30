@@ -148,6 +148,17 @@ describe('Message bar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
+  it('can handle buttonProps tooltipProps  appropriately for send', () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        alwayShowSendButton
+        buttonProps={{ send: { tooltipProps: { isVisible: true } } }}
+      />
+    );
+    // isVisible, so no need for click
+    expect(screen.getByRole('tooltip', { name: 'Send' })).toBeTruthy();
+  });
   it('can handle buttonProps props appropriately for send', async () => {
     render(
       <MessageBar
@@ -236,6 +247,17 @@ describe('Message bar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
+  it('can handle buttonProps tooltipProps  appropriately for attach', () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        alwayShowSendButton
+        buttonProps={{ attach: { tooltipProps: { isVisible: true } } }}
+      />
+    );
+    // isVisible, so no need for click
+    expect(screen.getByRole('tooltip', { name: 'Attach' })).toBeTruthy();
+  });
   it('can handle buttonProps props appropriately for attach', async () => {
     render(
       <MessageBar
@@ -270,6 +292,18 @@ describe('Message bar', () => {
     );
     await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
+  });
+  it('can handle buttonProps tooltipProps  appropriately for stop', () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasStopButton
+        handleStopButton={jest.fn}
+        buttonProps={{ stop: { tooltipProps: { isVisible: true } } }}
+      />
+    );
+    // isVisible, so no need for click
+    expect(screen.getByRole('tooltip', { name: 'Stop' })).toBeTruthy();
   });
   it('can handle buttonProps props appropriately for stop', async () => {
     render(
@@ -316,6 +350,17 @@ describe('Message bar', () => {
     await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
     const input = screen.getByRole('textbox', { name: /I am listening/i });
     expect(input).toBeTruthy();
+  });
+  it('can handle buttonProps tooltipProps  appropriately for microphone', () => {
+    render(
+      <MessageBar
+        onSendMessage={jest.fn}
+        hasMicrophoneButton
+        buttonProps={{ microphone: { tooltipProps: { isVisible: true } } }}
+      />
+    );
+    // isVisible, so no need for click
+    expect(screen.getByRole('tooltip', { name: 'Use microphone' })).toBeTruthy();
   });
   it('can handle buttonProps props appropriately for microphone', async () => {
     mockSpeechRecognition();
