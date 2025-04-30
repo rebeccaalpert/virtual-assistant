@@ -36,9 +36,12 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   'aria-controls'?: string;
 }
 
+type ExtendedActionProps = ActionProps & {
+  [key: string]: any;
+};
 export interface ResponseActionProps {
   /** Props for message actions, such as feedback (positive or negative), copy button, share, and listen */
-  actions: Record<string, ActionProps | undefined> & {
+  actions: Record<string, ExtendedActionProps | undefined> & {
     positive?: ActionProps;
     negative?: ActionProps;
     copy?: ActionProps;
@@ -78,6 +81,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
     <div ref={responseActions} className="pf-chatbot__response-actions">
       {positive && (
         <ResponseActionButton
+          {...positive}
           ariaLabel={positive.ariaLabel ?? 'Good response'}
           clickedAriaLabel={positive.ariaLabel ?? 'Response recorded'}
           onClick={(e) => handleClick(e, 'positive', positive.onClick)}
@@ -95,6 +99,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
       )}
       {negative && (
         <ResponseActionButton
+          {...negative}
           ariaLabel={negative.ariaLabel ?? 'Bad response'}
           clickedAriaLabel={negative.ariaLabel ?? 'Response recorded'}
           onClick={(e) => handleClick(e, 'negative', negative.onClick)}
@@ -112,6 +117,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
       )}
       {copy && (
         <ResponseActionButton
+          {...copy}
           ariaLabel={copy.ariaLabel ?? 'Copy'}
           clickedAriaLabel={copy.ariaLabel ?? 'Copied'}
           onClick={(e) => handleClick(e, 'copy', copy.onClick)}
@@ -129,6 +135,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
       )}
       {share && (
         <ResponseActionButton
+          {...share}
           ariaLabel={share.ariaLabel ?? 'Share'}
           clickedAriaLabel={share.ariaLabel ?? 'Shared'}
           onClick={(e) => handleClick(e, 'share', share.onClick)}
@@ -146,6 +153,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
       )}
       {listen && (
         <ResponseActionButton
+          {...listen}
           ariaLabel={listen.ariaLabel ?? 'Listen'}
           clickedAriaLabel={listen.ariaLabel ?? 'Listening'}
           onClick={(e) => handleClick(e, 'listen', listen.onClick)}
@@ -163,6 +171,7 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
       )}
       {Object.keys(additionalActions).map((action) => (
         <ResponseActionButton
+          {...additionalActions[action]}
           key={action}
           ariaLabel={additionalActions[action]?.ariaLabel}
           clickedAriaLabel={additionalActions[action]?.clickedAriaLabel}
