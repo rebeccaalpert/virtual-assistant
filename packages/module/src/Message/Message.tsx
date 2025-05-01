@@ -44,7 +44,7 @@ import rehypeSanitize from 'rehype-sanitize';
 import { PluggableList } from 'react-markdown/lib';
 import LinkMessage from './LinkMessage/LinkMessage';
 import ErrorMessage from './ErrorMessage/ErrorMessage';
-import JsxParser from 'react-jsx-parser';
+//import JsxParser from 'react-jsx-parser';
 import {
   Chart,
   ChartArea,
@@ -68,8 +68,10 @@ import {
   ChartLegendTooltip,
   ChartLine,
   ChartPie,
-  ChartProps
+  ChartCursorFlyout,
+  ChartLegend
 } from '@patternfly/react-charts';
+import { LiveProvider, LiveEditor, LiveError, LivePreview } from 'react-live';
 
 export interface MessageAttachment {
   /** Name of file attached to the message */
@@ -226,6 +228,42 @@ export const MessageBase: React.FunctionComponent<MessageProps> = ({
     console.log(children);
     console.log('chart');
     console.log(charts);
+
+    const scope = {
+      React,
+      Chart,
+      ChartVoronoiContainer,
+      ChartAxis,
+      ChartBar,
+      ChartGroup,
+      ChartArea,
+      ChartBullet,
+      ChartStack,
+      ChartScatter,
+      ChartPoint,
+      ChartDonut,
+      ChartDonutUtilization,
+      ChartLegend,
+      ChartContainer,
+      ChartPie,
+      ChartLine,
+      ChartThreshold,
+      ChartLabel,
+      ChartTooltip,
+      ChartCursorContainer
+      //ChartCursorTooltip
+      //ChartCursorFlyout
+      //ChartLegendTooltip
+    };
+
+    return (
+      <LiveProvider code={children} scope={scope} noInline={false}>
+        <div style={{ border: '1px solid #ccc', borderRadius: '4px', marginBottom: '1rem' }}>
+          <LivePreview style={{ padding: '1rem' }} />
+          <LiveError style={{ color: 'red', padding: '0.5rem' }} />
+        </div>
+      </LiveProvider>
+    );
     if (charts) {
       return charts[parseInt(children)];
     }
