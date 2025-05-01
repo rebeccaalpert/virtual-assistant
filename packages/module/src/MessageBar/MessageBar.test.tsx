@@ -73,9 +73,9 @@ describe('Message bar', () => {
   });
   it('should render correctly', () => {
     render(<MessageBar onSendMessage={jest.fn} />);
-    expect(screen.getByRole('button', { name: 'Attach button' })).toBeTruthy();
-    expect(screen.queryByRole('button', { name: 'Send button' })).toBeFalsy();
-    expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
+    expect(screen.getByRole('button', { name: 'Attach' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Send' })).toBeFalsy();
+    expect(screen.queryByRole('button', { name: 'Use microphone' })).toBeFalsy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toBeTruthy();
   });
   it('can send via enter key', async () => {
@@ -110,15 +110,15 @@ describe('Message bar', () => {
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
     expect(input).toHaveTextContent('Hello world');
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
   });
   it('can disable send button shown when text is input', async () => {
     render(<MessageBar onSendMessage={jest.fn} isSendButtonDisabled />);
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
     expect(input).toHaveTextContent('Hello world');
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeDisabled();
   });
   it('can click send button', async () => {
     const spy = jest.fn();
@@ -126,26 +126,26 @@ describe('Message bar', () => {
     const input = screen.getByRole('textbox', { name: /Send a message.../i });
     await userEvent.type(input, 'Hello world');
     expect(input).toHaveTextContent('Hello world');
-    const sendButton = screen.getByRole('button', { name: 'Send button' });
+    const sendButton = screen.getByRole('button', { name: 'Send' });
     expect(sendButton).toBeTruthy();
     await userEvent.click(sendButton);
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('can always show send button', () => {
     render(<MessageBar onSendMessage={jest.fn} alwayShowSendButton />);
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeEnabled();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeEnabled();
   });
   it('can disable send button if always showing', () => {
     render(<MessageBar onSendMessage={jest.fn} alwayShowSendButton isSendButtonDisabled />);
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeDisabled();
   });
   it('can handle buttonProps tooltipContent  appropriately for send', async () => {
     render(
       <MessageBar onSendMessage={jest.fn} alwayShowSendButton buttonProps={{ send: { tooltipContent: 'Test' } }} />
     );
-    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Send' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('can handle buttonProps props appropriately for send', async () => {
@@ -203,13 +203,13 @@ describe('Message bar', () => {
     expect(screen.queryByRole('menuitem', { name: /Logs/i })).toBeFalsy();
     expect(screen.queryByRole('menuitem', { name: /YAML - Status/i })).toBeFalsy();
     expect(screen.queryByRole('menuitem', { name: /YAML - All contents/i })).toBeFalsy();
-    const attachButton = screen.getByRole('button', { name: 'Attach button' });
+    const attachButton = screen.getByRole('button', { name: 'Attach' });
     await userEvent.click(attachButton);
     expect(attachToggleClickSpy).toHaveBeenCalledTimes(1);
   });
   it('can hide attach button', () => {
     render(<MessageBar onSendMessage={jest.fn} hasAttachButton={false} />);
-    expect(screen.queryByRole('button', { name: 'Attach button' })).toBeFalsy();
+    expect(screen.queryByRole('button', { name: 'Attach' })).toBeFalsy();
   });
   // Based on this because I had no idea how to do this and was looking around: https://stackoverflow.com/a/75562651
   // See also https://developer.mozilla.org/en-US/docs/Web/API/File/File for what that file variable is doing
@@ -223,17 +223,17 @@ describe('Message bar', () => {
         buttonProps={{ attach: { inputTestId: 'input' } }}
       />
     );
-    expect(screen.getByRole('button', { name: 'Attach button' })).toBeTruthy();
-    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    expect(screen.getByRole('button', { name: 'Attach' })).toBeTruthy();
+    await userEvent.click(screen.getByRole('button', { name: 'Attach' }));
     const file = new File(['test'], 'test.json');
     const input = screen.getByTestId('input') as HTMLInputElement;
     await userEvent.upload(input, file);
     expect(input.files).toHaveLength(1);
     expect(spy).toHaveBeenCalledTimes(1);
   });
-  it('can handle buttonProps tooltipContent  appropriately for attach', async () => {
+  it('can handle buttonProps tooltipContent appropriately for attach', async () => {
     render(<MessageBar onSendMessage={jest.fn} hasAttachButton buttonProps={{ attach: { tooltipContent: 'Test' } }} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Attach button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Attach' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('can handle buttonProps props appropriately for attach', async () => {
@@ -251,12 +251,12 @@ describe('Message bar', () => {
   // --------------------------------------------------------------------------
   it('can show stop button', () => {
     render(<MessageBar onSendMessage={jest.fn} hasStopButton handleStopButton={jest.fn} />);
-    expect(screen.getByRole('button', { name: 'Stop button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Stop' })).toBeTruthy();
   });
   it('can call handleStopButton', async () => {
     const spy = jest.fn();
     render(<MessageBar onSendMessage={jest.fn} hasStopButton handleStopButton={spy} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop' }));
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('can handle buttonProps tooltipContent appropriately for stop', async () => {
@@ -268,7 +268,7 @@ describe('Message bar', () => {
         buttonProps={{ stop: { tooltipContent: 'Test' } }}
       />
     );
-    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('can handle buttonProps props appropriately for stop', async () => {
@@ -287,12 +287,12 @@ describe('Message bar', () => {
   // --------------------------------------------------------------------------
   it('can hide microphone button when window.SpeechRecognition is not there', () => {
     render(<MessageBar onSendMessage={jest.fn} hasMicrophoneButton />);
-    expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
+    expect(screen.queryByRole('button', { name: 'Use microphone' })).toBeFalsy();
   });
   it('can show microphone button', () => {
     mockSpeechRecognition();
     render(<MessageBar onSendMessage={jest.fn} hasMicrophoneButton />);
-    expect(screen.getByRole('button', { name: 'Microphone button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Use microphone' })).toBeTruthy();
   });
   it('can handle buttonProps appropriately for microphone', async () => {
     mockSpeechRecognition();
@@ -305,15 +305,15 @@ describe('Message bar', () => {
         }}
       />
     );
-    await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Use microphone' }));
     expect(screen.getByRole('tooltip', { name: 'Currently listening' })).toBeTruthy();
-    await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop listening' }));
     expect(screen.getByRole('tooltip', { name: 'Not currently listening' })).toBeTruthy();
   });
   it('can customize the listening placeholder', async () => {
     mockSpeechRecognition();
     render(<MessageBar onSendMessage={jest.fn} hasMicrophoneButton listeningText="I am listening" />);
-    await userEvent.click(screen.getByRole('button', { name: 'Microphone button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Use microphone' }));
     const input = screen.getByRole('textbox', { name: /I am listening/i });
     expect(input).toBeTruthy();
   });
@@ -330,9 +330,9 @@ describe('Message bar', () => {
   });
   it('can be controlled', () => {
     render(<MessageBar onSendMessage={jest.fn} value="test" />);
-    expect(screen.getByRole('button', { name: 'Attach button' })).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
-    expect(screen.queryByRole('button', { name: 'Microphone button' })).toBeFalsy();
+    expect(screen.getByRole('button', { name: 'Attach' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
+    expect(screen.queryByRole('button', { name: 'Use microphone' })).toBeFalsy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toBeTruthy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toHaveValue('test');
   });

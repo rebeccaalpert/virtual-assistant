@@ -40,7 +40,7 @@ describe('MessageBox', () => {
     region.dispatchEvent(new Event('scroll'));
 
     await waitFor(() => {
-      userEvent.click(screen.getByRole('button', { name: /Jump bottom button/i }));
+      userEvent.click(screen.getByRole('button', { name: /Jump bottom/i }));
       expect(spy).toHaveBeenCalled();
     });
   });
@@ -63,7 +63,7 @@ describe('MessageBox', () => {
     region.dispatchEvent(new Event('scroll'));
 
     await waitFor(() => {
-      userEvent.click(screen.getByRole('button', { name: /Jump top button/i }));
+      userEvent.click(screen.getByRole('button', { name: /Jump top/i }));
       expect(spy).toHaveBeenCalled();
     });
   });

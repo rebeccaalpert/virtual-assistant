@@ -485,7 +485,7 @@ describe('Message', () => {
   it('should render code correctly', () => {
     render(<Message avatar="./img" role="user" name="User" content={CODE_MESSAGE} />);
     expect(screen.getByText('Here is some YAML code:')).toBeTruthy();
-    expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Copy code' })).toBeTruthy();
     expect(screen.getByText(/yaml/)).toBeTruthy();
     expect(screen.getByText(/apiVersion:/i)).toBeTruthy();
     expect(screen.getByText(/helm.openshift.io\/v1beta1/i)).toBeTruthy();
@@ -503,8 +503,8 @@ describe('Message', () => {
     // need explicit setup since RTL stubs clipboard if you do this
     const user = userEvent.setup();
     render(<Message avatar="./img" role="user" name="User" content={CODE_MESSAGE} />);
-    expect(screen.getByRole('button', { name: 'Copy code button' })).toBeTruthy();
-    await user.click(screen.getByRole('button', { name: 'Copy code button' }));
+    expect(screen.getByRole('button', { name: 'Copy code' })).toBeTruthy();
+    await user.click(screen.getByRole('button', { name: 'Copy code' }));
     const clipboardText = await navigator.clipboard.readText();
     expect(clipboardText.trim()).toEqual(CODE.trim());
   });

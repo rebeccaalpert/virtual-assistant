@@ -12,23 +12,23 @@ const renderSend = (props?: { [key: string]: string | boolean | Omit<TooltipProp
 describe('Send button', () => {
   it('should render button correctly', () => {
     renderSend();
-    expect(screen.getByRole('button', { name: 'Send button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Send' })).toBeTruthy();
   });
   it('should handle onClick correctly', async () => {
     const spy = jest.fn();
     render(<SendButton onClick={spy} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Send' }));
     expect(screen.getByRole('tooltip', { name: 'Send' })).toBeTruthy();
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should handle custom tooltip correctly', async () => {
     render(<SendButton onClick={jest.fn} tooltipContent="Test" />);
-    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Send' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('should handle className prop', () => {
     renderSend({ className: 'test' });
-    expect(screen.getByRole('button', { name: 'Send button' })).toHaveClass('test');
+    expect(screen.getByRole('button', { name: 'Send' })).toHaveClass('test');
   });
 
   it('should handle spread props, including aria-label', () => {
@@ -37,7 +37,7 @@ describe('Send button', () => {
   });
   it('should handle tooltipProps prop', async () => {
     renderSend({ tooltipProps: { id: 'test' } });
-    await userEvent.click(screen.getByRole('button', { name: 'Send button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Send' }));
     expect(screen.getByRole('tooltip', { name: 'Send' })).toHaveAttribute('id', 'test');
   });
   it('should handle isCompact', () => {
