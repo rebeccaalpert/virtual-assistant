@@ -43,7 +43,7 @@ export const SendButton: React.FunctionComponent<SendButtonProps> = ({
     <Button
       variant="plain"
       className={`pf-chatbot__button--send ${isCompact ? 'pf-m-compact' : ''} ${className ?? ''}`}
-      aria-label={props['aria-label'] || 'Send button'}
+      aria-label={props['aria-label'] || 'Send'}
       onClick={onClick}
       icon={
         <Icon iconSize={isCompact ? 'lg' : 'xl'} isInline>

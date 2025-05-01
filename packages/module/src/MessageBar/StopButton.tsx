@@ -41,7 +41,7 @@ export const StopButton: React.FunctionComponent<StopButtonProps> = ({
     <Button
       className={`pf-chatbot__button--stop ${isCompact ? 'pf-m-compact' : ''} ${className ?? ''}`}
       variant="link"
-      aria-label={props['aria-label'] || 'Stop button'}
+      aria-label={props['aria-label'] || 'Stop'}
       onClick={onClick}
       icon={
         <Icon iconSize={isCompact ? 'lg' : 'xl'} isInline>
