@@ -105,7 +105,8 @@ export const MicrophoneButton: React.FunctionComponent<MicrophoneButtonProps> = 
       <Button
         variant="plain"
         className={`pf-chatbot__button--microphone ${isListening ? 'pf-chatbot__button--microphone--active' : ''} ${isCompact ? 'pf-m-compact' : ''} ${className ?? ''}`}
-        aria-label={props['aria-label'] || 'Microphone button'}
+        aria-label={props['aria-label'] || (isListening ? 'Stop listening' : 'Use microphone')}
+        aria-pressed={isListening}
         onClick={isListening ? stopListening : startListening}
         icon={
           <Icon iconSize={isCompact ? 'lg' : 'xl'} isInline>

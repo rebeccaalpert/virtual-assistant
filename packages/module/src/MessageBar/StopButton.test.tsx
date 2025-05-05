@@ -12,23 +12,23 @@ const renderStop = (props?: { [key: string]: string | boolean | Omit<TooltipProp
 describe('Stop button', () => {
   it('should render button correctly', () => {
     renderStop();
-    expect(screen.getByRole('button', { name: 'Stop button' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Stop' })).toBeTruthy();
   });
   it('should handle onClick correctly', async () => {
     const spy = jest.fn();
     render(<StopButton onClick={spy} />);
-    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop' }));
     expect(screen.getByRole('tooltip', { name: 'Stop' })).toBeTruthy();
     expect(spy).toHaveBeenCalledTimes(1);
   });
   it('should handle custom tooltip correctly', async () => {
     render(<StopButton onClick={jest.fn} tooltipContent="Test" />);
-    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop' }));
     expect(screen.getByRole('tooltip', { name: 'Test' })).toBeTruthy();
   });
   it('should handle className prop', () => {
     renderStop({ className: 'test' });
-    expect(screen.getByRole('button', { name: 'Stop button' })).toHaveClass('test');
+    expect(screen.getByRole('button', { name: 'Stop' })).toHaveClass('test');
   });
   it('should handle spread props, including aria-label', () => {
     renderStop({ 'aria-label': 'test' });
@@ -36,7 +36,7 @@ describe('Stop button', () => {
   });
   it('should handle tooltipProps prop', async () => {
     renderStop({ tooltipProps: { id: 'test' } });
-    await userEvent.click(screen.getByRole('button', { name: 'Stop button' }));
+    await userEvent.click(screen.getByRole('button', { name: 'Stop' }));
     expect(screen.getByRole('tooltip', { name: 'Stop' })).toHaveAttribute('id', 'test');
   });
   it('should handle isCompact', () => {

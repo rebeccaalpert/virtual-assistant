@@ -56,7 +56,7 @@ const CodeBlockMessage = ({
         {language && <div className="pf-chatbot__message-code-block-language">{language}</div>}
         <Button
           ref={buttonRef}
-          aria-label={ariaLabel ?? 'Copy code button'}
+          aria-label={ariaLabel ?? 'Copy code'}
           variant="plain"
           className="pf-chatbot__button--copy"
           onClick={(event) => handleCopy(event, children)}
