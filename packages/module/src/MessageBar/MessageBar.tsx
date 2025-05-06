@@ -279,6 +279,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
           onClick={handleStopButton}
           tooltipContent={buttonProps?.stop?.tooltipContent}
           isCompact={isCompact}
+          tooltipProps={buttonProps?.stop?.tooltipProps}
           {...buttonProps?.stop?.props}
         />
       );
@@ -292,6 +293,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             isDisabled={isListeningMessage}
             tooltipContent={buttonProps?.attach?.tooltipContent}
             isCompact={isCompact}
+            tooltipProps={buttonProps?.attach?.tooltipProps}
             {...buttonProps?.attach?.props}
           />
         )}
@@ -302,6 +304,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             tooltipContent={buttonProps?.attach?.tooltipContent}
             inputTestId={buttonProps?.attach?.inputTestId}
             isCompact={isCompact}
+            tooltipProps={buttonProps?.attach?.tooltipProps}
             {...buttonProps?.attach?.props}
           />
         )}
@@ -313,6 +316,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             tooltipContent={buttonProps?.microphone?.tooltipContent}
             language={buttonProps?.microphone?.language}
             isCompact={isCompact}
+            tooltipProps={buttonProps?.microphone?.tooltipProps}
             {...buttonProps?.microphone?.props}
           />
         )}
@@ -323,6 +327,7 @@ export const MessageBar: React.FunctionComponent<MessageBarProps> = ({
             isDisabled={isSendButtonDisabled}
             tooltipContent={buttonProps?.send?.tooltipContent}
             isCompact={isCompact}
+            tooltipProps={buttonProps?.send?.tooltipProps}
             {...buttonProps?.send?.props}
           />
         )}
