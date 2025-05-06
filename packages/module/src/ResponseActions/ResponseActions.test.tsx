@@ -41,6 +41,14 @@ const CUSTOM_ACTIONS = [
   }
 ];
 
+const ALL_ACTIONS_DATA_TEST = [
+  { type: 'positive', label: 'Good response', dataTestId: 'positive' },
+  { type: 'negative', label: 'Bad response', dataTestId: 'negative' },
+  { type: 'copy', label: 'Copy', dataTestId: 'copy' },
+  { type: 'share', label: 'Share', dataTestId: 'share' },
+  { type: 'listen', label: 'Listen', dataTestId: 'listen' }
+];
+
 describe('ResponseActions', () => {
   afterEach(() => {
     jest.clearAllMocks();
@@ -181,6 +189,13 @@ describe('ResponseActions', () => {
     });
   });
 
+  it('should be able to add custom attributes to buttons', () => {
+    ALL_ACTIONS_DATA_TEST.forEach(({ type, dataTestId }) => {
+      render(<ResponseActions actions={{ [type]: { onClick: jest.fn(), 'data-testid': dataTestId } }} />);
+      expect(screen.getByTestId(dataTestId)).toBeTruthy();
+    });
+  });
+
   it('should be able to add custom actions', () => {
     CUSTOM_ACTIONS.forEach((action) => {
       const key = Object.keys(action)[0];
@@ -192,12 +207,14 @@ describe('ResponseActions', () => {
               onClick: action[key].onClick,
               // doing this just because it's easier to test without a regex for the button name
               ariaLabel: action[key].ariaLabel.toLowerCase(),
-              icon: action[key].icon
+              icon: action[key].icon,
+              'data-testid': action[key]
             }
           }}
         />
       );
       expect(screen.getByRole('button', { name: key })).toBeTruthy();
+      expect(screen.getByTestId(action[key])).toBeTruthy();
     });
   });
 });

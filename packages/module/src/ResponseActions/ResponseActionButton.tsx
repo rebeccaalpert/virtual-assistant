@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
+import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 
-export interface ResponseActionButtonProps {
+export interface ResponseActionButtonProps extends ButtonProps {
   /** Aria-label for the button. Defaults to the value of the tooltipContent if none provided */
   ariaLabel?: string;
   /** Aria-label for the button, shown when the button is clicked. Defaults to the value of ariaLabel or tooltipContent if not provided. */
