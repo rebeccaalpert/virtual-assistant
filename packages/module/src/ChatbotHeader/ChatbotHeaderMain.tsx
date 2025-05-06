@@ -1,10 +1,10 @@
-import type { ReactNode, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 export interface ChatbotHeaderMainProps {
   /** Custom classname for the header component */
   className?: string;
   /** Menu and/or chatbot header components */
-  children: ReactNode;
+  children: React.ReactNode;
 }
 
 export const ChatbotHeaderMain: FunctionComponent<ChatbotHeaderMainProps> = ({

@@ -1,8 +1,8 @@
-import type { ReactNode, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 export interface ChatbotHeaderActionsProps {
   /** Content to be displayed in the chatbot header */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Custom classname for the header component */
   className?: string;
 }

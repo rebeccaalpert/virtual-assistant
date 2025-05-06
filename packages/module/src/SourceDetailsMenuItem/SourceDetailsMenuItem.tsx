@@ -1,9 +1,9 @@
-import type { HTMLProps, ReactNode, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 import { Icon, Flex, Stack, StackItem } from '@patternfly/react-core';
 
-export interface SourceDetailsMenuItemProps extends HTMLProps<HTMLDivElement> {
+export interface SourceDetailsMenuItemProps extends React.HTMLProps<HTMLDivElement> {
   /** Icon */
-  icon: ReactNode;
+  icon: React.ReactNode;
   /** Name of source */
   name: string;
   /** Description of source */

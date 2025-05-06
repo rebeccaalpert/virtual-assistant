@@ -1,25 +1,25 @@
-import type { ReactNode, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { SplitItem } from '@patternfly/react-core';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 
 export interface ChatbotHeaderTitleProps {
   /** Content to be displayed in the chatbot header */
-  children?: ReactNode;
+  children?: React.ReactNode;
   /** Custom classname for the header component */
   className?: string;
   /** Display mode of chatbot, in case you want to conditionally show a title */
   displayMode?: ChatbotDisplayMode;
   /** Content to display on full screen */
-  showOnFullScreen?: ReactNode | string;
+  showOnFullScreen?: React.ReactNode | string;
   /** Content to display on docked screen */
-  showOnDocked?: ReactNode | string;
+  showOnDocked?: React.ReactNode | string;
   /** Content to display on embedded screen */
-  showOnEmbedded?: ReactNode | string;
+  showOnEmbedded?: React.ReactNode | string;
   /** Content to display in drawer mode */
-  showOnDrawer?: ReactNode | string;
+  showOnDrawer?: React.ReactNode | string;
   /** Content to display by default; this will be shown if a case is not explicitly set */
-  showOnDefault?: ReactNode | string;
+  showOnDefault?: React.ReactNode | string;
 }
 
 export const ChatbotHeaderTitle: FunctionComponent<ChatbotHeaderTitleProps> = ({

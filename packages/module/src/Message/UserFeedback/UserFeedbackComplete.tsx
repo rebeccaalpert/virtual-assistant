@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Messages - Feedback Complete Card
 // ============================================================================
-import type { ReactNode, MouseEvent, FunctionComponent } from 'react';
+import type { MouseEvent as ReactMouseEvent, FunctionComponent } from 'react';
 
 import { useState, useRef, useEffect } from 'react';
 
@@ -15,7 +15,7 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
   /** Substitute for the English phrase "Thank you". */
   title?: string;
   /** Substitute for the English phrase "You have successfully sent your feedback! Thank you for responding." */
-  body?: string | ReactNode;
+  body?: string | React.ReactNode;
   /** Callback function for when close button is clicked */
   onClose?: () => void;
   /** Aria label for close button */
@@ -31,9 +31,9 @@ export interface UserFeedbackCompleteProps extends Omit<CardProps, 'ref'>, OUIAP
    */
   timeoutAnimation?: number;
   /** Callback for when mouse hovers over card */
-  onMouseEnter?: (e: MouseEvent<HTMLDivElement>) => void;
+  onMouseEnter?: (e: React.MouseEvent<HTMLDivElement>) => void;
   /** Callback for when mouse stops hovering over card */
-  onMouseLeave?: (e: MouseEvent<HTMLDivElement>) => void;
+  onMouseLeave?: (e: React.MouseEvent<HTMLDivElement>) => void;
   /** Value to overwrite the randomly generated data-ouia-component-id.*/
   ouiaId?: number | string;
   /** Set the value of data-ouia-safe. Only set to true when the component is in a static state, i.e. no animations are occurring. At all other times, this value must be false. */
@@ -120,13 +120,13 @@ const UserFeedbackComplete: FunctionComponent<UserFeedbackCompleteProps> = ({
     return null;
   }
 
-  const myOnMouseEnter = (ev: MouseEvent<HTMLDivElement>) => {
+  const myOnMouseEnter = (ev: ReactMouseEvent<HTMLDivElement>) => {
     setIsMouseOver(true);
     setTimedOutAnimation(false);
     onMouseEnter && onMouseEnter(ev);
   };
 
-  const myOnMouseLeave = (ev: MouseEvent<HTMLDivElement>) => {
+  const myOnMouseLeave = (ev: ReactMouseEvent<HTMLDivElement>) => {
     setIsMouseOver(false);
     onMouseLeave && onMouseLeave(ev);
   };

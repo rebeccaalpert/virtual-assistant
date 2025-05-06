@@ -1,4 +1,4 @@
-import type { FunctionComponent, MouseEvent, ReactNode, Ref } from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import {
   ExternalLinkAltIcon,
@@ -16,7 +16,7 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   /** Aria-label for the button, shown when the button is clicked. */
   clickedAriaLabel?: string;
   /** On-click handler for the button */
-  onClick?: ((event: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
+  onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class name for the button */
   className?: string;
   /** Props to control if the attach button should be disabled */
@@ -28,9 +28,9 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   /** Props to control the PF Tooltip component */
   tooltipProps?: TooltipProps;
   /** Icon for custom response action */
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   /** Ref for response action button */
-  ref?: Ref<HTMLButtonElement>;
+  ref?: React.Ref<HTMLButtonElement>;
   /** Whether content launched by button, such as the feedback form, is expanded */
   'aria-expanded'?: boolean;
   /** Id for content controlled by the button, such as the feedback form */

@@ -1,4 +1,4 @@
-import type { ReactNode, FunctionComponent, Ref } from 'react';
+import type { FunctionComponent, Ref } from 'react';
 import { useState } from 'react';
 
 import { Tooltip, TooltipProps, Dropdown, DropdownProps, MenuToggle, MenuToggleElement } from '@patternfly/react-core';
@@ -7,7 +7,7 @@ export interface ChatbotHeaderSelectorDropdownProps extends Omit<DropdownProps, 
   /** Value of the selected dropdown item */
   value: string;
   /** Content to be displayed in the chatbot header */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Custom classname for the header component */
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
@@ -16,6 +16,7 @@ export interface ChatbotHeaderSelectorDropdownProps extends Omit<DropdownProps, 
   menuToggleAriaLabel?: string;
   /** Text displayed in Tooltip wrapping the display mode dropdown */
   tooltipContent?: string;
+  /** Sets menu to compact styling. */
   isCompact?: boolean;
 }
 

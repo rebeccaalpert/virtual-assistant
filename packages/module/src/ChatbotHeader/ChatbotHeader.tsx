@@ -1,10 +1,10 @@
-import type { HTMLProps, ReactNode, FunctionComponent } from 'react';
+import type { HTMLProps, FunctionComponent } from 'react';
 
 import { Divider } from '@patternfly/react-core';
 
 export interface ChatbotHeaderProps extends HTMLProps<HTMLDivElement> {
   /** Content to be displayed in the chatbot header */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Custom classname for the header component */
   className?: string;
 }

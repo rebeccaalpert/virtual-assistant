@@ -1,20 +1,21 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Stop
 // ============================================================================
-import type { MouseEvent, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 
 export interface StopButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
-  onClick: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Class name for StopButton */
   className?: string;
   /** Props to control the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Stop" used in the tooltip */
   tooltipContent?: string;
+  /** Whether stop button has compact styling */
   isCompact?: boolean;
 }
 

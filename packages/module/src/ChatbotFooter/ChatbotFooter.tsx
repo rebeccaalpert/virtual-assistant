@@ -8,13 +8,13 @@
 // - Footnote
 // - Footnote popover
 
-import type { HTMLProps, ReactNode, FunctionComponent } from 'react';
+import type { HTMLProps, FunctionComponent } from 'react';
 
 import { Divider } from '@patternfly/react-core';
 
 export interface ChatbotFooterProps extends HTMLProps<HTMLDivElement> {
   /** Children for the Footer that supports MessageBar and FootNote components*/
-  children?: ReactNode;
+  children?: React.ReactNode;
   /** Custom classname for the Footer component */
   className?: string;
   isCompact?: boolean;

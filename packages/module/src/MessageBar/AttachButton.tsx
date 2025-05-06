@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Attach
 // ============================================================================
-import type { MouseEvent, Ref, FunctionComponent } from 'react';
+import type { Ref, FunctionComponent } from 'react';
 
 import { forwardRef } from 'react';
 
@@ -12,7 +12,7 @@ import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-
 
 export interface AttachButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
-  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
+  onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback function for AttachButton when an attachment is made */
   onAttachAccepted?: (data: File[], event: DropEvent) => void;
   /** Class name for AttachButton */
@@ -22,7 +22,7 @@ export interface AttachButtonProps extends ButtonProps {
   /** Props to control the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** Ref applied to AttachButton and used in tooltip */
-  innerRef?: Ref<any>;
+  innerRef?: React.Ref<any>;
   /** English text "Attach" used in the tooltip */
   tooltipContent?: string;
   /** Test id applied to input */

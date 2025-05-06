@@ -1,4 +1,3 @@
-import type { MouseEvent } from 'react';
 import { PropsWithChildren } from 'react';
 import { Button, Label } from '@patternfly/react-core';
 import FileDetails from '../FileDetails';
@@ -13,9 +12,9 @@ interface FileDetailsLabelProps {
   /** Whether to display loading icon */
   isLoading?: boolean;
   /** Callback function for when label is clicked */
-  onClick?: (event: MouseEvent, fileName: string, fileId?: string | number) => void;
+  onClick?: (event: React.MouseEvent, fileName: string, fileId?: string | number) => void;
   /** Callback function for when close button is clicked */
-  onClose?: (event: MouseEvent, fileName: string, fileId?: string | number) => void;
+  onClose?: (event: React.MouseEvent, fileName: string, fileId?: string | number) => void;
   /** Aria label for close button */
   closeButtonAriaLabel?: string;
   /** Custom test id for the component-generated language */

@@ -1,7 +1,7 @@
 // ============================================================================
 // Attachment Edit - Chatbot Code Snippet Editor
 // ============================================================================
-import type { FunctionComponent, MouseEvent } from 'react';
+import type { FunctionComponent, MouseEvent as ReactMouseEvent } from 'react';
 import CodeModal from '../CodeModal';
 import { ChatbotDisplayMode } from '../Chatbot';
 
@@ -11,11 +11,11 @@ export interface AttachmentEditProps {
   /** Filename, including extension, of file shown in editor */
   fileName: string;
   /** Function that runs when cancel button is clicked  */
-  onCancel: (event: MouseEvent | KeyboardEvent) => void;
+  onCancel: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Function that runs when save button is clicked; allows consumers to use the edited code string  */
-  onSave: (event: MouseEvent | KeyboardEvent, code: string) => void;
+  onSave: (event: React.MouseEvent | MouseEvent | KeyboardEvent, code: string) => void;
   /** Function that opens and closes modal */
-  handleModalToggle: (event: MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -37,12 +37,12 @@ export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: AttachmentEditProps) => {
-  const handleSave = (_event: MouseEvent | KeyboardEvent, code) => {
+  const handleSave = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent, code) => {
     handleModalToggle(_event);
     onSave(_event, code);
   };
 
-  const handleCancel = (_event: MouseEvent | KeyboardEvent) => {
+  const handleCancel = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onCancel(_event);
   };

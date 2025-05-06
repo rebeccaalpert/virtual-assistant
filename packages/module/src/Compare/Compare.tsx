@@ -1,17 +1,12 @@
-import type {
-  MouseEvent as ReactMouseEvent,
-  KeyboardEvent as ReactKeyboardEvent,
-  ReactNode,
-  PropsWithChildren
-} from 'react';
+import type { MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent, PropsWithChildren } from 'react';
 import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core';
 
 interface CompareProps {
   /** First of two children to render */
-  firstChild: ReactNode;
+  firstChild: React.ReactNode;
   /** Second of two children to render */
-  secondChild: ReactNode;
+  secondChild: React.ReactNode;
   /** Display name for first child, used in mobile toggle */
   firstChildDisplayName: string;
   /** Display name for second child, used in mobile toggle */
@@ -19,7 +14,7 @@ interface CompareProps {
   /** Aria label for mobile toggle group */
   toggleGroupAriaLabel?: string;
   /** Callback for when mobile toggle is used */
-  onToggleClick?: (event: MouseEvent | ReactMouseEvent<any, MouseEvent> | ReactKeyboardEvent<Element>) => void;
+  onToggleClick?: (event: MouseEvent | React.MouseEvent<any, MouseEvent> | React.KeyboardEvent<Element>) => void;
 }
 
 export const Compare = ({

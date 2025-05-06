@@ -1,4 +1,4 @@
-import type { ReactNode, FunctionComponent, Ref } from 'react';
+import type { FunctionComponent, Ref } from 'react';
 import { useState } from 'react';
 
 import {
@@ -14,13 +14,14 @@ import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon
 
 export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, 'toggle'> {
   /** Content to be displayed in the chatbot header */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Custom classname for the header component */
   className?: string;
   /** Props spread to the PF Tooltip component wrapping the display mode dropdown */
   tooltipProps?: TooltipProps;
   /** Aria label for menu toggle */
   menuToggleAriaLabel?: string;
+  /** Sets menu to compact styling. */
   isCompact?: boolean;
 }
 

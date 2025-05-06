@@ -14,7 +14,7 @@ export interface ChatbotHeaderCloseButtonProps extends ButtonProps {
   /** Aria label for menu */
   menuAriaLabel?: string;
   /** Ref applied to menu */
-  innerRef?: Ref<HTMLButtonElement>;
+  innerRef?: React.Ref<HTMLButtonElement>;
   /** Content used in tooltip */
   tooltipContent?: string;
   /** Sets button to compact styling. */

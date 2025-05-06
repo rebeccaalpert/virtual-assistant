@@ -11,15 +11,15 @@ export interface TermsOfUseProps extends ModalProps {
   /** Class applied to modal */
   className?: string;
   /** Action assigned to primary modal button */
-  onPrimaryAction?: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
+  onPrimaryAction?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Action assigned to secondary modal button */
-  onSecondaryAction: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
+  onSecondaryAction: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Name of primary modal button */
   primaryActionBtn?: string;
   /** Name of secondary modal button */
   secondaryActionBtn?: string;
   /** Function that handles modal toggle */
-  handleModalToggle: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -31,7 +31,7 @@ export interface TermsOfUseProps extends ModalProps {
   /** Alt text for optional image displayed in header */
   altText?: string;
   /** Ref applied to modal */
-  innerRef?: Ref<HTMLDivElement>;
+  innerRef?: React.Ref<HTMLDivElement>;
   /** OuiaID applied to modal */
   ouiaId?: string;
   /** Sets modal to compact styling. */

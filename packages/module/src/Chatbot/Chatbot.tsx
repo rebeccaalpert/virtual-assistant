@@ -1,14 +1,14 @@
 // ============================================================================
 // Chatbot
 // ============================================================================
-import type { ReactNode, Ref, FunctionComponent } from 'react';
+import type { Ref, FunctionComponent } from 'react';
 
 import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
 export interface ChatbotProps {
   /** Content to be displayed in the chatbot */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Display Mode for the Chatbot */
   displayMode?: ChatbotDisplayMode;
   /** Visibility flag for the chatbot */
@@ -16,7 +16,7 @@ export interface ChatbotProps {
   /** Custom classname for the Chatbot component */
   className?: string;
   /** Ref applied to chatbot  */
-  innerRef?: Ref<HTMLDivElement>;
+  innerRef?: React.Ref<HTMLDivElement>;
   /** Custom aria label applied to focusable container */
   ariaLabel?: string;
   /** Density of information within the ChatBot */

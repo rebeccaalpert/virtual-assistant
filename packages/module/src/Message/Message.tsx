@@ -53,9 +53,9 @@ export interface MessageAttachment {
   /** Unique identifier of file attached to the message */
   id?: string | number;
   /** Callback for when attachment label is clicked */
-  onClick?: (event: ReactMouseEvent, name: string, id?: string | number) => void;
+  onClick?: (event: React.MouseEvent, name: string, id?: string | number) => void;
   /** Callback for when attachment label is closed */
-  onClose?: (event: ReactMouseEvent, name: string, id?: string | number) => void;
+  onClose?: (event: React.MouseEvent, name: string, id?: string | number) => void;
   /** Whether file is loading */
   isLoading?: boolean;
   /** Aria label for attachment close button */

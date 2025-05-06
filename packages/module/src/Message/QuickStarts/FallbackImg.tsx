@@ -1,4 +1,4 @@
-import type { ReactNode, FC } from 'react';
+import type { FC } from 'react';
 import { useState } from 'react';
 
 interface FallbackImgProps {
@@ -9,7 +9,7 @@ interface FallbackImgProps {
   /** ClassName applied to image */
   className?: string;
   /** Fallback */
-  fallback?: ReactNode;
+  fallback?: React.ReactNode;
 }
 
 const FallbackImg: FC<FallbackImgProps> = ({ src, alt, className, fallback }) => {

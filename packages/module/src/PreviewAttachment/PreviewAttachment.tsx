@@ -11,11 +11,11 @@ export interface PreviewAttachmentProps {
   /** Filename, including extension, of file shown in modal */
   fileName: string;
   /** Function called when edit button is clicked */
-  onEdit: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onEdit: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Function called when dismiss button is clicked */
-  onDismiss?: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onDismiss?: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Function called when modal is toggled */
-  handleModalToggle: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */

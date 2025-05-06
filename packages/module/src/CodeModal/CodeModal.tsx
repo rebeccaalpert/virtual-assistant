@@ -26,15 +26,15 @@ export interface CodeModalProps {
   /** Whether code is read-only */
   isReadOnly?: boolean;
   /** Action assigned to primary modal button */
-  onPrimaryAction: (event: MouseEvent | KeyboardEvent, code?: string) => void;
+  onPrimaryAction: (event: React.MouseEvent | MouseEvent | KeyboardEvent, code?: string) => void;
   /** Action assigned to secondary modal button */
-  onSecondaryAction: (event: MouseEvent | KeyboardEvent) => void;
+  onSecondaryAction: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Name of primary modal button */
   primaryActionBtn: string;
   /** Name of secondary modal button */
   secondaryActionBtn: string;
   /** Function that handles modal toggle */
-  handleModalToggle: (event: MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: React.MouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */

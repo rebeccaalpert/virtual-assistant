@@ -6,13 +6,13 @@ import {
   EmptyStateFooter,
   EmptyStateProps
 } from '@patternfly/react-core';
-import type { ReactNode, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 export interface HistoryEmptyStateProps extends EmptyStateProps {
   onClick?: () => void;
-  bodyText?: string | ReactNode;
+  bodyText?: string | React.ReactNode;
   buttonText?: string;
-  buttonIcon?: ReactNode;
+  buttonIcon?: React.ReactNode;
   hasButton?: boolean;
 }
 

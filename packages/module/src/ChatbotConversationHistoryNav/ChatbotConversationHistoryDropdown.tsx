@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import type { ReactNode, MouseEvent, FunctionComponent, Ref } from 'react';
+import type { MouseEvent, FunctionComponent, Ref } from 'react';
 
 import { useState } from 'react';
 
@@ -12,13 +12,13 @@ import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon
 
 export interface ChatbotConversationHistoryDropdownProps extends Omit<DropdownProps, 'toggle'> {
   /** Dropdown items rendered in conversation settings dropdown */
-  menuItems: ReactNode;
+  menuItems: React.ReactNode;
   /** Optional classname applied to conversation settings dropdown */
   menuClassName?: string;
   /** Tooltip content and aria-label applied to conversation settings dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelect?: (event?: MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 
 export const ChatbotConversationHistoryDropdown: FunctionComponent<ChatbotConversationHistoryDropdownProps> = ({

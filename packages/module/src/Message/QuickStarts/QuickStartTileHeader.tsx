@@ -1,5 +1,5 @@
 import { Button, Flex } from '@patternfly/react-core';
-import type { FunctionComponent, FormEvent, MouseEvent as ReactMouseEvent } from 'react';
+import type { FunctionComponent } from 'react';
 
 interface QuickStartTileHeaderProps {
   /** Name for the header */
@@ -7,7 +7,7 @@ interface QuickStartTileHeaderProps {
   /** Id for the QuickStart */
   quickStartId?: string;
   /** Callback for when the name of the QuickStart is clicked */
-  onSelect: (e: FormEvent<HTMLInputElement> | ReactMouseEvent<Element, MouseEvent>) => void;
+  onSelect: (e: React.FormEvent<HTMLInputElement> | React.MouseEvent<Element, MouseEvent>) => void;
 }
 
 const QuickStartTileHeader: FunctionComponent<QuickStartTileHeaderProps> = ({ name, quickStartId, onSelect }) => (

@@ -1,10 +1,4 @@
-import type {
-  ChangeEvent,
-  FunctionComponent,
-  MouseEvent as ReactMouseEvent,
-  ReactNode,
-  KeyboardEvent as ReactKeyboardEvent
-} from 'react';
+import type { ChangeEvent, FunctionComponent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
@@ -22,13 +16,13 @@ export interface MessageBarWithAttachMenuProps {
   /** Callback to close attach menu */
   setIsAttachMenuOpen: (isOpen: boolean) => void;
   /** Items in menu */
-  attachMenuItems: ReactNode;
+  attachMenuItems: React.ReactNode;
   /** A callback for when the attachment menu toggle is clicked */
   onAttachMenuToggleClick: () => void;
   /** A callback for when the input value in the menu changes. */
   onAttachMenuInputChange: (value: string) => void;
   /** Function callback called when user selects item in menu. */
-  onAttachMenuSelect?: (event?: ReactMouseEvent<Element, MouseEvent>, value?: string | number) => void;
+  onAttachMenuSelect?: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
   /** Placeholder for search input */
   attachMenuInputPlaceholder?: string;
   /** Keys that trigger onOpenChange, defaults to tab and escape. It is highly recommended to include Escape in the array, while Tab may be omitted if the menu contains non-menu items that are focusable. */
@@ -55,7 +49,7 @@ export interface MessageBarProps extends TextAreaProps {
   /** Flag to enable the Stop button, used for streaming content */
   hasStopButton?: boolean;
   /** Callback function for when stop button is clicked */
-  handleStopButton?: (event: ReactMouseEvent<HTMLButtonElement>) => void;
+  handleStopButton?: (event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Callback function for when attach button is used to upload a file */
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
@@ -80,7 +74,7 @@ export interface MessageBarProps extends TextAreaProps {
     };
   };
   /** A callback for when the text area value changes. */
-  onChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
+  onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
   /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
   displayMode?: ChatbotDisplayMode;
   isCompact?: boolean;

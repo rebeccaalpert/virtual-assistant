@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import type { ReactNode, MouseEvent, KeyboardEvent, TransitionEvent, FunctionComponent } from 'react';
+import type { KeyboardEvent, FunctionComponent } from 'react';
 
 import { useRef, Fragment } from 'react';
 
@@ -45,25 +45,25 @@ export interface Conversation {
   /** Conversation id */
   id: string;
   /** Conversation icon */
-  icon?: ReactNode;
+  icon?: React.ReactNode;
   /** Flag for no icon */
   noIcon?: boolean;
   /** Conversation */
   text: string;
   /** Dropdown items rendered in conversation settings dropdown */
-  menuItems?: ReactNode;
+  menuItems?: React.ReactNode;
   /** Optional classname applied to conversation settings dropdown */
   menuClassName?: string;
   /** Tooltip content and aria-label applied to conversation settings dropdown */
   label?: string;
   /** Callback for when user selects item. */
-  onSelect?: (event?: MouseEvent, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
   /** Additional props passed to conversation menu item */
   additionalProps?: MenuItemProps;
 }
 export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Function called to toggle drawer */
-  onDrawerToggle: (event: KeyboardEvent | MouseEvent | TransitionEvent) => void;
+  onDrawerToggle: (event: React.KeyboardEvent | React.MouseEvent | React.TransitionEvent) => void;
   /** Flag to indicate whether drawer is open */
   isDrawerOpen: boolean;
   /** Function called to close drawer */
@@ -71,7 +71,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /* itemId of the currently active item. */
   activeItemId?: string | number;
   /** Callback function for when an item is selected */
-  onSelectActiveItem?: (event?: MouseEvent, itemId?: string | number) => void;
+  onSelectActiveItem?: (event?: React.MouseEvent, itemId?: string | number) => void;
   /** Items shown in conversation history */
   conversations: Conversation[] | { [key: string]: Conversation[] };
   /** Text shown in blue button */
@@ -79,7 +79,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   /** Callback function for when blue button is clicked. Omit to hide blue "new chat button" */
   onNewChat?: () => void;
   /** Content wrapped by conversation history nav */
-  drawerContent?: ReactNode;
+  drawerContent?: React.ReactNode;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
   /** Aria label for search input */

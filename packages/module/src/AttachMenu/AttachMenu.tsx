@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Attachment Menu
 // ============================================================================
-import type { FunctionComponent, MouseEvent, ReactNode, RefObject } from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import {
@@ -20,7 +20,7 @@ export interface ExtendedDropdownPopperProps extends DropdownPopperProps {
 
 export interface AttachMenuProps extends DropdownProps {
   /** Items in menu */
-  filteredItems: ReactNode;
+  filteredItems: React.ReactNode;
   /** A callback for when the input value changes. */
   handleTextInputChange: (value: string) => void;
   /** Flag to indicate if menu is opened. */
@@ -32,13 +32,13 @@ export interface AttachMenuProps extends DropdownProps {
   /** Keys that trigger onOpenChange, defaults to tab and escape. It is highly recommended to include Escape in the array, while Tab may be omitted if the menu contains non-menu items that are focusable. */
   onOpenChangeKeys?: string[];
   /** Function callback called when user selects item. */
-  onSelect?: (event?: MouseEvent<Element>, value?: string | number) => void;
+  onSelect?: (event?: React.MouseEvent<Element, MouseEvent>, value?: string | number) => void;
   /** Placeholder for search input */
   searchInputPlaceholder?: string;
   /** Aria label for search input */
   searchInputAriaLabel?: string;
   /** Toggle to be rendered */
-  toggle: DropdownToggleProps | ((toggleRef: RefObject<any>) => ReactNode);
+  toggle: DropdownToggleProps | ((toggleRef: React.RefObject<any>) => React.ReactNode);
 }
 
 export const AttachMenu: FunctionComponent<AttachMenuProps> = ({

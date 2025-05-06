@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Microphone
 // ============================================================================
-import type { SetStateAction, Dispatch, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { useState, useCallback, useEffect } from 'react';
 
@@ -17,9 +17,9 @@ export interface MicrophoneButtonProps extends ButtonProps {
   /** Class name for MicrophoneButton */
   className?: string;
   /** Callback to update the value of isListening */
-  onIsListeningChange: Dispatch<SetStateAction<boolean>>;
+  onIsListeningChange: React.Dispatch<React.SetStateAction<boolean>>;
   /** Callback to update the message value once speech recognition is complete */
-  onSpeechRecognition: Dispatch<SetStateAction<string>>;
+  onSpeechRecognition: React.Dispatch<React.SetStateAction<string>>;
   /** Props to control the PF Tooltip component */
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Use microphone" and "Stop listening" used in the tooltip */

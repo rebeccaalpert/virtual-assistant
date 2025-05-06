@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Messages
 // ============================================================================
-import type { HTMLProps, ReactNode, Ref, FunctionComponent } from 'react';
+import type { HTMLProps, Ref, FunctionComponent } from 'react';
 
 import { useState, useRef, useCallback, useEffect, forwardRef } from 'react';
 import JumpButton from './JumpButton';
@@ -12,11 +12,11 @@ export interface MessageBoxProps extends HTMLProps<HTMLDivElement> {
   /** Custom aria-label for scrollable portion of message box */
   ariaLabel?: string;
   /** Content to be displayed in the message box */
-  children: ReactNode;
+  children: React.ReactNode;
   /** Custom classname for the MessageBox component */
   className?: string;
   /** Ref applied to message box */
-  innerRef?: Ref<HTMLDivElement>;
+  innerRef?: React.Ref<HTMLDivElement>;
   /** Modifier that controls how content in MessageBox is positioned within the container */
   position?: 'top' | 'bottom';
   /** Click handler for additional logic for when scroll to top jump button is clicked */

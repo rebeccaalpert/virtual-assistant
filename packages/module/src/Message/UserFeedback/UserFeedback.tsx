@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Main - Messages - Feedback Card
 // ============================================================================
-import type { ChangeEvent, FunctionComponent } from 'react';
+import type { FunctionComponent } from 'react';
 
 import { useState, useRef, useEffect } from 'react';
 
@@ -35,7 +35,7 @@ export interface UserFeedbackProps extends Omit<CardProps, 'onSubmit'>, OUIAProp
   /** Aria label for text area */
   textAreaAriaLabel?: string;
   /** Callback function for when text area changes */
-  onTextAreaChange?: (event: ChangeEvent<HTMLTextAreaElement>, value: string) => void;
+  onTextAreaChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string) => void;
   /** Callback function for when form is submitted */
   onSubmit: (selectedResponse?: string, additionalFeedback?: string) => void;
   /** Callback function for when close button is clicked */
