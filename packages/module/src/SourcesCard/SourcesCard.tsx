@@ -1,7 +1,13 @@
 // ============================================================================
 // Chatbot Main - Messages - Sources Card
 // ============================================================================
-import type { FunctionComponent, MouseEvent, ReactNode, SyntheticEvent } from 'react';
+import type {
+  FunctionComponent,
+  MouseEvent as ReactMouseEvent,
+  KeyboardEvent as ReactKeyboardEvent,
+  ReactNode,
+  SyntheticEvent
+} from 'react';
 import { useState } from 'react';
 // Import PatternFly components
 import {
@@ -50,7 +56,7 @@ export interface SourcesCardProps extends CardProps {
   /** Function called when user clicks to navigate to previous page. */
   onPreviousClick?: (event: SyntheticEvent<HTMLButtonElement>, page: number) => void;
   /** Function called when page is changed. */
-  onSetPage?: (event: MouseEvent | KeyboardEvent | MouseEvent, newPage: number) => void;
+  onSetPage?: (event: ReactMouseEvent | ReactKeyboardEvent | MouseEvent, newPage: number) => void;
   /** Label for English words "show more" */
   showMoreWords?: string;
   /** Label for English words "show less" */
@@ -77,11 +83,11 @@ const SourcesCard: FunctionComponent<SourcesCardProps> = ({
   const [page, setPage] = useState(1);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const onToggle = (_event: MouseEvent, isExpanded: boolean) => {
+  const onToggle = (_event: ReactMouseEvent, isExpanded: boolean) => {
     setIsExpanded(isExpanded);
   };
 
-  const handleNewPage = (_evt: MouseEvent | KeyboardEvent | MouseEvent, newPage: number) => {
+  const handleNewPage = (_evt: ReactMouseEvent | ReactKeyboardEvent | MouseEvent, newPage: number) => {
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
   };

@@ -1,5 +1,4 @@
-import { FunctionComponent, MouseEvent } from 'react';
-import { useState } from 'react';
+import { FunctionComponent, MouseEvent as ReactMouseEvent, useState } from 'react';
 import { Button, Checkbox } from '@patternfly/react-core';
 import { AttachmentEdit } from '@patternfly/chatbot/dist/dynamic/AttachmentEdit';
 
@@ -7,7 +6,7 @@ export const AttachmentEditModalExample: FunctionComponent = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isCompact, setIsCompact] = useState(false);
 
-  const handleModalToggle = (_event: MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 

@@ -1,4 +1,10 @@
-import type { ChangeEvent, FunctionComponent, MouseEvent, ReactNode, KeyboardEvent } from 'react';
+import type {
+  ChangeEvent,
+  FunctionComponent,
+  MouseEvent as ReactMouseEvent,
+  ReactNode,
+  KeyboardEvent as ReactKeyboardEvent
+} from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
 import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
@@ -22,7 +28,7 @@ export interface MessageBarWithAttachMenuProps {
   /** A callback for when the input value in the menu changes. */
   onAttachMenuInputChange: (value: string) => void;
   /** Function callback called when user selects item in menu. */
-  onAttachMenuSelect?: (event?: MouseEvent<Element>, value?: string | number) => void;
+  onAttachMenuSelect?: (event?: ReactMouseEvent<Element, MouseEvent>, value?: string | number) => void;
   /** Placeholder for search input */
   attachMenuInputPlaceholder?: string;
   /** Keys that trigger onOpenChange, defaults to tab and escape. It is highly recommended to include Escape in the array, while Tab may be omitted if the menu contains non-menu items that are focusable. */
@@ -49,7 +55,7 @@ export interface MessageBarProps extends TextAreaProps {
   /** Flag to enable the Stop button, used for streaming content */
   hasStopButton?: boolean;
   /** Callback function for when stop button is clicked */
-  handleStopButton?: (event: MouseEvent<HTMLButtonElement>) => void;
+  handleStopButton?: (event: ReactMouseEvent<HTMLButtonElement>) => void;
   /** Callback function for when attach button is used to upload a file */
   handleAttach?: (data: File[], event: DropEvent) => void;
   /** Props to enable a menu that opens when the Attach button is clicked, instead of the attachment window */
@@ -247,7 +253,7 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
   );
 
   const handleKeyDown = useCallback(
-    (event: KeyboardEvent<HTMLTextAreaElement>) => {
+    (event: ReactKeyboardEvent) => {
       if (event.key === 'Enter' && !event.shiftKey) {
         event.preventDefault();
         if (!isSendButtonDisabled && !hasStopButton) {

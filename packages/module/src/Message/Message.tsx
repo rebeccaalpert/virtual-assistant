@@ -2,7 +2,7 @@
 // Chatbot Main - Message
 // ============================================================================
 import { forwardRef, ReactNode, useEffect, useState } from 'react';
-import type { FunctionComponent, HTMLProps, MouseEvent, Ref } from 'react';
+import type { FunctionComponent, HTMLProps, MouseEvent as ReactMouseEvent, Ref } from 'react';
 import Markdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import {
@@ -53,9 +53,9 @@ export interface MessageAttachment {
   /** Unique identifier of file attached to the message */
   id?: string | number;
   /** Callback for when attachment label is clicked */
-  onClick?: (event: MouseEvent, name: string, id?: string | number) => void;
+  onClick?: (event: ReactMouseEvent, name: string, id?: string | number) => void;
   /** Callback for when attachment label is closed */
-  onClose?: (event: MouseEvent, name: string, id?: string | number) => void;
+  onClose?: (event: ReactMouseEvent, name: string, id?: string | number) => void;
   /** Whether file is loading */
   isLoading?: boolean;
   /** Aria label for attachment close button */
@@ -158,9 +158,9 @@ export interface MessageProps extends Omit<HTMLProps<HTMLDivElement>, 'role'> {
   /** Label for the English word "Cancel" used in edit mode. */
   cancelWord?: string;
   /** Callback function for when edit mode update button is clicked */
-  onEditUpdate?: (event: MouseEvent) => void;
+  onEditUpdate?: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;
   /** Callback functionf or when edit cancel update button is clicked */
-  onEditCancel?: (event: MouseEvent) => void;
+  onEditCancel?: (event: ReactMouseEvent<HTMLButtonElement, MouseEvent>) => void;
   /** Props for edit form */
   editFormProps?: FormProps;
   /** Sets message to compact styling. */
@@ -242,9 +242,9 @@ export const MessageBase: FunctionComponent<MessageProps> = ({
             editPlaceholder={editPlaceholder}
             updateWord={updateWord}
             cancelWord={cancelWord}
-            onEditUpdate={(event, text) => {
+            onEditUpdate={(event: ReactMouseEvent<HTMLButtonElement, MouseEvent>, value: string) => {
               onEditUpdate && onEditUpdate(event);
-              setMessageText(text);
+              setMessageText(value);
             }}
             onEditCancel={onEditCancel}
             {...editFormProps}

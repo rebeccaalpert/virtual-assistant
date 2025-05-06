@@ -1,5 +1,4 @@
-import { FunctionComponent, MouseEvent } from 'react';
-import { useState } from 'react';
+import { FunctionComponent, MouseEvent, useState } from 'react';
 import {
   Brand,
   Bullseye,

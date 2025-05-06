@@ -38,7 +38,7 @@ export const TermsOfUseCompactExample: FunctionComponent = () => {
     }
   };
 
-  const handleModalToggle = (_event: MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 

@@ -1,9 +1,9 @@
-import { FunctionComponent, MouseEvent } from 'react';
+import { FunctionComponent, MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 
 export const MessageWithSourcesExample: FunctionComponent = () => {
-  const onSetPage = (_event: MouseEvent | KeyboardEvent, newPage: number) => {
+  const onSetPage = (_event: ReactMouseEvent | ReactKeyboardEvent | MouseEvent, newPage: number) => {
     // eslint-disable-next-line no-console
     console.log(`Page changed to ${newPage}`);
   };

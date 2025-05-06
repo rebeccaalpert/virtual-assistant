@@ -1,4 +1,9 @@
-import type { MouseEvent, KeyboardEvent, ReactNode, PropsWithChildren } from 'react';
+import type {
+  MouseEvent as ReactMouseEvent,
+  KeyboardEvent as ReactKeyboardEvent,
+  ReactNode,
+  PropsWithChildren
+} from 'react';
 import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core';
 
@@ -14,7 +19,7 @@ interface CompareProps {
   /** Aria label for mobile toggle group */
   toggleGroupAriaLabel?: string;
   /** Callback for when mobile toggle is used */
-  onToggleClick?: (event: MouseEvent | MouseEvent<any, MouseEvent> | KeyboardEvent<Element>) => void;
+  onToggleClick?: (event: MouseEvent | ReactMouseEvent<any, MouseEvent> | ReactKeyboardEvent<Element>) => void;
 }
 
 export const Compare = ({
@@ -50,7 +55,9 @@ export const Compare = ({
   }, []);
 
   // this only happens on mobile
-  const handleChildToggleClick = (event) => {
+  const handleChildToggleClick = (
+    event: MouseEvent | ReactMouseEvent<any, MouseEvent> | ReactKeyboardEvent<Element>
+  ) => {
     const id = event.currentTarget.id;
     setIsSelected(id);
     setShowSecondChatbot(!showSecondChatbot);

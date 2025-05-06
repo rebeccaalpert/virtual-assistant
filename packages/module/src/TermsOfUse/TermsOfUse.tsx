@@ -1,7 +1,7 @@
 // ============================================================================
 // Terms of Use Modal - Chatbot Modal Extension
 // ============================================================================
-import type { FunctionComponent, MouseEvent, Ref } from 'react';
+import type { FunctionComponent, MouseEvent as ReactMouseEvent, Ref } from 'react';
 import { forwardRef } from 'react';
 import { Button, Content, ModalBody, ModalFooter, ModalHeader, ModalProps } from '@patternfly/react-core';
 import { ChatbotDisplayMode } from '../Chatbot';
@@ -11,15 +11,15 @@ export interface TermsOfUseProps extends ModalProps {
   /** Class applied to modal */
   className?: string;
   /** Action assigned to primary modal button */
-  onPrimaryAction?: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onPrimaryAction?: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Action assigned to secondary modal button */
-  onSecondaryAction: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  onSecondaryAction: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Name of primary modal button */
   primaryActionBtn?: string;
   /** Name of secondary modal button */
   secondaryActionBtn?: string;
   /** Function that handles modal toggle */
-  handleModalToggle: (event: MouseEvent | MouseEvent | KeyboardEvent) => void;
+  handleModalToggle: (event: ReactMouseEvent | MouseEvent | KeyboardEvent) => void;
   /** Whether modal is open */
   isModalOpen: boolean;
   /** Title of modal */
@@ -56,12 +56,12 @@ export const TermsOfUseBase: FunctionComponent<TermsOfUseProps> = ({
   isCompact,
   ...props
 }: TermsOfUseProps) => {
-  const handlePrimaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handlePrimaryAction = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onPrimaryAction && onPrimaryAction(_event);
   };
 
-  const handleSecondaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleSecondaryAction = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     onSecondaryAction(_event);
   };
 

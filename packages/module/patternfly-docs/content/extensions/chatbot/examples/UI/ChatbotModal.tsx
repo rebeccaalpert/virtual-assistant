@@ -20,7 +20,7 @@ export const ChatbotModalExample: FunctionComponent = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [selected, setSelected] = useState<string>('Select display mode');
 
-  const handleModalToggle = (_event: MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 

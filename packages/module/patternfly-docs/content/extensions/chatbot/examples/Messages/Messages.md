@@ -47,7 +47,7 @@ import { explorePipelinesQuickStart } from './explore-pipeline-quickstart.ts';
 import { monitorSampleAppQuickStart } from '@patternfly/chatbot/src/Message/QuickStarts/monitor-sampleapp-quickstart.ts';
 import userAvatar from './user_avatar.svg';
 import squareImg from './PF-social-color-square.svg';
-import { CSSProperties, useState, Fragment, FunctionComponent, MouseEvent, Ref, isValidElement, cloneElement, Children, ReactNode } from 'react';
+import { CSSProperties, useState, Fragment, FunctionComponent, MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent, Ref, isValidElement, cloneElement, Children, ReactNode } from 'react';
 
 The `content` prop of the `<Message>` component is passed to a `<Markdown>` component (from [react-markdown](https://remarkjs.github.io/react-markdown/)), which is configured to translate plain text strings into PatternFly [`<Content>` components](/components/content) and code blocks into PatternFly [`<CodeBlock>` components.](/components/code-block)
 
