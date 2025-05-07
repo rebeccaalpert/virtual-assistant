@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
 import ChatbotModal from './ChatbotModal';
 import '@testing-library/jest-dom';

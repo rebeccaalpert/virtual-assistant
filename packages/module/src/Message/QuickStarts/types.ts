@@ -1,4 +1,5 @@
 import { ButtonProps } from '@patternfly/react-core';
+import type { ComponentType, ReactNode, SyntheticEvent } from 'react';
 
 // These types are all from the QuickStart extension.
 // We want to ensure parity, so be careful when adjusting these.
@@ -77,9 +78,9 @@ export interface QuickstartAction {
   /** Screen reader aria label. */
   'aria-label': string;
   /** Icon to be rendered as a plain button, by default Bookmark outlined will be used. */
-  icon?: React.ComponentType<unknown>;
+  icon?: ComponentType<unknown>;
   /** Callback with synthetic event parameter. */
-  onClick?: (e: React.SyntheticEvent) => void;
+  onClick?: (e: SyntheticEvent) => void;
   /** Additional button props to be rendered as extra props. */
   buttonProps?: ButtonProps;
 }
@@ -95,7 +96,7 @@ export interface QuickStartSpec {
   version?: number;
   displayName: string;
   durationMinutes?: number;
-  icon: React.ReactNode;
+  icon: ReactNode;
   description: string;
   prerequisites?: string[];
   introduction?: string;

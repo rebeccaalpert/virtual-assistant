@@ -84,6 +84,7 @@ import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import termsAndConditionsHeader from './PF-TermsAndConditionsHeader.svg';
 import { CloseIcon, SearchIcon, OutlinedCommentsIcon } from '@patternfly/react-icons';
+import { FunctionComponent, FormEvent, useState, useRef, MouseEvent, isValidElement, cloneElement, Children, ReactNode, Ref, MouseEvent as ReactMouseEvent, CSSProperties} from 'react';
 
 ## Structure
 
@@ -399,6 +400,7 @@ This example also includes an example of how to use [skip to content](/patternfl
 ### Compact terms of use
 
 To apply compact styling to the terms of use modal, pass `isCompact` to `<TermsOfUse>`. This will remove the header image and adjust the spacing of text, so that there is less white space in the modal.
+
 ```js file="./TermsOfUseCompact.tsx" isFullscreen
 
 ```
@@ -416,6 +418,7 @@ In this demo, you can toggle the settings page by clicking the "Settings" button
 ### Compact settings
 
 To make the settings menu compact, with less spacing between the menu contents, pass `isCompact` to the `<SettingsForm>`.
+
 ```js file="./CompactSettings.tsx" isFullscreen
 
 ```

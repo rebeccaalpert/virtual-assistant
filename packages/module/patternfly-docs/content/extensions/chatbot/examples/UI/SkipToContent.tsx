@@ -1,13 +1,13 @@
-import React from 'react';
+import { useState, useRef, FunctionComponent } from 'react';
 
 import { SkipToContent } from '@patternfly/react-core';
 import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 
-export const ChatbotDemo: React.FunctionComponent = () => {
-  const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(true);
-  const toggleRef = React.useRef<HTMLButtonElement>(null);
-  const chatbotRef = React.useRef<HTMLDivElement>(null);
+export const ChatbotDemo: FunctionComponent = () => {
+  const [chatbotVisible, setChatbotVisible] = useState<boolean>(true);
+  const toggleRef = useRef<HTMLButtonElement>(null);
+  const chatbotRef = useRef<HTMLDivElement>(null);
   const displayMode = ChatbotDisplayMode.default;
 
   const handleSkipToContent = (e) => {

@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Main - Messages - Feedback Card
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
+
+import { useState, useRef, useEffect } from 'react';
 
 // Import PatternFly components
 import {
@@ -54,7 +56,7 @@ export interface UserFeedbackProps extends Omit<CardProps, 'onSubmit'>, OUIAProp
   timestamp?: string;
 }
 
-const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
+const UserFeedback: FunctionComponent<UserFeedbackProps> = ({
   className,
   timestamp,
   title = 'Why did you choose this rating?',
@@ -74,11 +76,11 @@ const UserFeedback: React.FunctionComponent<UserFeedbackProps> = ({
   isCompact,
   ...props
 }: UserFeedbackProps) => {
-  const [selectedResponse, setSelectedResponse] = React.useState<string>();
-  const [value, setValue] = React.useState('');
-  const divRef = React.useRef<HTMLDivElement>(null);
+  const [selectedResponse, setSelectedResponse] = useState<string>();
+  const [value, setValue] = useState('');
+  const divRef = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (focusOnLoad) {
       divRef.current?.focus();
     }

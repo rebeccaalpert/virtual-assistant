@@ -1,4 +1,5 @@
-import React, { PropsWithChildren } from 'react';
+import type { MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent, PropsWithChildren } from 'react';
+import { useEffect, useState } from 'react';
 import { ToggleGroup, ToggleGroupItem } from '@patternfly/react-core';
 
 interface CompareProps {
@@ -24,11 +25,11 @@ export const Compare = ({
   onToggleClick,
   toggleGroupAriaLabel = 'Select which chatbot to display'
 }: PropsWithChildren<CompareProps>) => {
-  const [isSelected, setIsSelected] = React.useState('toggle-group-chatbot-1');
-  const [showFirstChatbot, setShowFirstChatbot] = React.useState(true);
-  const [showSecondChatbot, setShowSecondChatbot] = React.useState(false);
+  const [isSelected, setIsSelected] = useState('toggle-group-chatbot-1');
+  const [showFirstChatbot, setShowFirstChatbot] = useState(true);
+  const [showSecondChatbot, setShowSecondChatbot] = useState(false);
 
-  React.useEffect(() => {
+  useEffect(() => {
     // we want to show the first if we switch to the mobile toggle view
     // and reset/switch back to normal otherwise
     const updateChatbotVisibility = () => {
@@ -50,7 +51,7 @@ export const Compare = ({
 
   // this only happens on mobile
   const handleChildToggleClick = (
-    event: MouseEvent | React.MouseEvent<any, MouseEvent> | React.KeyboardEvent<Element>
+    event: MouseEvent | ReactMouseEvent<any, MouseEvent> | ReactKeyboardEvent<Element>
   ) => {
     const id = event.currentTarget.id;
     setIsSelected(id);

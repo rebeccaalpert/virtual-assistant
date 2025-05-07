@@ -1,4 +1,4 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
@@ -6,7 +6,7 @@ import InfoCircleIcon from '@patternfly/react-icons/dist/esm/icons/info-circle-i
 import DownloadIcon from '@patternfly/react-icons/dist/esm/icons/download-icon';
 import RedoIcon from '@patternfly/react-icons/dist/esm/icons/redo-icon';
 
-export const CustomActionExample: React.FunctionComponent = () => (
+export const CustomActionExample: FunctionComponent = () => (
   <Message
     name="Bot"
     role="bot"

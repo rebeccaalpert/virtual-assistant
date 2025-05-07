@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { Button, Label } from '@patternfly/react-core';
 import FileDetails from '../FileDetails';
 import { Spinner } from '@patternfly/react-core';

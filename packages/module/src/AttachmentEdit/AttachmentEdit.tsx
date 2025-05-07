@@ -1,7 +1,7 @@
 // ============================================================================
 // Attachment Edit - Chatbot Code Snippet Editor
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent as ReactMouseEvent } from 'react';
 import CodeModal from '../CodeModal';
 import { ChatbotDisplayMode } from '../Chatbot';
 
@@ -26,7 +26,7 @@ export interface AttachmentEditProps {
   isCompact?: boolean;
 }
 
-export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
+export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
   fileName,
   code,
   handleModalToggle,
@@ -37,12 +37,12 @@ export const AttachmentEdit: React.FunctionComponent<AttachmentEditProps> = ({
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: AttachmentEditProps) => {
-  const handleSave = (_event: React.MouseEvent | MouseEvent | KeyboardEvent, code) => {
+  const handleSave = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent, code) => {
     handleModalToggle(_event);
     onSave(_event, code);
   };
 
-  const handleCancel = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleCancel = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onCancel(_event);
   };

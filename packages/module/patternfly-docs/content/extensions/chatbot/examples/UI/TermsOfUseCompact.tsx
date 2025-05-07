@@ -1,4 +1,12 @@
-import React from 'react';
+import {
+  useRef,
+  useState,
+  FunctionComponent,
+  MouseEvent,
+  CSSProperties,
+  Ref,
+  MouseEvent as ReactMouseEvent
+} from 'react';
 import {
   Button,
   SkipToContent,
@@ -12,13 +20,13 @@ import {
 import TermsOfUse from '@patternfly/chatbot/dist/dynamic/TermsOfUse';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 
-export const TermsOfUseCompactExample: React.FunctionComponent = () => {
-  const [isModalOpen, setIsModalOpen] = React.useState(true);
-  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
-  const chatbotRef = React.useRef<HTMLDivElement>(null);
-  const termsRef = React.useRef<HTMLDivElement>(null);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<string>('Select display mode');
+export const TermsOfUseCompactExample: FunctionComponent = () => {
+  const [isModalOpen, setIsModalOpen] = useState(true);
+  const [displayMode, setDisplayMode] = useState(ChatbotDisplayMode.default);
+  const chatbotRef = useRef<HTMLDivElement>(null);
+  const termsRef = useRef<HTMLDivElement>(null);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string>('Select display mode');
 
   const handleSkipToContent = (e) => {
     e.preventDefault();
@@ -30,7 +38,7 @@ export const TermsOfUseCompactExample: React.FunctionComponent = () => {
     }
   };
 
-  const handleModalToggle = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleModalToggle = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     setIsModalOpen(!isModalOpen);
   };
 
@@ -44,7 +52,7 @@ export const TermsOfUseCompactExample: React.FunctionComponent = () => {
     console.log('Clicked secondary action');
   };
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+  const onSelect = (_event: ReactMouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelected(value as string);
     setIsOpen(false);
     if (value === 'Default') {
@@ -65,7 +73,7 @@ export const TermsOfUseCompactExample: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       ref={toggleRef}
       onClick={onToggleClick}
@@ -73,7 +81,7 @@ export const TermsOfUseCompactExample: React.FunctionComponent = () => {
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

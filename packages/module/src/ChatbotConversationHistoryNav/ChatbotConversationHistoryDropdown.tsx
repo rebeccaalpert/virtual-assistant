@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import React from 'react';
+import type { MouseEvent, FunctionComponent, Ref } from 'react';
+
+import { useState } from 'react';
 
 // Import PatternFly components
 import { MenuToggleElement, Tooltip, MenuToggle, Dropdown, DropdownProps } from '@patternfly/react-core';
@@ -19,15 +21,15 @@ export interface ChatbotConversationHistoryDropdownProps extends Omit<DropdownPr
   onSelect?: (event?: React.MouseEvent, value?: string | number) => void;
 }
 
-export const ChatbotConversationHistoryDropdown: React.FunctionComponent<ChatbotConversationHistoryDropdownProps> = ({
+export const ChatbotConversationHistoryDropdown: FunctionComponent<ChatbotConversationHistoryDropdownProps> = ({
   menuItems,
   menuClassName,
   onSelect,
   label
 }: ChatbotConversationHistoryDropdownProps) => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <Tooltip
       className="pf-chatbot__tooltip"
       content={label ?? 'Conversation options'}

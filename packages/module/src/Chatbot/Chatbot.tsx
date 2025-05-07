@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot
 // ============================================================================
-import React from 'react';
+import type { Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 import { motion } from 'framer-motion';
 
 export interface ChatbotProps {
@@ -29,7 +31,7 @@ export enum ChatbotDisplayMode {
   drawer = 'drawer'
 }
 
-const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
+const ChatbotBase: FunctionComponent<ChatbotProps> = ({
   children,
   displayMode = ChatbotDisplayMode.default,
   isVisible = true,
@@ -69,7 +71,7 @@ const ChatbotBase: React.FunctionComponent<ChatbotProps> = ({
   );
 };
 
-const Chatbot = React.forwardRef((props: ChatbotProps, ref: React.Ref<HTMLDivElement>) => (
+const Chatbot = forwardRef((props: ChatbotProps, ref: Ref<HTMLDivElement>) => (
   <ChatbotBase innerRef={ref} {...props} />
 ));
 

@@ -2,8 +2,6 @@
 // Chatbot Main - Message - Processing
 // ============================================================================
 
-import React from 'react';
-
 const MessageLoading = ({ loadingWord }) => (
   <div className="pf-chatbot__message-loading">
     <span className="pf-chatbot__message-loading-dots">

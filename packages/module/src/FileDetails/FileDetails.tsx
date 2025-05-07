@@ -1,4 +1,4 @@
-import React, { PropsWithChildren } from 'react';
+import { PropsWithChildren } from 'react';
 import { Flex, Stack, StackItem, Truncate } from '@patternfly/react-core';
 import path from 'path-browserify';
 interface FileDetailsProps {

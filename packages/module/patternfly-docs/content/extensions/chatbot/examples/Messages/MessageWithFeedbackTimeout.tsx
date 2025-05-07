@@ -1,10 +1,10 @@
-import React from 'react';
+import { FunctionComponent, useState } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import { Button } from '@patternfly/react-core';
 
-export const MessageWithFeedbackTimeoutExample: React.FunctionComponent = () => {
-  const [hasFeedback, setHasFeedback] = React.useState(false);
+export const MessageWithFeedbackTimeoutExample: FunctionComponent = () => {
+  const [hasFeedback, setHasFeedback] = useState(false);
 
   return (
     <>

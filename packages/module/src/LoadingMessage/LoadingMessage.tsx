@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 import { Icon, Split, SplitItem } from '@patternfly/react-core';
 
 import RobotIcon from '@patternfly/react-icons/dist/js/icons/robot-icon';
@@ -7,7 +7,7 @@ export interface LoadingMessageProps {
   icon?: React.ComponentType;
 }
 
-export const LoadingMessage: React.FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => (
+export const LoadingMessage: FunctionComponent<LoadingMessageProps> = ({ icon: IconComponent = RobotIcon }) => (
   <Split>
     <SplitItem>
       <Icon size="lg" className="pf-v6-u-mr-sm pf-v6-u-pt-md">

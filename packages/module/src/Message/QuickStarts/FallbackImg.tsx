@@ -1,4 +1,5 @@
-import * as React from 'react';
+import type { FC } from 'react';
+import { useState } from 'react';
 
 interface FallbackImgProps {
   /** Image source */
@@ -11,8 +12,8 @@ interface FallbackImgProps {
   fallback?: React.ReactNode;
 }
 
-const FallbackImg: React.FC<FallbackImgProps> = ({ src, alt, className, fallback }) => {
-  const [isSrcValid, setIsSrcValid] = React.useState<boolean>(true);
+const FallbackImg: FC<FallbackImgProps> = ({ src, alt, className, fallback }) => {
+  const [isSrcValid, setIsSrcValid] = useState<boolean>(true);
 
   if (src && isSrcValid) {
     return <img className={className} src={src} alt={alt} onError={() => setIsSrcValid(false)} />;

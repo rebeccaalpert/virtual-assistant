@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Attachment Menu
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import {
@@ -41,7 +41,7 @@ export interface AttachMenuProps extends DropdownProps {
   toggle: DropdownToggleProps | ((toggleRef: React.RefObject<any>) => React.ReactNode);
 }
 
-export const AttachMenu: React.FunctionComponent<AttachMenuProps> = ({
+export const AttachMenu: FunctionComponent<AttachMenuProps> = ({
   className,
   filteredItems,
   handleTextInputChange,

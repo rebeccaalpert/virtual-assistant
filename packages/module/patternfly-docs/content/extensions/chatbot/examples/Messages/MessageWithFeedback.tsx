@@ -1,11 +1,11 @@
-import React from 'react';
+import { useState, FunctionComponent } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import { Checkbox, FormGroup, Stack } from '@patternfly/react-core';
 
-export const MessageWithFeedbackExample: React.FunctionComponent = () => {
-  const [hasCloseButton, setHasCloseButton] = React.useState(false);
-  const [hasTextArea, setHasTextArea] = React.useState(false);
+export const MessageWithFeedbackExample: FunctionComponent = () => {
+  const [hasCloseButton, setHasCloseButton] = useState(false);
+  const [hasTextArea, setHasTextArea] = useState(false);
 
   return (
     <>

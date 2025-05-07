@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Layout - Chat - Welcome
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 import { Content, ContentVariants, Card, CardHeader, CardTitle, CardBody } from '@patternfly/react-core';
 
@@ -28,7 +28,7 @@ export interface WelcomePrompt {
   onClick?: () => void;
 }
 
-export const ChatbotWelcomePrompt: React.FunctionComponent<ChatbotWelcomePromptProps> = ({
+export const ChatbotWelcomePrompt: FunctionComponent<ChatbotWelcomePromptProps> = ({
   title,
   description,
   prompts,

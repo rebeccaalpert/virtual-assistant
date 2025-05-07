@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 import { SplitItem } from '@patternfly/react-core';
 import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
@@ -22,7 +22,7 @@ export interface ChatbotHeaderTitleProps {
   showOnDefault?: React.ReactNode | string;
 }
 
-export const ChatbotHeaderTitle: React.FunctionComponent<ChatbotHeaderTitleProps> = ({
+export const ChatbotHeaderTitle: FunctionComponent<ChatbotHeaderTitleProps> = ({
   className,
   children,
   displayMode,

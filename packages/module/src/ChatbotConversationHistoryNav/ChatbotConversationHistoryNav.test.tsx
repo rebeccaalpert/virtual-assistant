@@ -1,4 +1,3 @@
-import React from 'react';
 import '@testing-library/jest-dom';
 import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 
@@ -6,6 +5,7 @@ import { ChatbotDisplayMode } from '../Chatbot/Chatbot';
 import ChatbotConversationHistoryNav, { Conversation } from './ChatbotConversationHistoryNav';
 import { EmptyStateStatus, Spinner } from '@patternfly/react-core';
 import { OutlinedCommentsIcon, SearchIcon } from '@patternfly/react-icons';
+import { ComponentType } from 'react';
 
 const ERROR = {
   bodyText: (
@@ -25,13 +25,13 @@ const ERROR = {
 const NO_RESULTS = {
   bodyText: 'Adjust your search query and try again. Check your spelling or try a more general term.',
   titleText: 'No results found',
-  icon: SearchIcon
+  icon: SearchIcon as ComponentType<any>
 };
 
 const EMPTY_STATE = {
   bodyText: 'Access timely assistance by starting a conversation with an AI model.',
   titleText: 'Start a new chat',
-  icon: OutlinedCommentsIcon
+  icon: OutlinedCommentsIcon as ComponentType<any>
 };
 
 const ERROR_WITHOUT_BUTTON = {

@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 export interface SettingsFormProps {
   /** Class applied to form container */
@@ -9,12 +9,7 @@ export interface SettingsFormProps {
   isCompact?: boolean;
 }
 
-export const SettingsForm: React.FunctionComponent<SettingsFormProps> = ({
-  className,
-  fields = [],
-  isCompact,
-  ...props
-}) => (
+export const SettingsForm: FunctionComponent<SettingsFormProps> = ({ className, fields = [], isCompact, ...props }) => (
   <div
     className={`pf-chatbot__settings-form-container ${isCompact ? 'pf-m-compact' : ''} ${className ? ` ${className}` : ''}`}
     {...props}

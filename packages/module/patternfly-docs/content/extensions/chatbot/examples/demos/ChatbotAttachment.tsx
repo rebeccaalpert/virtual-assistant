@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, FunctionComponent, MouseEvent } from 'react';
 import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
@@ -37,7 +37,7 @@ interface ModalData {
   fileName: string;
 }
 
-export const BasicDemo: React.FunctionComponent = () => {
+export const BasicDemo: FunctionComponent = () => {
   const onAttachmentClose = (event, name, id) => {
     const updatedMessages: MessageProps[] = [];
     messages.map((message) => {
@@ -75,19 +75,19 @@ export const BasicDemo: React.FunctionComponent = () => {
     }
   ];
 
-  const [error, setError] = React.useState<string>();
-  const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(true);
-  const [file, setFile] = React.useState<File>();
-  const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
-  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
-  const [isPreviewModalOpen, setIsPreviewModalOpen] = React.useState<boolean>(false);
-  const [isEditModalOpen, setIsEditModalOpen] = React.useState<boolean>(false);
-  const [currentModalData, setCurrentModalData] = React.useState<ModalData>();
-  const [showAlert, setShowAlert] = React.useState<boolean>(false);
-  const [displayMode, setDisplayMode] = React.useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
+  const [error, setError] = useState<string>();
+  const [chatbotVisible, setChatbotVisible] = useState<boolean>(true);
+  const [file, setFile] = useState<File>();
+  const [isLoadingFile, setIsLoadingFile] = useState<boolean>(false);
+  const [messages, setMessages] = useState<MessageProps[]>(initialMessages);
+  const [isPreviewModalOpen, setIsPreviewModalOpen] = useState<boolean>(false);
+  const [isEditModalOpen, setIsEditModalOpen] = useState<boolean>(false);
+  const [currentModalData, setCurrentModalData] = useState<ModalData>();
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [displayMode, setDisplayMode] = useState<ChatbotDisplayMode>(ChatbotDisplayMode.default);
 
   const onSelectDisplayMode = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
+    _event: MouseEvent<Element, MouseEvent> | undefined,
     value: string | number | undefined
   ) => {
     setDisplayMode(value as ChatbotDisplayMode);

@@ -1,7 +1,7 @@
 // ============================================================================
 // Code Modal - Chatbot Modal with Code Editor
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Modal, ModalProps } from '@patternfly/react-core';
@@ -16,7 +16,7 @@ export interface ChatbotModalProps extends Omit<ModalProps, 'ref'> {
   isCompact?: boolean;
 }
 
-export const ChatbotModal: React.FunctionComponent<ChatbotModalProps> = ({
+export const ChatbotModal: FunctionComponent<ChatbotModalProps> = ({
   children,
   displayMode = ChatbotDisplayMode.default,
   className,

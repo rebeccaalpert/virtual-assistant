@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Attach
 // ============================================================================
-import React from 'react';
+import type { Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, DropEvent, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
@@ -28,7 +30,7 @@ export interface AttachButtonProps extends ButtonProps {
   isCompact?: boolean;
 }
 
-const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
+const AttachButtonBase: FunctionComponent<AttachButtonProps> = ({
   onAttachAccepted,
   onClick,
   isDisabled,
@@ -81,6 +83,6 @@ const AttachButtonBase: React.FunctionComponent<AttachButtonProps> = ({
   );
 };
 
-export const AttachButton = React.forwardRef((props: AttachButtonProps, ref: React.Ref<any>) => (
+export const AttachButton = forwardRef((props: AttachButtonProps, ref: Ref<any>) => (
   <AttachButtonBase innerRef={ref} {...props} />
 ));

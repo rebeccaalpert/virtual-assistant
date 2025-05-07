@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Send
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
@@ -17,10 +17,11 @@ export interface SendButtonProps extends ButtonProps {
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Send" used in the tooltip */
   tooltipContent?: string;
+  /** Whether send button has compact styling */
   isCompact?: boolean;
 }
 
-export const SendButton: React.FunctionComponent<SendButtonProps> = ({
+export const SendButton: FunctionComponent<SendButtonProps> = ({
   className,
   onClick,
   tooltipProps,

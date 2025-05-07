@@ -1,7 +1,7 @@
 // ============================================================================
 // Chatbot Footer - Message Bar - Stop
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 // Import PatternFly components
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
@@ -15,10 +15,11 @@ export interface StopButtonProps extends ButtonProps {
   tooltipProps?: Omit<TooltipProps, 'content'>;
   /** English text "Stop" used in the tooltip */
   tooltipContent?: string;
+  /** Whether stop button has compact styling */
   isCompact?: boolean;
 }
 
-export const StopButton: React.FunctionComponent<StopButtonProps> = ({
+export const StopButton: FunctionComponent<StopButtonProps> = ({
   className,
   onClick,
   tooltipProps,

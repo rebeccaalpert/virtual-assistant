@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent, MouseEvent, Ref } from 'react';
+import { forwardRef } from 'react';
 import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 
 export interface ResponseActionButtonProps extends ButtonProps {
@@ -26,7 +27,7 @@ export interface ResponseActionButtonProps extends ButtonProps {
   innerRef?: React.Ref<HTMLButtonElement>;
 }
 
-export const ResponseActionButtonBase: React.FunctionComponent<ResponseActionButtonProps> = ({
+export const ResponseActionButtonBase: FunctionComponent<ResponseActionButtonProps> = ({
   ariaLabel,
   clickedAriaLabel = ariaLabel,
   className,
@@ -80,7 +81,7 @@ export const ResponseActionButtonBase: React.FunctionComponent<ResponseActionBut
   );
 };
 
-const ResponseActionButton = React.forwardRef((props: ResponseActionButtonProps, ref: React.Ref<HTMLButtonElement>) => (
+const ResponseActionButton = forwardRef((props: ResponseActionButtonProps, ref: Ref<HTMLButtonElement>) => (
   <ResponseActionButtonBase innerRef={ref} {...props} />
 ));
 

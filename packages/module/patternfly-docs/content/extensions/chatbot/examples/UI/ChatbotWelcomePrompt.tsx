@@ -1,10 +1,10 @@
-import React from 'react';
+import { FunctionComponent, useState } from 'react';
 
 import ChatbotWelcomePrompt from '@patternfly/chatbot/dist/dynamic/ChatbotWelcomePrompt';
 import { Checkbox } from '@patternfly/react-core';
 
-export const ChatbotWelcomePromptExample: React.FunctionComponent = () => {
-  const [showWelcomePrompts, setShowWelcomePrompts] = React.useState(true);
+export const ChatbotWelcomePromptExample: FunctionComponent = () => {
+  const [showWelcomePrompts, setShowWelcomePrompts] = useState(true);
 
   const welcomePrompts = [
     {

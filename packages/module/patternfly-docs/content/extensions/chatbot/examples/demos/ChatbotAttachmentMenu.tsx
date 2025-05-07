@@ -1,4 +1,3 @@
-import React from 'react';
 import ChatbotToggle from '@patternfly/chatbot/dist/dynamic/ChatbotToggle';
 import Chatbot from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotContent from '@patternfly/chatbot/dist/dynamic/ChatbotContent';
@@ -18,6 +17,7 @@ import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import '@patternfly/react-core/dist/styles/base.css';
 import '@patternfly/chatbot/dist/css/main.css';
+import { cloneElement, FunctionComponent, isValidElement, ReactNode, useState, Children } from 'react';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
@@ -84,14 +84,14 @@ const messages: MessageProps[] = [
   }
 ];
 
-export const AttachmentMenuDemo: React.FunctionComponent = () => {
-  const [chatbotVisible, setChatbotVisible] = React.useState<boolean>(true);
-  const [file, setFile] = React.useState<File>();
-  const [isLoadingFile, setIsLoadingFile] = React.useState<boolean>(false);
-  const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
-  const [error, setError] = React.useState<string>();
-  const [showAlert, setShowAlert] = React.useState<boolean>(false);
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
+export const AttachmentMenuDemo: FunctionComponent = () => {
+  const [chatbotVisible, setChatbotVisible] = useState<boolean>(true);
+  const [file, setFile] = useState<File>();
+  const [isLoadingFile, setIsLoadingFile] = useState<boolean>(false);
+  const [userFacingMenuItems, setUserFacingMenuItems] = useState<ReactNode>([]);
+  const [error, setError] = useState<string>();
+  const [showAlert, setShowAlert] = useState<boolean>(false);
+  const [isOpen, setIsOpen] = useState<boolean>(false);
 
   const { open, getInputProps } = useDropzone({
     onDropAccepted: (files: File[]) => {
@@ -162,18 +162,18 @@ export const AttachmentMenuDemo: React.FunctionComponent = () => {
     setUserFacingMenuItems(initialMenuItems.concat(uploadMenuItems));
   };
 
-  const findMatchingElements = (elements: React.ReactNode[], targetValue: string) => {
-    let matchingElements = [] as React.ReactNode[];
+  const findMatchingElements = (elements: ReactNode[], targetValue: string) => {
+    let matchingElements = [] as ReactNode[];
 
     elements.forEach((element) => {
-      if (React.isValidElement(element)) {
+      if (isValidElement(element)) {
         // Check if the element's value matches the targetValue
         if (element.props.value && element.props.value.toLowerCase().includes(targetValue.toLowerCase())) {
-          matchingElements.push(React.cloneElement(element, { key: element.props.value }));
+          matchingElements.push(cloneElement(element, { key: element.props.value }));
         }
 
         // Recursively check the element's children
-        const children = React.Children.toArray(element.props.children);
+        const children = Children.toArray(element.props.children);
         matchingElements = matchingElements.concat(findMatchingElements(children, targetValue));
       }
     });

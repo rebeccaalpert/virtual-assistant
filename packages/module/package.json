@@ -48,8 +48,8 @@
     "path-browserify": "^1.0.1"
   },
   "peerDependencies": {
-    "react": "^17 || ^18",
-    "react-dom": "^17 || ^18"
+    "react": "^17 || ^18 || ^19",
+    "react-dom": "^17 || ^18 || ^19"
   },
   "devDependencies": {
     "@patternfly/documentation-framework": "6.8.2",
@@ -57,8 +57,6 @@
     "@patternfly/patternfly-a11y": "^5.0.0",
     "@types/dom-speech-recognition": "^0.0.4",
     "@types/react": "^18.2.61",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "rimraf": "^2.7.1",
     "typescript": "^5.3.3",
     "@octokit/rest": "^18.0.0",

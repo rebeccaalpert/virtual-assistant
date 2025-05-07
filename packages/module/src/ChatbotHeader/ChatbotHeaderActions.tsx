@@ -1,4 +1,4 @@
-import React from 'react';
+import type { FunctionComponent } from 'react';
 
 export interface ChatbotHeaderActionsProps {
   /** Content to be displayed in the chatbot header */
@@ -7,7 +7,7 @@ export interface ChatbotHeaderActionsProps {
   className?: string;
 }
 
-export const ChatbotHeaderActions: React.FunctionComponent<ChatbotHeaderActionsProps> = ({
+export const ChatbotHeaderActions: FunctionComponent<ChatbotHeaderActionsProps> = ({
   className,
   children
 }: ChatbotHeaderActionsProps) => <div className={`pf-chatbot__actions ${className || ''}`}>{children}</div>;

@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, useRef, useCallback, useEffect, FunctionComponent } from 'react';
 
 import {
   Page,
@@ -27,9 +27,9 @@ import '@patternfly/react-core/dist/styles/base.css';
 import '@patternfly/chatbot/dist/css/main.css';
 
 export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled }) => {
-  const [messages, setMessages] = React.useState<MessageProps[]>([]);
-  const [announcement, setAnnouncement] = React.useState<string>();
-  const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
+  const [messages, setMessages] = useState<MessageProps[]>([]);
+  const [announcement, setAnnouncement] = useState<string>();
+  const scrollToBottomRef = useRef<HTMLDivElement>(null);
   const displayMode = ChatbotDisplayMode.embedded;
 
   // you will likely want to come up with your own unique id function; this is for demo purposes only
@@ -38,7 +38,7 @@ export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled
     return id.toString();
   };
 
-  const handleSend = React.useCallback(
+  const handleSend = useCallback(
     (input: string) => {
       const date = new Date();
       const newMessages: MessageProps[] = [];
@@ -101,14 +101,14 @@ export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled
     [messages, name, setIsSendButtonDisabled]
   );
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (input) {
       handleSend(input);
     }
   }, [hasNewInput, input]);
 
   // Auto-scrolls to the latest message
-  React.useEffect(() => {
+  useEffect(() => {
     // don't scroll the first load, but scroll if there's a current stream or a new source has popped up
     if (messages.length > 0) {
       scrollToBottomRef.current?.scrollIntoView();
@@ -133,11 +133,11 @@ export const CompareChild = ({ name, input, hasNewInput, setIsSendButtonDisabled
   );
 };
 
-export const EmbeddedComparisonChatbotDemo: React.FunctionComponent = () => {
-  const [input, setInput] = React.useState<string>();
-  const [hasNewInput, setHasNewInput] = React.useState(false);
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
+export const EmbeddedComparisonChatbotDemo: FunctionComponent = () => {
+  const [input, setInput] = useState<string>();
+  const [hasNewInput, setHasNewInput] = useState(false);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isSendButtonDisabled, setIsSendButtonDisabled] = useState(false);
 
   const handleSend = (value: string) => {
     setInput(value);

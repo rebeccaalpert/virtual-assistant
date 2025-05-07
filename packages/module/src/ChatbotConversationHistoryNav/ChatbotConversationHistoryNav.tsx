@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Header - Chatbot Conversation History Nav
 // ============================================================================
-import React from 'react';
+import type { KeyboardEvent, FunctionComponent } from 'react';
+
+import { useRef, Fragment } from 'react';
 
 // Import PatternFly components
 import {
@@ -120,7 +122,7 @@ export interface ChatbotConversationHistoryNavProps extends DrawerProps {
   isCompact?: boolean;
 }
 
-export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConversationHistoryNavProps> = ({
+export const ChatbotConversationHistoryNav: FunctionComponent<ChatbotConversationHistoryNavProps> = ({
   onDrawerToggle,
   isDrawerOpen,
   setIsDrawerOpen,
@@ -152,7 +154,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
   isCompact,
   ...props
 }: ChatbotConversationHistoryNavProps) => {
-  const drawerRef = React.useRef<HTMLDivElement>(null);
+  const drawerRef = useRef<HTMLDivElement>(null);
 
   const onExpand = () => {
     drawerRef.current && drawerRef.current.focus();
@@ -190,7 +192,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
       return (
         <MenuList>
           {conversations.map((conversation) => (
-            <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
+            <Fragment key={conversation.id}>{getNavItem(conversation)}</Fragment>
           ))}
         </MenuList>
       );
@@ -202,7 +204,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
             <MenuGroup className="pf-chatbot__menu-item-header" label={navGroup} key={navGroup}>
               <MenuList>
                 {conversations[navGroup].map((conversation) => (
-                  <React.Fragment key={conversation.id}>{getNavItem(conversation)}</React.Fragment>
+                  <Fragment key={conversation.id}>{getNavItem(conversation)}</Fragment>
                 ))}
               </MenuList>
             </MenuGroup>
@@ -283,7 +285,7 @@ export const ChatbotConversationHistoryNav: React.FunctionComponent<ChatbotConve
 
   // An onKeyDown property must be passed to the Drawer component to handle closing
   // the drawer panel and deactivating the focus trap via the Escape key.
-  const onEscape = (event: React.KeyboardEvent) => {
+  const onEscape = (event: KeyboardEvent) => {
     if (event.key === 'Escape') {
       // prevents using escape key on menu buttons from closing the panel, but I'm not sure if this is allowed
       if (event.target instanceof HTMLInputElement && event.target.type !== 'button') {

@@ -2,7 +2,6 @@
 // Chatbot Main - Message - Content - Error
 // ============================================================================
 
-import React from 'react';
 import { Alert, AlertProps } from '@patternfly/react-core';
 
 const ErrorMessage = ({ title, actionLinks, children, ...props }: AlertProps) => (

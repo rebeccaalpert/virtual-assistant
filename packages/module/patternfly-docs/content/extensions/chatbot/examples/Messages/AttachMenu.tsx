@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, isValidElement, cloneElement, Children, FunctionComponent, ReactNode } from 'react';
 import AttachMenu from '@patternfly/chatbot/dist/dynamic/AttachMenu';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { Button, Divider, DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
@@ -63,27 +63,27 @@ const uploadMenuItems = [
   </DropdownList>
 ];
 
-export const AttachmentMenuExample: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [userFacingMenuItems, setUserFacingMenuItems] = React.useState<React.ReactNode>([]);
+export const AttachmentMenuExample: FunctionComponent = () => {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [userFacingMenuItems, setUserFacingMenuItems] = useState<ReactNode>([]);
 
   const onToggleClick = () => {
     setIsOpen(!isOpen);
     setUserFacingMenuItems(initialMenuItems.concat(uploadMenuItems));
   };
 
-  const findMatchingElements = (elements: React.ReactNode[], targetValue: string) => {
-    let matchingElements = [] as React.ReactNode[];
+  const findMatchingElements = (elements: ReactNode[], targetValue: string) => {
+    let matchingElements = [] as ReactNode[];
 
     elements.forEach((element) => {
-      if (React.isValidElement(element)) {
+      if (isValidElement(element)) {
         // Check if the element's value matches the targetValue
         if (element.props.value && element.props.value.toLowerCase().includes(targetValue.toLowerCase())) {
-          matchingElements.push(React.cloneElement(element, { key: element.props.value }));
+          matchingElements.push(cloneElement(element, { key: element.props.value }));
         }
 
         // Recursively check the element's children
-        const children = React.Children.toArray(element.props.children);
+        const children = Children.toArray(element.props.children);
         matchingElements = matchingElements.concat(findMatchingElements(children, targetValue));
       }
     });

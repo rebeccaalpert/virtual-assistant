@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState, FunctionComponent } from 'react';
 import { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import ChatbotConversationHistoryNav, {
   Conversation
@@ -38,12 +38,12 @@ const NO_RESULTS = {
   icon: SearchIcon
 };
 
-export const ChatbotHeaderDrawerResizableDemo: React.FunctionComponent = () => {
-  const [isOpen, setIsOpen] = React.useState(true);
-  const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
+export const ChatbotHeaderDrawerResizableDemo: FunctionComponent = () => {
+  const [isOpen, setIsOpen] = useState(true);
+  const [conversations, setConversations] = useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
-  const [showNoResults, setShowNoResults] = React.useState(false);
+  const [showNoResults, setShowNoResults] = useState(false);
   const displayMode = ChatbotDisplayMode.embedded;
 
   const findMatchingItems = (targetValue: string) => {

@@ -1,7 +1,9 @@
 // ============================================================================
 // Chatbot Toggle
 // ============================================================================
-import React from 'react';
+import type { Ref, FunctionComponent } from 'react';
+
+import { forwardRef } from 'react';
 import { Button, ButtonProps, Tooltip, TooltipProps, Icon } from '@patternfly/react-core';
 import AngleDownIcon from '@patternfly/react-icons/dist/esm/icons/angle-down-icon';
 
@@ -47,7 +49,7 @@ const ChatIcon = () => (
   </svg>
 );
 
-const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
+const ChatbotToggleBase: FunctionComponent<ChatbotToggleProps> = ({
   tooltipLabel,
   isChatbotVisible,
   onToggleChatbot,
@@ -87,7 +89,7 @@ const ChatbotToggleBase: React.FunctionComponent<ChatbotToggleProps> = ({
   );
 };
 
-const ChatbotToggle = React.forwardRef((props: ChatbotToggleProps, ref: React.Ref<any>) => (
+const ChatbotToggle = forwardRef((props: ChatbotToggleProps, ref: Ref<any>) => (
   <ChatbotToggleBase innerRef={ref} {...props} />
 ));
 

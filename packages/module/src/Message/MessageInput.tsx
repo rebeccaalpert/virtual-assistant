@@ -1,8 +1,8 @@
 // ============================================================================
 // Chatbot Main - Message Input
 // ============================================================================
-
-import React from 'react';
+import type { FormEvent, FunctionComponent } from 'react';
+import { useState } from 'react';
 import { ActionGroup, Button, Form, FormProps, TextArea } from '@patternfly/react-core';
 
 export interface MessageInputProps extends FormProps {
@@ -20,7 +20,7 @@ export interface MessageInputProps extends FormProps {
   content?: string;
 }
 
-const MessageInput: React.FunctionComponent<MessageInputProps> = ({
+const MessageInput: FunctionComponent<MessageInputProps> = ({
   editPlaceholder = 'Edit prompt message...',
   updateWord = 'Update',
   cancelWord = 'Cancel',
@@ -29,9 +29,9 @@ const MessageInput: React.FunctionComponent<MessageInputProps> = ({
   content,
   ...props
 }: MessageInputProps) => {
-  const [messageText, setMessageText] = React.useState(content ?? '');
+  const [messageText, setMessageText] = useState(content ?? '');
 
-  const onChange = (event: React.FormEvent<HTMLTextAreaElement>, value: string) => {
+  const onChange = (_event: FormEvent<HTMLTextAreaElement>, value: string) => {
     setMessageText(value);
   };
 

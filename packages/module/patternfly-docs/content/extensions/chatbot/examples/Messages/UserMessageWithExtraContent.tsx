@@ -1,4 +1,4 @@
-import React from 'react';
+import { Fragment, FunctionComponent } from 'react';
 
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import userAvatar from './user_avatar.svg';
@@ -8,12 +8,12 @@ const UserActionEndContent = () => {
   // eslint-disable-next-line no-console
   const onClick = () => console.log('custom button click');
   return (
-    <React.Fragment>
+    <Fragment>
       <Button variant="secondary" ouiaId="Secondary" onClick={onClick}>
         End content button
       </Button>
       <Alert variant="danger" title="Danger alert title" ouiaId="DangerAlert" />
-    </React.Fragment>
+    </Fragment>
   );
 };
 
@@ -36,7 +36,7 @@ const BeforeMainContent = () => (
   </div>
 );
 
-export const UserMessageWithExtraContent: React.FunctionComponent = () => (
+export const UserMessageWithExtraContent: FunctionComponent = () => (
   <>
     <Message
       avatar={userAvatar}

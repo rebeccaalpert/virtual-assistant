@@ -1,7 +1,7 @@
 // ============================================================================
 // Preview Attachment - Chatbot Code Snippet Viewer
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
 import CodeModal from '../CodeModal';
 import { ChatbotDisplayMode } from '../Chatbot';
 
@@ -26,7 +26,7 @@ export interface PreviewAttachmentProps {
   isCompact?: boolean;
 }
 
-export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> = ({
+export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
   fileName,
   code,
   handleModalToggle,
@@ -37,12 +37,12 @@ export const PreviewAttachment: React.FunctionComponent<PreviewAttachmentProps> 
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: PreviewAttachmentProps) => {
-  const handleEdit = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleEdit = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onEdit(_event);
   };
 
-  const handleDismiss = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleDismiss = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onDismiss && onDismiss(_event);
   };

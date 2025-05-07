@@ -1,4 +1,4 @@
-import React from 'react';
+import { createRef } from 'react';
 import { render, screen, waitFor } from '@testing-library/react';
 import { MessageBox } from './MessageBox';
 import userEvent from '@testing-library/user-event';
@@ -14,7 +14,7 @@ describe('MessageBox', () => {
   });
 
   it('should assign ref to Message box', () => {
-    const ref = React.createRef<HTMLDivElement>();
+    const ref = createRef<HTMLDivElement>();
     render(
       <MessageBox ref={ref}>
         <div>Test message content</div>

@@ -1,16 +1,17 @@
-import React from 'react';
+import { FunctionComponent, useState, Ref, MouseEvent as ReactMouseEvent, CSSProperties } from 'react';
+
 import Chatbot, { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import { Checkbox } from '@patternfly/react-core/dist/dynamic/Checkbox';
 import { Stack } from '@patternfly/react-core/dist/dynamic/Stack';
 import { MenuToggle, MenuToggleElement, Select, SelectList, SelectOption } from '@patternfly/react-core';
 
-export const ChatbotContainerDemo: React.FunctionComponent = () => {
-  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
-  const [isVisible, setIsVisible] = React.useState(true);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<string>('Select display mode');
+export const ChatbotContainerDemo: FunctionComponent = () => {
+  const [displayMode, setDisplayMode] = useState(ChatbotDisplayMode.default);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string>('Select display mode');
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+  const onSelect = (_event: ReactMouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelected(value as string);
     setIsOpen(false);
     if (value === 'Overlay / default') {
@@ -31,7 +32,7 @@ export const ChatbotContainerDemo: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       ref={toggleRef}
       onClick={onToggleClick}
@@ -39,7 +40,7 @@ export const ChatbotContainerDemo: React.FunctionComponent = () => {
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import {
   ExternalLinkAltIcon,
   VolumeUpIcon,
@@ -50,12 +51,12 @@ export interface ResponseActionProps {
   };
 }
 
-export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ actions }) => {
-  const [activeButton, setActiveButton] = React.useState<string>();
+export const ResponseActions: FunctionComponent<ResponseActionProps> = ({ actions }) => {
+  const [activeButton, setActiveButton] = useState<string>();
   const { positive, negative, copy, share, listen, ...additionalActions } = actions;
-  const responseActions = React.useRef<HTMLDivElement>(null);
+  const responseActions = useRef<HTMLDivElement>(null);
 
-  React.useEffect(() => {
+  useEffect(() => {
     const handleClickOutside = (e) => {
       if (responseActions.current && !responseActions.current.contains(e.target)) {
         setActiveButton(undefined);
@@ -69,9 +70,9 @@ export const ResponseActions: React.FunctionComponent<ResponseActionProps> = ({ 
   }, []);
 
   const handleClick = (
-    e: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent,
+    e: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent,
     id: string,
-    onClick?: (event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void
+    onClick?: (event: MouseEvent | MouseEvent<Element, MouseEvent> | KeyboardEvent) => void
   ) => {
     setActiveButton(id);
     onClick && onClick(e);

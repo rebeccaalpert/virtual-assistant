@@ -1,7 +1,8 @@
 // ============================================================================
 // Code Modal - Chatbot Modal with Code Editor
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent } from 'react';
+import { useState } from 'react';
 import path from 'path-browserify';
 
 // Import PatternFly components
@@ -44,7 +45,7 @@ export interface CodeModalProps {
   isCompact?: boolean;
 }
 
-export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
+export const CodeModal: FunctionComponent<CodeModalProps> = ({
   fileName,
   code,
   codeEditorControlClassName: codeEditorClassName,
@@ -62,9 +63,9 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
   isCompact,
   ...props
 }: CodeModalProps) => {
-  const [newCode, setNewCode] = React.useState(code);
+  const [newCode, setNewCode] = useState(code);
 
-  const handlePrimaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handlePrimaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     if (!isReadOnly) {
       onPrimaryAction(_event, newCode);
@@ -73,7 +74,7 @@ export const CodeModal: React.FunctionComponent<CodeModalProps> = ({
     }
   };
 
-  const handleSecondaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleSecondaryAction = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onSecondaryAction(_event);
   };

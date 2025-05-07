@@ -1,8 +1,8 @@
 // ============================================================================
 // Chatbot Main - Messages - Sources Card
 // ============================================================================
-import React from 'react';
-
+import type { FunctionComponent, MouseEvent as ReactMouseEvent, KeyboardEvent as ReactKeyboardEvent } from 'react';
+import { useState } from 'react';
 // Import PatternFly components
 import {
   Button,
@@ -57,7 +57,7 @@ export interface SourcesCardProps extends CardProps {
   showLessWords?: string;
 }
 
-const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
+const SourcesCard: FunctionComponent<SourcesCardProps> = ({
   className,
   isDisabled,
   paginationAriaLabel = 'Pagination',
@@ -74,14 +74,14 @@ const SourcesCard: React.FunctionComponent<SourcesCardProps> = ({
   isCompact,
   ...props
 }: SourcesCardProps) => {
-  const [page, setPage] = React.useState(1);
-  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [page, setPage] = useState(1);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const onToggle = (_event: React.MouseEvent, isExpanded: boolean) => {
+  const onToggle = (_event: ReactMouseEvent, isExpanded: boolean) => {
     setIsExpanded(isExpanded);
   };
 
-  const handleNewPage = (_evt: React.MouseEvent | React.KeyboardEvent | MouseEvent, newPage: number) => {
+  const handleNewPage = (_evt: ReactMouseEvent | ReactKeyboardEvent | MouseEvent, newPage: number) => {
     setPage(newPage);
     onSetPage && onSetPage(_evt, newPage);
   };

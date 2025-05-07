@@ -1,4 +1,5 @@
-import React from 'react';
+import type { FunctionComponent, Ref } from 'react';
+import { useState } from 'react';
 
 import { Tooltip, TooltipProps, Dropdown, DropdownProps, MenuToggle, MenuToggleElement } from '@patternfly/react-core';
 
@@ -15,10 +16,11 @@ export interface ChatbotHeaderSelectorDropdownProps extends Omit<DropdownProps, 
   menuToggleAriaLabel?: string;
   /** Text displayed in Tooltip wrapping the display mode dropdown */
   tooltipContent?: string;
+  /** Sets menu to compact styling. */
   isCompact?: boolean;
 }
 
-export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeaderSelectorDropdownProps> = ({
+export const ChatbotHeaderSelectorDropdown: FunctionComponent<ChatbotHeaderSelectorDropdownProps> = ({
   value,
   className,
   children,
@@ -29,10 +31,10 @@ export const ChatbotHeaderSelectorDropdown: React.FunctionComponent<ChatbotHeade
   isCompact,
   ...props
 }: ChatbotHeaderSelectorDropdownProps) => {
-  const [isOptionsMenuOpen, setIsOptionsMenuOpen] = React.useState(false);
-  const [defaultAriaLabel, setDefaultAriaLabel] = React.useState('Select model');
+  const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
+  const [defaultAriaLabel, setDefaultAriaLabel] = useState('Select model');
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <Tooltip
       className="pf-chatbot__tooltip"
       content={tooltipContent}

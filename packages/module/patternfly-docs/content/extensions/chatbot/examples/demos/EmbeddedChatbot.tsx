@@ -1,4 +1,4 @@
-import React from 'react';
+import { useEffect, useRef, useState, FunctionComponent, MouseEvent } from 'react';
 
 import {
   Bullseye,
@@ -86,8 +86,6 @@ spec:
 Here is some JavaScript code:
 
 ~~~js
-import React from 'react';
-
 const MessageLoading = () => (
   <div className="pf-chatbot__message-loading">
     <span className="pf-chatbot__message-loading-dots">
@@ -174,32 +172,29 @@ const initialConversations = {
   ]
 };
 
-export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
-  const [messages, setMessages] = React.useState<MessageProps[]>(initialMessages);
-  const [selectedModel, setSelectedModel] = React.useState('Granite 7B');
-  const [isSendButtonDisabled, setIsSendButtonDisabled] = React.useState(false);
-  const [isDrawerOpen, setIsDrawerOpen] = React.useState(false);
-  const [conversations, setConversations] = React.useState<Conversation[] | { [key: string]: Conversation[] }>(
+export const EmbeddedChatbotDemo: FunctionComponent = () => {
+  const [messages, setMessages] = useState<MessageProps[]>(initialMessages);
+  const [selectedModel, setSelectedModel] = useState('Granite 7B');
+  const [isSendButtonDisabled, setIsSendButtonDisabled] = useState(false);
+  const [isDrawerOpen, setIsDrawerOpen] = useState(false);
+  const [conversations, setConversations] = useState<Conversation[] | { [key: string]: Conversation[] }>(
     initialConversations
   );
-  const [isSidebarOpen, setIsSidebarOpen] = React.useState(false);
-  const [announcement, setAnnouncement] = React.useState<string>();
-  const scrollToBottomRef = React.useRef<HTMLDivElement>(null);
-  const historyRef = React.useRef<HTMLButtonElement>(null);
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [announcement, setAnnouncement] = useState<string>();
+  const scrollToBottomRef = useRef<HTMLDivElement>(null);
+  const historyRef = useRef<HTMLButtonElement>(null);
 
   const displayMode = ChatbotDisplayMode.embedded;
-  // Autu-scrolls to the latest message
-  React.useEffect(() => {
+  // Auto-scrolls to the latest message
+  useEffect(() => {
     // don't scroll the first load - in this demo, we know we start with two messages
     if (messages.length > 2) {
       scrollToBottomRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages]);
 
-  const onSelectModel = (
-    _event: React.MouseEvent<Element, MouseEvent> | undefined,
-    value: string | number | undefined
-  ) => {
+  const onSelectModel = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelectedModel(value as string);
   };
 
@@ -327,7 +322,7 @@ export const EmbeddedChatbotDemo: React.FunctionComponent = () => {
     </PageSidebar>
   );
 
-  const skipToChatbot = (event: React.MouseEvent) => {
+  const skipToChatbot = (event: MouseEvent) => {
     event.preventDefault();
     if (historyRef.current) {
       historyRef.current.focus();

@@ -1,7 +1,7 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import { ChatbotFootnote } from '@patternfly/chatbot/dist/dynamic/ChatbotFooter';
 
-export const FootnoteDemo: React.FunctionComponent = () => (
+export const FootnoteDemo: FunctionComponent = () => (
   <ChatbotFootnote
     label="ChatBot uses AI. Check for mistakes."
     popover={{

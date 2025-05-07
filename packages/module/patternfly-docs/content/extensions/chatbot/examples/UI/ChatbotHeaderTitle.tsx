@@ -1,14 +1,14 @@
-import React from 'react';
+import { CSSProperties, FunctionComponent, Ref, useState, MouseEvent as ReactMouseEvent } from 'react';
 import { ChatbotHeaderTitle } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
 import { ChatbotDisplayMode } from '@patternfly/chatbot/dist/dynamic/Chatbot';
 import { MenuToggle, MenuToggleElement, Select, SelectList, SelectOption } from '@patternfly/react-core';
 
-export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
-  const [displayMode, setDisplayMode] = React.useState(ChatbotDisplayMode.default);
-  const [isOpen, setIsOpen] = React.useState(false);
-  const [selected, setSelected] = React.useState<string>('Select display mode');
+export const ChatbotHeaderTitleDemo: FunctionComponent = () => {
+  const [displayMode, setDisplayMode] = useState(ChatbotDisplayMode.default);
+  const [isOpen, setIsOpen] = useState(false);
+  const [selected, setSelected] = useState<string>('Select display mode');
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+  const onSelect = (_event: ReactMouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
     setSelected(value as string);
     setIsOpen(false);
     if (value === 'Default') {
@@ -29,7 +29,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       className="pf-v6-u-mb-md"
       ref={toggleRef}
@@ -38,7 +38,7 @@ export const ChatbotHeaderTitleDemo: React.FunctionComponent = () => {
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

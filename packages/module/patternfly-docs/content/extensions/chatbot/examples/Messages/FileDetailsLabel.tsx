@@ -1,14 +1,14 @@
-import React from 'react';
+import { useState, FunctionComponent, MouseEvent, Ref, CSSProperties } from 'react';
 import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel';
 import { Stack, MenuToggle, MenuToggleElement, Select, SelectList, SelectOption } from '@patternfly/react-core';
 
-export const FileDetailsLabelExample: React.FunctionComponent = () => {
-  const [variant, setVariant] = React.useState<string>('plain');
-  const [isOpen, setIsOpen] = React.useState<boolean>(false);
-  const [selected, setSelected] = React.useState<string>('Variant');
+export const FileDetailsLabelExample: FunctionComponent = () => {
+  const [variant, setVariant] = useState<string>('plain');
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const [selected, setSelected] = useState<string>('Variant');
 
-  const onSelect = (_event: React.MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
-    setVariant(value);
+  const onSelect = (_event: MouseEvent<Element, MouseEvent> | undefined, value: string | number | undefined) => {
+    setVariant(value as string);
     setSelected(value as string);
     setIsOpen(false);
   };
@@ -17,7 +17,7 @@ export const FileDetailsLabelExample: React.FunctionComponent = () => {
     setIsOpen(!isOpen);
   };
 
-  const toggle = (toggleRef: React.Ref<MenuToggleElement>) => (
+  const toggle = (toggleRef: Ref<MenuToggleElement>) => (
     <MenuToggle
       ref={toggleRef}
       onClick={onToggleClick}
@@ -25,7 +25,7 @@ export const FileDetailsLabelExample: React.FunctionComponent = () => {
       style={
         {
           width: '200px'
-        } as React.CSSProperties
+        } as CSSProperties
       }
     >
       {selected}

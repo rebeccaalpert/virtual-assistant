@@ -1,15 +1,15 @@
-import React from 'react';
+import { FunctionComponent, useState, useRef } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import '@patternfly/react-core/dist/styles/base.css';
 import '@patternfly/chatbot/dist/css/main.css';
 
-export const MessageWithFeedbackExample: React.FunctionComponent = () => {
-  const [showUserFeedbackForm, setShowUserFeedbackForm] = React.useState(false);
-  const [showCompletionForm, setShowCompletionForm] = React.useState(false);
-  const [launchButton, setLaunchButton] = React.useState<string>();
-  const positiveRef = React.useRef<HTMLButtonElement>(null);
-  const negativeRef = React.useRef<HTMLButtonElement>(null);
+export const MessageWithFeedbackExample: FunctionComponent = () => {
+  const [showUserFeedbackForm, setShowUserFeedbackForm] = useState(false);
+  const [showCompletionForm, setShowCompletionForm] = useState(false);
+  const [launchButton, setLaunchButton] = useState<string>();
+  const positiveRef = useRef<HTMLButtonElement>(null);
+  const negativeRef = useRef<HTMLButtonElement>(null);
   const feedbackId = 'user-feedback-form';
   const completeId = 'user-feedback-received';
 

@@ -1,7 +1,8 @@
 // ============================================================================
 // Terms of Use Modal - Chatbot Modal Extension
 // ============================================================================
-import React from 'react';
+import type { FunctionComponent, MouseEvent as ReactMouseEvent, Ref } from 'react';
+import { forwardRef } from 'react';
 import { Button, Content, ModalBody, ModalFooter, ModalHeader, ModalProps } from '@patternfly/react-core';
 import { ChatbotDisplayMode } from '../Chatbot';
 import ChatbotModal from '../ChatbotModal/ChatbotModal';
@@ -37,7 +38,7 @@ export interface TermsOfUseProps extends ModalProps {
   isCompact?: boolean;
 }
 
-export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
+export const TermsOfUseBase: FunctionComponent<TermsOfUseProps> = ({
   handleModalToggle,
   isModalOpen,
   onPrimaryAction,
@@ -55,12 +56,12 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   isCompact,
   ...props
 }: TermsOfUseProps) => {
-  const handlePrimaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handlePrimaryAction = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     handleModalToggle(_event);
     onPrimaryAction && onPrimaryAction(_event);
   };
 
-  const handleSecondaryAction = (_event: React.MouseEvent | MouseEvent | KeyboardEvent) => {
+  const handleSecondaryAction = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent) => {
     onSecondaryAction(_event);
   };
 
@@ -115,7 +116,7 @@ export const TermsOfUseBase: React.FunctionComponent<TermsOfUseProps> = ({
   return modal;
 };
 
-const TermsOfUse = React.forwardRef((props: TermsOfUseProps, ref: React.Ref<HTMLDivElement>) => (
+const TermsOfUse = forwardRef((props: TermsOfUseProps, ref: Ref<HTMLDivElement>) => (
   <TermsOfUseBase innerRef={ref} {...props} />
 ));
 

@@ -1,11 +1,11 @@
-import React from 'react';
+import { FunctionComponent } from 'react';
 import Message from '@patternfly/chatbot/dist/dynamic/Message';
 import patternflyAvatar from './patternfly_avatar.jpg';
 import { explorePipelinesQuickStart } from './explore-pipeline-quickstart.ts';
 import { monitorSampleAppQuickStart } from '@patternfly/chatbot/src/Message/QuickStarts/monitor-sampleapp-quickstart.ts';
 import { QuickStart } from '@patternfly/chatbot/dist/esm/Message/QuickStarts/types';
 
-export const MessageWithQuickStartExample: React.FunctionComponent = () => (
+export const MessageWithQuickStartExample: FunctionComponent = () => (
   <>
     <Message
       name="Bot"
