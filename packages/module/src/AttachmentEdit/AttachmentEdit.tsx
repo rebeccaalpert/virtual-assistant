@@ -28,6 +28,12 @@ export interface AttachmentEditProps {
   primaryActionButtonText?: string;
   /** Secondary action button text */
   secondaryActionButtonText?: string;
+  /** Class applied to modal header */
+  modalHeaderClassName?: string;
+  /** Class applied to modal body */
+  modalBodyClassName?: string;
+  /** Class applied to modal footer */
+  modalFooterClassName?: string;
 }
 
 export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
@@ -40,6 +46,9 @@ export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
   title = 'Edit attachment',
   displayMode = ChatbotDisplayMode.default,
   isCompact,
+  modalHeaderClassName,
+  modalBodyClassName,
+  modalFooterClassName,
   primaryActionButtonText = 'Save',
   secondaryActionButtonText = 'Cancel'
 }: AttachmentEditProps) => {
@@ -66,6 +75,9 @@ export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
       title={title}
       displayMode={displayMode}
       isCompact={isCompact}
+      modalHeaderClassName={modalHeaderClassName}
+      modalBodyClassName={modalBodyClassName}
+      modalFooterClassName={modalFooterClassName}
     />
   );
 };

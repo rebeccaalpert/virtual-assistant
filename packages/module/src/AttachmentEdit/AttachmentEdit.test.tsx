@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import AttachmentEdit, { AttachmentEditProps } from './AttachmentEdit';
 
 describe('AttachmentEdit', () => {
@@ -68,5 +69,30 @@ describe('AttachmentEdit', () => {
 
     screen.getByText('Save');
     screen.getByText('Close');
+  });
+
+  it('should render AttachmentEdit with custom classNames', async () => {
+    render(
+      <AttachmentEdit
+        code="Hello world"
+        fileName="greetings.txt"
+        isModalOpen={true}
+        onCancel={jest.fn()}
+        onSave={jest.fn()}
+        handleModalToggle={jest.fn()}
+        primaryActionButtonText="Save"
+        secondaryActionButtonText="Close"
+        modalHeaderClassName="custom-header-class"
+        modalBodyClassName="custom-body-class"
+        modalFooterClassName="custom-footer-class"
+      ></AttachmentEdit>
+    );
+
+    const modalHeader = document.querySelector('header.custom-header-class');
+    expect(modalHeader).toBeInTheDocument();
+    const modalBody = document.querySelector('.custom-body-class');
+    expect(modalBody).toBeInTheDocument();
+    const modalfooter = document.querySelector('.custom-footer-class');
+    expect(modalfooter).toBeInTheDocument();
   });
 });

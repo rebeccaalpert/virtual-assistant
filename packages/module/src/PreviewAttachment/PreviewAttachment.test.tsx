@@ -1,4 +1,5 @@
 import { fireEvent, render, screen } from '@testing-library/react';
+import '@testing-library/jest-dom';
 import { PreviewAttachment } from './PreviewAttachment';
 
 describe('PreviewAttachment', () => {
@@ -63,5 +64,29 @@ describe('PreviewAttachment', () => {
 
     screen.getByText('Edit');
     screen.getByText('Close');
+  });
+
+  it('should render PreviewAttachment with custom classNames', async () => {
+    render(
+      <PreviewAttachment
+        code="Hello world"
+        fileName="greetings.txt"
+        isModalOpen={true}
+        onEdit={jest.fn()}
+        handleModalToggle={jest.fn()}
+        primaryActionButtonText="Edit"
+        secondaryActionButtonText="Close"
+        modalHeaderClassName="custom-header-class"
+        modalBodyClassName="custom-body-class"
+        modalFooterClassName="custom-footer-class"
+      ></PreviewAttachment>
+    );
+
+    const modalHeader = document.querySelector('header.custom-header-class');
+    expect(modalHeader).toBeInTheDocument();
+    const modalBody = document.querySelector('.custom-body-class');
+    expect(modalBody).toBeInTheDocument();
+    const modalfooter = document.querySelector('.custom-footer-class');
+    expect(modalfooter).toBeInTheDocument();
   });
 });

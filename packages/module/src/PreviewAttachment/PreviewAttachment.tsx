@@ -28,6 +28,12 @@ export interface PreviewAttachmentProps {
   primaryActionButtonText?: string;
   /** Secondary action button text */
   secondaryActionButtonText?: string;
+  /** Class applied to modal header */
+  modalHeaderClassName?: string;
+  /** Class applied to modal body */
+  modalBodyClassName?: string;
+  /** Class applied to modal footer */
+  modalFooterClassName?: string;
 }
 
 export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
@@ -41,6 +47,9 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
   primaryActionButtonText = 'Edit',
   secondaryActionButtonText = 'Dismiss',
   displayMode = ChatbotDisplayMode.default,
+  modalHeaderClassName,
+  modalBodyClassName,
+  modalFooterClassName,
   isCompact
 }: PreviewAttachmentProps) => {
   const handleEdit = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
@@ -70,6 +79,9 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
       isReadOnly
       displayMode={displayMode}
       isCompact={isCompact}
+      modalHeaderClassName={modalHeaderClassName}
+      modalBodyClassName={modalBodyClassName}
+      modalFooterClassName={modalFooterClassName}
     />
   );
 };
