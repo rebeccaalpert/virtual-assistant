@@ -47,4 +47,21 @@ describe('PreviewAttachment', () => {
 
     expect(onDismiss).toHaveBeenCalled();
   });
+
+  it('should render custom button text for footer actions buttons', () => {
+    render(
+      <PreviewAttachment
+        code="Hello world"
+        fileName="greetings.txt"
+        isModalOpen={true}
+        onEdit={jest.fn()}
+        handleModalToggle={jest.fn()}
+        primaryActionButtonText="Edit"
+        secondaryActionButtonText="Close"
+      />
+    );
+
+    screen.getByText('Edit');
+    screen.getByText('Close');
+  });
 });

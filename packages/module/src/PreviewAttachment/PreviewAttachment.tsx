@@ -24,6 +24,10 @@ export interface PreviewAttachmentProps {
   displayMode?: ChatbotDisplayMode;
   /** Sets modal to compact styling. */
   isCompact?: boolean;
+  /** Primary action button text */
+  primaryActionButtonText?: string;
+  /** Secondary action button text */
+  secondaryActionButtonText?: string;
 }
 
 export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
@@ -34,6 +38,8 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
   onDismiss = undefined,
   onEdit,
   title = 'Preview attachment',
+  primaryActionButtonText = 'Edit',
+  secondaryActionButtonText = 'Dismiss',
   displayMode = ChatbotDisplayMode.default,
   isCompact
 }: PreviewAttachmentProps) => {
@@ -58,8 +64,8 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
       isModalOpen={isModalOpen}
       onPrimaryAction={handleEdit}
       onSecondaryAction={handleDismiss}
-      primaryActionBtn="Edit"
-      secondaryActionBtn="Dismiss"
+      primaryActionBtn={primaryActionButtonText}
+      secondaryActionBtn={secondaryActionButtonText}
       title={title}
       isReadOnly
       displayMode={displayMode}

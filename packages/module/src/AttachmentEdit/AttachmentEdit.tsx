@@ -24,6 +24,10 @@ export interface AttachmentEditProps {
   displayMode?: ChatbotDisplayMode;
   /** Sets modal to compact styling. */
   isCompact?: boolean;
+  /** Primary action button text */
+  primaryActionButtonText?: string;
+  /** Secondary action button text */
+  secondaryActionButtonText?: string;
 }
 
 export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
@@ -35,7 +39,9 @@ export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
   onSave,
   title = 'Edit attachment',
   displayMode = ChatbotDisplayMode.default,
-  isCompact
+  isCompact,
+  primaryActionButtonText = 'Save',
+  secondaryActionButtonText = 'Cancel'
 }: AttachmentEditProps) => {
   const handleSave = (_event: ReactMouseEvent | MouseEvent | KeyboardEvent, code) => {
     handleModalToggle(_event);
@@ -55,8 +61,8 @@ export const AttachmentEdit: FunctionComponent<AttachmentEditProps> = ({
       isModalOpen={isModalOpen}
       onPrimaryAction={handleSave}
       onSecondaryAction={handleCancel}
-      primaryActionBtn="Save"
-      secondaryActionBtn="Cancel"
+      primaryActionBtn={primaryActionButtonText}
+      secondaryActionBtn={secondaryActionButtonText}
       title={title}
       displayMode={displayMode}
       isCompact={isCompact}

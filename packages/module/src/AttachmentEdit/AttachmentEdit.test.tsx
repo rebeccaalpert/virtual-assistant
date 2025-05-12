@@ -51,4 +51,22 @@ describe('AttachmentEdit', () => {
     fireEvent.click(screen.getByText('Cancel'));
     expect(onCancelHandler).toHaveBeenCalled();
   });
+
+  it('should render custom button text for footer actions buttons', () => {
+    render(
+      <AttachmentEdit
+        code="Hello world"
+        fileName="greetings.txt"
+        isModalOpen={true}
+        onCancel={jest.fn()}
+        onSave={jest.fn()}
+        handleModalToggle={jest.fn()}
+        primaryActionButtonText="Save"
+        secondaryActionButtonText="Close"
+      />
+    );
+
+    screen.getByText('Save');
+    screen.getByText('Close');
+  });
 });
