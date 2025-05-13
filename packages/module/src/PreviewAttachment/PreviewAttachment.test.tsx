@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { PreviewAttachment } from './PreviewAttachment';
 
@@ -82,11 +82,12 @@ describe('PreviewAttachment', () => {
       ></PreviewAttachment>
     );
 
-    const modalHeader = document.querySelector('header.custom-header-class');
-    expect(modalHeader).toBeInTheDocument();
-    const modalBody = document.querySelector('.custom-body-class');
-    expect(modalBody).toBeInTheDocument();
-    const modalfooter = document.querySelector('.custom-footer-class');
-    expect(modalfooter).toBeInTheDocument();
+    const modal = screen.getByRole('dialog');
+    const modalHeader = within(modal).getByRole('banner');
+    expect(modalHeader).toHaveClass('custom-header-class');
+    const modalBody = modal.querySelector('#code-modal-body');
+    expect(modalBody).toHaveClass('custom-body-class');
+    const modalfooter = within(modal).getByRole('contentinfo');
+    expect(modalfooter).toHaveClass('custom-footer-class');
   });
 });
