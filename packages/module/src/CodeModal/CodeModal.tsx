@@ -43,6 +43,12 @@ export interface CodeModalProps {
   displayMode?: ChatbotDisplayMode;
   /** Sets modal to compact styling. */
   isCompact?: boolean;
+  /** Class applied to modal header */
+  modalHeaderClassName?: string;
+  /** Class applied to modal body */
+  modalBodyClassName?: string;
+  /** Class applied to modal footer */
+  modalFooterClassName?: string;
 }
 
 export const CodeModal: FunctionComponent<CodeModalProps> = ({
@@ -61,6 +67,9 @@ export const CodeModal: FunctionComponent<CodeModalProps> = ({
   title,
   displayMode = ChatbotDisplayMode.default,
   isCompact,
+  modalHeaderClassName,
+  modalBodyClassName,
+  modalFooterClassName,
   ...props
 }: CodeModalProps) => {
   const [newCode, setNewCode] = useState(code);
@@ -102,8 +111,8 @@ export const CodeModal: FunctionComponent<CodeModalProps> = ({
       displayMode={displayMode}
       isCompact={isCompact}
     >
-      <ModalHeader title={title} labelId="code-modal-title" />
-      <ModalBody id="code-modal-body">
+      <ModalHeader className={modalHeaderClassName} title={title} labelId="code-modal-title" />
+      <ModalBody className={modalBodyClassName} id="code-modal-body">
         <Stack className="pf-chatbot__code-modal-body">
           <StackItem className="pf-chatbot__code-modal-file-details">
             <FileDetails fileName={fileName} />
@@ -130,7 +139,7 @@ export const CodeModal: FunctionComponent<CodeModalProps> = ({
           </StackItem>
         </Stack>
       </ModalBody>
-      <ModalFooter>
+      <ModalFooter className={modalFooterClassName}>
         <Button isBlock key="code-modal-primary" variant="primary" onClick={handlePrimaryAction} form="code-modal-form">
           {primaryActionBtn}
         </Button>

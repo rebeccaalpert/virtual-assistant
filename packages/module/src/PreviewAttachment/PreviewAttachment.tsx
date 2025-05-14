@@ -24,6 +24,16 @@ export interface PreviewAttachmentProps {
   displayMode?: ChatbotDisplayMode;
   /** Sets modal to compact styling. */
   isCompact?: boolean;
+  /** Primary action button text */
+  primaryActionButtonText?: string;
+  /** Secondary action button text */
+  secondaryActionButtonText?: string;
+  /** Class applied to modal header */
+  modalHeaderClassName?: string;
+  /** Class applied to modal body */
+  modalBodyClassName?: string;
+  /** Class applied to modal footer */
+  modalFooterClassName?: string;
 }
 
 export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
@@ -34,7 +44,12 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
   onDismiss = undefined,
   onEdit,
   title = 'Preview attachment',
+  primaryActionButtonText = 'Edit',
+  secondaryActionButtonText = 'Dismiss',
   displayMode = ChatbotDisplayMode.default,
+  modalHeaderClassName,
+  modalBodyClassName,
+  modalFooterClassName,
   isCompact
 }: PreviewAttachmentProps) => {
   const handleEdit = (_event: MouseEvent | MouseEvent | KeyboardEvent) => {
@@ -58,12 +73,15 @@ export const PreviewAttachment: FunctionComponent<PreviewAttachmentProps> = ({
       isModalOpen={isModalOpen}
       onPrimaryAction={handleEdit}
       onSecondaryAction={handleDismiss}
-      primaryActionBtn="Edit"
-      secondaryActionBtn="Dismiss"
+      primaryActionBtn={primaryActionButtonText}
+      secondaryActionBtn={secondaryActionButtonText}
       title={title}
       isReadOnly
       displayMode={displayMode}
       isCompact={isCompact}
+      modalHeaderClassName={modalHeaderClassName}
+      modalBodyClassName={modalBodyClassName}
+      modalFooterClassName={modalFooterClassName}
     />
   );
 };
