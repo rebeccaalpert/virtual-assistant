@@ -8,7 +8,8 @@ import {
   DropdownProps,
   MenuToggle,
   MenuToggleElement,
-  Icon
+  Icon,
+  MenuToggleProps
 } from '@patternfly/react-core';
 import EllipsisIcon from '@patternfly/react-icons/dist/esm/icons/ellipsis-v-icon';
 
@@ -23,6 +24,8 @@ export interface ChatbotHeaderOptionsDropdownProps extends Omit<DropdownProps, '
   menuToggleAriaLabel?: string;
   /** Sets menu to compact styling. */
   isCompact?: boolean;
+  /** Additional props passed to toggle */
+  toggleProps?: MenuToggleProps;
 }
 
 export const ChatbotHeaderOptionsDropdown: FunctionComponent<ChatbotHeaderOptionsDropdownProps> = ({
@@ -32,6 +35,7 @@ export const ChatbotHeaderOptionsDropdown: FunctionComponent<ChatbotHeaderOption
   tooltipProps,
   menuToggleAriaLabel = 'Chatbot options',
   isCompact,
+  toggleProps,
   ...props
 }: ChatbotHeaderOptionsDropdownProps) => {
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
@@ -58,6 +62,7 @@ export const ChatbotHeaderOptionsDropdown: FunctionComponent<ChatbotHeaderOption
         isExpanded={isOptionsMenuOpen}
         onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}
         size={isCompact ? 'sm' : undefined}
+        {...toggleProps}
       />
     </Tooltip>
   );

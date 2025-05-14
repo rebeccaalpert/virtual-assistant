@@ -1,7 +1,15 @@
 import type { FunctionComponent, Ref } from 'react';
 import { useState } from 'react';
 
-import { Tooltip, TooltipProps, Dropdown, DropdownProps, MenuToggle, MenuToggleElement } from '@patternfly/react-core';
+import {
+  Tooltip,
+  TooltipProps,
+  Dropdown,
+  DropdownProps,
+  MenuToggle,
+  MenuToggleElement,
+  MenuToggleProps
+} from '@patternfly/react-core';
 
 export interface ChatbotHeaderSelectorDropdownProps extends Omit<DropdownProps, 'toggle'> {
   /** Value of the selected dropdown item */
@@ -18,6 +26,8 @@ export interface ChatbotHeaderSelectorDropdownProps extends Omit<DropdownProps, 
   tooltipContent?: string;
   /** Sets menu to compact styling. */
   isCompact?: boolean;
+  /** Additional props passed to toggle */
+  toggleProps?: MenuToggleProps;
 }
 
 export const ChatbotHeaderSelectorDropdown: FunctionComponent<ChatbotHeaderSelectorDropdownProps> = ({
@@ -29,6 +39,7 @@ export const ChatbotHeaderSelectorDropdown: FunctionComponent<ChatbotHeaderSelec
   tooltipContent = 'Select model',
   menuToggleAriaLabel,
   isCompact,
+  toggleProps,
   ...props
 }: ChatbotHeaderSelectorDropdownProps) => {
   const [isOptionsMenuOpen, setIsOptionsMenuOpen] = useState(false);
@@ -51,6 +62,7 @@ export const ChatbotHeaderSelectorDropdown: FunctionComponent<ChatbotHeaderSelec
         onClick={() => setIsOptionsMenuOpen(!isOptionsMenuOpen)}
         size={isCompact ? 'sm' : undefined}
         className={`${isCompact ? 'pf-m-compact' : ''}`}
+        {...toggleProps}
       >
         {value}
       </MenuToggle>
