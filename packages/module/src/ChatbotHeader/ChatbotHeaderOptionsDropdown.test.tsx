@@ -47,4 +47,13 @@ describe('ChatbotHeaderOptionsDropdown', () => {
     render(<ChatbotHeaderOptionsDropdown isCompact>{dropdownItems}</ChatbotHeaderOptionsDropdown>);
     expect(screen.getByRole('button', { name: 'Chatbot options' })).toHaveClass('pf-m-compact');
   });
+
+  it('should handle toggleProps', () => {
+    render(
+      <ChatbotHeaderOptionsDropdown isCompact toggleProps={{ isDisabled: true }}>
+        {dropdownItems}
+      </ChatbotHeaderOptionsDropdown>
+    );
+    expect(screen.getByRole('button', { name: /Chatbot options/i })).toBeDisabled();
+  });
 });

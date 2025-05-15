@@ -49,4 +49,13 @@ describe('ChatbotHeaderSelectorDropdown', () => {
     );
     expect(screen.getByRole('button', { name: /Select model/i })).toHaveClass('pf-m-compact');
   });
+
+  it('should handle toggleProps', () => {
+    render(
+      <ChatbotHeaderSelectorDropdown value="Option 1" toggleProps={{ isDisabled: true }}>
+        {dropdownItems}
+      </ChatbotHeaderSelectorDropdown>
+    );
+    expect(screen.getByRole('button', { name: /Select model/i })).toBeDisabled();
+  });
 });
