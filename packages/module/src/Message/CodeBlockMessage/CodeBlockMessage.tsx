@@ -49,8 +49,8 @@ const CodeBlockMessage = ({
   maxLength = 10,
   expandableSectionProps,
   expandableSectionToggleProps,
-  expandedText = 'Show Less',
-  collapsedText = 'Show More',
+  expandedText = 'Show less',
+  collapsedText = 'Show more',
   ...props
 }: CodeBlockProps) => {
   const [copied, setCopied] = useState(false);
