@@ -110,13 +110,13 @@ export interface MessageProps extends Omit<HTMLProps<HTMLDivElement>, 'role'> {
   loadingWord?: string;
   /** Props for code blocks */
   codeBlockProps?: {
-    /** Aria label applied to code block */
+    /** Aria label applied to code blocks */
     'aria-label'?: string;
-    /** Class name applied to code block */
+    /** Class name applied to code blocks */
     className?: string;
-    /** Whether code block is expandable */
+    /** Whether code blocks are expandable */
     isExpandable?: boolean;
-    /** Length of text initially shown in expandable code block; defaults to 10 characters */
+    /** Length of text initially shown in expandable code blocks; defaults to 10 characters */
     maxLength?: number;
     /** Additional props passed to expandable section if isExpandable is applied */
     expandableSectionProps?: Omit<ExpandableSectionProps, 'ref'>;

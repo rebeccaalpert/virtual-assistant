@@ -20,7 +20,7 @@ import {
 import { CheckIcon } from '@patternfly/react-icons/dist/esm/icons/check-icon';
 import { CopyIcon } from '@patternfly/react-icons/dist/esm/icons/copy-icon';
 
-export interface CodeBlockProps {
+export interface CodeBlockMessageProps {
   /** Content rendered in code block */
   children?: React.ReactNode;
   /** Aria label applied to code block */
@@ -52,7 +52,7 @@ const CodeBlockMessage = ({
   expandedText = 'Show less',
   collapsedText = 'Show more',
   ...props
-}: CodeBlockProps) => {
+}: CodeBlockMessageProps) => {
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
   const [initialWidth, setInitialWidth] = useState<number | null>(null);
@@ -66,6 +66,7 @@ const CodeBlockMessage = ({
   // Keeps the width the same - this can vary when content is expandable
   useEffect(() => {
     if (codeBlockRef.current) {
+      // This is parent .pf-chatbot__message-code-block if it exists
       let ancestor = codeBlockRef.current.parentNode;
       if (ancestor) {
         ancestor = ancestor.parentNode;
