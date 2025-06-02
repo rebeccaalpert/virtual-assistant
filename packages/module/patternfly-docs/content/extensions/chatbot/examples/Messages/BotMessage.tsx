@@ -267,7 +267,7 @@ _Italic text, formatted with single underscores_
           variant === 'Table' ? { 'aria-label': 'App information and user roles for bot messages' } : undefined
         }
         error={variant === 'Error' ? error : undefined}
-        codeBlockProps={{ isExpandable }}
+        codeBlockProps={{ isExpandable, expandableSectionProps: { truncateMaxLines: isExpandable ? 1 : undefined } }}
       />
     </>
   );

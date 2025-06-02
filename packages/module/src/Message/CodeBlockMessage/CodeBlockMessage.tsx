@@ -14,11 +14,13 @@ import {
   ExpandableSection,
   ExpandableSectionToggle,
   ExpandableSectionProps,
-  ExpandableSectionToggleProps
+  ExpandableSectionToggleProps,
+  ExpandableSectionVariant
 } from '@patternfly/react-core';
 
 import { CheckIcon } from '@patternfly/react-icons/dist/esm/icons/check-icon';
 import { CopyIcon } from '@patternfly/react-icons/dist/esm/icons/copy-icon';
+import { ExpandableSectionForSyntaxHighlighter } from './ExpandableSectionForSyntaxHighlighter';
 
 export interface CodeBlockMessageProps {
   /** Content rendered in code block */
@@ -29,8 +31,6 @@ export interface CodeBlockMessageProps {
   className?: string;
   /** Whether code block is expandable */
   isExpandable?: boolean;
-  /** Length of text initially shown in expandable code block; defaults to 10 characters */
-  maxLength?: number;
   /** Additional props passed to expandable section if isExpandable is applied */
   expandableSectionProps?: Omit<ExpandableSectionProps, 'ref'>;
   /** Additional props passed to expandable toggle if isExpandable is applied */
@@ -46,7 +46,6 @@ const CodeBlockMessage = ({
   className,
   'aria-label': ariaLabel,
   isExpandable = false,
-  maxLength = 10,
   expandableSectionProps,
   expandableSectionToggleProps,
   expandedText = 'Show less',
@@ -55,38 +54,12 @@ const CodeBlockMessage = ({
 }: CodeBlockMessageProps) => {
   const [copied, setCopied] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
-  const [initialWidth, setInitialWidth] = useState<number | null>(null);
 
   const buttonRef = useRef();
   const tooltipID = useId();
   const toggleId = useId();
   const contentId = useId();
   const codeBlockRef = useRef<HTMLDivElement>(null);
-
-  // Keeps the width the same - this can vary when content is expandable
-  useEffect(() => {
-    if (codeBlockRef.current) {
-      // This is parent .pf-chatbot__message-code-block if it exists
-      let ancestor = codeBlockRef.current.parentNode;
-      if (ancestor) {
-        ancestor = ancestor.parentNode;
-        if (ancestor) {
-          ancestor = ancestor.parentNode;
-          if (ancestor && ancestor instanceof HTMLElement) {
-            setInitialWidth(ancestor.offsetWidth);
-          }
-        }
-      }
-    }
-  }, []);
-
-  let code;
-  let expandedCode;
-
-  if (isExpandable && maxLength && children) {
-    code = String(children).substring(0, maxLength);
-    expandedCode = String(children).substring(maxLength);
-  }
 
   const language = /language-(\w+)/.exec(className || '')?.[1];
 
@@ -138,33 +111,47 @@ const CodeBlockMessage = ({
     </>
   );
 
-  const expandableSyntax = String(isExpanded ? children : code).replace(/\n$/, '');
-  const codeBlockStyle = initialWidth !== null ? { width: `${initialWidth}px` } : {};
-
   return (
-    <div className="pf-chatbot__message-code-block" ref={codeBlockRef} style={codeBlockStyle}>
+    <div className="pf-chatbot__message-code-block" ref={codeBlockRef}>
       <CodeBlock actions={actions}>
         <CodeBlockCode>
-          {language ? (
-            <SyntaxHighlighter {...props} language={language} style={obsidian} PreTag="div" CodeTag="div" wrapLongLines>
-              {isExpandable ? expandableSyntax : String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <>
-              {isExpandable ? code : children}
-              {isExpandable && (
-                <ExpandableSection
-                  isExpanded={isExpanded}
-                  isDetached
-                  toggleId={toggleId}
-                  contentId={contentId}
-                  {...expandableSectionProps}
+          <>
+            {language ? (
+              // SyntaxHighlighter doesn't work with ExpandableSection because it targets the direct child
+              // Forked for now and adjusted to match what we need
+              <ExpandableSectionForSyntaxHighlighter
+                variant={ExpandableSectionVariant.truncate}
+                isExpanded={isExpanded}
+                isDetached
+                toggleId={toggleId}
+                contentId={contentId}
+                language={language}
+                {...expandableSectionProps}
+              >
+                <SyntaxHighlighter
+                  {...props}
+                  language={language}
+                  style={obsidian}
+                  PreTag="div"
+                  CodeTag="div"
+                  wrapLongLines
                 >
-                  {expandedCode}
-                </ExpandableSection>
-              )}
-            </>
-          )}
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              </ExpandableSectionForSyntaxHighlighter>
+            ) : (
+              <ExpandableSection
+                variant={ExpandableSectionVariant.truncate}
+                isExpanded={isExpanded}
+                isDetached
+                toggleId={toggleId}
+                contentId={contentId}
+                {...expandableSectionProps}
+              >
+                {children}
+              </ExpandableSection>
+            )}
+          </>
         </CodeBlockCode>
         {isExpandable && (
           <ExpandableSectionToggle

@@ -249,7 +249,7 @@ _Italic text, formatted with single underscores_
         error={variant === 'Error' ? error : undefined}
         onEditUpdate={() => setIsEditable(false)}
         onEditCancel={() => setIsEditable(false)}
-        codeBlockProps={{ isExpandable }}
+        codeBlockProps={{ isExpandable, expandableSectionProps: { truncateMaxLines: isExpandable ? 1 : undefined } }}
       />
     </>
   );
