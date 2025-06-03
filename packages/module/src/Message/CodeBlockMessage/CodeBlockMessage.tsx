@@ -5,24 +5,67 @@ import { useState, useRef, useId, useCallback, useEffect } from 'react';
 import SyntaxHighlighter from 'react-syntax-highlighter';
 import { obsidian } from 'react-syntax-highlighter/dist/esm/styles/hljs';
 // Import PatternFly components
-import { CodeBlock, CodeBlockAction, CodeBlockCode, Button, Tooltip } from '@patternfly/react-core';
+import {
+  CodeBlock,
+  CodeBlockAction,
+  CodeBlockCode,
+  Button,
+  Tooltip,
+  ExpandableSection,
+  ExpandableSectionToggle,
+  ExpandableSectionProps,
+  ExpandableSectionToggleProps,
+  ExpandableSectionVariant
+} from '@patternfly/react-core';
 
 import { CheckIcon } from '@patternfly/react-icons/dist/esm/icons/check-icon';
 import { CopyIcon } from '@patternfly/react-icons/dist/esm/icons/copy-icon';
-import { ExtraProps } from 'react-markdown';
+import { ExpandableSectionForSyntaxHighlighter } from './ExpandableSectionForSyntaxHighlighter';
+
+export interface CodeBlockMessageProps {
+  /** Content rendered in code block */
+  children?: React.ReactNode;
+  /** Aria label applied to code block */
+  'aria-label'?: string;
+  /** Class name applied to code block */
+  className?: string;
+  /** Whether code block is expandable */
+  isExpandable?: boolean;
+  /** Additional props passed to expandable section if isExpandable is applied */
+  expandableSectionProps?: Omit<ExpandableSectionProps, 'ref'>;
+  /** Additional props passed to expandable toggle if isExpandable is applied */
+  expandableSectionToggleProps?: ExpandableSectionToggleProps;
+  /** Link text applied to expandable toggle when expanded */
+  expandedText?: string;
+  /** Link text applied to expandable toggle when collapsed */
+  collapsedText?: string;
+}
 
 const CodeBlockMessage = ({
   children,
   className,
   'aria-label': ariaLabel,
+  isExpandable = false,
+  expandableSectionProps,
+  expandableSectionToggleProps,
+  expandedText = 'Show less',
+  collapsedText = 'Show more',
   ...props
-}: Omit<JSX.IntrinsicElements['code'], 'ref'> & ExtraProps) => {
+}: CodeBlockMessageProps) => {
   const [copied, setCopied] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
-  const buttonRef = useRef(undefined);
+  const buttonRef = useRef();
   const tooltipID = useId();
+  const toggleId = useId();
+  const contentId = useId();
+  const codeBlockRef = useRef<HTMLDivElement>(null);
 
   const language = /language-(\w+)/.exec(className || '')?.[1];
+
+  const onToggle = (isExpanded) => {
+    setIsExpanded(isExpanded);
+  };
 
   // Handle clicking copy button
   const handleCopy = useCallback((event, text) => {
@@ -69,17 +112,61 @@ const CodeBlockMessage = ({
   );
 
   return (
-    <div className="pf-chatbot__message-code-block">
+    <div className="pf-chatbot__message-code-block" ref={codeBlockRef}>
       <CodeBlock actions={actions}>
         <CodeBlockCode>
-          {language ? (
-            <SyntaxHighlighter {...props} language={language} style={obsidian} PreTag="div" CodeTag="div" wrapLongLines>
-              {String(children).replace(/\n$/, '')}
-            </SyntaxHighlighter>
-          ) : (
-            <>{children}</>
-          )}
+          <>
+            {language ? (
+              // SyntaxHighlighter doesn't work with ExpandableSection because it targets the direct child
+              // Forked for now and adjusted to match what we need
+              <ExpandableSectionForSyntaxHighlighter
+                variant={ExpandableSectionVariant.truncate}
+                isExpanded={isExpanded}
+                isDetached
+                toggleId={toggleId}
+                contentId={contentId}
+                language={language}
+                {...expandableSectionProps}
+              >
+                <SyntaxHighlighter
+                  {...props}
+                  language={language}
+                  style={obsidian}
+                  PreTag="div"
+                  CodeTag="div"
+                  wrapLongLines
+                >
+                  {String(children).replace(/\n$/, '')}
+                </SyntaxHighlighter>
+              </ExpandableSectionForSyntaxHighlighter>
+            ) : (
+              <ExpandableSection
+                variant={ExpandableSectionVariant.truncate}
+                isExpanded={isExpanded}
+                isDetached
+                toggleId={toggleId}
+                contentId={contentId}
+                {...expandableSectionProps}
+              >
+                {children}
+              </ExpandableSection>
+            )}
+          </>
         </CodeBlockCode>
+        {isExpandable && (
+          <ExpandableSectionToggle
+            isExpanded={isExpanded}
+            onToggle={onToggle}
+            direction="up"
+            toggleId={toggleId}
+            contentId={contentId}
+            hasTruncatedContent
+            className="pf-chatbot__message-code-toggle"
+            {...expandableSectionToggleProps}
+          >
+            {isExpanded ? expandedText : collapsedText}
+          </ExpandableSectionToggle>
+        )}
       </CodeBlock>
     </div>
   );
