@@ -53,4 +53,49 @@ describe('Attach button', () => {
     render(<AttachButton isCompact data-testid="button" />);
     expect(screen.getByTestId('button')).toHaveClass('pf-m-compact');
   });
+
+  it('should set correct accept attribute on file input', async () => {
+    render(<AttachButton inputTestId="input" allowedFileTypes={{ 'text/plain': ['.txt'] }} />);
+    await userEvent.click(screen.getByRole('button', { name: 'Attach' }));
+    const input = screen.getByTestId('input') as HTMLInputElement;
+    expect(input).toHaveAttribute('accept', 'text/plain,.txt');
+  });
+
+  it('should call onAttachAccepted when file type is accepted', async () => {
+    const onAttachAccepted = jest.fn();
+    render(
+      <AttachButton
+        inputTestId="input"
+        allowedFileTypes={{ 'text/plain': ['.txt'] }}
+        onAttachAccepted={onAttachAccepted}
+      />
+    );
+
+    const file = new File(['hello'], 'example.txt', { type: 'text/plain' });
+    const input = screen.getByTestId('input');
+
+    await userEvent.upload(input, file);
+
+    expect(onAttachAccepted).toHaveBeenCalled();
+    const [attachedFile] = onAttachAccepted.mock.calls[0][0];
+    expect(attachedFile).toEqual(file);
+  });
+
+  it('should not call onAttachAccepted when file type is not accepted', async () => {
+    const onAttachAccepted = jest.fn();
+    render(
+      <AttachButton
+        inputTestId="input"
+        allowedFileTypes={{ 'text/plain': ['.txt'] }}
+        onAttachAccepted={onAttachAccepted}
+      />
+    );
+
+    const file = new File(['[]'], 'example.json', { type: 'application/json' });
+    const input = screen.getByTestId('input');
+
+    await userEvent.upload(input, file);
+
+    expect(onAttachAccepted).not.toHaveBeenCalled();
+  });
 });

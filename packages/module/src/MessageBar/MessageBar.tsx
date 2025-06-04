@@ -1,5 +1,6 @@
 import type { ChangeEvent, FunctionComponent, KeyboardEvent as ReactKeyboardEvent } from 'react';
 import { useCallback, useEffect, useRef, useState } from 'react';
+import { Accept } from 'react-dropzone/.';
 import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
 // Import Chatbot components
@@ -78,6 +79,12 @@ export interface MessageBarProps extends TextAreaProps {
   /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
   displayMode?: ChatbotDisplayMode;
   isCompact?: boolean;
+  /** Specifies the file types accepted by the attachment upload component.
+   *  Files that don't match the accepted types will be disabled in the file picker.
+   *  For example,
+   *   allowedFileTypes: { 'application/json': ['.json'], 'text/plain': ['.txt'] }
+   **/
+  allowedFileTypes?: Accept;
 }
 
 export const MessageBar: FunctionComponent<MessageBarProps> = ({
@@ -98,6 +105,7 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
   displayMode,
   value,
   isCompact = false,
+  allowedFileTypes,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -295,6 +303,7 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
             tooltipContent={buttonProps?.attach?.tooltipContent}
             isCompact={isCompact}
             tooltipProps={buttonProps?.attach?.tooltipProps}
+            allowedFileTypes={allowedFileTypes}
             {...buttonProps?.attach?.props}
           />
         )}
@@ -306,6 +315,7 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
             inputTestId={buttonProps?.attach?.inputTestId}
             isCompact={isCompact}
             tooltipProps={buttonProps?.attach?.tooltipProps}
+            allowedFileTypes={allowedFileTypes}
             {...buttonProps?.attach?.props}
           />
         )}
