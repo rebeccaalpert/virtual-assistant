@@ -3,6 +3,7 @@ import { DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-cor
 import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon } from '@patternfly/react-icons';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
+import { createRef } from 'react';
 import SourceDetailsMenuItem from '../SourceDetailsMenuItem';
 import { MessageBar } from './MessageBar';
 
@@ -379,5 +380,11 @@ describe('Message bar', () => {
     expect(screen.queryByRole('button', { name: 'Use microphone' })).toBeFalsy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toBeTruthy();
     expect(screen.getByRole('textbox', { name: /Send a message.../i })).toHaveValue('test');
+  });
+  it('should focus textarea when using a custom ref', () => {
+    const ref = createRef<HTMLTextAreaElement>();
+    render(<MessageBar onSendMessage={jest.fn} innerRef={ref} />);
+    ref.current?.focus();
+    expect(document.activeElement).toBe(screen.getByRole('textbox'));
   });
 });

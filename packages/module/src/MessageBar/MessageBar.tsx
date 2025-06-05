@@ -1,5 +1,5 @@
-import type { ChangeEvent, FunctionComponent, KeyboardEvent as ReactKeyboardEvent } from 'react';
-import { useCallback, useEffect, useRef, useState } from 'react';
+import type { ChangeEvent, FunctionComponent, KeyboardEvent as ReactKeyboardEvent, Ref } from 'react';
+import { forwardRef, useCallback, useEffect, useRef, useState } from 'react';
 import { Accept } from 'react-dropzone/.';
 import { ButtonProps, DropEvent, TextArea, TextAreaProps, TooltipProps } from '@patternfly/react-core';
 
@@ -32,7 +32,7 @@ export interface MessageBarWithAttachMenuProps {
   onAttachMenuOpenChange?: (isOpen: boolean) => void;
 }
 
-export interface MessageBarProps extends TextAreaProps {
+export interface MessageBarProps extends Omit<TextAreaProps, 'innerRef'> {
   /** Callback to get the value of input message by user */
   onSendMessage: (message: string | number) => void;
   /** Class Name for the MessageBar component */
@@ -78,6 +78,7 @@ export interface MessageBarProps extends TextAreaProps {
   onChange?: (event: React.ChangeEvent<HTMLTextAreaElement>, value: string | number) => void;
   /** Display mode of chatbot, if you want to message bar to resize when the display mode changes */
   displayMode?: ChatbotDisplayMode;
+  /** Whether message bar is compact */
   isCompact?: boolean;
   /** Specifies the file types accepted by the attachment upload component.
    *  Files that don't match the accepted types will be disabled in the file picker.
@@ -85,9 +86,11 @@ export interface MessageBarProps extends TextAreaProps {
    *   allowedFileTypes: { 'application/json': ['.json'], 'text/plain': ['.txt'] }
    **/
   allowedFileTypes?: Accept;
+  /** Ref applied to message bar textarea, for use with focus or other custom behaviors  */
+  innerRef?: React.Ref<HTMLTextAreaElement>;
 }
 
-export const MessageBar: FunctionComponent<MessageBarProps> = ({
+export const MessageBarBase: FunctionComponent<MessageBarProps> = ({
   onSendMessage,
   className,
   alwayShowSendButton,
@@ -106,6 +109,7 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
   value,
   isCompact = false,
   allowedFileTypes,
+  innerRef,
   ...props
 }: MessageBarProps) => {
   // Text Input
@@ -113,7 +117,8 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
   const [message, setMessage] = useState<string | number>(value ?? '');
   const [isListeningMessage, setIsListeningMessage] = useState<boolean>(false);
   const [hasSentMessage, setHasSentMessage] = useState(false);
-  const textareaRef = useRef<HTMLTextAreaElement>(null);
+  const inputRef = useRef<HTMLTextAreaElement>(null);
+  const textareaRef = (innerRef as React.RefObject<HTMLTextAreaElement>) ?? inputRef;
   const attachButtonRef = useRef<HTMLButtonElement>(null);
 
   const topMargin = '1rem';
@@ -391,4 +396,9 @@ export const MessageBar: FunctionComponent<MessageBarProps> = ({
   return <div className={`pf-chatbot__message-bar ${className ?? ''}`}>{messageBarContents}</div>;
 };
 
+const MessageBar = forwardRef((props: MessageBarProps, ref: Ref<HTMLTextAreaElement>) => (
+  <MessageBarBase innerRef={ref} {...props} />
+));
+
+export { MessageBar };
 export default MessageBar;
