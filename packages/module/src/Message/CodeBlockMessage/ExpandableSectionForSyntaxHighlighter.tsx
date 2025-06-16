@@ -176,6 +176,7 @@ class ExpandableSectionForSyntaxHighlighter extends Component<ExpandableSectionP
       contentId,
       toggleId,
       variant,
+      // Gets rid of console error about it being on a DOM element
       // eslint-disable-next-line
       truncateMaxLines,
       ...props
