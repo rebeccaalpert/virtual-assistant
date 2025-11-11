@@ -31,6 +31,8 @@ export interface ActionProps extends Omit<ButtonProps, 'ref'> {
   tooltipProps?: TooltipProps;
   /** Icon for custom response action */
   icon?: React.ReactNode;
+  /** Icon for custom response action when clicked. Defaults to the value of icon if not provided. */
+  clickedIcon?: React.ReactNode;
   /** Ref for response action button */
   ref?: React.Ref<HTMLButtonElement>;
   /** Whether content launched by button, such as the feedback form, is expanded */
@@ -253,6 +255,7 @@ export const ResponseActions: FunctionComponent<ResponseActionProps> = ({ action
           tooltipProps={additionalActions[action]?.tooltipProps}
           clickedTooltipContent={additionalActions[action]?.clickedTooltipContent}
           icon={additionalActions[action]?.icon}
+          clickedIcon={additionalActions[action]?.clickedIcon}
           isClicked={activeButton === action}
           ref={additionalActions[action]?.ref}
           aria-expanded={additionalActions[action]?.['aria-expanded']}

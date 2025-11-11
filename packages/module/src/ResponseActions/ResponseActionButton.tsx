@@ -9,6 +9,8 @@ export interface ResponseActionButtonProps extends ButtonProps {
   clickedAriaLabel?: string;
   /** Icon for the button */
   icon: React.ReactNode;
+  /** Icon for the button when clicked. Defaults to the value of icon if not provided. */
+  clickedIcon?: React.ReactNode;
   /** On-click handler for the button */
   onClick?: ((event: MouseEvent | React.MouseEvent<Element, MouseEvent> | KeyboardEvent) => void) | undefined;
   /** Class name for the button */
@@ -32,6 +34,7 @@ export const ResponseActionButtonBase: FunctionComponent<ResponseActionButtonPro
   clickedAriaLabel = ariaLabel,
   className,
   icon,
+  clickedIcon,
   isDisabled,
   onClick,
   tooltipContent,
@@ -47,6 +50,8 @@ export const ResponseActionButtonBase: FunctionComponent<ResponseActionButtonPro
     }
     return isClicked ? clickedTooltipContent : tooltipContent;
   };
+
+  const displayIcon = isClicked && clickedIcon !== undefined ? clickedIcon : icon;
 
   return (
     <Tooltip
@@ -68,7 +73,7 @@ export const ResponseActionButtonBase: FunctionComponent<ResponseActionButtonPro
         aria-label={generateAriaLabel()}
         icon={
           <Icon isInline size="lg">
-            {icon}
+            {displayIcon}
           </Icon>
         }
         isDisabled={isDisabled}

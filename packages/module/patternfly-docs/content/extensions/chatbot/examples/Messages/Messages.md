@@ -104,6 +104,8 @@ If you unintentionally set `isClicked: true` for multiple buttons, the component
 
 Once the component has rendered, user interactions will take precedence over the initial `isClicked` prop. Clicking a button will activate it and deactivate any other active button. The `isDisabled` prop for each action button specifies if a button is interactive or not.
 
+For custom actions (additionalActions), you can also provide a `clickedIcon` prop to display a different icon when the button is in the clicked state. If `clickedIcon` is not provided, the button will use the default `icon` when clicked.
+
 ```js file="./MessageWithClickedResponseActions.tsx"
 
 ```
@@ -118,11 +120,12 @@ Beyond the standard message actions (good response, bad response, copy, share, o
 - `isClicked`
 - `isDisabled`
 - `tooltipContent`
-- `tooltipContent`
+- `clickedTooltipContent`
 - `tooltipProps`
 - `icon`
+- `clickedIcon`
 
-You can apply a `clickedAriaLabel` and `clickedTooltipContent` once a button is clicked. If either of these props are omitted, their values will default to the `ariaLabel` or `tooltipContent` supplied.
+You can apply a `clickedAriaLabel`, `clickedTooltipContent`, and `clickedIcon` once a button is clicked. If any of these props are omitted, their values will default to the `ariaLabel`, `tooltipContent`, or `icon` supplied.
 
 ```js file="./MessageWithCustomResponseActions.tsx"
 
