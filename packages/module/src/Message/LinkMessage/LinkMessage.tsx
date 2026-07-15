@@ -3,7 +3,7 @@
 // ============================================================================
 
 import { Button, ButtonProps } from '@patternfly/react-core';
-import { ExternalLinkSquareAltIcon } from '@patternfly/react-icons';
+import { RhMicronsExternalLinkIcon } from '@patternfly/react-icons';
 import { ExtraProps } from 'react-markdown';
 import { css } from '@patternfly/react-styles';
 
@@ -26,7 +26,7 @@ const LinkMessage = ({
         component="a"
         variant="link"
         href={href}
-        icon={<ExternalLinkSquareAltIcon />}
+        icon={<RhMicronsExternalLinkIcon />}
         iconPosition="end"
         isInline
         target={target}

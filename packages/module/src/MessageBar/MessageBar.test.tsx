@@ -6,7 +6,7 @@ import {
   MenuSearchInputProps,
   MenuSearchProps
 } from '@patternfly/react-core';
-import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon } from '@patternfly/react-icons';
+import { BellIcon, CalendarAltIcon, ClipboardIcon, RhUiCodeIcon } from '@patternfly/react-icons';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { createRef } from 'react';
@@ -52,10 +52,10 @@ const ATTACH_MENU_ITEMS = [
       <DropdownItem value="Logs" id="3" icon={<ClipboardIcon />}>
         Logs
       </DropdownItem>
-      <DropdownItem value="YAML - Status" id="4" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - Status" id="4" icon={<RhUiCodeIcon />}>
         YAML - Status
       </DropdownItem>
-      <DropdownItem value="YAML - All contents" id="5" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - All contents" id="5" icon={<RhUiCodeIcon />}>
         YAML - All contents
       </DropdownItem>
     </DropdownList>

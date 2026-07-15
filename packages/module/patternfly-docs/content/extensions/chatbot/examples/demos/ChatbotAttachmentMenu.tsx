@@ -11,7 +11,7 @@ import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetail
 import ChatbotAlert from '@patternfly/chatbot/dist/dynamic/ChatbotAlert';
 import { Divider, DropdownGroup, DropdownItem, DropdownList, DropEvent } from '@patternfly/react-core';
 import FileDetailsLabel from '@patternfly/chatbot/dist/dynamic/FileDetailsLabel';
-import { BellIcon, CalendarAltIcon, ClipboardIcon, CodeIcon, UploadIcon } from '@patternfly/react-icons';
+import { BellIcon, CalendarAltIcon, ClipboardIcon, RhUiCodeIcon, RhUiUploadIcon } from '@patternfly/react-icons';
 import { useDropzone } from 'react-dropzone';
 import userAvatar from '../Messages/user_avatar.svg';
 import '@patternfly/react-core/dist/styles/base.css';
@@ -57,10 +57,10 @@ const initialMenuItems = [
       <DropdownItem value="Logs" id="3" icon={<ClipboardIcon />}>
         Logs
       </DropdownItem>
-      <DropdownItem value="YAML - Status" id="4" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - Status" id="4" icon={<RhUiCodeIcon />}>
         YAML - Status
       </DropdownItem>
-      <DropdownItem value="YAML - All contents" id="5" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - All contents" id="5" icon={<RhUiCodeIcon />}>
         YAML - All contents
       </DropdownItem>
     </DropdownList>
@@ -150,7 +150,7 @@ export const AttachmentMenuDemo: FunctionComponent = () => {
         key="upload"
         value="upload"
         id="upload"
-        icon={<UploadIcon />}
+        icon={<RhUiUploadIcon />}
       >
         Upload from computer
       </DropdownItem>

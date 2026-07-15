@@ -2,7 +2,7 @@ import { useState, isValidElement, cloneElement, Children, FunctionComponent, Re
 import AttachMenu from '@patternfly/chatbot/dist/dynamic/AttachMenu';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { Button, Divider, DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
-import { BellIcon, CodeIcon, ClipboardIcon, CalendarAltIcon, UploadIcon } from '@patternfly/react-icons';
+import { BellIcon, RhUiCodeIcon, ClipboardIcon, CalendarAltIcon, RhUiUploadIcon } from '@patternfly/react-icons';
 import PaperclipIcon from './PaperclipIcon';
 
 const initialMenuItems = [
@@ -44,10 +44,10 @@ const initialMenuItems = [
       <DropdownItem value="Logs" id="3" icon={<ClipboardIcon />}>
         Logs
       </DropdownItem>
-      <DropdownItem value="YAML - Status" id="4" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - Status" id="4" icon={<RhUiCodeIcon />}>
         YAML - Status
       </DropdownItem>
-      <DropdownItem value="YAML - All contents" id="5" icon={<CodeIcon />}>
+      <DropdownItem value="YAML - All contents" id="5" icon={<RhUiCodeIcon />}>
         YAML - All contents
       </DropdownItem>
     </DropdownList>
@@ -57,7 +57,7 @@ const initialMenuItems = [
 const uploadMenuItems = [
   <Divider key="divider" />,
   <DropdownList key="list-2">
-    <DropdownItem key="upload" value="upload" id="upload" icon={<UploadIcon />}>
+    <DropdownItem key="upload" value="upload" id="upload" icon={<RhUiUploadIcon />}>
       Upload from computer
     </DropdownItem>
   </DropdownList>
