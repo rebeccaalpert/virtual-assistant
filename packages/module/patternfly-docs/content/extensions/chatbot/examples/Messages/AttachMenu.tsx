@@ -2,8 +2,14 @@ import { useState, isValidElement, cloneElement, Children, FunctionComponent, Re
 import AttachMenu from '@patternfly/chatbot/dist/dynamic/AttachMenu';
 import SourceDetailsMenuItem from '@patternfly/chatbot/dist/dynamic/SourceDetailsMenuItem';
 import { Button, Divider, DropdownGroup, DropdownItem, DropdownList } from '@patternfly/react-core';
-import { BellIcon, RhUiCodeIcon, ClipboardIcon, CalendarAltIcon, RhUiUploadIcon } from '@patternfly/react-icons';
-import PaperclipIcon from './PaperclipIcon';
+import {
+  RhUiCalendarFillIcon,
+  RhUiClipboardFillIcon,
+  RhUiCodeIcon,
+  RhUiNotificationFillIcon,
+  RhUiPaperClipIcon,
+  RhUiUploadIcon
+} from '@patternfly/react-icons';
 
 const initialMenuItems = [
   <DropdownList key="list-1">
@@ -35,13 +41,13 @@ const initialMenuItems = [
   </DropdownList>,
   <DropdownGroup key="group2">
     <DropdownList>
-      <DropdownItem value="Alerts" id="1" icon={<BellIcon />}>
+      <DropdownItem value="Alerts" id="1" icon={<RhUiNotificationFillIcon />}>
         Alerts
       </DropdownItem>
-      <DropdownItem value="Events" id="2" icon={<CalendarAltIcon />}>
+      <DropdownItem value="Events" id="2" icon={<RhUiCalendarFillIcon />}>
         Events
       </DropdownItem>
-      <DropdownItem value="Logs" id="3" icon={<ClipboardIcon />}>
+      <DropdownItem value="Logs" id="3" icon={<RhUiClipboardFillIcon />}>
         Logs
       </DropdownItem>
       <DropdownItem value="YAML - Status" id="4" icon={<RhUiCodeIcon />}>
@@ -141,7 +147,8 @@ export const AttachmentMenuExample: FunctionComponent = () => {
           }}
           ref={toggleRef}
           onClick={onToggleClick}
-          icon={<img src={PaperclipIcon} alt="Add an attachment" />}
+          icon={<RhUiPaperClipIcon />}
+          aria-label="Add an attachment"
         />
       )}
     />

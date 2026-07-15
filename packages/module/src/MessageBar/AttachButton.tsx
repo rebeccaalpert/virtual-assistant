@@ -8,8 +8,7 @@ import { forwardRef } from 'react';
 // Import PatternFly components
 import { Button, ButtonProps, Icon, Tooltip, TooltipProps } from '@patternfly/react-core';
 import { Accept, DropEvent, DropzoneOptions, FileError, FileRejection, useDropzone } from 'react-dropzone';
-import { PaperclipIcon } from '@patternfly/react-icons/dist/esm/icons/paperclip-icon';
-
+import { RhUiPaperClipIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-paper-clip-icon';
 export interface AttachButtonProps extends ButtonProps {
   /** Callback for when button is clicked */
   onClick?: (event: React.MouseEvent<HTMLButtonElement>) => void;
@@ -74,7 +73,7 @@ const AttachButtonBase: FunctionComponent<AttachButtonProps> = ({
   onAttachRejected,
   validator,
   dropzoneProps,
-  icon = <PaperclipIcon />,
+  icon = <RhUiPaperClipIcon />,
   ...props
 }: AttachButtonProps) => {
   const { open, getInputProps } = useDropzone({
