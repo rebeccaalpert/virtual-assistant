@@ -1,0 +1,99 @@
+// ============================================================================
+// Canvas
+// ============================================================================
+.pf-chatbot__canvas {
+  --pf-chatbot__canvas--BackgroundColor: var(--pf-t--global--background--color--secondary--default);
+  --pf-chatbot__canvas--Padding: var(--pf-t--global--spacer--lg);
+  --pf-chatbot__canvas-model-toggle--MinWidth: 7.5rem;
+
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  background-color: var(--pf-chatbot__canvas--BackgroundColor);
+}
+
+:where(.pf-v6-theme-glass) .pf-chatbot__canvas {
+  --pf-chatbot__canvas--BackgroundColor: var(--pf-t--global--background--color--glass--primary--default);
+}
+
+// Drawer
+// ----------------------------------------------------------------------------
+.pf-chatbot__canvas-drawer {
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+  background-color: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--Opacity: 1;
+  --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--m-inline--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-code-editor__main--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+
+  .pf-v6-c-drawer__main,
+  .pf-v6-c-drawer__panel,
+  .pf-v6-c-drawer__panel-main {
+    background-color: var(--pf-chatbot__canvas--BackgroundColor);
+  }
+}
+
+@media screen and (min-width: 48rem) {
+  .pf-v6-c-drawer.pf-m-inline.pf-chatbot__canvas-drawer {
+    --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+    --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  }
+}
+
+.pf-chatbot__canvas-body {
+  height: 100%;
+}
+
+.pf-chatbot__canvas-column {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+// Panel
+// ----------------------------------------------------------------------------
+.pf-chatbot__canvas-panel {
+  height: 100%;
+  overflow: hidden;
+  background-color: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--m-inline--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+}
+
+.pf-chatbot__canvas-panel-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  padding: var(--pf-chatbot__canvas--Padding);
+  box-sizing: border-box;
+  background-color: var(--pf-chatbot__canvas--BackgroundColor);
+}
+
+.pf-chatbot__canvas-head {
+  margin-block-end: var(--pf-t--global--spacer--lg);
+}
+
+.pf-chatbot__canvas-editor {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+.pf-chatbot__canvas-editor-loading {
+  height: 100%;
+  background-color: var(--pf-chatbot__canvas--BackgroundColor);
+}
+
+.pf-chatbot__canvas-model-toggle {
+  min-width: var(--pf-chatbot__canvas-model-toggle--MinWidth);
+}

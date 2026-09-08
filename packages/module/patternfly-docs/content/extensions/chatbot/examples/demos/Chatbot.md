@@ -48,11 +48,28 @@ ChatbotHeaderOptionsDropdown,
 ChatbotHeaderCloseButton,
 } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
 
-import { RhUiExpandIcon, RhUiOpenDrawerRightIcon, RhUiMenuBarsIcon, RhUiRestoreWindowIcon } from '@patternfly/react-icons';
+import { RhUiExpandIcon, RhUiOpenDrawerRightIcon, RhUiMenuBarsIcon, RhUiRestoreWindowIcon, RhUiAiEditIcon } from '@patternfly/react-icons';
+import { CodeEditor, Language } from '@patternfly/react-code-editor';
+import { useDropzone } from 'react-dropzone';
+import RhUiAddIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-add-icon';
+import RhUiClipboardIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-clipboard-icon';
+import RhUiCodeIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-code-icon';
+import RhUiUploadIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-upload-icon';
 import { BarsIcon } from '@patternfly/react-icons/dist/esm/icons/bars-icon';
 import { RhUiBuildFillIcon, RhUiCopyFillIcon } from '@patternfly/react-icons';
+import RhUiImageFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-image-fill-icon';
 import {
 Button,
+Divider,
+Drawer,
+DrawerActions,
+DrawerCloseButton,
+DrawerContent,
+DrawerContentBody,
+DrawerHead,
+DrawerPanelContent,
+DropdownItem,
+DropdownList,
 DescriptionList,
 DescriptionListDescription,
 DescriptionListGroup,
@@ -61,7 +78,12 @@ ExpandableSection,
 ExpandableSectionVariant,
 Flex,
 FlexItem,
-Label
+Label,
+MenuToggle,
+Select,
+SelectList,
+SelectOption,
+Title
 } from '@patternfly/react-core';
 import PFHorizontalLogoColor from '../UI/PF-HorizontalLogo-Color.svg';
 import PFHorizontalLogoReverse from '../UI/PF-HorizontalLogo-Reverse.svg';
@@ -70,7 +92,7 @@ import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 import patternflyAvatar from '../Messages/patternfly_avatar.jpg';
 import { getTrackingProviders } from "@patternfly/chatbot/dist/dynamic/tracking";
-import { useEffect,useCallback, useRef, useState, FunctionComponent, MouseEvent, MouseEvent as ReactMouseEvent } from 'react';
+import { useEffect,useCallback, useRef, useState, FunctionComponent, MouseEvent, MouseEvent as ReactMouseEvent, ReactNode } from 'react';
 import saveAs from 'file-saver';
 
 ### Basic ChatBot
@@ -184,6 +206,38 @@ Your code structure should look like this:
 ```
 
 ```js file="./EmbeddedComparisonChatbot.tsx" isFullscreen
+
+```
+
+### Canvas
+
+To let users work with generated or editable content alongside a conversation, you can open a canvas drawer next to a fullscreen ChatBot. The following demo places the ChatBot on the left and a PatternFly drawer on the right. Canvas content is fully flexible&mdash;this example uses a PatternFly [`<CodeEditor>`](/components/code-editor), but you can render any React node in the canvas.
+
+Canvas mode is launched by clicking the **Canvas** label below the message bar. You can also enable or disable canvas mode from the attach menu, and dismiss the label to exit canvas mode.
+
+Apply the `pf-chatbot__canvas*` classes from `@patternfly/chatbot` so the drawer matches ChatBot backgrounds and fills the fullscreen layout.
+<br /><br />
+Your code structure should look like this:
+
+```noLive
+<Chatbot displayMode={ChatbotDisplayMode.fullscreen}>
+  <div className="pf-chatbot__canvas">
+    <Drawer className="pf-chatbot__canvas-drawer" isExpanded={...} isInline position="end">
+      <DrawerContent panelContent={/* CodeEditor or other canvas content */}>
+        <DrawerContentBody className="pf-chatbot__canvas-body">
+          <ChatbotHeader ... />
+          <ChatbotContent ... />
+          <ChatbotFooter ... >
+            <MessageBar additionalActions={<Label ...>Canvas</Label>} ... />
+          </ChatbotFooter>
+        </DrawerContentBody>
+      </DrawerContent>
+    </Drawer>
+  </div>
+</Chatbot>
+```
+
+```js file="./Canvas.tsx" isFullscreen
 
 ```
 
