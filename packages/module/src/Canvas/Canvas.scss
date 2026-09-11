@@ -4,7 +4,6 @@
 .pf-chatbot__canvas {
   --pf-chatbot__canvas--BackgroundColor: var(--pf-t--global--background--color--secondary--default);
   --pf-chatbot__canvas--Padding: var(--pf-t--global--spacer--lg);
-  --pf-chatbot__canvas-model-toggle--MinWidth: 7.5rem;
 
   display: flex;
   flex-direction: column;
@@ -29,11 +28,12 @@
   --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
   --pf-v6-c-drawer__panel--m-inline--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
   --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--m-glass--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
   --pf-v6-c-code-editor__main--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
 
-  .pf-v6-c-drawer__main,
-  .pf-v6-c-drawer__panel,
-  .pf-v6-c-drawer__panel-main {
+  > .pf-v6-c-drawer__main,
+  > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel,
+  > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel .pf-v6-c-drawer__panel-main {
     background-color: var(--pf-chatbot__canvas--BackgroundColor);
   }
 }
@@ -65,20 +65,56 @@
   --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
   --pf-v6-c-drawer__panel--m-inline--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
   --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
-}
+  --pf-v6-c-drawer__panel--m-glass--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  --pf-v6-c-drawer__panel--PaddingBlockStart: 0;
+  --pf-v6-c-drawer__panel--PaddingBlockEnd: 0;
+  --pf-v6-c-drawer__panel--RowGap: 0;
 
-.pf-chatbot__canvas-panel-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  min-height: 0;
-  padding: var(--pf-chatbot__canvas--Padding);
-  box-sizing: border-box;
-  background-color: var(--pf-chatbot__canvas--BackgroundColor);
-}
+  .pf-v6-c-drawer__panel-main {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    height: 100%;
+  }
 
-.pf-chatbot__canvas-head {
-  margin-block-end: var(--pf-t--global--spacer--lg);
+  .pf-chatbot__canvas-panel-body {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    padding-block-end: var(--pf-chatbot__canvas--Padding);
+    padding-inline: var(--pf-chatbot__canvas--Padding);
+    box-sizing: border-box;
+    background-color: var(--pf-chatbot__canvas--BackgroundColor);
+  }
+
+  .pf-chatbot__canvas-head {
+    width: 100%;
+    grid-template-columns: minmax(0, 1fr) max-content;
+    --pf-v6-c-drawer__head--PaddingBlockStart: var(--pf-chatbot__canvas--Padding);
+    --pf-v6-c-drawer__head--PaddingBlockEnd: var(--pf-t--global--spacer--lg);
+    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-chatbot__canvas--Padding);
+    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-chatbot__canvas--Padding);
+
+    .pf-v6-c-drawer__actions {
+      grid-column: 2;
+      justify-self: end;
+      align-self: start;
+      width: max-content;
+      --pf-v6-c-drawer__actions--MarginBlockStart: 0;
+      --pf-v6-c-drawer__actions--MarginInlineEnd: 0;
+
+      .pf-v6-c-button {
+        border-radius: var(--pf-t--global--border--radius--pill);
+        justify-content: center;
+        align-items: center;
+
+        &::before {
+          border-radius: inherit;
+        }
+      }
+    }
+  }
 }
 
 .pf-chatbot__canvas-editor {
@@ -87,13 +123,13 @@
   flex-direction: column;
   min-height: 0;
   height: 100%;
+
+  .pf-v6-c-code-editor {
+    --pf-v6-c-code-editor__main--BackgroundColor: var(--pf-chatbot__canvas--BackgroundColor);
+  }
 }
 
 .pf-chatbot__canvas-editor-loading {
   height: 100%;
   background-color: var(--pf-chatbot__canvas--BackgroundColor);
-}
-
-.pf-chatbot__canvas-model-toggle {
-  min-width: var(--pf-chatbot__canvas-model-toggle--MinWidth);
 }

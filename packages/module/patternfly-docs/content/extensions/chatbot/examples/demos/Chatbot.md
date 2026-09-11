@@ -209,38 +209,6 @@ Your code structure should look like this:
 
 ```
 
-### Canvas
-
-To let users work with generated or editable content alongside a conversation, you can open a canvas drawer next to a fullscreen ChatBot. The following demo places the ChatBot on the left and a PatternFly drawer on the right. Canvas content is fully flexible&mdash;this example uses a PatternFly [`<CodeEditor>`](/components/code-editor), but you can render any React node in the canvas.
-
-Canvas mode is launched by clicking the **Canvas** label below the message bar. You can also enable or disable canvas mode from the attach menu, and dismiss the label to exit canvas mode.
-
-Apply the `pf-chatbot__canvas*` classes from `@patternfly/chatbot` so the drawer matches ChatBot backgrounds and fills the fullscreen layout.
-<br /><br />
-Your code structure should look like this:
-
-```noLive
-<Chatbot displayMode={ChatbotDisplayMode.fullscreen}>
-  <div className="pf-chatbot__canvas">
-    <Drawer className="pf-chatbot__canvas-drawer" isExpanded={...} isInline position="end">
-      <DrawerContent panelContent={/* CodeEditor or other canvas content */}>
-        <DrawerContentBody className="pf-chatbot__canvas-body">
-          <ChatbotHeader ... />
-          <ChatbotContent ... />
-          <ChatbotFooter ... >
-            <MessageBar additionalActions={<Label ...>Canvas</Label>} ... />
-          </ChatbotFooter>
-        </DrawerContentBody>
-      </DrawerContent>
-    </Drawer>
-  </div>
-</Chatbot>
-```
-
-```js file="./Canvas.tsx" isFullscreen
-
-```
-
 ### Chat transcripts
 
 This demo illustrates how you could add downloadable transcripts to your ChatBot, which outline conversation details in a Markdown file. This approach allows users to easily share information from a conversation with others.
