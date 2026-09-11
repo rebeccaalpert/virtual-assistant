@@ -683,6 +683,7 @@ export const ChatbotConversationHistoryNav: FunctionComponent<ChatbotConversatio
         aria-live="polite"
         focusTrap={{ enabled: true }}
         defaultSize="384px"
+        isNoPlainOnGlass
         {...drawerPanelContentProps}
       >
         {drawer}

@@ -204,6 +204,19 @@ describe('ChatbotConversationHistoryNav', () => {
     );
   });
 
+  it('should keep an opaque panel background in glass theme', () => {
+    render(
+      <ChatbotConversationHistoryNav
+        onDrawerToggle={onDrawerToggle}
+        isDrawerOpen={true}
+        displayMode={ChatbotDisplayMode.fullscreen}
+        setIsDrawerOpen={jest.fn()}
+        conversations={initialConversations}
+      />
+    );
+    expect(screen.getByRole('dialog')).toHaveClass('pf-m-no-plain-on-glass');
+  });
+
   it('should accept drawerContentProps', () => {
     const { container } = render(
       <ChatbotConversationHistoryNav

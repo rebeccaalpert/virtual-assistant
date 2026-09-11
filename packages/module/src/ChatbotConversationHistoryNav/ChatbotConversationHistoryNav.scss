@@ -172,80 +172,90 @@
 
 // Chatbot Header - Drawer
 // ----------------------------------------------------------------------------
+// Child combinators keep these rules off nested drawers such as canvas.
 .pf-chatbot__history.pf-v6-c-drawer {
-  --pf-v6-c-drawer__panel--MinWidth: 24rem;
-  --pf-v6-c-drawer__panel--xl--MinWidth: 24rem;
   height: 70vh;
 
   // Drawer panel
-  .pf-v6-c-drawer__panel {
+  > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel {
+    --pf-v6-c-drawer__panel--MinWidth: 24rem;
+    --pf-v6-c-drawer__panel--xl--MinWidth: 24rem;
     --pf-v6-c-drawer__panel--BackgroundColor: var(--pf-t--global--background--color--floating--default);
+    --pf-v6-c-drawer__panel--m-inline--BackgroundColor: var(--pf-t--global--background--color--floating--default);
+    --pf-v6-c-drawer__panel--m-inline--md--BackgroundColor: var(--pf-t--global--background--color--floating--default);
     --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--lg);
     --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--lg);
     --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--gap--group-to-group--vertical--default);
     overflow-x: hidden;
     overflow-y: hidden;
-  }
 
-  // Drawer head
-  .pf-v6-c-drawer__head {
-    --pf-v6-c-drawer__head--PaddingBlockStart: 0;
-    --pf-v6-c-drawer__head--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
-    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
+    // Drawer head
+    .pf-v6-c-drawer__head {
+      --pf-v6-c-drawer__head--PaddingBlockStart: 0;
+      --pf-v6-c-drawer__head--PaddingBlockEnd: 0;
+      --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+      --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
 
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    height: var(--pf-t--global--spacer--2xl);
-  }
-
-  // Drawer actions
-  .pf-v6-c-drawer__actions {
-    --pf-v6-c-drawer__actions--MarginBlockStart: 0;
-    --pf-v6-c-drawer__actions--MarginInlineEnd: 0;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    align-self: center;
-    width: 100%;
-    height: 100%;
-  }
-
-  .pf-v6-c-drawer__actions--reversed {
-    flex-direction: row-reverse;
-  }
-
-  // Close drawer
-  .pf-v6-c-drawer__close {
-    .pf-v6-c-button {
-      width: var(--pf-t--global--spacer--2xl);
-      height: var(--pf-t--global--spacer--2xl);
-      border-radius: var(--pf-t--global--border--radius--pill);
-      justify-content: center;
+      display: flex;
       align-items: center;
+      justify-content: space-between;
+      height: var(--pf-t--global--spacer--2xl);
+    }
+
+    // Drawer actions
+    .pf-v6-c-drawer__actions {
+      --pf-v6-c-drawer__actions--MarginBlockStart: 0;
+      --pf-v6-c-drawer__actions--MarginInlineEnd: 0;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      align-self: center;
+      width: 100%;
+      height: 100%;
+    }
+
+    .pf-v6-c-drawer__actions--reversed {
+      flex-direction: row-reverse;
+    }
+
+    // Close drawer
+    .pf-v6-c-drawer__close {
+      .pf-v6-c-button {
+        width: var(--pf-t--global--spacer--2xl);
+        height: var(--pf-t--global--spacer--2xl);
+        border-radius: var(--pf-t--global--border--radius--pill);
+        justify-content: center;
+        align-items: center;
+      }
+    }
+
+    // Drawer body
+    .pf-v6-c-drawer__body {
+      --pf-v6-c-drawer__panel__body--PaddingBlockStart: 0;
+      --pf-v6-c-drawer__panel__body--PaddingBlockEnd: 0;
+      --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+      --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
+
+      overflow-y: auto;
+      display: flex;
+      flex-direction: column;
+      height: 70vh;
+    }
+
+    // Resizable drawer spacing is different - needs manual adjustment for gaps between buttons, inputs, etc.
+    &.pf-m-resizable {
+      .pf-v6-c-drawer__panel-main {
+        row-gap: var(--pf-v6-c-drawer__panel--RowGap);
+      }
     }
   }
 
-  // Drawer body
-  .pf-v6-c-drawer__body {
-    --pf-v6-c-drawer__panel__body--PaddingBlockStart: 0;
-    --pf-v6-c-drawer__panel__body--PaddingBlockEnd: 0;
-    --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--lg);
-    --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
-
+  > .pf-v6-c-drawer__main > .pf-v6-c-drawer__content > .pf-v6-c-drawer__body {
     overflow-y: auto;
     display: flex;
     flex-direction: column;
     height: 70vh;
-  }
-
-  // Resizable drawer spacing is different - needs manual adjustment for gaps between buttons, inputs, etc.
-  .pf-v6-c-drawer__panel.pf-m-resizable {
-    .pf-v6-c-drawer__panel-main {
-      row-gap: var(--pf-v6-c-drawer__panel--RowGap);
-    }
   }
 }
 
@@ -279,7 +289,9 @@
 .pf-chatbot--fullscreen {
   .pf-chatbot__history.pf-v6-c-drawer {
     height: 100vh;
-    .pf-v6-c-drawer__body {
+
+    > .pf-v6-c-drawer__main > .pf-v6-c-drawer__content > .pf-v6-c-drawer__body,
+    > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel .pf-v6-c-drawer__body {
       width: 100%;
     }
   }
@@ -291,11 +303,14 @@
 .pf-chatbot--embedded {
   .pf-chatbot__history.pf-v6-c-drawer {
     height: 100%;
-    .pf-v6-c-drawer__body {
+
+    > .pf-v6-c-drawer__main > .pf-v6-c-drawer__content > .pf-v6-c-drawer__body,
+    > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel .pf-v6-c-drawer__body {
       width: 100%;
       height: 100%;
     }
-    .pf-v6-c-drawer__panel {
+
+    > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel {
       height: 100%;
     }
   }
@@ -327,37 +342,36 @@
 }
 
 .pf-chatbot__history.pf-m-compact {
-  .pf-v6-c-drawer__main {
-    .pf-v6-c-drawer__panel {
-      --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--sm);
-      --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
-      --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--md);
-      --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--md);
-      --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--md);
-    }
+  > .pf-v6-c-drawer__main > .pf-v6-c-drawer__panel {
+    --pf-v6-c-drawer__panel--PaddingBlockStart: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-drawer__panel--PaddingBlockEnd: var(--pf-t--global--spacer--sm);
+    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--md);
+    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--md);
+    --pf-v6-c-drawer__panel--RowGap: var(--pf-t--global--spacer--md);
 
     .pf-v6-c-drawer__body {
       --pf-v6-c-drawer__panel__body--PaddingInlineStart: var(--pf-t--global--spacer--md);
       --pf-v6-c-drawer__panel__body--PaddingInlineEnd: var(--pf-t--global--spacer--md);
     }
+
+    .pf-v6-c-drawer__head {
+      --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
+      --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
+    }
+
+    .pf-v6-c-drawer__close {
+      .pf-v6-c-button {
+        width: 2rem;
+        height: 2rem;
+        --pf-v6-c-button--m-plain--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
+        --pf-v6-c-button--m-plain--PaddingInlineStart: var(--pf-t--global--spacer--xs);
+        --pf-v6-c-button--PaddingBlockStart: var(--pf-t--global--spacer--xs);
+        --pf-v6-c-button--PaddingBlockEnd: var(--pf-t--global--spacer--xs);
+      }
+    }
   }
 
   .pf-chatbot__menu-item {
     font-size: var(--pf-t--global--font--size--body--md);
-  }
-
-  .pf-v6-c-drawer__head {
-    --pf-v6-c-drawer__head--PaddingInlineStart: var(--pf-t--global--spacer--lg);
-    --pf-v6-c-drawer__head--PaddingInlineEnd: var(--pf-t--global--spacer--lg);
-  }
-  .pf-v6-c-drawer__close {
-    .pf-v6-c-button {
-      width: 2rem;
-      height: 2rem;
-      --pf-v6-c-button--m-plain--PaddingInlineEnd: var(--pf-t--global--spacer--xs);
-      --pf-v6-c-button--m-plain--PaddingInlineStart: var(--pf-t--global--spacer--xs);
-      --pf-v6-c-button--PaddingBlockStart: var(--pf-t--global--spacer--xs);
-      --pf-v6-c-button--PaddingBlockEnd: var(--pf-t--global--spacer--xs);
-    }
   }
 }
