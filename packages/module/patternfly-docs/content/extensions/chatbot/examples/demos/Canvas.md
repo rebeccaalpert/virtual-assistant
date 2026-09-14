@@ -59,15 +59,13 @@ import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
 import userAvatar from '../Messages/user_avatar.svg';
 
-### Canvas
+**Canvas** lets users work with generated or editable content alongside a conversation. Canvas content is fully flexible, allowing you to render any content suitable for your use case. It is recommended to only utilize canvas mode with a fullscreen Chatbot.
 
-To let users work with generated or editable content alongside a conversation, you can open a canvas drawer next to a fullscreen ChatBot. The following demo places the ChatBot on the left and a PatternFly drawer on the right. Canvas content is fully flexible&mdash;this example uses a PatternFly [`<CodeEditor>`](/components/code-editor), but you can render any React node in the canvas.
+## Composable structure
 
-Canvas mode is launched by clicking the **Canvas** label below the message bar. You can also enable or disable canvas mode from the attach menu, and dismiss the label to exit canvas mode.
+When utilizing a canvas layout, it's recommended to use a PatternFly [drawer](/components/drawer). You must apply the `pf-chatbot__canvas*` classes from `@patternfly/chatbot` so the drawer matches ChatBot backgrounds and fills the fullscreen layout.
 
-Apply the `pf-chatbot__canvas*` classes from `@patternfly/chatbot` so the drawer matches ChatBot backgrounds and fills the fullscreen layout.
-<br /><br />
-Your code structure should look like this:
+The general recommended structure is as follows:
 
 ```noLive
 <Chatbot displayMode={ChatbotDisplayMode.fullscreen}>
@@ -95,6 +93,11 @@ Your code structure should look like this:
   </div>
 </Chatbot>
 ```
+## Demos
+
+### With code editor
+
+This demo shows canvas mode being used to render a PatternFly [code editor](/components/code-editor). Canvas mode is launched by clicking a file chip below a message or the "Canvas" label below the message bar. You can also enable or disable canvas mode from the attach menu and dismiss the label to exit canvas mode.
 
 ```js file="./Canvas.tsx" isFullscreen
 
