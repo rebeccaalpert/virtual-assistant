@@ -536,7 +536,6 @@ export const Canvas: FunctionComponent = () => {
                                   onClose={closeCanvasMode}
                                   aria-expanded={isCanvasOpen}
                                   icon={<RhUiImageFillIcon />}
-                                  isClickable
                                 >
                                   Canvas
                                 </Label>
