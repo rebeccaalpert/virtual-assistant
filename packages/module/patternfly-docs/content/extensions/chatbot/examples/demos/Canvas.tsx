@@ -398,7 +398,6 @@ export const Canvas: FunctionComponent = () => {
             onEditorDidMount={(editor) => {
               editorRef.current = editor;
             }}
-            loading={<div className="pf-chatbot__canvas-editor-loading" />}
           />
         </div>
       </div>

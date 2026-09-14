@@ -93,6 +93,20 @@ The general recommended structure is as follows:
   </div>
 </Chatbot>
 ```
+
+## Class names
+
+| Class name | Purpose |
+| --- | --- |
+| `pf-chatbot__canvas` | Container for the fullscreen canvas layout and its background. |
+| `pf-chatbot__canvas-drawer` | Styles the drawer that contains the canvas panel. |
+| `pf-chatbot__canvas-body` | Ensures the drawer content body fills the available height. |
+| `pf-chatbot__canvas-column` | Arranges the canvas header, content, and footer vertically. |
+| `pf-chatbot__canvas-panel` | Styles the canvas drawer panel and removes the default panel spacing. |
+| `pf-chatbot__canvas-panel-body` | Provides the canvas panel content area and its spacing. |
+| `pf-chatbot__canvas-head` | Styles and positions the canvas panel header and close action. |
+| `pf-chatbot__canvas-editor` | Makes the code editor fill the available canvas space. |
+
 ## Demos
 
 ### With code editor
