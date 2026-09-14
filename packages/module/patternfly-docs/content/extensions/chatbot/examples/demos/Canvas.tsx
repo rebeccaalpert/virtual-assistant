@@ -135,9 +135,12 @@ export const Canvas: FunctionComponent = () => {
   );
   const [code, setCode] = useState(sampleCode);
   const scrollToBottomRef = useRef<HTMLDivElement>(null);
-  const drawerRef = useRef<HTMLSpanElement>(null);
   const historyRef = useRef<HTMLButtonElement>(null);
   const editorRef = useRef<CanvasEditor>(null);
+  const messageInputRef = useRef<HTMLTextAreaElement>(null);
+  const messageActionsRef = useRef<HTMLButtonElement>(null);
+  const wasCanvasOpen = useRef(isCanvasOpen);
+  const shouldFocusCanvasCloseButton = useRef(false);
   const displayMode = ChatbotDisplayMode.fullscreen;
 
   const { open, getInputProps } = useDropzone({
@@ -230,6 +233,33 @@ export const Canvas: FunctionComponent = () => {
   const closeCanvasMode = () => {
     setShowCanvasLabel(false);
     setIsCanvasOpen(false);
+    window.requestAnimationFrame(() => messageInputRef.current?.focus());
+  };
+
+  const focusCanvasCloseButton = () => {
+    document.querySelector<HTMLElement>('#chatbot-canvas-panel .pf-v6-c-drawer__close button')?.focus();
+  };
+
+  useEffect(() => {
+    const wasClosed = !wasCanvasOpen.current;
+    wasCanvasOpen.current = isCanvasOpen;
+
+    if (isCanvasOpen && wasClosed) {
+      shouldFocusCanvasCloseButton.current = true;
+    } else if (!isCanvasOpen) {
+      shouldFocusCanvasCloseButton.current = false;
+    }
+  }, [isCanvasOpen]);
+
+  const onCanvasExpand = () => {
+    if (shouldFocusCanvasCloseButton.current) {
+      shouldFocusCanvasCloseButton.current = false;
+      focusCanvasCloseButton();
+    }
+  };
+
+  const focusMessageActions = () => {
+    window.requestAnimationFrame(() => messageActionsRef.current?.focus());
   };
 
   const findMatchingItems = (targetValue: string) => {
@@ -345,9 +375,9 @@ export const Canvas: FunctionComponent = () => {
           </FlexItem>
         </Flex>
         <DrawerActions>
-          <Tooltip content="Close Canvas" position="bottom" aria="none">
+          <Tooltip content="Close canvas" position="bottom" aria="none">
             <span>
-              <DrawerCloseButton aria-label="Close Canvas" onClose={() => setIsCanvasOpen(false)} />
+              <DrawerCloseButton aria-label="Exit canvas mode" onClose={closeCanvasMode} />
             </span>
           </Tooltip>
         </DrawerActions>
@@ -410,7 +440,7 @@ export const Canvas: FunctionComponent = () => {
                 isExpanded={isCanvasOpen}
                 isInline
                 position="end"
-                onExpand={() => drawerRef.current?.focus()}
+                onExpand={onCanvasExpand}
               >
                 <DrawerContent panelContent={panelContent}>
                   <DrawerContentBody className="pf-chatbot__canvas-body">
@@ -452,6 +482,7 @@ export const Canvas: FunctionComponent = () => {
                       <ChatbotFooter>
                         <MessageBar
                           onSendMessage={handleSend}
+                          innerRef={messageInputRef}
                           attachButtonPosition="start"
                           alwayShowSendButton
                           isSendButtonDisabled={isSendButtonDisabled}
@@ -472,11 +503,13 @@ export const Canvas: FunctionComponent = () => {
                                 }
                               }
                               setIsAttachMenuOpen(false);
+                              focusMessageActions();
                             },
                             onAttachMenuToggleClick: () => setIsAttachMenuOpen(!isAttachMenuOpen)
                           }}
                           buttonProps={{
                             attach: {
+                              innerRef: messageActionsRef,
                               icon: <RhUiAddIcon />,
                               tooltipContent: 'Message actions',
                               'aria-label': 'Message actions'
@@ -487,7 +520,7 @@ export const Canvas: FunctionComponent = () => {
                               {showCanvasLabel && (
                                 <Label
                                   isClickable
-                                  closeBtnAriaLabel="Remove Canvas mode"
+                                  closeBtnAriaLabel="Exit canvas mode"
                                   onClose={closeCanvasMode}
                                   onClick={openCanvas}
                                   aria-expanded={isCanvasOpen}
