@@ -262,6 +262,13 @@ export const Canvas: FunctionComponent = () => {
     window.requestAnimationFrame(() => messageActionsRef.current?.focus());
   };
 
+  const handleGeneratedAiLabelKeyDown = (event: React.KeyboardEvent) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault();
+      event.currentTarget.click();
+    }
+  };
+
   const findMatchingItems = (targetValue: string) => {
     let filteredConversations = Object.entries(initialConversations).reduce((acc, [key, items]) => {
       const filteredItems = items.filter((item) => item.text.toLowerCase().includes(targetValue.toLowerCase()));
@@ -296,7 +303,7 @@ export const Canvas: FunctionComponent = () => {
           Upload from computer
         </DropdownItem>
         <DropdownItem value="canvas" id="canvas" icon={<RhUiImageFillIcon />}>
-          Canvas mode
+          {`${isCanvasOpen ? 'Disable' : 'Enable'} canvas mode`}
         </DropdownItem>
       </DropdownList>
     </>
@@ -368,7 +375,14 @@ export const Canvas: FunctionComponent = () => {
                 </>
               }
             >
-              <Label isClickable variant="outline" icon={<RhUiAiEditIcon aria-hidden />}>
+              <Label
+                isClickable
+                variant="outline"
+                icon={<RhUiAiEditIcon aria-hidden />}
+                role="button"
+                tabIndex={0}
+                onKeyDown={handleGeneratedAiLabelKeyDown}
+              >
                 Generated with AI
               </Label>
             </Popover>
@@ -518,12 +532,11 @@ export const Canvas: FunctionComponent = () => {
                             <>
                               {showCanvasLabel && (
                                 <Label
-                                  isClickable
                                   closeBtnAriaLabel="Exit canvas mode"
                                   onClose={closeCanvasMode}
-                                  onClick={openCanvas}
                                   aria-expanded={isCanvasOpen}
                                   icon={<RhUiImageFillIcon />}
+                                  isClickable
                                 >
                                   Canvas
                                 </Label>
