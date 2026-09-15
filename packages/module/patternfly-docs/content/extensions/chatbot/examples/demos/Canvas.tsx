@@ -39,7 +39,6 @@ import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderTitle
 } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
-import RhUiAiEditIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-edit-icon';
 import RhUiAiInfoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-info-icon';
 import RhUiImageFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-image-fill-icon';
 import RhUiAddIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-add-icon';
@@ -401,7 +400,7 @@ export const Canvas: FunctionComponent = () => {
                 <Label
                   isClickable
                   variant="outline"
-                  icon={<RhUiAiEditIcon aria-hidden />}
+                  icon={<RhUiAiInfoIcon aria-hidden />}
                   role="button"
                   tabIndex={0}
                   aria-expanded={isGeneratedAiPopoverOpen}

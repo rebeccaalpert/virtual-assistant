@@ -52,7 +52,6 @@ import RhUiExportIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-export-
 import RhUiRedoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-redo-icon';
 import RhUiUndoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-undo-icon';
 import RhUiServerUploadFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-server-upload-fill-icon';
-import RhUiAiEditIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-edit-icon';
 import RhUiAiInfoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-info-icon';
 import { useDropzone } from 'react-dropzone';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
