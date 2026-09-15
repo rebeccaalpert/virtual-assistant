@@ -534,7 +534,6 @@ export const Canvas: FunctionComponent = () => {
                                 <Label
                                   closeBtnAriaLabel="Exit canvas mode"
                                   onClose={closeCanvasMode}
-                                  aria-expanded={isCanvasOpen}
                                   icon={<RhUiImageFillIcon />}
                                 >
                                   Canvas
