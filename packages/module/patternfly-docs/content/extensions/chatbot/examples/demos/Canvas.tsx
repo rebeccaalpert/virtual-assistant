@@ -128,6 +128,7 @@ export const Canvas: FunctionComponent = () => {
   const [selectedModel, setSelectedModel] = useState('GPT-4');
   const [showCanvasLabel, setShowCanvasLabel] = useState(true);
   const [isCanvasOpen, setIsCanvasOpen] = useState(true);
+  const [isGeneratedAiPopoverOpen, setIsGeneratedAiPopoverOpen] = useState(false);
   const [isDrawerOpen, setIsDrawerOpen] = useState(false);
   const [chatbotVisible, setChatbotVisible] = useState(true);
   const [conversations, setConversations] = useState<Conversation[] | { [key: string]: Conversation[] }>(
@@ -139,6 +140,7 @@ export const Canvas: FunctionComponent = () => {
   const editorRef = useRef<CanvasEditor>(null);
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const messageActionsRef = useRef<HTMLButtonElement>(null);
+  const canvasSectionRef = useRef<HTMLElement>(null);
   const wasCanvasOpen = useRef(isCanvasOpen);
   const shouldFocusCanvasCloseButton = useRef(false);
   const displayMode = ChatbotDisplayMode.fullscreen;
@@ -236,8 +238,8 @@ export const Canvas: FunctionComponent = () => {
     window.requestAnimationFrame(() => messageInputRef.current?.focus());
   };
 
-  const focusCanvasCloseButton = () => {
-    document.querySelector<HTMLElement>('#chatbot-canvas-panel .pf-v6-c-drawer__close button')?.focus();
+  const focusCanvasSection = () => {
+    canvasSectionRef.current?.focus();
   };
 
   useEffect(() => {
@@ -254,7 +256,7 @@ export const Canvas: FunctionComponent = () => {
   const onCanvasExpand = () => {
     if (shouldFocusCanvasCloseButton.current) {
       shouldFocusCanvasCloseButton.current = false;
-      focusCanvasCloseButton();
+      focusCanvasSection();
     }
   };
 
@@ -314,21 +316,33 @@ export const Canvas: FunctionComponent = () => {
       key="undo"
       icon={<RhUiUndoIcon />}
       aria-label="Undo"
-      tooltipProps={{ content: 'Undo' }}
+      tooltipProps={{
+        content: 'Undo',
+        // prevents VO announcements of both aria label and tooltip
+        aria: 'none'
+      }}
       onClick={() => editorRef.current?.trigger('keyboard', 'undo', null)}
     />,
     <CodeEditorControl
       key="redo"
       icon={<RhUiRedoIcon />}
       aria-label="Redo"
-      tooltipProps={{ content: 'Redo' }}
+      tooltipProps={{
+        content: 'Redo',
+        // prevents VO announcements of both aria label and tooltip
+        aria: 'none'
+      }}
       onClick={() => editorRef.current?.trigger('keyboard', 'redo', null)}
     />,
     <CodeEditorControl
       key="export"
       icon={<RhUiExportIcon />}
       aria-label="Export"
-      tooltipProps={{ content: 'Export' }}
+      tooltipProps={{
+        content: 'Export',
+        // prevents VO announcements of both aria label and tooltip
+        aria: 'none'
+      }}
       onClick={(value) => {
         // eslint-disable-next-line no-console
         console.log('Export', value);
@@ -343,78 +357,89 @@ export const Canvas: FunctionComponent = () => {
       defaultSize="50%"
       minSize="20%"
       id="chatbot-canvas-panel"
-      aria-label="Canvas"
       resizeAriaLabel="Resize canvas"
       className="pf-chatbot__canvas-panel"
     >
-      <DrawerHead className="pf-chatbot__canvas-head">
-        <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}>
-          <FlexItem>
-            <Title headingLevel="h2" size="lg">
-              Edit code
-            </Title>
-          </FlexItem>
-          <FlexItem>
-            <Popover
-              headerContent={
-                <Flex spaceItems={{ default: 'spaceItemsSm' }}>
-                  <FlexItem>
-                    <RhUiAiInfoIcon aria-hidden />
-                  </FlexItem>
-                  <FlexItem>What is canvas mode?</FlexItem>
-                </Flex>
-              }
-              bodyContent={
-                <>
-                  <div className="pf-v6-u-font-size-sm pf-v6-u-mb-md">
-                    This canvas is a collaborative workspace that blends AI-generated content with manual human edits.
-                    You can accept an AI-generated baseline and immediately mold it with direct keystrokes, creating a
-                    seamless partnership over a shared deliverable.
-                  </div>
-                  <div className="pf-v6-u-font-size-xs">Always review AI-generated code prior to use.</div>
-                </>
-              }
-            >
-              <Label
-                isClickable
-                variant="outline"
-                icon={<RhUiAiEditIcon aria-hidden />}
-                role="button"
-                tabIndex={0}
-                onKeyDown={handleGeneratedAiLabelKeyDown}
+      <section
+        ref={canvasSectionRef}
+        className="pf-chatbot__canvas-section"
+        tabIndex={-1}
+        aria-label="Canvas"
+        aria-labelledby="chatbot-canvas-section chatbot-canvas-title"
+        id="chatbot-canvas-section"
+      >
+        <DrawerHead className="pf-chatbot__canvas-head">
+          <Flex spaceItems={{ default: 'spaceItemsMd' }} alignItems={{ default: 'alignItemsCenter' }}>
+            <FlexItem>
+              <Title id="chatbot-canvas-title" headingLevel="h2" size="lg">
+                Edit code
+              </Title>
+            </FlexItem>
+            <FlexItem>
+              <Popover
+                headerContent={
+                  <Flex spaceItems={{ default: 'spaceItemsSm' }}>
+                    <FlexItem>
+                      <RhUiAiInfoIcon aria-hidden />
+                    </FlexItem>
+                    <FlexItem>What is canvas mode?</FlexItem>
+                  </Flex>
+                }
+                bodyContent={
+                  <>
+                    <div className="pf-v6-u-font-size-sm pf-v6-u-mb-md">
+                      This canvas is a collaborative workspace that blends AI-generated content with manual human edits.
+                      You can accept an AI-generated baseline and immediately mold it with direct keystrokes, creating a
+                      seamless partnership over a shared deliverable.
+                    </div>
+                    <div className="pf-v6-u-font-size-xs">Always review AI-generated code prior to use.</div>
+                  </>
+                }
+                onShow={() => setIsGeneratedAiPopoverOpen(true)}
+                onHide={() => setIsGeneratedAiPopoverOpen(false)}
               >
-                Generated with AI
-              </Label>
-            </Popover>
-          </FlexItem>
-        </Flex>
-        <DrawerActions>
-          <Tooltip content="Close canvas" position="bottom" aria="none">
-            <span>
-              <DrawerCloseButton aria-label="Exit canvas mode" onClose={closeCanvasMode} />
-            </span>
-          </Tooltip>
-        </DrawerActions>
-      </DrawerHead>
-      <div className="pf-chatbot__canvas-panel-body">
-        <div className="pf-chatbot__canvas-editor">
-          <CodeEditor
-            isFullHeight
-            isLineNumbersVisible
-            isLanguageLabelVisible
-            isCopyEnabled
-            isDownloadEnabled
-            downloadFileName="canvas-mode"
-            customControls={customControls}
-            code={code}
-            language={Language.yaml}
-            onCodeChange={setCode}
-            onEditorDidMount={(editor) => {
-              editorRef.current = editor;
-            }}
-          />
+                <Label
+                  isClickable
+                  variant="outline"
+                  icon={<RhUiAiEditIcon aria-hidden />}
+                  role="button"
+                  tabIndex={0}
+                  aria-expanded={isGeneratedAiPopoverOpen}
+                  onKeyDown={handleGeneratedAiLabelKeyDown}
+                >
+                  Generated with AI
+                </Label>
+              </Popover>
+            </FlexItem>
+          </Flex>
+          <DrawerActions>
+            <Tooltip content="Close canvas" position="bottom" aria="none">
+              <span>
+                <DrawerCloseButton aria-label="Exit canvas mode" onClose={closeCanvasMode} />
+              </span>
+            </Tooltip>
+          </DrawerActions>
+        </DrawerHead>
+        <div className="pf-chatbot__canvas-panel-body">
+          <div className="pf-chatbot__canvas-editor">
+            <CodeEditor
+              isFullHeight
+              isLineNumbersVisible
+              isLanguageLabelVisible
+              isCopyEnabled
+              isDownloadEnabled
+              downloadFileName="canvas-mode"
+              customControls={customControls}
+              code={code}
+              language={Language.yaml}
+              onCodeChange={setCode}
+              onEditorDidMount={(editor) => {
+                editorRef.current = editor;
+              }}
+            />
+          </div>
         </div>
-      </div>
+      </section>
     </DrawerPanelContent>
   );
 

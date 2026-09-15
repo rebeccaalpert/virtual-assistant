@@ -58,6 +58,14 @@
 
 // Panel
 // ----------------------------------------------------------------------------
+.pf-chatbot__canvas-section {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  min-height: 0;
+  height: 100%;
+}
+
 .pf-chatbot__canvas-panel {
   height: 100%;
   overflow: hidden;

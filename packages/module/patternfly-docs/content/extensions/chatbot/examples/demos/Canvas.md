@@ -73,20 +73,11 @@ The general recommended structure is as follows:
     <Drawer className="pf-chatbot__canvas-drawer" isExpanded={...} isInline position="end">
       <DrawerContent panelContent={/* CodeEditor or other canvas content */}>
         <DrawerContentBody className="pf-chatbot__canvas-body">
-          <ChatbotHeader>
-            <ChatbotHeaderMain>
-              <ChatbotHeaderMenu ... />
-              <ChatbotHeaderTitle>{/* PatternFly logo */}</ChatbotHeaderTitle>
-            </ChatbotHeaderMain>
-            <ChatbotHeaderActions>
-              <ChatbotHeaderCloseButton ... />
-            </ChatbotHeaderActions>
-          </ChatbotHeader>
-          <ChatbotContent ... />
-          <ChatbotFooter ... >
-            <MessageBar additionalActions={<Label ...>Canvas</Label>} ... />
-            <ChatbotFootnote label="Always review AI-generated content prior to use." />
-          </ChatbotFooter>
+          <div className="pf-chatbot__canvas-column">
+            <ChatbotHeader .../>
+            <ChatbotContent ... />
+            <ChatbotFooter ... >
+          </div>
         </DrawerContentBody>
       </DrawerContent>
     </Drawer>
@@ -100,6 +91,7 @@ The general recommended structure is as follows:
 | --- | --- |
 | `pf-chatbot__canvas` | Container for the fullscreen canvas layout and its background. |
 | `pf-chatbot__canvas-drawer` | Styles the drawer that contains the canvas panel. |
+| `pf-chatbot__canvas-section` | Styles the section used within the drawer for focus. |
 | `pf-chatbot__canvas-body` | Ensures the drawer content body fills the available height. |
 | `pf-chatbot__canvas-column` | Arranges the canvas header, content, and footer vertically. |
 | `pf-chatbot__canvas-panel` | Styles the canvas drawer panel and removes the default panel spacing. |
