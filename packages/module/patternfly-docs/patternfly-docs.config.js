@@ -1,6 +1,6 @@
 // This module is shared between NodeJS and babelled ES5
 module.exports = {
-  sideNavItems: [{ section: 'extensions' }],
+  sideNavItems: [{ section: 'extensions' }, { section: 'patterns' }],
   topNavItems: [],
   hasThemeSwitcher: true,
   hasRTLSwitcher: true,
