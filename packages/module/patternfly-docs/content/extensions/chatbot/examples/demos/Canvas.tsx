@@ -1,10 +1,10 @@
 import { useState, useRef, useCallback, useEffect, FunctionComponent, ReactNode } from 'react';
 import {
   Brand,
+  Button,
   Divider,
   Drawer,
   DrawerActions,
-  DrawerCloseButton,
   DrawerContent,
   DrawerContentBody,
   DrawerHead,
@@ -39,17 +39,17 @@ import ChatbotHeader, {
   ChatbotHeaderMenu,
   ChatbotHeaderTitle
 } from '@patternfly/chatbot/dist/dynamic/ChatbotHeader';
-import RhUiAiEditIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-edit-icon';
-import RhUiAiInfoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-info-icon';
-import RhUiImageFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-image-fill-icon';
-import RhUiAddIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-add-icon';
-import RhUiTaskFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-task-fill-icon';
-import RhUiExportIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-export-icon';
-import RhUiRedoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-redo-icon';
-import RhUiUndoIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-undo-icon';
-import RhUiServerUploadFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-server-upload-fill-icon';
-import RhUiNotificationFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-notification-fill-icon';
-import RhUiCalendarFillIcon from '@patternfly/react-icons/dist/esm/icons/rh-ui-calendar-fill-icon';
+import { RhUiAiInfoIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-ai-info-icon';
+import { RhUiImageFillIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-image-fill-icon';
+import { RhUiAddIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-add-icon';
+import { RhUiTaskFillIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-task-fill-icon';
+import { RhUiSaveIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-save-icon';
+import { RhUiRedoIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-redo-icon';
+import { RhUiUndoIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-undo-icon';
+import { RhUiServerUploadFillIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-server-upload-fill-icon';
+import { RhUiNotificationFillIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-notification-fill-icon';
+import { RhUiCalendarFillIcon } from '@patternfly/react-icons/dist/esm/icons/rh-ui-calendar-fill-icon';
+import { RhMicronsCloseIcon } from '@patternfly/react-icons/dist/esm/icons/rh-microns-close-icon';
 import { useDropzone } from 'react-dropzone';
 import PFIconLogoColor from '../UI/PF-IconLogo-Color.svg';
 import PFIconLogoReverse from '../UI/PF-IconLogo-Reverse.svg';
@@ -140,6 +140,7 @@ export const Canvas: FunctionComponent = () => {
   const editorRef = useRef<CanvasEditor>(null);
   const messageInputRef = useRef<HTMLTextAreaElement>(null);
   const messageActionsRef = useRef<HTMLButtonElement>(null);
+  const canvasCloseButtonRef = useRef<HTMLButtonElement>(null);
   const canvasSectionRef = useRef<HTMLElement>(null);
   const wasCanvasOpen = useRef(isCanvasOpen);
   const shouldFocusCanvasCloseButton = useRef(false);
@@ -336,10 +337,10 @@ export const Canvas: FunctionComponent = () => {
     />,
     <CodeEditorControl
       key="export"
-      icon={<RhUiExportIcon />}
-      aria-label="Export"
+      icon={<RhUiSaveIcon />}
+      aria-label="Save"
       tooltipProps={{
-        content: 'Export',
+        content: 'Save',
         // prevents VO announcements of both aria label and tooltip
         aria: 'none'
       }}
@@ -401,7 +402,7 @@ export const Canvas: FunctionComponent = () => {
                 <Label
                   isClickable
                   variant="outline"
-                  icon={<RhUiAiEditIcon aria-hidden />}
+                  icon={<RhUiAiInfoIcon aria-hidden />}
                   role="button"
                   tabIndex={0}
                   aria-expanded={isGeneratedAiPopoverOpen}
@@ -413,11 +414,16 @@ export const Canvas: FunctionComponent = () => {
             </FlexItem>
           </Flex>
           <DrawerActions>
-            <Tooltip content="Close canvas" position="bottom" aria="none">
-              <span>
-                <DrawerCloseButton aria-label="Exit canvas mode" onClose={closeCanvasMode} />
-              </span>
-            </Tooltip>
+            <Tooltip triggerRef={canvasCloseButtonRef} content="Close canvas" position="bottom" aria="none" />
+            <div className="pf-v6-c-drawer__close">
+              <Button
+                ref={canvasCloseButtonRef}
+                variant="plain"
+                aria-label="Exit canvas mode"
+                icon={<RhMicronsCloseIcon />}
+                onClick={closeCanvasMode}
+              />
+            </div>
           </DrawerActions>
         </DrawerHead>
         <div className="pf-chatbot__canvas-panel-body">
