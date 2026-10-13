@@ -38,6 +38,10 @@ describe('ChatbotToggle', () => {
     expect(screen.getByRole('button')).toHaveClass('pf-chatbot__button');
     expect(screen.getByRole('button')).toHaveClass('pf-chatbot__button--round');
   });
+  it('should handle isRound correctly when false', () => {
+    render(<ChatbotToggle tooltipLabel="Chatbot" isRound={false} />);
+    expect(screen.getByRole('button')).not.toHaveClass('pf-chatbot__button--round');
+  });
   it('should handle className correctly', () => {
     render(<ChatbotToggle tooltipLabel="Chatbot" className="test" />);
     expect(screen.getByRole('button')).toHaveClass('pf-chatbot__button');
