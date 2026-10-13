@@ -31,11 +31,14 @@
     overflow: visible;
     height: 100%;
     min-width: 0;
+ }
+
+  .pf-chatbot__prompt-suggestion-body {
     overflow-wrap: anywhere;
   }
 
   .pf-chatbot__prompt-suggestion-title {
-    overflow-wrap: anywhere;
+    --pf-v6-c-card__title-text--OverflowWrap: anywhere;
   }
 }
 
