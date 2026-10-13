@@ -27,13 +27,8 @@
   }
 }
 
-:root:where(.pf-v6-theme-glass) {
-  .pf-chatbot__chatbot-modal {
-    --pf-v6-c-modal-box--BackgroundColor: var(
-      --pf-t--global--background--color--glass--primary--default,
-      var(--pf-t--global--background--color--secondary--default)
-    );
-  }
+:root:where(.pf-v6-theme-glass) .pf-chatbot__code-modal {
+  --pf-v6-c-modal-box--BackgroundColor: var(--pf-t--global--background--color--floating--secondary--default);
 }
 
 // ============================================================================
