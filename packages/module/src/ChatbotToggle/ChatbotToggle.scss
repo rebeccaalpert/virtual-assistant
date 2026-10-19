@@ -5,6 +5,7 @@
   position: fixed;
   inset-block-end: var(--pf-t--global--spacer--md);
   inset-inline-end: var(--pf-t--global--spacer--md);
+  --pf-v6-c-button--BorderRadius: 0;
   --pf-v6-c-button--m-plain--BackgroundColor: var(--pf-t--global--background--color--floating--default);
   --pf-v6-c-button--m-plain--hover--BackgroundColor: var(--pf-t--global--background--color--floating--hover);
   --pf-v6-c-button--m-plain--m-clicked--BackgroundColor: var(--pf-t--global--background--color--floating--clicked);
@@ -48,8 +49,8 @@
   }
 }
 
-.pf-chatbot__button--round {
-  border-radius: var(--pf-t--global--border--radius--pill);
+.pf-chatbot__button.pf-chatbot__button--round {
+  --pf-v6-c-button--BorderRadius: var(--pf-t--global--border--radius--pill);
   width: 3rem;
   height: 3rem;
 }
