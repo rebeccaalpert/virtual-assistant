@@ -125,7 +125,7 @@ export const MyComponent: FunctionComponent<MyComponentProps> = ({ customLabel, 
 
 #### Markdown file example:
 
-Note: You'll need to add any imports required in a component usage file example like MyComponentExample.tsx, below, here as well.
+**Note**: You'll need to add any imports required in a component usage file example like MyComponentExample.tsx, below, here as well.
 
 ````
 ---
